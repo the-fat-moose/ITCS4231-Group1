@@ -6,6 +6,8 @@ namespace Group1{
         [HideInInspector] PlayerLocomotionManager locomotion;
         [HideInInspector] PlayerStatsManager playerStatsManager;
 
+        [SerializeField] PlayerUIManager playerUIManager; 
+
         protected override void Awake()
         {
             base.Awake();   //runs CharacterManager Awake 
@@ -13,7 +15,7 @@ namespace Group1{
             locomotion = GetComponent<PlayerLocomotionManager>();
             playerStatsManager = GetComponent<PlayerStatsManager>();
             
-            OnStaminaChanged += PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue;
+            OnStaminaChanged += playerUIManager.instance.playerUIHudManager.SetNewStaminaValue;
             MaxStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(endurance);
             PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(MaxStamina);
         }
