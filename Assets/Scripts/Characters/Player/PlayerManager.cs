@@ -15,7 +15,7 @@ namespace Group1{
             locomotion = GetComponent<PlayerLocomotionManager>();
             playerStatsManager = GetComponent<PlayerStatsManager>();
             
-            OnStaminaChanged += playerUIManager.instance.playerUIHudManager.SetNewStaminaValue;
+            OnStaminaChanged += PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue;
             MaxStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(endurance);
             PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(MaxStamina);
         }
