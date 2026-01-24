@@ -3,13 +3,19 @@ using UnityEngine;
 namespace Group1{
     public class PlayerManager : CharacterManager
     {
-        PlayerLocomotionManager locomotion;
+        [HideInInspector] PlayerLocomotionManager locomotion;
+        [HideInInspector] PlayerStatsManager playerStatsManager;
+
         protected override void Awake()
         {
             base.Awake();   //runs CharacterManager Awake 
 
             locomotion = GetComponent<PlayerLocomotionManager>();
+            playerStatsManager = GetComponent<PlayerStatsManager>();
             
+            OnStaminaChanged += PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue;
+            MaxStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(endurance);
+            PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(MaxStamina);
         }
 
         protected override void Update()

@@ -1,16 +1,18 @@
 using UnityEngine;
 
-public class PlayerUIHudManager : MonoBehaviour
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+namespace Group1 {
+    public class PlayerUIHudManager : MonoBehaviour
     {
-        
-    }
+        [SerializeField] UI_StatBar staminaBar;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void SetNewStaminaValue(int oldValue, int newValue)
+        {
+            staminaBar.SetStat(newValue);
+        }
+
+        public void SetMaxStaminaValue(int maxStamina)
+        {
+            staminaBar.SetMaxStat(maxStamina);
+        }
     }
 }
