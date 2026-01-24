@@ -4,6 +4,10 @@ namespace Group1{
     public class CharacterManager : MonoBehaviour
     {
         public CharacterController characterController;
+
+        [Header("Stats")]
+        public int endurance = 1;
+
         protected virtual void Awake()
         {
             DontDestroyOnLoad(this);
