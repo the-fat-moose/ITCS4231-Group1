@@ -34,7 +34,6 @@ namespace Group1{
         private void HandleGroundMovement()
         {
             GetMovementInputs();
-
             //move dir is based on camera and inputs
             moveDir = PlayerCamera.cam.transform.forward * verticalMovement;
             moveDir = moveDir + PlayerCamera.cam.transform.right * horizontalMovement;
