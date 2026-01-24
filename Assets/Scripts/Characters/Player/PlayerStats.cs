@@ -44,6 +44,13 @@ namespace Group1
             }
             
             /* ADD GETTING HIT ANIMATION CODE HERE */
+
+            if (currentHealth <= 0)
+            {
+                currentHealth = 0;
+                /* ADD DEATH ANIMATION CODE HERE */
+                // HANDLE PLAYER DEATH (This will probably be related to the checkpoints)
+            }
         }
     }
 }
