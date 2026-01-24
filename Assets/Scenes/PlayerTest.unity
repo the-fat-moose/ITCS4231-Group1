@@ -124,6 +124,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8787076215656406664, guid: 9e3b94a3a8951544691996d98ef7b4b6, type: 3}
   m_PrefabInstance: {fileID: 417971648147861349}
   m_PrefabAsset: {fileID: 0}
+--- !u!20 &173422794 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 5363928790059817096, guid: 9e3b94a3a8951544691996d98ef7b4b6, type: 3}
+  m_PrefabInstance: {fileID: 417971648147861349}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &173422797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,6 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 624e0866e4ea2dd409f61c267cf28d02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Group1.PlayerCamera
+  cameraObject: {fileID: 173422794}
 --- !u!1 &280138573
 GameObject:
   m_ObjectHideFlags: 0

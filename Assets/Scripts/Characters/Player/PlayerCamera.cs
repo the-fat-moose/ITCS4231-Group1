@@ -5,6 +5,8 @@ namespace Group1{
     {
         public static PlayerCamera cam;
 
+        public Camera cameraObject;
+
         private void Awake()
         {
             if(cam == null)

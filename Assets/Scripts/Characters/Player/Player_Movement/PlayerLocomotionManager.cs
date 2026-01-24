@@ -10,8 +10,10 @@ namespace Group1{
         public float moveAmount;
 
         private Vector3 moveDir;
-        [SerializeField] float walkSpeed = 2;
-        [SerializeField] float runSpeed = 5;
+        private Vector3 targetRotation;
+        [SerializeField] float walkSpeed = 2f;
+        [SerializeField] float runSpeed = 5f;
+        [SerializeField] float rotationSpeed = 15f;
 
         protected override void Awake()
         {
@@ -23,6 +25,7 @@ namespace Group1{
         public void HandleMovement()
         {
             HandleGroundMovement();
+            HandleRotation();
         }
 
         private void GetMovementInputs()
@@ -50,6 +53,24 @@ namespace Group1{
                 //walking
                 player.characterController.Move(moveDir * walkSpeed * Time.deltaTime);
             }
+        }
+
+        private void HandleRotation()
+        {
+            targetRotation = Vector3.zero;
+            targetRotation = PlayerCamera.cam.cameraObject.transform.forward *verticalMovement;
+            targetRotation = targetRotation + PlayerCamera.cam.cameraObject.transform.right * horizontalMovement;
+            targetRotation.Normalize();
+            targetRotation.y = 0;
+
+            if(targetRotation == Vector3.zero)
+            {
+                targetRotation = transform.forward;
+            } 
+
+            Quaternion newRotation = Quaternion.LookRotation(targetRotation);
+            Quaternion targetRotationTurn = Quaternion.Slerp(transform.rotation, newRotation, rotationSpeed * Time.deltaTime);
+            transform.rotation = targetRotationTurn;
         }
     }
 }
