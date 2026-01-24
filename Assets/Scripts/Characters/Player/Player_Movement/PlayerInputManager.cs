@@ -35,6 +35,11 @@ namespace Group1{
             playerControls.Enable();
         }
 
+        private void Update()
+        {
+            MovementInput();
+        }
+
         private void MovementInput()
         {
             verticalInput = movement.y;
