@@ -17,7 +17,7 @@ namespace Group1{
             base.Update();
 
             //Handles movement
-            PlayerLocomotionManager.HandleMovement();
+            locomotion.HandleMovement();
         }
     }       
 }

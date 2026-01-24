@@ -7,9 +7,9 @@ namespace Group1{
         PlayerControls playerControls;
 
         [SerializeField] Vector2 movement;
-        [SerializeField] float verticalInput;
-        [SerializeField] float horizontalInput;
-        [SerializeField] public float moveAmount;
+        public float verticalInput;
+        public float horizontalInput;
+        public float moveAmount;
 
         private void Awake()
         {
