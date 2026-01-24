@@ -5,6 +5,8 @@ namespace Group1 {
     {
         public static PlayerUIManager instance;
 
+        [HideInInspector] public PlayerUIHudManager playerUIHudManager;
+
         private void Awake()
         {
             if (instance == null)
@@ -15,6 +17,8 @@ namespace Group1 {
             {
                 Destroy(gameObject);
             }
+
+            playerUIHudManager = GetComponentInChildren<PlayerUIHudManager>();
         }
     }
 }
