@@ -13,7 +13,14 @@ namespace Group1
         [Header("UI Elements")]
         public HealthBar healthBar;
 
-        void Start()
+        /* ADD ANIMATOR REFERENCE HERE */
+
+        private void Awake()
+        {
+            /* ADD ANIMATOR REFERENCE SET HERE */
+        }
+
+        private void Start()
         {
             maxHealth = SetMaxHealthFromHealthLevel();
             currentHealth = maxHealth;
@@ -35,6 +42,8 @@ namespace Group1
             {
                 healthBar.SetCurrentHealth(currentHealth);
             }
+            
+            /* ADD GETTING HIT ANIMATION CODE HERE */
         }
     }
 }
