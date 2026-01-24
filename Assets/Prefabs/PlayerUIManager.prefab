@@ -230,6 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e16b35bb4ce5e2b48a4e08762e27df0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerUIManager
+  playerUIHudManager: {fileID: 0}
 --- !u!223 &6079262389379817842
 Canvas:
   m_ObjectHideFlags: 0
@@ -551,3 +552,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4836e255bc8873a47b27c12e372c1fd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  staminaBar: {fileID: 233617527974986881}
