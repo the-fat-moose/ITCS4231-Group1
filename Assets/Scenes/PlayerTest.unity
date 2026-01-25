@@ -456,11 +456,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 357564436}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &881962002 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8219846379033158351, guid: bdfa12a8dfbbb694586811c3c3955036, type: 3}
-  m_PrefabInstance: {fileID: 4583652392603337601}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &914923212
 GameObject:
   m_ObjectHideFlags: 0
@@ -1152,18 +1147,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1080827850}
-    - target: {fileID: 5704482104397705886, guid: bdfa12a8dfbbb694586811c3c3955036, type: 3}
-      propertyPath: cameraPivotTransform
-      value: 
-      objectReference: {fileID: 881962002}
-    - target: {fileID: 5704482104397705886, guid: bdfa12a8dfbbb694586811c3c3955036, type: 3}
-      propertyPath: upAndDownRotationSpeed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5704482104397705886, guid: bdfa12a8dfbbb694586811c3c3955036, type: 3}
-      propertyPath: leftAndRightRotationSpeed
-      value: 20
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

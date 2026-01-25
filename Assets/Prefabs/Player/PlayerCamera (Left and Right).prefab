@@ -47,6 +47,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Group1.PlayerCamera
   cameraObject: {fileID: 7781345131264412786}
   player: {fileID: 0}
+  cameraPivotTransform: {fileID: 8219846379033158351}
+  cameraSmoothSpeed: 10
+  leftAndRightRotationSpeed: 20
+  upAndDownRotationSpeed: 20
+  minimumPivot: -60
+  maximumPivot: 60
+  cameraCollisionOffset: 0.2
+  collideWithLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  leftAndRightLookAngle: 0
+  upAndDownLookAngle: 0
 --- !u!1 &5483104116713962436
 GameObject:
   m_ObjectHideFlags: 0
