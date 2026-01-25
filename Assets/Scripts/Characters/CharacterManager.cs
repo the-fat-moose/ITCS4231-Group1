@@ -44,5 +44,10 @@ namespace Group1{
         {
             
         }
+
+        protected virtual void LateUpdate()
+        {
+            
+        }
     }
 }

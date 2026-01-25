@@ -27,5 +27,12 @@ namespace Group1{
             //Handles movement
             locomotion.HandleMovement();
         }
+
+        protected override void LateUpdate()
+        {
+            base.LateUpdate();
+
+            PlayerCamera.cam.HandleCameraActions();
+        }
     }       
 }

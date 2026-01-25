@@ -6,10 +6,16 @@ namespace Group1{
         public static PlayerInputManager inputs;
         PlayerControls playerControls;
 
+        [Header("Player Movement Input")]
         [SerializeField] Vector2 movement;
         public float verticalInput;
         public float horizontalInput;
         public float moveAmount;
+
+        [Header("Camera Movement Input")]
+        [SerializeField] Vector2 camMovement;
+        public float verticalCameraInput;
+        public float horizontalCameraInput;
 
         private void Awake()
         {
@@ -30,6 +36,7 @@ namespace Group1{
                 playerControls = new PlayerControls();
 
                 playerControls.PlayerMovement.Movement.performed += i => movement = i.ReadValue<Vector2>();
+                playerControls.PlayerCamera.Movement.performed += i => camMovement = i.ReadValue<Vector2>();
             }
 
             playerControls.Enable();
@@ -38,6 +45,7 @@ namespace Group1{
         private void Update()
         {
             MovementInput();
+            HandleCameraInput();
         }
 
         private void MovementInput()
@@ -56,6 +64,12 @@ namespace Group1{
             {
                 moveAmount = 1f;
             }
+        }
+
+        private void HandleCameraInput()
+        {
+            verticalCameraInput = camMovement.y;
+            horizontalCameraInput = camMovement.x;
         }
 }
 }
