@@ -3,7 +3,8 @@ using UnityEngine;
 namespace Group1{
     public class PlayerManager : CharacterManager
     {
-        [HideInInspector] PlayerLocomotionManager locomotion;
+        [HideInInspector] public PlayerAnimatorManager playerAnimatorManager;
+        [HideInInspector] public PlayerLocomotionManager locomotion;
         [HideInInspector] PlayerStatsManager playerStatsManager;
 
         protected override void Awake()
@@ -12,6 +13,7 @@ namespace Group1{
 
             locomotion = GetComponent<PlayerLocomotionManager>();
             playerStatsManager = GetComponent<PlayerStatsManager>();
+            playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
 
             // UPDATE TOTAL AMOUNT OF HEALTH OR STAMINA WHEN THE STAT LINKED TO EITHER CHANGES
             OnEnduranceChanged += SetNewMaxStaminaValue;

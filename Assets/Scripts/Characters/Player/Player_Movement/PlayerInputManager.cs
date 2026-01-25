@@ -4,6 +4,7 @@ namespace Group1{
     public class PlayerInputManager : MonoBehaviour
     {
         public static PlayerInputManager inputs;
+        public PlayerManager player;
         PlayerControls playerControls;
 
         [Header("Player Movement Input")]
@@ -64,6 +65,8 @@ namespace Group1{
             {
                 moveAmount = 1f;
             }
+
+            player.playerAnimatorManager.UpdateAnimatorMovementParameters(0f, moveAmount);
         }
 
         private void HandleCameraInput()

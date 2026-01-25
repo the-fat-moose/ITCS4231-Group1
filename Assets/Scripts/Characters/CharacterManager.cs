@@ -4,6 +4,7 @@ namespace Group1{
     public class CharacterManager : MonoBehaviour
     {
         public CharacterController characterController;
+        [HideInInspector] public Animator animator;
 
         [Header("Stats")]
         [SerializeField] private int endurance = 1;
@@ -93,6 +94,7 @@ namespace Group1{
             DontDestroyOnLoad(this);
 
             characterController = GetComponent<CharacterController>();
+            animator = GetComponent<Animator>();
         }
 
         protected virtual void Update()
