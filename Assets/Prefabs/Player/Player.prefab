@@ -78,7 +78,6 @@ MonoBehaviour:
   maxStamina: 0
   currentHealth: 0
   maxHealth: 0
-  playerUIManager: {fileID: 0}
 --- !u!114 &2635933940703782878
 MonoBehaviour:
   m_ObjectHideFlags: 0

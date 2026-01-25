@@ -6,8 +6,6 @@ namespace Group1{
         [HideInInspector] PlayerLocomotionManager locomotion;
         [HideInInspector] PlayerStatsManager playerStatsManager;
 
-        [SerializeField] PlayerUIManager playerUIManager; 
-
         protected override void Awake()
         {
             base.Awake();   //runs CharacterManager Awake 
@@ -53,12 +51,14 @@ namespace Group1{
         private void SetNewMaxHealthValue(int oldVitality, int newVitality)
         {
             MaxHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel(newVitality);
+            PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(MaxHealth);
             CurrentHealth = MaxHealth;
         }
 
         private void SetNewMaxStaminaValue(int oldEndurance, int newEndurance)
         {
             MaxStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(newEndurance);
+            PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(MaxStamina);
             CurrentStamina = MaxStamina;
         }
     }       
