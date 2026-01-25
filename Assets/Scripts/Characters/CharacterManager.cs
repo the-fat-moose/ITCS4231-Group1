@@ -6,8 +6,8 @@ namespace Group1{
         public CharacterController characterController;
 
         [Header("Stats")]
-        private int endurance = 1;
-        private int vitality = 1;
+        [SerializeField] private int endurance = 1;
+        [SerializeField] private int vitality = 1;
 
         public event System.Action<int, int> OnVitalityChanged;
         public event System.Action<int, int> OnEnduranceChanged;
@@ -41,6 +41,7 @@ namespace Group1{
         public event System.Action<int, int> OnStaminaChanged;
         public event System.Action<int, int> OnHealthChanged;
 
+        [Header("Resources")]
         [SerializeField] private int currentStamina = 0;
 
         public int CurrentStamina
