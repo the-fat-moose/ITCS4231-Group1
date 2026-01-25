@@ -14,10 +14,25 @@ namespace Group1{
 
             locomotion = GetComponent<PlayerLocomotionManager>();
             playerStatsManager = GetComponent<PlayerStatsManager>();
-            
+
+            // UPDATE TOTAL AMOUNT OF HEALTH OR STAMINA WHEN THE STAT LINKED TO EITHER CHANGES
+            OnEnduranceChanged += SetNewMaxStaminaValue;
+            OnVitalityChanged += SetNewMaxHealthValue;
+
+            // Stamina Setup
             OnStaminaChanged += PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue;
-            MaxStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(endurance);
+            /* ADD CODE TO RESET STAMINA REGEN TIMER */
+            
+            MaxStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(Endurance);
+            CurrentStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(Endurance);
             PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(MaxStamina);
+
+            // Health Setup
+            OnHealthChanged += PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue;
+
+            MaxHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel(Vitality);
+            CurrentHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel(Vitality);
+            PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(MaxHealth);
         }
 
         protected override void Update()
@@ -33,6 +48,18 @@ namespace Group1{
             base.LateUpdate();
 
             PlayerCamera.cam.HandleCameraActions();
+        }
+
+        private void SetNewMaxHealthValue(int oldVitality, int newVitality)
+        {
+            MaxHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel(newVitality);
+            CurrentHealth = MaxHealth;
+        }
+
+        private void SetNewMaxStaminaValue(int oldEndurance, int newEndurance)
+        {
+            MaxStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(newEndurance);
+            CurrentStamina = MaxStamina;
         }
     }       
 }
