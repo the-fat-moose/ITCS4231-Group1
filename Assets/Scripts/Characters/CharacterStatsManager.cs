@@ -3,7 +3,18 @@ using UnityEngine;
 namespace Group1 {
     public class CharacterStatsManager : MonoBehaviour
     {
-        protected virtual void Awake() {}
+        private CharacterManager character;
+
+        [Header("Stamina Regeneration")]
+        private float staminaRegenerationTimer = 0;
+        private float staminaTickTimer = 0;
+        [SerializeField] private float staminaRegenerationDelay = 2f;
+        [SerializeField] private int staminaRegenerationAmount = 2;
+
+        protected virtual void Awake()
+        {
+            character = GetComponent<CharacterManager>();
+        }
 
         protected virtual void Start() {}
 
@@ -25,6 +36,46 @@ namespace Group1 {
             health = vitality * 15;
 
             return Mathf.RoundToInt(health);
+        }
+
+        public virtual void RegenerateStamina()
+        {
+            // DO NOT REGENERATE STAMINA IF WE ARE USING IT
+            if (true /* change this when the isSprinting variable is made */)
+            {
+                return;
+            }
+
+            if (true /* change this when the isPerformingAction variable is made */)
+            {
+                return;
+            }
+
+            staminaRegenerationTimer += Time.deltaTime;
+
+            if (staminaRegenerationTimer >= staminaRegenerationDelay)
+            {
+                if (character.CurrentStamina < character.MaxStamina)
+                {
+                    staminaTickTimer += Time.deltaTime;
+
+                    if (staminaTickTimer >= 0.1) // 1/10th of a second
+                    {
+                        staminaTickTimer = 0;
+                        character.CurrentStamina += staminaRegenerationAmount;
+                    }
+                }
+            }
+        }
+    
+        public virtual void ResetStaminaRegenTimer(int previousStaminaAmount, int currentStaminaAmount)
+        {
+            // WE ONLY WANT TO RESET THE REGENERATION IF THE ACTION USED STAMINA
+            // WE DONT WANT TO RESET THE REGENERATION IF WE ARE ALREADY REGENERATING STAMINA
+            if (currentStaminaAmount < previousStaminaAmount)
+            {
+                staminaRegenerationTimer = 0;
+            }
         }
     }
 }

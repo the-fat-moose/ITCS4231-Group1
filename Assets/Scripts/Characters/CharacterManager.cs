@@ -6,6 +6,7 @@ namespace Group1{
         public CharacterController characterController;
         [HideInInspector] public Animator animator;
 
+    #region Stat Variables
         [Header("Stats")]
         [SerializeField] private int endurance = 1;
         [SerializeField] private int vitality = 1;
@@ -88,6 +89,8 @@ namespace Group1{
             get => maxHealth;
             protected set => maxHealth = value;
         }
+    
+    #endregion
 
         protected virtual void Awake()
         {

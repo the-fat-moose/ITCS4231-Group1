@@ -21,7 +21,7 @@ namespace Group1{
 
             // Stamina Setup
             OnStaminaChanged += PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue;
-            /* ADD CODE TO RESET STAMINA REGEN TIMER */
+            OnStaminaChanged += playerStatsManager.ResetStaminaRegenTimer;
             
             MaxStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(Endurance);
             CurrentStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(Endurance);
@@ -41,6 +41,9 @@ namespace Group1{
 
             //Handles movement
             locomotion.HandleMovement();
+
+            // REGEN STAMINA
+            playerStatsManager.RegenerateStamina();
         }
 
         protected override void LateUpdate()

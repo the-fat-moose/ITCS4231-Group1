@@ -18,7 +18,7 @@ namespace Group1 {
 
         public void SetNewStaminaValue(int oldValue, int newValue)
         {
-            staminaBar.SetStat(newValue);
+            staminaBar.SetStat(Mathf.RoundToInt(newValue));
         }
 
         public void SetMaxStaminaValue(int maxStamina)
