@@ -637,16 +637,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1269411608137648575, guid: b05055c5aa202b14c853c40c0fd6cb73, type: 3}
       propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
-        'mixamorig:LeftHandThumb2'\n\tTransform 'mixamorig:LeftHandIndex1'\n\tTransform
-        'mixamorig:LeftHandPinky2'\n\tTransform 'mixamorig:RightHandRing2'\n\tTransform
-        'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:LeftHandThumb3'\n\tTransform
-        'mixamorig:RightArm'\n\tand more ...\n\tFrom animation clip 'Player_Walk_Forward'\n\tFrom
-        animation clip 'Player_Walk_Back'\n\tFrom animation clip 'Player_Walk_Left'\n\tFrom
-        animation clip 'Player_Walk_Right'"
+      value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1558910934894698834, guid: b05055c5aa202b14c853c40c0fd6cb73, type: 3}
+      propertyPath: characterController
+      value: 
+      objectReference: {fileID: 1457674747}
     - target: {fileID: 3606028210734739436, guid: b05055c5aa202b14c853c40c0fd6cb73, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.76907146
@@ -691,7 +687,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3918246435552783982, guid: b05055c5aa202b14c853c40c0fd6cb73, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -716,6 +713,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f8ad95a33b598f44aed76d424e99eaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimatorManager
+  character: {fileID: 0}
+--- !u!143 &1457674747 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 3043051438168417331, guid: b05055c5aa202b14c853c40c0fd6cb73, type: 3}
+  m_PrefabInstance: {fileID: 1457674743}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1508882806
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -890,6 +893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2c10d052c374464b814c01c7ad65b86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Group1.PlayerInputManager
+  player: {fileID: 1080827850}
   movement: {x: 0, y: 0}
   verticalInput: 0
   horizontalInput: 0
