@@ -13,6 +13,9 @@ namespace Group1{
         public float horizontalInput;
         public float moveAmount;
 
+        [Header ("Player Action Input")]
+        [SerializeField] private bool dodgeInput;
+
         [Header("Camera Movement Input")]
         [SerializeField] Vector2 camMovement;
         public float verticalCameraInput;
@@ -40,6 +43,7 @@ namespace Group1{
 
                 playerControls.PlayerMovement.Movement.performed += i => movement = i.ReadValue<Vector2>();
                 playerControls.PlayerCamera.Movement.performed += i => camMovement = i.ReadValue<Vector2>();
+                playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
             }
 
             playerControls.Enable();
@@ -59,11 +63,10 @@ namespace Group1{
             moveAmount = Mathf.Clamp01(Mathf.Abs(verticalInput) + Mathf.Abs(horizontalInput));
             bool isWalkHeld = playerControls.PlayerMovement.Walk.ReadValue<float>() > 0.1f;
 
-            if(isWalkHeld  && moveAmount > 0f)
+            if(isWalkHeld  && moveAmount > 0f) //lets player slow walk on keyboard
             {
                 moveAmount = 0.5f;
             }
-
 
             //clamps movement to be smoother (optional)
             if(moveAmount <= 0.5 && moveAmount > 0)
@@ -82,6 +85,16 @@ namespace Group1{
         {
             verticalCameraInput = camMovement.y;
             horizontalCameraInput = camMovement.x;
+        }
+
+        private void handleDodgeInput()
+        {
+            if (dodgeInput)
+            {
+                dodgeInput = false;
+
+                //for future, no dodge when ui open
+            }
         }
 }
 }

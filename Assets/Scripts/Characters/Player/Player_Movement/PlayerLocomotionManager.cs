@@ -5,15 +5,19 @@ namespace Group1{
     {
         PlayerManager player; 
 
-        public float verticalMovement;
-        public float horizontalMovement;
-        public float moveAmount;
+        [HideInInspector] public float verticalMovement;
+        [HideInInspector] public float horizontalMovement;
+        [HideInInspector] public float moveAmount;
 
+        [Header("Movement Settings")]
         private Vector3 moveDir;
         private Vector3 targetRotation;
         [SerializeField] float walkSpeed = 2f;
         [SerializeField] float runSpeed = 5f;
         [SerializeField] float rotationSpeed = 15f;
+
+        [Header("Dodge")]
+        private Vector3 rollDirection;
 
         protected override void Awake()
         {
@@ -71,6 +75,26 @@ namespace Group1{
             Quaternion newRotation = Quaternion.LookRotation(targetRotation);
             Quaternion targetRotationTurn = Quaternion.Slerp(transform.rotation, newRotation, rotationSpeed * Time.deltaTime);
             transform.rotation = targetRotationTurn;
+        }
+
+        public void AttamptToDodge()
+        {
+            if(PlayerInputManager.inputs.moveAmount > 0)
+            {
+                rollDirection = PlayerCamera.cam.cameraObject.transform.forward * PlayerInputManager.inputs.verticalInput;
+                rollDirection += PlayerCamera.cam.cameraObject.transform.right * PlayerInputManager.inputs.horizontalInput;
+                rollDirection.y = 0;
+                rollDirection.Normalize();
+                
+                Quaternion playerRotation = Quaternion.LookRotation(rollDirection);
+                player.transform.rotation = playerRotation;
+
+                //roll (moving)
+            }
+            else
+            {
+                //backstep (not moving)
+            }
         }
     }
 }
