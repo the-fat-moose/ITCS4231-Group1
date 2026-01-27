@@ -695,6 +695,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5786037847892666633, guid: b05055c5aa202b14c853c40c0fd6cb73, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1457674745}
+    - targetCorrespondingSourceObject: {fileID: 5786037847892666633, guid: b05055c5aa202b14c853c40c0fd6cb73, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1457674748}
   m_SourcePrefab: {fileID: 100100000, guid: b05055c5aa202b14c853c40c0fd6cb73, type: 3}
 --- !u!1 &1457674744 stripped
 GameObject:
@@ -719,6 +722,20 @@ CharacterController:
   m_CorrespondingSourceObject: {fileID: 3043051438168417331, guid: b05055c5aa202b14c853c40c0fd6cb73, type: 3}
   m_PrefabInstance: {fileID: 1457674743}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1457674748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457674744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6cd7d953711814d9e5c5d7ae494547, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Group1.PlayerEffectsManager
+  effectToTest: {fileID: 11400000, guid: a650101118bb82c49977e81c9c69b294, type: 2}
+  processEffect: 0
 --- !u!1001 &1508882806
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1028,6 +1045,63 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1734118605}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &2079896262
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 955525668053229961, guid: 11bed38fcaa062140a6dab0533ee3100, type: 3}
+      propertyPath: m_Name
+      value: WorldCharacterEffectsManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5539234977073999727, guid: 11bed38fcaa062140a6dab0533ee3100, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -43.89167
+      objectReference: {fileID: 0}
+    - target: {fileID: 5539234977073999727, guid: 11bed38fcaa062140a6dab0533ee3100, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.00003
+      objectReference: {fileID: 0}
+    - target: {fileID: 5539234977073999727, guid: 11bed38fcaa062140a6dab0533ee3100, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -231.50688
+      objectReference: {fileID: 0}
+    - target: {fileID: 5539234977073999727, guid: 11bed38fcaa062140a6dab0533ee3100, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5539234977073999727, guid: 11bed38fcaa062140a6dab0533ee3100, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5539234977073999727, guid: 11bed38fcaa062140a6dab0533ee3100, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5539234977073999727, guid: 11bed38fcaa062140a6dab0533ee3100, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5539234977073999727, guid: 11bed38fcaa062140a6dab0533ee3100, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5539234977073999727, guid: 11bed38fcaa062140a6dab0533ee3100, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5539234977073999727, guid: 11bed38fcaa062140a6dab0533ee3100, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 11bed38fcaa062140a6dab0533ee3100, type: 3}
 --- !u!1 &2082156286
 GameObject:
   m_ObjectHideFlags: 0
@@ -1226,3 +1300,4 @@ SceneRoots:
   - {fileID: 1457674743}
   - {fileID: 4583652392603337601}
   - {fileID: 1508882806}
+  - {fileID: 2079896262}

@@ -28,6 +28,8 @@ namespace Group1{
             {
                 Destroy(gameObject);
             } 
+
+            
         }
 
         private void OnEnable()
@@ -55,6 +57,13 @@ namespace Group1{
             horizontalInput = movement.x;
 
             moveAmount = Mathf.Clamp01(Mathf.Abs(verticalInput) + Mathf.Abs(horizontalInput));
+            bool isWalkHeld = playerControls.PlayerMovement.Walk.ReadValue<float>() > 0.1f;
+
+            if(isWalkHeld  && moveAmount > 0f)
+            {
+                moveAmount = 0.5f;
+            }
+
 
             //clamps movement to be smoother (optional)
             if(moveAmount <= 0.5 && moveAmount > 0)
