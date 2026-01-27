@@ -1029,6 +1029,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   healthBar: {fileID: 4432237341359612859}
+  manaBar: {fileID: 321665005818907440}
   staminaBar: {fileID: 233617527974986881}
 --- !u!1 &8391403331422956603
 GameObject:

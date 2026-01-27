@@ -10,9 +10,11 @@ namespace Group1{
         [Header("Stats")]
         [SerializeField] private int endurance = 1;
         [SerializeField] private int vitality = 1;
+        [SerializeField] private int mind = 1;
 
         public event System.Action<int, int> OnVitalityChanged;
         public event System.Action<int, int> OnEnduranceChanged;
+        public event System.Action<int, int> OnMindChanged;
 
         public int Endurance
         {
@@ -40,8 +42,22 @@ namespace Group1{
             }
         }
 
+        public int Mind
+        {
+            get => mind;
+            set
+            {
+                if (mind == value) return;
+
+                int oldValue = mind;
+                mind = value;
+                OnMindChanged?.Invoke(oldValue, mind);
+            }
+        }
+
         public event System.Action<int, int> OnStaminaChanged;
         public event System.Action<int, int> OnHealthChanged;
+        public event System.Action<int, int> OnManaChanged;
 
         [Header("Resources")]
         [SerializeField] private int currentStamina = 0;
@@ -88,6 +104,29 @@ namespace Group1{
         {
             get => maxHealth;
             protected set => maxHealth = value;
+        }
+
+        [SerializeField] private int currentMana = 0;
+
+        public int CurrentMana
+        {
+            get => currentMana;
+            set
+            {
+                if (currentMana == value) return;
+
+                int oldValue = currentMana;
+                currentMana = value;
+                OnManaChanged?.Invoke(oldValue, currentMana);
+            }
+        }
+
+        [SerializeField] private int maxMana = 0;
+
+        public int MaxMana
+        {
+            get => maxMana;
+            protected set => maxMana = value;
         }
     
     #endregion

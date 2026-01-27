@@ -4,7 +4,8 @@ namespace Group1 {
     public class PlayerUIHudManager : MonoBehaviour
     {
         [SerializeField] UI_StatBar healthBar;
-        [SerializeField] UI_StatBar staminaBar;
+        [SerializeField] UI_StatBar manaBar;
+        [SerializeField] UI_StatBar staminaBar;        
 
         public void SetNewHealthValue(int oldValue, int newValue)
         {
@@ -14,6 +15,16 @@ namespace Group1 {
         public void SetMaxHealthValue(int maxHealth)
         {
             healthBar.SetMaxStat(maxHealth);
+        }
+
+        public void SetNewManaValue(int oldValue, int newValue)
+        {
+            manaBar.SetStat(Mathf.RoundToInt(newValue));
+        }
+
+        public void SetMaxManaValue(int maxMana)
+        {
+            manaBar.SetMaxStat(maxMana);
         }
 
         public void SetNewStaminaValue(int oldValue, int newValue)

@@ -38,6 +38,16 @@ namespace Group1 {
             return Mathf.RoundToInt(health);
         }
 
+        public int CalculateManaBasedOnMindLevel(int mind)
+        {
+            float mana = 0;
+
+            // FORMULA TO DETERMINE HOW MANA IS CALCULATED
+            mana = mind * 10;
+
+            return Mathf.RoundToInt(mana);
+        }
+
         public virtual void RegenerateStamina()
         {
             // DO NOT REGENERATE STAMINA IF WE ARE USING IT

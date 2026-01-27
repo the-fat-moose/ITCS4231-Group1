@@ -18,6 +18,7 @@ namespace Group1 {
 
             CalculateHealthBasedOnVitalityLevel(player.Vitality);
             CalculateStaminaBasedOnEnduranceLevel(player.Endurance);
+            CalculateManaBasedOnMindLevel(player.Mind);
         }
     }
 }

@@ -15,9 +15,10 @@ namespace Group1{
             playerStatsManager = GetComponent<PlayerStatsManager>();
             playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
 
-            // UPDATE TOTAL AMOUNT OF HEALTH OR STAMINA WHEN THE STAT LINKED TO EITHER CHANGES
+            // UPDATE TOTAL AMOUNT OF HEALTH, STAMINA, MANA WHEN THE STAT LINKED TO EITHER CHANGES
             OnEnduranceChanged += SetNewMaxStaminaValue;
             OnVitalityChanged += SetNewMaxHealthValue;
+            OnManaChanged += SetNewMaxManaValue;
 
             // Stamina Setup
             OnStaminaChanged += PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue;
@@ -33,6 +34,13 @@ namespace Group1{
             MaxHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel(Vitality);
             CurrentHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel(Vitality);
             PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(MaxHealth);
+
+            // Mana Setup
+            OnManaChanged += PlayerUIManager.instance.playerUIHudManager.SetNewManaValue;
+
+            MaxMana = playerStatsManager.CalculateManaBasedOnMindLevel(Mind);
+            CurrentMana = playerStatsManager.CalculateManaBasedOnMindLevel(Mind);
+            PlayerUIManager.instance.playerUIHudManager.SetMaxManaValue(MaxMana);            
         }
 
         protected override void Update()
@@ -65,6 +73,13 @@ namespace Group1{
             MaxStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(newEndurance);
             PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(MaxStamina);
             CurrentStamina = MaxStamina;
+        }
+
+        private void SetNewMaxManaValue(int oldMind, int newMind)
+        {
+            MaxMana = playerStatsManager.CalculateManaBasedOnMindLevel(newMind);
+            PlayerUIManager.instance.playerUIHudManager.SetMaxManaValue(MaxStamina);
+            CurrentMana = MaxMana;
         }
     }       
 }
