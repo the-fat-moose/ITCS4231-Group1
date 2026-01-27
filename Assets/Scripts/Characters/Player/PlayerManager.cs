@@ -18,7 +18,7 @@ namespace Group1{
             // UPDATE TOTAL AMOUNT OF HEALTH, STAMINA, MANA WHEN THE STAT LINKED TO EITHER CHANGES
             OnEnduranceChanged += SetNewMaxStaminaValue;
             OnVitalityChanged += SetNewMaxHealthValue;
-            OnManaChanged += SetNewMaxManaValue;
+            OnMindChanged += SetNewMaxManaValue;
 
             // Stamina Setup
             OnStaminaChanged += PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue;
@@ -78,7 +78,7 @@ namespace Group1{
         private void SetNewMaxManaValue(int oldMind, int newMind)
         {
             MaxMana = playerStatsManager.CalculateManaBasedOnMindLevel(newMind);
-            PlayerUIManager.instance.playerUIHudManager.SetMaxManaValue(MaxStamina);
+            PlayerUIManager.instance.playerUIHudManager.SetMaxManaValue(MaxMana);
             CurrentMana = MaxMana;
         }
     }       

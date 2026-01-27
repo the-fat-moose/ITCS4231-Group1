@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 2635933940703782878}
   - component: {fileID: 3043051438168417331}
   - component: {fileID: 5225235949794452445}
+  - component: {fileID: 7842898494225634399}
+  - component: {fileID: 9100049149628205151}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -46,9 +48,9 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5786037847892666633}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
+  m_Avatar: {fileID: 9000000, guid: 76d85a44286241741bc68d89630671ee, type: 3}
+  m_Controller: {fileID: 9100000, guid: c6a51f4e00b2cd6468ba60363569f896, type: 2}
+  m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -71,13 +73,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d4f73bdf1a94684da4769e5a946e9d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Group1.PlayerManager
-  characterController: {fileID: 0}
+  characterController: {fileID: 3043051438168417331}
+  animator: {fileID: 0}
   endurance: 10
   vitality: 10
+  mind: 10
   currentStamina: 0
   maxStamina: 0
   currentHealth: 0
   maxHealth: 0
+  currentMana: 0
+  maxMana: 0
+  playerAnimatorManager: {fileID: 0}
+  locomotion: {fileID: 0}
 --- !u!114 &2635933940703782878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,6 +141,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50bc05a8c81f3e4daea448b293d5a1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Group1.PlayerStatsManager
+  staminaRegenerationDelay: 2
+  staminaRegenerationAmount: 2
+--- !u!114 &7842898494225634399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5786037847892666633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f8ad95a33b598f44aed76d424e99eaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimatorManager
+  character: {fileID: 0}
+--- !u!114 &9100049149628205151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5786037847892666633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6cd7d953711814d9e5c5d7ae494547, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Group1.PlayerEffectsManager
+  effectToTest: {fileID: 11400000, guid: a650101118bb82c49977e81c9c69b294, type: 2}
+  processEffect: 0
 --- !u!1001 &7425026170528257023
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -185,7 +222,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCharacter
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5866666021909216657, guid: 76d85a44286241741bc68d89630671ee, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

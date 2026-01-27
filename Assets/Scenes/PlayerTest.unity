@@ -497,7 +497,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1558910934894698834, guid: b05055c5aa202b14c853c40c0fd6cb73, type: 3}
   m_PrefabInstance: {fileID: 1457674743}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1457674744}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d4f73bdf1a94684da4769e5a946e9d2, type: 3}
@@ -623,26 +623,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -1269411608137648575, guid: b05055c5aa202b14c853c40c0fd6cb73, type: 3}
-      propertyPath: m_Avatar
-      value: 
-      objectReference: {fileID: 9000000, guid: 76d85a44286241741bc68d89630671ee, type: 3}
-    - target: {fileID: -1269411608137648575, guid: b05055c5aa202b14c853c40c0fd6cb73, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: c6a51f4e00b2cd6468ba60363569f896, type: 2}
-    - target: {fileID: -1269411608137648575, guid: b05055c5aa202b14c853c40c0fd6cb73, type: 3}
-      propertyPath: m_CullingMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -1269411608137648575, guid: b05055c5aa202b14c853c40c0fd6cb73, type: 3}
-      propertyPath: m_WarningMessage
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1558910934894698834, guid: b05055c5aa202b14c853c40c0fd6cb73, type: 3}
-      propertyPath: characterController
-      value: 
-      objectReference: {fileID: 1457674747}
     - target: {fileID: 3606028210734739436, guid: b05055c5aa202b14c853c40c0fd6cb73, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.76907146
@@ -687,55 +667,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3918246435552783982, guid: b05055c5aa202b14c853c40c0fd6cb73, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5786037847892666633, guid: b05055c5aa202b14c853c40c0fd6cb73, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1457674745}
-    - targetCorrespondingSourceObject: {fileID: 5786037847892666633, guid: b05055c5aa202b14c853c40c0fd6cb73, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1457674748}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b05055c5aa202b14c853c40c0fd6cb73, type: 3}
---- !u!1 &1457674744 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5786037847892666633, guid: b05055c5aa202b14c853c40c0fd6cb73, type: 3}
-  m_PrefabInstance: {fileID: 1457674743}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1457674745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1457674744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f8ad95a33b598f44aed76d424e99eaf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimatorManager
-  character: {fileID: 0}
---- !u!143 &1457674747 stripped
-CharacterController:
-  m_CorrespondingSourceObject: {fileID: 3043051438168417331, guid: b05055c5aa202b14c853c40c0fd6cb73, type: 3}
-  m_PrefabInstance: {fileID: 1457674743}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1457674748
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1457674744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f6cd7d953711814d9e5c5d7ae494547, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Group1.PlayerEffectsManager
-  effectToTest: {fileID: 11400000, guid: a650101118bb82c49977e81c9c69b294, type: 2}
-  processEffect: 0
 --- !u!1001 &1508882806
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -744,6 +680,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 668256544416892904, guid: bb8b8def33741594c8b5c1065e35d535, type: 3}
+      propertyPath: m_ChildForceExpandWidth
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1544116119205753803, guid: bb8b8def33741594c8b5c1065e35d535, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

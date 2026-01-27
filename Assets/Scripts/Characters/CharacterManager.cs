@@ -8,9 +8,9 @@ namespace Group1{
 
     #region Stat Variables
         [Header("Stats")]
-        [SerializeField] private int endurance = 1;
-        [SerializeField] private int vitality = 1;
-        [SerializeField] private int mind = 1;
+        [SerializeField] private int endurance = 10;
+        [SerializeField] private int vitality = 10;
+        [SerializeField] private int mind = 10;
 
         public event System.Action<int, int> OnVitalityChanged;
         public event System.Action<int, int> OnEnduranceChanged;
