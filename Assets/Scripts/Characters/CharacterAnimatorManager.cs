@@ -1,16 +1,19 @@
+using Group1;
 using UnityEngine;
-
-public class CharacterAnimatorManager : MonoBehaviour
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+namespace Group1{
+    public class CharacterAnimatorManager : MonoBehaviour
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public CharacterManager character;
+        protected virtual void Awake()
+        {
+            character = GetComponent<CharacterManager>();
+        }
+
+        public void UpdateAnimatorMovementParameters(float horizontalValue, float verticalValue)
+        {
+            character.animator.SetFloat("Horizontal", horizontalValue, 0.1f, Time.deltaTime);
+            character.animator.SetFloat("Vertical", verticalValue, 0.1f, Time.deltaTime);
+        }
     }
 }
