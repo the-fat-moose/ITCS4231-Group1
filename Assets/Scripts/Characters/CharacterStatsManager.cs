@@ -41,12 +41,12 @@ namespace Group1 {
         public virtual void RegenerateStamina()
         {
             // DO NOT REGENERATE STAMINA IF WE ARE USING IT
-            if (true /* change this when the isSprinting variable is made */)
+            if (false /* change this when the isSprinting variable is made */)
             {
                 return;
             }
 
-            if (true /* change this when the isPerformingAction variable is made */)
+            if (false /* change this when the isPerformingAction variable is made */)
             {
                 return;
             }

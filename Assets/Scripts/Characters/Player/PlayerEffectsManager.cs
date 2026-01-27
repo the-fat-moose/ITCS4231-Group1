@@ -11,9 +11,9 @@ namespace Group1 {
         {
             if (processEffect)
             {
-                processEffect = false;
                 InstantCharacterEffect effect = Instantiate(effectToTest);
                 ProcessInstantEffect(effect);
+                processEffect = false;
             }
         }
     }

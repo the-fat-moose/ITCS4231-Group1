@@ -8,7 +8,7 @@ namespace Group1 {
 
         public override void ProcessEffect(CharacterManager character)
         {
-            
+            CalculateStaminaDamage(character);
         }
 
         private void CalculateStaminaDamage(CharacterManager character)
