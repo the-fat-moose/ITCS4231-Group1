@@ -19,6 +19,7 @@ namespace Group1{
 
         [Header("Stamina")]
         [SerializeField] int sprintingStaminaCost = 2;
+        [SerializeField] int dodgeStaminaCost = 15;
 
         [Header("Dodge")]
         [SerializeField] float rollSpeed = 6f;
@@ -136,6 +137,8 @@ namespace Group1{
         {
             if(player.isPerformingAction) return;
 
+            if (player.CurrentStamina <= 0) return;
+
             if(PlayerInputManager.inputs.moveAmount > 0)
             {
                 rollDirection = PlayerCamera.cam.cameraObject.transform.forward * PlayerInputManager.inputs.verticalInput;
@@ -160,6 +163,8 @@ namespace Group1{
             {
                 player.playerAnimatorManager.PlayTargetActionAnimation("PlayerCharacter_BackStep", true, true);
             }
+
+            player.CurrentStamina -= dodgeStaminaCost;
         }
     }
 }
