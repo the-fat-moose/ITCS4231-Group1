@@ -17,7 +17,9 @@ namespace Group1{
         [SerializeField] float rotationSpeed = 15f;
 
         [Header("Dodge")]
+        [SerializeField] float rollSpeed = 8f;
         private Vector3 rollDirection;
+        public bool isRolling;
 
         protected override void Awake()
         {
@@ -28,6 +30,13 @@ namespace Group1{
 
         public void HandleMovement()
         {
+
+            if (isRolling)
+            {
+                player.characterController.Move(rollDirection * rollSpeed * Time.deltaTime);
+                return;
+            }
+
             HandleGroundMovement();
             HandleRotation();
         }
@@ -42,7 +51,7 @@ namespace Group1{
         {
             GetMovementInputs();
             if(!player.canMove) return;
-            
+
             //move dir is based on camera and inputs
             moveDir = PlayerCamera.cam.transform.forward * verticalMovement;
             moveDir = moveDir + PlayerCamera.cam.transform.right * horizontalMovement;
@@ -90,9 +99,17 @@ namespace Group1{
                 rollDirection += PlayerCamera.cam.cameraObject.transform.right * PlayerInputManager.inputs.horizontalInput;
                 rollDirection.y = 0;
                 rollDirection.Normalize();
+
+                if (rollDirection == Vector3.zero)
+                {
+                    rollDirection = transform.forward;
+
+                }
                 
                 Quaternion playerRotation = Quaternion.LookRotation(rollDirection);
                 player.transform.rotation = playerRotation;
+
+                isRolling = true;
 
                 player.playerAnimatorManager.PlayTargetActionAnimation("PlayerCharacter_Dodge", true, true);
             }

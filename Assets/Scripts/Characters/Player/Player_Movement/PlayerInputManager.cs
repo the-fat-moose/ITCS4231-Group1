@@ -12,6 +12,8 @@ namespace Group1{
         public float verticalInput;
         public float horizontalInput;
         public float moveAmount;
+        [HideInInspector] public Vector3 dodgeDirection;
+        [HideInInspector] public bool isDodging;
 
         [Header ("Player Action Input")]
         [SerializeField] private bool dodgeInput;
@@ -100,6 +102,17 @@ namespace Group1{
             if (dodgeInput)
             {
                 dodgeInput = false;
+
+                Vector3 inputDirection = player.transform.forward * verticalInput + player.transform.right * horizontalInput;
+
+                if(inputDirection == Vector3.zero)
+                {
+                    inputDirection = player.transform.forward;
+                }
+
+                dodgeDirection = inputDirection.normalized;
+
+                isDodging = true;
 
                 //for future, no dodge when ui open
                 player.locomotion.AttemptToDodge();
