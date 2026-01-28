@@ -17,6 +17,9 @@ namespace Group1{
         [SerializeField] float rotationSpeed = 15f;
         [SerializeField] float sprintingSpeed = 7f;
 
+        [Header("Stamina")]
+        [SerializeField] int sprintingStaminaCost = 2;
+
         [Header("Dodge")]
         [SerializeField] float rollSpeed = 6f;
         private Vector3 rollDirection;
@@ -105,7 +108,13 @@ namespace Group1{
             {
                 Debug.Log("isPerformingAction");
                 player.isSprinting = false;
-            } 
+            }
+
+            if (player.CurrentStamina <= 0)
+            {
+                player.isSprinting = false;
+                return;
+            }
 
             if(PlayerInputManager.inputs.moveAmount >= 0.5)
             {
@@ -117,7 +126,10 @@ namespace Group1{
                 player.isSprinting = false;
             }
 
-
+            if (player.isSprinting)
+            {
+                player.CurrentStamina -= sprintingStaminaCost * Time.deltaTime;
+            }
         }
 
         public void AttemptToDodge()

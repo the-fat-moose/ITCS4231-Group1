@@ -27,7 +27,7 @@ namespace Group1 {
             manaBar.SetMaxStat(maxMana);
         }
 
-        public void SetNewStaminaValue(int oldValue, int newValue)
+        public void SetNewStaminaValue(float oldValue, float newValue)
         {
             staminaBar.SetStat(Mathf.RoundToInt(newValue));
         }

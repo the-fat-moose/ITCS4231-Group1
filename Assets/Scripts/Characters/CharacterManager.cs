@@ -69,21 +69,21 @@ namespace Group1{
             }
         }
 
-        public event System.Action<int, int> OnStaminaChanged;
+        public event System.Action<float, float> OnStaminaChanged;
         public event System.Action<int, int> OnHealthChanged;
         public event System.Action<int, int> OnManaChanged;
 
         [Header("Resources")]
-        [SerializeField] private int currentStamina = 0;
+        [SerializeField] private float currentStamina = 0;
 
-        public int CurrentStamina
+        public float CurrentStamina
         {
             get => currentStamina;
             set
             {
                 if (currentStamina == value) return;
 
-                int oldValue = currentStamina;
+                float oldValue = currentStamina;
                 currentStamina = value;
                 OnStaminaChanged?.Invoke(oldValue, currentStamina);
             }

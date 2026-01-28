@@ -78,7 +78,7 @@ namespace Group1 {
             }
         }
     
-        public virtual void ResetStaminaRegenTimer(int previousStaminaAmount, int currentStaminaAmount)
+        public virtual void ResetStaminaRegenTimer(float previousStaminaAmount, float currentStaminaAmount)
         {
             // WE ONLY WANT TO RESET THE REGENERATION IF THE ACTION USED STAMINA
             // WE DONT WANT TO RESET THE REGENERATION IF WE ARE ALREADY REGENERATING STAMINA
