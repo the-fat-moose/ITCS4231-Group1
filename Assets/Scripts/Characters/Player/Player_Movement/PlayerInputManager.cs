@@ -51,10 +51,17 @@ namespace Group1{
 
         private void Update()
         {
-            MovementInput();
-            HandleCameraInput();
+            HandleAllInputs();
         }
 
+        private void HandleAllInputs()
+        {
+            MovementInput();
+            HandleCameraInput();
+            HandleDodgeInput();
+        }
+        
+        //movements
         private void MovementInput()
         {
             verticalInput = movement.y;
@@ -86,15 +93,18 @@ namespace Group1{
             verticalCameraInput = camMovement.y;
             horizontalCameraInput = camMovement.x;
         }
-
-        private void handleDodgeInput()
+        
+        //actions
+        private void HandleDodgeInput()
         {
             if (dodgeInput)
             {
                 dodgeInput = false;
 
                 //for future, no dodge when ui open
+                player.locomotion.AttemptToDodge();
             }
         }
-}
+
+    }
 }

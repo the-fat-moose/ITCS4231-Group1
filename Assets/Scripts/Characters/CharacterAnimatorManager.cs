@@ -16,10 +16,15 @@ namespace Group1{
             character.animator.SetFloat("Vertical", verticalValue, 0.1f, Time.deltaTime);
         }
     
-        public virtual void PlayTargetActionAnimation(string targetAnimation, bool isPerformingAction, bool applyRootMotion = true)
+        public virtual void PlayTargetActionAnimation(string targetAnimation, bool isPerformingAction, bool applyRootMotion = true, bool canRotate = false, bool canMove = false)
         {
-            character.animator.applyRootMotion = applyRootMotion;
+            character.applyRootMotion = applyRootMotion;
             character.animator.CrossFade(targetAnimation, 0.2f);
+
+            //used to stop player from performing actions while in action
+            character.isPerformingAction = isPerformingAction;
+            character.canMove = canMove;
+            character.canRotate = canRotate;
         }
     }
 }

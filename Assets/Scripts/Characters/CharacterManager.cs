@@ -6,6 +6,12 @@ namespace Group1{
         public CharacterController characterController;
         [HideInInspector] public Animator animator;
 
+        [Header("Flags")]
+        public bool isPerformingAction = false;
+        public bool applyRootMotion = false;
+        public bool canRotate = true;
+        public bool canMove = true;
+
     #region Stat Variables
         [Header("Stats")]
         [SerializeField] private int endurance = 10;

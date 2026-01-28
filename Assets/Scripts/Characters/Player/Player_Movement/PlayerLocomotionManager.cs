@@ -41,6 +41,8 @@ namespace Group1{
         private void HandleGroundMovement()
         {
             GetMovementInputs();
+            if(!player.canMove) return;
+            
             //move dir is based on camera and inputs
             moveDir = PlayerCamera.cam.transform.forward * verticalMovement;
             moveDir = moveDir + PlayerCamera.cam.transform.right * horizontalMovement;
@@ -61,6 +63,7 @@ namespace Group1{
 
         private void HandleRotation()
         {
+            if(!player.canRotate) return;
             targetRotation = Vector3.zero;
             targetRotation = PlayerCamera.cam.cameraObject.transform.forward *verticalMovement;
             targetRotation = targetRotation + PlayerCamera.cam.cameraObject.transform.right * horizontalMovement;
@@ -77,8 +80,10 @@ namespace Group1{
             transform.rotation = targetRotationTurn;
         }
 
-        public void AttamptToDodge()
+        public void AttemptToDodge()
         {
+            if(player.isPerformingAction) return;
+
             if(PlayerInputManager.inputs.moveAmount > 0)
             {
                 rollDirection = PlayerCamera.cam.cameraObject.transform.forward * PlayerInputManager.inputs.verticalInput;
@@ -89,7 +94,7 @@ namespace Group1{
                 Quaternion playerRotation = Quaternion.LookRotation(rollDirection);
                 player.transform.rotation = playerRotation;
 
-                //roll (moving)
+                player.playerAnimatorManager.PlayTargetActionAnimation("PlayerCharacter_Dodge", true, true);
             }
             else
             {
