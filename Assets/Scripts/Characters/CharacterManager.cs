@@ -84,6 +84,7 @@ namespace Group1{
 
                 float oldValue = currentStamina;
                 currentStamina = value;
+
                 OnStaminaChanged?.Invoke(oldValue, currentStamina);
             }
         }
@@ -107,6 +108,7 @@ namespace Group1{
 
                 int oldValue = currentHealth;
                 currentHealth = value;
+
                 OnHealthChanged?.Invoke(oldValue, currentHealth);
             }
         }
@@ -195,6 +197,11 @@ namespace Group1{
             yield return new WaitForSeconds(5f);
             
             // DISABLE CHARACTER
+        }
+
+        public virtual void ReviveCharacter()
+        {
+            
         }
     }
 }

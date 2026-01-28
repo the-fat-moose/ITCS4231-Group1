@@ -14,7 +14,7 @@ namespace Group1 {
 
         public void SetMaxHealthValue(int maxHealth)
         {
-            healthBar.SetMaxStat(maxHealth);
+            healthBar.SetMaxStat(Mathf.RoundToInt(maxHealth));
         }
 
         public void SetNewManaValue(int oldValue, int newValue)

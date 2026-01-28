@@ -4,6 +4,11 @@ using UnityEngine;
 namespace Group1{
     public class PlayerManager : CharacterManager
     {
+        [Header("DEBUG MENU")]
+        [SerializeField] bool respawnCharacter = false;
+        [SerializeField] bool setNewHealth = false;
+        [SerializeField] [Range(0, 100)] int newHealthPercentage = 0;
+
         [HideInInspector] public PlayerAnimatorManager playerAnimatorManager;
         [HideInInspector] public PlayerLocomotionManager locomotion;
         [HideInInspector] PlayerStatsManager playerStatsManager;
@@ -56,6 +61,9 @@ namespace Group1{
 
             // REGEN STAMINA
             playerStatsManager.RegenerateStamina();
+
+            // DEBUG DELETE LATER
+            DebugMenu();
         }
 
         protected override void LateUpdate()
@@ -72,6 +80,22 @@ namespace Group1{
             Debug.Log("ProcessDeathEvent GETTING CALLED");
 
             return base.ProcessDeathEvent();
+
+            // CHECK FOR PLAYERS THAT ARE ALIVE, IF 0 RESPAWN CHARACTERS
+        }
+
+        public override void ReviveCharacter()
+        {
+            base.ReviveCharacter();
+
+            CurrentHealth = MaxHealth;
+            CurrentStamina = MaxStamina;
+            CurrentMana = MaxMana;
+
+            isDead = false;
+
+            // PLAY REBIRTH EFFECTS
+            // playerAnimatorManager.PlayTargetActionAnimation("Empty", false);
         }
 
         private void SetNewMaxHealthValue(int oldVitality, int newVitality)
@@ -93,6 +117,22 @@ namespace Group1{
             MaxMana = playerStatsManager.CalculateManaBasedOnMindLevel(newMind);
             PlayerUIManager.instance.playerUIHudManager.SetMaxManaValue(MaxMana);
             CurrentMana = MaxMana;
+        }
+
+        // DEBUG DELETE LATER
+        private void DebugMenu()
+        {
+            if (respawnCharacter)
+            {
+                respawnCharacter = false;
+                ReviveCharacter();
+            }
+
+            if (setNewHealth)
+            {
+                setNewHealth = false;
+                CurrentHealth = MaxHealth * newHealthPercentage / 100;
+            }
         }
     }       
 }
