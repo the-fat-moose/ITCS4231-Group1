@@ -56,7 +56,7 @@ namespace Group1 {
                 return;
             }
 
-            if (false /* change this when the isPerformingAction variable is made */)
+            if (character.isPerformingAction)
             {
                 return;
             }
