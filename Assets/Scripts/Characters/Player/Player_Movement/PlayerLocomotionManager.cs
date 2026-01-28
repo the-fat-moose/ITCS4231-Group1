@@ -100,11 +100,11 @@ namespace Group1{
                 rollDirection.y = 0;
                 rollDirection.Normalize();
 
-                if (rollDirection == Vector3.zero)
+                /*if (rollDirection == Vector3.zero)
                 {
                     rollDirection = transform.forward;
 
-                }
+                }*/
                 
                 Quaternion playerRotation = Quaternion.LookRotation(rollDirection);
                 player.transform.rotation = playerRotation;
@@ -115,7 +115,7 @@ namespace Group1{
             }
             else
             {
-                //backstep (not moving)
+                player.playerAnimatorManager.PlayTargetActionAnimation("PlayerCharacter_BackStep", true, true);
             }
         }
     }
