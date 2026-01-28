@@ -69,6 +69,8 @@ namespace Group1{
         {
             PlayerUIManager.instance.playerUIPopUpManager.SendYouDiedPopUp();
 
+            Debug.Log("ProcessDeathEvent GETTING CALLED");
+
             return base.ProcessDeathEvent();
         }
 

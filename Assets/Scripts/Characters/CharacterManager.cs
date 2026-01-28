@@ -166,6 +166,8 @@ namespace Group1{
 
         public void CheckHP(int oldValue, int newValue)
         {
+            Debug.Log("CheckHP GETTING CALLED");
+
             if (CurrentHealth <= 0)
             {
                 StartCoroutine(ProcessDeathEvent());
@@ -186,7 +188,7 @@ namespace Group1{
             // RESET ANY FLAGS HERE THAT NEED TO BE RESET
             // NOTHING YET
 
-            characterAnimatorManager.PlayTargetActionAnimation("Death", true);
+            //characterAnimatorManager.PlayTargetActionAnimation("Death", true);
 
             // PLAY SOME DEATH SFX
 

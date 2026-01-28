@@ -406,6 +406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerUIManager
   playerUIHudManager: {fileID: 0}
+  playerUIPopUpManager: {fileID: 0}
 --- !u!223 &6079262389379817842
 Canvas:
   m_ObjectHideFlags: 0
@@ -1178,7 +1179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8de355d74dbd18b4ca99b742cbf5e348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  youDiedPopUpGameObject: {fileID: 3754411285078815829}
+  youDiedPopUpGameObject: {fileID: 3053833659262281845}
   youDiedPopUpBackgroundText: {fileID: 2496510395287737826}
   youDiedPopUpText: {fileID: 5178355823746607820}
   youDiedPopUpCanvasGroup: {fileID: 8624830586432144930}
