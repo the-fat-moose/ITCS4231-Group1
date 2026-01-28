@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 namespace Group1{
     public class CharacterManager : MonoBehaviour
@@ -6,6 +8,7 @@ namespace Group1{
         public CharacterController characterController;
         [HideInInspector] public Animator animator;
         [HideInInspector] public CharacterEffectsManager characterEffectsManager;
+        [HideInInspector] public CharacterAnimatorManager characterAnimatorManager;
 
         public bool isDead = false;
 
@@ -147,6 +150,7 @@ namespace Group1{
             characterController = GetComponent<CharacterController>();
             animator = GetComponent<Animator>();
             characterEffectsManager = GetComponent<CharacterEffectsManager>();
+            characterAnimatorManager = GetComponent<CharacterAnimatorManager>();
         }
 
         protected virtual void Update()
@@ -157,6 +161,37 @@ namespace Group1{
         protected virtual void LateUpdate()
         {
             
+        }
+
+        public void CheckHP(int oldValue, int newValue)
+        {
+            if (CurrentHealth <= 0)
+            {
+                StartCoroutine(ProcessDeathEvent());
+            }
+
+            // PREVENTS US FROM OVER HEALING
+            if (CurrentHealth > MaxHealth)
+            {
+                CurrentHealth = MaxHealth;
+            }
+        }
+
+        public virtual IEnumerator ProcessDeathEvent()
+        {
+            CurrentHealth = 0;
+            isDead = true;
+
+            // RESET ANY FLAGS HERE THAT NEED TO BE RESET
+            // NOTHING YET
+
+            characterAnimatorManager.PlayTargetActionAnimation("Death", true);
+
+            // PLAY SOME DEATH SFX
+
+            yield return new WaitForSeconds(5f);
+            
+            // DISABLE CHARACTER
         }
     }
 }
