@@ -10,6 +10,8 @@ namespace Group1{
         [HideInInspector] public CharacterEffectsManager characterEffectsManager;
         [HideInInspector] public CharacterAnimatorManager characterAnimatorManager;
 
+        public bool isSprinting = false;
+
         public bool isDead = false;
 
         [Header("Flags")]

@@ -51,7 +51,7 @@ namespace Group1 {
         public virtual void RegenerateStamina()
         {
             // DO NOT REGENERATE STAMINA IF WE ARE USING IT
-            if (false /* change this when the isSprinting variable is made */)
+            if (character.isSprinting)
             {
                 return;
             }
