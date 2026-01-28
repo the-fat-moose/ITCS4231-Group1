@@ -26,8 +26,6 @@ namespace Group1 {
 
                 // CHECK IF THE TARGET IS INVULNERABLE
 
-                Debug.Log("COLLIDING WITH CHARACTER");
-
                 DamageTarget(damageTarget);
             }
         }

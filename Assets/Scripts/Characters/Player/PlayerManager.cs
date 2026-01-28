@@ -77,8 +77,6 @@ namespace Group1{
         {
             PlayerUIManager.instance.playerUIPopUpManager.SendYouDiedPopUp();
 
-            Debug.Log("ProcessDeathEvent GETTING CALLED");
-
             return base.ProcessDeathEvent();
 
             // CHECK FOR PLAYERS THAT ARE ALIVE, IF 0 RESPAWN CHARACTERS

@@ -168,8 +168,6 @@ namespace Group1{
 
         public void CheckHP(int oldValue, int newValue)
         {
-            Debug.Log("CheckHP GETTING CALLED");
-
             if (CurrentHealth <= 0)
             {
                 StartCoroutine(ProcessDeathEvent());
