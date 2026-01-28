@@ -6,6 +6,7 @@ namespace Group1 {
         public static PlayerUIManager instance;
 
         [HideInInspector] public PlayerUIHudManager playerUIHudManager;
+        [HideInInspector] public PlayerUIPopUpManager playerUIPopUpManager;
 
         private void Awake()
         {
@@ -19,6 +20,7 @@ namespace Group1 {
             }
 
             playerUIHudManager = GetComponentInChildren<PlayerUIHudManager>();
+            playerUIPopUpManager = GetComponentInChildren<PlayerUIPopUpManager>();
         }
     }
 }

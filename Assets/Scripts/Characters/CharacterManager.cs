@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 namespace Group1{
     public class CharacterManager : MonoBehaviour

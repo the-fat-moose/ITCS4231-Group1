@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Group1{
@@ -40,7 +41,10 @@ namespace Group1{
 
             MaxMana = playerStatsManager.CalculateManaBasedOnMindLevel(Mind);
             CurrentMana = playerStatsManager.CalculateManaBasedOnMindLevel(Mind);
-            PlayerUIManager.instance.playerUIHudManager.SetMaxManaValue(MaxMana);            
+            PlayerUIManager.instance.playerUIHudManager.SetMaxManaValue(MaxMana);
+
+            // Death and Healing Handling
+            OnHealthChanged += CheckHP;
         }
 
         protected override void Update()
@@ -59,6 +63,13 @@ namespace Group1{
             base.LateUpdate();
 
             PlayerCamera.cam.HandleCameraActions();
+        }
+
+        public override IEnumerator ProcessDeathEvent()
+        {
+            PlayerUIManager.instance.playerUIPopUpManager.SendYouDiedPopUp();
+
+            return base.ProcessDeathEvent();
         }
 
         private void SetNewMaxHealthValue(int oldVitality, int newVitality)
