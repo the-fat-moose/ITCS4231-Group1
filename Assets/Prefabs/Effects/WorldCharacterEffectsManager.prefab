@@ -44,5 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4419062de89c68d43a340403a7970e2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldCharacterEffectsManager
+  takeDamageEffect: {fileID: 11400000, guid: 4621f8798218c3d45a732ae9c7e6a2c4, type: 2}
   instantEffects:
   - {fileID: 11400000, guid: a650101118bb82c49977e81c9c69b294, type: 2}
+  - {fileID: 11400000, guid: 4621f8798218c3d45a732ae9c7e6a2c4, type: 2}

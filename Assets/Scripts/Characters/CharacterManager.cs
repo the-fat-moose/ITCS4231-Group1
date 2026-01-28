@@ -5,6 +5,9 @@ namespace Group1{
     {
         public CharacterController characterController;
         [HideInInspector] public Animator animator;
+        [HideInInspector] public CharacterEffectsManager characterEffectsManager;
+
+        public bool isDead = false;
 
         [Header("Flags")]
         public bool isPerformingAction = false;
@@ -143,6 +146,7 @@ namespace Group1{
 
             characterController = GetComponent<CharacterController>();
             animator = GetComponent<Animator>();
+            characterEffectsManager = GetComponent<CharacterEffectsManager>();
         }
 
         protected virtual void Update()
