@@ -15,6 +15,7 @@ namespace Group1{
         [SerializeField] float walkSpeed = 2f;
         [SerializeField] float runSpeed = 5f;
         [SerializeField] float rotationSpeed = 15f;
+        [SerializeField] float sprintingSpeed = 7f;
 
         [Header("Dodge")]
         [SerializeField] float rollSpeed = 8f;
@@ -58,16 +59,24 @@ namespace Group1{
             moveDir.Normalize();
             moveDir.y = 0;
 
-            if(PlayerInputManager.inputs.moveAmount > 0.5f)
+            if (player.isSprinting)
             {
-                //running
-                player.characterController.Move(moveDir * runSpeed * Time.deltaTime);
+                player.characterController.Move(moveDir * sprintingSpeed * Time.deltaTime);
             }
-            else if(PlayerInputManager.inputs.moveAmount <= 0.5f)
+            else
             {
-                //walking
-                player.characterController.Move(moveDir * walkSpeed * Time.deltaTime);
+                if(PlayerInputManager.inputs.moveAmount > 0.5f)
+                {
+                    //running
+                    player.characterController.Move(moveDir * runSpeed * Time.deltaTime);
+                }
+                else if(PlayerInputManager.inputs.moveAmount <= 0.5f)
+                {
+                    //walking
+                    player.characterController.Move(moveDir * walkSpeed * Time.deltaTime);
+                }
             }
+
         }
 
         private void HandleRotation()
@@ -87,6 +96,28 @@ namespace Group1{
             Quaternion newRotation = Quaternion.LookRotation(targetRotation);
             Quaternion targetRotationTurn = Quaternion.Slerp(transform.rotation, newRotation, rotationSpeed * Time.deltaTime);
             transform.rotation = targetRotationTurn;
+        }
+
+        public void HandleSprinting()
+        {
+            Debug.Log("HandleSprinting called");
+            if (player.isPerformingAction)
+            {
+                Debug.Log("isPerformingAction");
+                player.isSprinting = false;
+            } 
+
+            if(PlayerInputManager.inputs.moveAmount >= 0.5)
+            {
+                Debug.Log("isSprinting set to true");
+                player.isSprinting = true;
+            }
+            else
+            {
+                player.isSprinting = false;
+            }
+
+
         }
 
         public void AttemptToDodge()

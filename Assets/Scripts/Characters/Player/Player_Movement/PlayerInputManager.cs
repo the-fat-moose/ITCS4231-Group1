@@ -16,7 +16,8 @@ namespace Group1{
         [HideInInspector] public bool isDodging;
 
         [Header ("Player Action Input")]
-        [SerializeField] private bool dodgeInput;
+        [SerializeField] private bool dodgeInput = false;
+        [SerializeField] private bool sprintInput = false;
 
         [Header("Camera Movement Input")]
         [SerializeField] Vector2 camMovement;
@@ -46,6 +47,11 @@ namespace Group1{
                 playerControls.PlayerMovement.Movement.performed += i => movement = i.ReadValue<Vector2>();
                 playerControls.PlayerCamera.Movement.performed += i => camMovement = i.ReadValue<Vector2>();
                 playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
+                //holding activates
+                playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
+                Debug.Log("sprintInput called");
+                //release deactivates
+                playerControls.PlayerActions.Sprint.canceled += i => sprintInput = false;
             }
 
             playerControls.Enable();
@@ -61,6 +67,7 @@ namespace Group1{
             MovementInput();
             HandleCameraInput();
             HandleDodgeInput();
+            HandleSprinting();
         }
         
         //movements
@@ -87,7 +94,7 @@ namespace Group1{
                 moveAmount = 1f;
             }
 
-            player.playerAnimatorManager.UpdateAnimatorMovementParameters(0f, moveAmount);
+            player.playerAnimatorManager.UpdateAnimatorMovementParameters(0f, moveAmount, player.isSprinting);
         }
 
         private void HandleCameraInput()
@@ -116,6 +123,18 @@ namespace Group1{
 
                 //for future, no dodge when ui open
                 player.locomotion.AttemptToDodge();
+            }
+        }
+
+        private void HandleSprinting()
+        {
+            if (sprintInput)
+            {
+                player.locomotion.HandleSprinting();
+            }
+            else
+            {
+                player.isSprinting = false;
             }
         }
 

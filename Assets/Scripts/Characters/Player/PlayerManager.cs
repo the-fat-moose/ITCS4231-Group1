@@ -6,6 +6,7 @@ namespace Group1{
         [HideInInspector] public PlayerAnimatorManager playerAnimatorManager;
         [HideInInspector] public PlayerLocomotionManager locomotion;
         [HideInInspector] PlayerStatsManager playerStatsManager;
+        public bool isSprinting = false;
 
         protected override void Awake()
         {
