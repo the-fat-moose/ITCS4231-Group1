@@ -18,7 +18,7 @@ namespace Group1{
         [SerializeField] float sprintingSpeed = 7f;
 
         [Header("Dodge")]
-        [SerializeField] float rollSpeed = 8f;
+        [SerializeField] float rollSpeed = 6f;
         private Vector3 rollDirection;
         public bool isRolling;
 

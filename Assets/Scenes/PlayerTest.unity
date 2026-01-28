@@ -838,6 +838,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2635933940703782878, guid: b05055c5aa202b14c853c40c0fd6cb73, type: 3}
+      propertyPath: rollSpeed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2654273810162826935, guid: b05055c5aa202b14c853c40c0fd6cb73, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -1301,6 +1305,7 @@ MonoBehaviour:
   dodgeDirection: {x: 0, y: 0, z: 0}
   isDodging: 0
   dodgeInput: 0
+  sprintInput: 0
   camMovement: {x: 0, y: 0}
   verticalCameraInput: 0
   horizontalCameraInput: 0
