@@ -355,6 +355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   aiCharacters: []
+  spawnedInCharacters: []
 --- !u!4 &1062256196
 Transform:
   m_ObjectHideFlags: 0

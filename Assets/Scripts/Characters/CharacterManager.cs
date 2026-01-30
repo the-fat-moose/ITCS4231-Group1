@@ -161,6 +161,11 @@ namespace Group1{
             
         }
 
+        protected virtual void FixedUpdate()
+        {
+            
+        }
+
         protected virtual void LateUpdate()
         {
             
