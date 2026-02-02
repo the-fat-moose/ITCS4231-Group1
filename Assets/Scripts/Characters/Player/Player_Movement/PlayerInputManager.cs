@@ -18,6 +18,7 @@ namespace Group1{
         [Header ("Player Action Input")]
         [SerializeField] private bool dodgeInput = false;
         [SerializeField] private bool sprintInput = false;
+        [SerializeField] private bool jumpInput = false;
 
         [Header("Camera Movement Input")]
         [SerializeField] Vector2 camMovement;
@@ -47,6 +48,7 @@ namespace Group1{
                 playerControls.PlayerMovement.Movement.performed += i => movement = i.ReadValue<Vector2>();
                 playerControls.PlayerCamera.Movement.performed += i => camMovement = i.ReadValue<Vector2>();
                 playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
+                playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
                 //holding activates
                 playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
                 Debug.Log("sprintInput called");
@@ -68,6 +70,7 @@ namespace Group1{
             HandleCameraInput();
             HandleDodgeInput();
             HandleSprinting();
+            HandleJumpInput();
         }
         
         //movements
@@ -138,5 +141,14 @@ namespace Group1{
             }
         }
 
+        private void HandleJumpInput()
+        {
+            if(jumpInput == true)
+            {
+                jumpInput  = false;
+
+                player.locomotion.AttemptToJump();
+            }
+        }
     }
 }

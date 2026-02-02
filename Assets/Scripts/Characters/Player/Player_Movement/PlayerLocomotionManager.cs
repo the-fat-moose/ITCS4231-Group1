@@ -17,9 +17,16 @@ namespace Group1{
         [SerializeField] float rotationSpeed = 15f;
         [SerializeField] float sprintingSpeed = 7f;
 
+        [Header("Jump")]
+        [SerializeField] float jumpHeight = 2f;
+        [SerializeField] float jumpForwardSpeed = 5f;
+        [SerializeField] float freeFallingSpeed = 2f;
+        private Vector3 jumpDirection;
+
         [Header("Stamina")]
         [SerializeField] int sprintingStaminaCost = 2;
         [SerializeField] int dodgeStaminaCost = 15;
+        [SerializeField] int jumpStaminaCost = 15;
 
         [Header("Dodge")]
         [SerializeField] float rollSpeed = 6f;
@@ -44,6 +51,8 @@ namespace Group1{
 
             HandleGroundMovement();
             HandleRotation();
+            HandleJumpMovement();
+            HandleFreeFallMovement();
         }
 
         private void GetMovementInputs()
@@ -81,6 +90,27 @@ namespace Group1{
                 }
             }
 
+        }
+
+        private void HandleJumpMovement()
+        {
+            if (player.isJumping)
+            {
+                player.characterController.Move(jumpDirection * jumpForwardSpeed * Time.deltaTime);
+            }
+        }
+
+        private void HandleFreeFallMovement()
+        {
+            if (!player.isGrounded)
+            {
+                Vector3 freeFallDirection;
+                freeFallDirection = PlayerCamera.cam.transform.forward * PlayerInputManager.inputs.verticalInput;
+                freeFallDirection = freeFallDirection + PlayerCamera.cam.transform.right * PlayerInputManager.inputs.horizontalInput;
+                freeFallDirection.y = 0;
+
+                player.characterController.Move(freeFallDirection * freeFallingSpeed * Time.deltaTime);
+            }
         }
 
         private void HandleRotation()
@@ -165,6 +195,48 @@ namespace Group1{
             }
 
             player.CurrentStamina -= dodgeStaminaCost;
+        }
+
+        public void AttemptToJump()
+        {
+            if(player.isPerformingAction) return;
+
+            if(player.CurrentStamina <= 0) return;
+
+            if(player.isJumping) return;
+
+            if(!player.isGrounded) return;
+
+            player.playerAnimatorManager.PlayTargetActionAnimation("PlayerCharacter_Jump", false);
+
+            player.isJumping = true;
+
+            player.CurrentStamina -= jumpStaminaCost;
+
+            jumpDirection = PlayerCamera.cam.cameraObject.transform.forward * PlayerInputManager.inputs.verticalInput;
+            jumpDirection += PlayerCamera.cam.cameraObject.transform.right * PlayerInputManager.inputs.horizontalInput;
+            jumpDirection.y = 0;
+
+            if(jumpDirection != Vector3.zero)
+            {
+                if(player.isSprinting)
+                {
+                    jumpDirection *= 1;
+                }
+                else if(PlayerInputManager.inputs.moveAmount > 0.5)
+                {
+                    jumpDirection *= 0.65f;
+                }
+                else if(PlayerInputManager.inputs.moveAmount <= 0.5)
+                {
+                    jumpDirection *= 0.25f;
+                }
+            }
+        }
+
+        public void ApplyJumpVelocity()
+        {
+            yVelocity.y = Mathf.Sqrt(jumpHeight * -2 * gravityForce);
         }
     }
 }
