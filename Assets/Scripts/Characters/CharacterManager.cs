@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Group1{
@@ -158,6 +159,11 @@ namespace Group1{
             characterAnimatorManager = GetComponent<CharacterAnimatorManager>();
         }
 
+        protected virtual void Start()
+        {
+            IgnoreMyOwnColliders();
+        }
+
         protected virtual void Update()
         {
             animator.SetBool("isGrounded", isGrounded);
@@ -207,6 +213,30 @@ namespace Group1{
         public virtual void ReviveCharacter()
         {
             
+        }
+
+        protected virtual void IgnoreMyOwnColliders()
+        {
+            Collider characterControllerCollider = GetComponent<Collider>();
+            Collider[] damageableCharacterColliders = GetComponentsInChildren<Collider>();
+
+            List<Collider> ignoreColliders = new List<Collider>();
+
+            foreach (var collider in damageableCharacterColliders)
+            {
+                ignoreColliders.Add(collider);
+            }
+
+            ignoreColliders.Add(characterControllerCollider);
+
+            // GOES THROUGH EVERY COLLIDER ON THE LIST AND MAKES THEM IGNORE COLLISION WITH EACH OTHER
+            foreach (var collider in ignoreColliders)
+            {
+                foreach (var otherCollider in ignoreColliders)
+                {
+                    Physics.IgnoreCollision(collider, otherCollider, true);
+                }
+            }
         }
     }
 }
