@@ -15,11 +15,14 @@ namespace Group1{
         [HideInInspector] public PlayerStatsManager playerStatsManager;
         [HideInInspector] public PlayerInventoryManager playerInventoryManager;
         [HideInInspector] public PlayerEquipmentManager playerEquipmentManager;
+        [HideInInspector] public PlayerCombatManager playerCombatManager;
 
         [Header("Equipment")]
         private int currentRightHandWeaponID = 0;
+        private int currentWeaponBeingUsed = 0;
 
         public event System.Action<int, int> OnRightHandWeaponIDChanged;
+        public event System.Action<int, int> OnCurrentWeaponBeingUsedChanged;
 
         public int CurrentRightHandWeaponID
         {
@@ -34,6 +37,19 @@ namespace Group1{
             }
         }
 
+        public int CurrentWeaponBeingUsed
+        {
+            get => currentWeaponBeingUsed;
+            set
+            {
+                if (currentWeaponBeingUsed == value) return;
+
+                int oldValue = currentWeaponBeingUsed;
+                currentWeaponBeingUsed = value;
+                OnCurrentWeaponBeingUsedChanged?.Invoke(oldValue, currentWeaponBeingUsed);
+            }
+        }
+
         protected override void Awake()
         {
             base.Awake();   //runs CharacterManager Awake 
@@ -43,6 +59,7 @@ namespace Group1{
             playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
             playerInventoryManager = GetComponent<PlayerInventoryManager>();
             playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
+            playerCombatManager = GetComponent<PlayerCombatManager>();
 
             // UPDATE TOTAL AMOUNT OF HEALTH, STAMINA, MANA WHEN THE STAT LINKED TO EITHER CHANGES
             OnEnduranceChanged += SetNewMaxStaminaValue;
@@ -76,6 +93,7 @@ namespace Group1{
 
             // Equipment
             OnRightHandWeaponIDChanged += OnCurrentRightHandWeaponIDChange;
+            OnCurrentWeaponBeingUsedChanged += OnCurrentWeaponBeingUsedIDChange;
         }
 
         protected override void Update()
@@ -148,6 +166,12 @@ namespace Group1{
             WeaponItem newWeapon = Instantiate(WorldItemDatabase.instance.GetWeaponByID(newID));
             playerInventoryManager.currentRightHandWeapon = newWeapon;
             playerEquipmentManager.LoadRightWeapon();
+        }
+
+        public void OnCurrentWeaponBeingUsedIDChange(int oldID, int newID)
+        {
+            WeaponItem newWeapon = Instantiate(WorldItemDatabase.instance.GetWeaponByID(newID));
+            playerCombatManager.currentWeaponBeingUsed = newWeapon;
         }
 
         // DEBUG DELETE LATER

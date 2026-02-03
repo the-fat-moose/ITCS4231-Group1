@@ -30,7 +30,8 @@ namespace Group1 {
         // LIGHT ATTACK STAMINA COST MODIFIER
         // HEAVY ATTACK STAMINA COST MODIFIER
 
-        // ITEM BASED ACTIONS (RB, RT, LB, LT)
+        [Header("Actions")]
+        public WeaponItemAction rb_Action;
 
         // ABILITIES
 

@@ -19,6 +19,7 @@ namespace Group1{
         [SerializeField] private bool dodgeInput = false;
         [SerializeField] private bool sprintInput = false;
         [SerializeField] private bool jumpInput = false;
+        [SerializeField] private bool RB_Input = false;
 
         [Header("Camera Movement Input")]
         [SerializeField] Vector2 camMovement;
@@ -49,6 +50,7 @@ namespace Group1{
                 playerControls.PlayerCamera.Movement.performed += i => camMovement = i.ReadValue<Vector2>();
                 playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
                 playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
+                playerControls.PlayerActions.RB.performed += i => RB_Input = true;
                 //holding activates
                 playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
                 Debug.Log("sprintInput called");
@@ -71,6 +73,7 @@ namespace Group1{
             HandleDodgeInput();
             HandleSprinting();
             HandleJumpInput();
+            HandleRBInput();
         }
         
         //movements
@@ -148,6 +151,18 @@ namespace Group1{
                 jumpInput  = false;
 
                 player.locomotion.AttemptToJump();
+            }
+        }
+    
+        private void HandleRBInput()
+        {
+            if (RB_Input)
+            {
+                RB_Input = false;
+
+                // TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
+
+                player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentRightHandWeapon.rb_Action, player.playerInventoryManager.currentRightHandWeapon);
             }
         }
     }
