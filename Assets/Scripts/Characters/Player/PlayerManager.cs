@@ -8,11 +8,31 @@ namespace Group1{
         [SerializeField] bool respawnCharacter = false;
         [SerializeField] bool setNewHealth = false;
         [SerializeField] [Range(0, 100)] int newHealthPercentage = 0;
+        [SerializeField] bool switchRightWeapon = false;
 
         [HideInInspector] public PlayerAnimatorManager playerAnimatorManager;
         [HideInInspector] public PlayerLocomotionManager locomotion;
         [HideInInspector] public PlayerStatsManager playerStatsManager;
         [HideInInspector] public PlayerInventoryManager playerInventoryManager;
+        [HideInInspector] public PlayerEquipmentManager playerEquipmentManager;
+
+        [Header("Equipment")]
+        private int currentRightHandWeaponID = 0;
+
+        public event System.Action<int, int> OnRightHandWeaponIDChanged;
+
+        public int CurrentRightHandWeaponID
+        {
+            get => currentRightHandWeaponID;
+            set
+            {
+                if (currentRightHandWeaponID == value) return;
+
+                int oldValue = currentRightHandWeaponID;
+                currentRightHandWeaponID = value;
+                OnRightHandWeaponIDChanged?.Invoke(oldValue, currentRightHandWeaponID);
+            }
+        }
 
         protected override void Awake()
         {
@@ -22,6 +42,7 @@ namespace Group1{
             playerStatsManager = GetComponent<PlayerStatsManager>();
             playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
             playerInventoryManager = GetComponent<PlayerInventoryManager>();
+            playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
 
             // UPDATE TOTAL AMOUNT OF HEALTH, STAMINA, MANA WHEN THE STAT LINKED TO EITHER CHANGES
             OnEnduranceChanged += SetNewMaxStaminaValue;
@@ -52,6 +73,9 @@ namespace Group1{
 
             // Death and Healing Handling
             OnHealthChanged += CheckHP;
+
+            // Equipment
+            OnRightHandWeaponIDChanged += OnCurrentRightHandWeaponIDChange;
         }
 
         protected override void Update()
@@ -119,6 +143,13 @@ namespace Group1{
             CurrentMana = MaxMana;
         }
 
+        public void OnCurrentRightHandWeaponIDChange(int oldID, int newID)
+        {
+            WeaponItem newWeapon = Instantiate(WorldItemDatabase.instance.GetWeaponByID(newID));
+            playerInventoryManager.currentRightHandWeapon = newWeapon;
+            playerEquipmentManager.LoadRightWeapon();
+        }
+
         // DEBUG DELETE LATER
         private void DebugMenu()
         {
@@ -132,6 +163,12 @@ namespace Group1{
             {
                 setNewHealth = false;
                 CurrentHealth = MaxHealth * newHealthPercentage / 100;
+            }
+
+            if (switchRightWeapon)
+            {
+                switchRightWeapon = false;
+                playerEquipmentManager.SwitchRightWeapon();
             }
         }
     }       

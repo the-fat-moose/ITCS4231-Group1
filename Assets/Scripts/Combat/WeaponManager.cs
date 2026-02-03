@@ -10,8 +10,9 @@ namespace Group1 {
             meleeDamageCollider = GetComponentInChildren<MeleeWeaponDamageCollider>();
         }
 
-        public void SetWeaponDamage(WeaponItem weapon)
+        public void SetWeaponDamage(CharacterManager characterWieldingWeapon, WeaponItem weapon)
         {
+            meleeDamageCollider.characterCausingDamage = characterWieldingWeapon;
             meleeDamageCollider.physicalDamage = weapon.physicalDamage;
             meleeDamageCollider.magicDamage = weapon.magicDamage;
         }
