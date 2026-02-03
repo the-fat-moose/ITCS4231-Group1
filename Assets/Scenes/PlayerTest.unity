@@ -974,22 +974,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1438274532058176364, guid: b05055c5aa202b14c853c40c0fd6cb73, type: 3}
-      propertyPath: currentRightHandWeapon
-      value: 
-      objectReference: {fileID: 11400000, guid: 9d591de22dca28a428e880fba18f3ef3, type: 2}
-    - target: {fileID: 1438274532058176364, guid: b05055c5aa202b14c853c40c0fd6cb73, type: 3}
-      propertyPath: 'weaponsInRightHandSlots.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 9d591de22dca28a428e880fba18f3ef3, type: 2}
-    - target: {fileID: 1438274532058176364, guid: b05055c5aa202b14c853c40c0fd6cb73, type: 3}
-      propertyPath: 'weaponsInRightHandSlots.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 9d591de22dca28a428e880fba18f3ef3, type: 2}
-    - target: {fileID: 1438274532058176364, guid: b05055c5aa202b14c853c40c0fd6cb73, type: 3}
-      propertyPath: 'weaponsInRightHandSlots.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 9d591de22dca28a428e880fba18f3ef3, type: 2}
     - target: {fileID: 3606028210734739436, guid: b05055c5aa202b14c853c40c0fd6cb73, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.59

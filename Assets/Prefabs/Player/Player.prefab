@@ -99,10 +99,12 @@ MonoBehaviour:
   respawnCharacter: 0
   setNewHealth: 0
   newHealthPercentage: 0
+  switchRightWeapon: 0
   playerAnimatorManager: {fileID: 0}
   locomotion: {fileID: 0}
   playerStatsManager: {fileID: 0}
   playerInventoryManager: {fileID: 0}
+  playerEquipmentManager: {fileID: 0}
 --- !u!114 &2635933940703782878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,7 +218,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e02b6bccf73316e43b285261b515e066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Group1.PlayerInventoryManager
-  currentRightHandWeapon: {fileID: 11400000, guid: c44b6d7661e595c449781e80e2fcfd16, type: 2}
+  currentRightHandWeapon: {fileID: 11400000, guid: 9d591de22dca28a428e880fba18f3ef3, type: 2}
+  weaponsInRightHandSlots:
+  - {fileID: 11400000, guid: 9d591de22dca28a428e880fba18f3ef3, type: 2}
+  - {fileID: 11400000, guid: 9d591de22dca28a428e880fba18f3ef3, type: 2}
+  - {fileID: 11400000, guid: 9d591de22dca28a428e880fba18f3ef3, type: 2}
+  rightHandWeaponIndex: 0
 --- !u!114 &3690826846574739967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,6 +237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Group1.PlayerEquipmentManager
   rightHandSlot: {fileID: 0}
+  rightWeaponManager: {fileID: 0}
   rightHandWeaponModel: {fileID: 0}
 --- !u!1001 &7425026170528257023
 PrefabInstance:
