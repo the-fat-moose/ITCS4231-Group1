@@ -11,7 +11,8 @@ namespace Group1{
 
         [HideInInspector] public PlayerAnimatorManager playerAnimatorManager;
         [HideInInspector] public PlayerLocomotionManager locomotion;
-        [HideInInspector] PlayerStatsManager playerStatsManager;
+        [HideInInspector] public PlayerStatsManager playerStatsManager;
+        [HideInInspector] public PlayerInventoryManager playerInventoryManager;
 
         protected override void Awake()
         {
@@ -20,6 +21,7 @@ namespace Group1{
             locomotion = GetComponent<PlayerLocomotionManager>();
             playerStatsManager = GetComponent<PlayerStatsManager>();
             playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
+            playerInventoryManager = GetComponent<PlayerInventoryManager>();
 
             // UPDATE TOTAL AMOUNT OF HEALTH, STAMINA, MANA WHEN THE STAT LINKED TO EITHER CHANGES
             OnEnduranceChanged += SetNewMaxStaminaValue;

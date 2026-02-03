@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b05b5b7de4cdf6248a4cd9dcd921f358, type: 3}
-  m_Name: Straight Sword
+  m_Name: Player Sword
   m_EditorClassIdentifier: Assembly-CSharp::Group1.MeleeWeaponItem
-  itemName: Straight Sword
+  itemName: Player Sword
   itemIcon: {fileID: 0}
-  itemDescription: A straight sword.
+  itemDescription: The player's sword.
   itemID: 0
-  weaponModel: {fileID: 0}
-  strengthREQ: 0
-  dexREQ: 0
+  weaponModel: {fileID: 1379423515413992419, guid: 2b83874327b28cc4e809b097ab35476e, type: 3}
+  strengthREQ: 10
+  dexREQ: 10
   intREQ: 0
-  physicalDamage: 0
+  physicalDamage: 118
   magicDamage: 0
   baseStaminaCost: 20

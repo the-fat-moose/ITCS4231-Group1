@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 5225235949794452445}
   - component: {fileID: 7842898494225634399}
   - component: {fileID: 9100049149628205151}
+  - component: {fileID: 1438274532058176364}
+  - component: {fileID: 3690826846574739967}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -99,6 +101,8 @@ MonoBehaviour:
   newHealthPercentage: 0
   playerAnimatorManager: {fileID: 0}
   locomotion: {fileID: 0}
+  playerStatsManager: {fileID: 0}
+  playerInventoryManager: {fileID: 0}
 --- !u!114 &2635933940703782878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,10 +115,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41cb3f685961ed74d8e4c445beeba36b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLocomotionManager
+  gravityForce: -20
   groundLayer:
     serializedVersion: 2
     m_Bits: 129
-  groundCheckSphereRadius: 1
+  groundCheckSphereRadius: 0.09
   yVelocity: {x: 0, y: 0, z: 0}
   groundedYVelocity: -20
   fallStartYVelocity: -5
@@ -125,6 +130,9 @@ MonoBehaviour:
   runSpeed: 5
   rotationSpeed: 15
   sprintingSpeed: 7
+  jumpHeight: 2
+  jumpForwardSpeed: 5
+  freeFallingSpeed: 2
   sprintingStaminaCost: 2
   dodgeStaminaCost: 15
   jumpStaminaCost: 15
@@ -148,7 +156,7 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 1.67
+  m_Height: 1.6
   m_Radius: 0.16
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -196,6 +204,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Group1.PlayerEffectsManager
   effectToTest: {fileID: 11400000, guid: a650101118bb82c49977e81c9c69b294, type: 2}
   processEffect: 0
+--- !u!114 &1438274532058176364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5786037847892666633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e02b6bccf73316e43b285261b515e066, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Group1.PlayerInventoryManager
+  currentRightHandWeapon: {fileID: 11400000, guid: c44b6d7661e595c449781e80e2fcfd16, type: 2}
+--- !u!114 &3690826846574739967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5786037847892666633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7d63eeab4b2aa742bb0ad48e82c380b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Group1.PlayerEquipmentManager
+  rightHandSlot: {fileID: 0}
+  rightHandWeaponModel: {fileID: 0}
 --- !u!1001 &7425026170528257023
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -532,8 +567,31 @@ PrefabInstance:
     - {fileID: 5866666021909216657, guid: 76d85a44286241741bc68d89630671ee, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2715566404302941441, guid: 76d85a44286241741bc68d89630671ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2533126486432786293}
   m_SourcePrefab: {fileID: 100100000, guid: 76d85a44286241741bc68d89630671ee, type: 3}
+--- !u!1 &4802346521429737214 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2715566404302941441, guid: 76d85a44286241741bc68d89630671ee, type: 3}
+  m_PrefabInstance: {fileID: 7425026170528257023}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2533126486432786293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4802346521429737214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 624be7f3d31198f4a9421f11d47edda7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  weaponSlot: 0
+  currentWeaponModel: {fileID: 0}
+  weaponScale: {x: 0.05, y: 0.05, z: 0.05}
 --- !u!4 &6953633188735202324 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 76d85a44286241741bc68d89630671ee, type: 3}
