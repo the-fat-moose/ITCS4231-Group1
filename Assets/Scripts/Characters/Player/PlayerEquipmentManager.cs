@@ -7,6 +7,8 @@ namespace Group1 {
 
         public WeaponModelInstantiationSlot rightHandSlot;
 
+        [SerializeField] WeaponManager rightWeaponManager;
+
         public GameObject rightHandWeaponModel;
 
         protected override void Awake()
@@ -50,6 +52,9 @@ namespace Group1 {
             {
                 rightHandWeaponModel = Instantiate(player.playerInventoryManager.currentRightHandWeapon.weaponModel);
                 rightHandSlot.LoadWeapon(rightHandWeaponModel);
+                rightWeaponManager = rightHandWeaponModel.GetComponent<WeaponManager>();
+                rightWeaponManager.SetWeaponDamage(player.playerInventoryManager.currentRightHandWeapon);
+                // ASSIGN WEAPON DAMAGE, TO ITS COLLIDER
             }
         }
     }
