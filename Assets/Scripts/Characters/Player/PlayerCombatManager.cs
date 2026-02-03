@@ -17,7 +17,9 @@ namespace Group1 {
         public void PerformWeaponBasedAction(WeaponItemAction weaponAction, WeaponItem weaponPerformingAction)
         {
             // PERFORM THE ACTION
-            weaponAction.AttemptToPerformAction(player, weaponPerformingAction);
+            //weaponAction.AttemptToPerformAction(player, weaponPerformingAction);
+
+            player.PerformWeaponBasedAction(weaponAction.actionID, weaponPerformingAction.itemID);
         }
     }
 }

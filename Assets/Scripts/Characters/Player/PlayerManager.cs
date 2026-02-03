@@ -174,6 +174,20 @@ namespace Group1{
             playerCombatManager.currentWeaponBeingUsed = newWeapon;
         }
 
+        public void PerformWeaponBasedAction(int actionID, int weaponID)
+        {
+            WeaponItemAction weaponAction = WorldActionManager.instance.GetWeaponItemActionByID(actionID);
+
+            if (weaponAction != null)
+            {
+                weaponAction.AttemptToPerformAction(this, WorldItemDatabase.instance.GetWeaponByID(weaponID));
+            }
+            else
+            {
+                Debug.LogError("ACTION IS NULL, CANNOT BE PERFORMED");
+            }
+        }
+
         // DEBUG DELETE LATER
         private void DebugMenu()
         {

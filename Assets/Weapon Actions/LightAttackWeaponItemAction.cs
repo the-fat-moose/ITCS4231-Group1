@@ -1,0 +1,23 @@
+using UnityEngine;
+
+namespace Group1 {
+    public class LightAttackWeaponItemAction : WeaponItemAction
+    {
+        public override void AttemptToPerformAction(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
+        {
+            base.AttemptToPerformAction(playerPerformingAction, weaponPerformingAction);
+
+            // CHECK FOR STOPS (ex. no stamina)
+            if (playerPerformingAction.CurrentStamina <= 0) return;
+
+            if (!playerPerformingAction.isGrounded) return; // CHANGE THIS WHEN AERIAL ATTACKS ARE ADDED
+
+            PerformLightAttack(playerPerformingAction, weaponPerformingAction);
+        }
+
+        private void PerformLightAttack(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
+        {
+            // WORK ON LIGHT ATTACK HERE
+        }
+    }
+}
