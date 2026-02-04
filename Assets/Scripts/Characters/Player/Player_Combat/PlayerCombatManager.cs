@@ -21,5 +21,23 @@ namespace Group1 {
 
             player.PerformWeaponBasedAction(weaponAction.actionID, weaponPerformingAction.itemID);
         }
+
+        public virtual void DrainStaminaBasedOnAttack()
+        {
+            float staminaLoss = 0;
+
+            if(currentWeaponBeingUsed == null) return;
+
+            switch (currentAttackType)
+            {
+                case AttackType.Light:
+                    staminaLoss = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.lightAttackStaminaModifier;
+                    break;
+                default:
+                    break;
+            }
+
+            player.CurrentStamina -= Mathf.RoundToInt(staminaLoss);
+        }
     }
 }

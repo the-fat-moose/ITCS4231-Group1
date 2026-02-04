@@ -23,4 +23,4 @@ MonoBehaviour:
   physicalDamage: 118
   magicDamage: 0
   baseStaminaCost: 20
-  rb_Action: {fileID: 11400000, guid: b49442c1c3cb7de4bb4b900031a2b86d, type: 2}
+  rb_Action: {fileID: 11400000, guid: a6433101743e9ff4396e79a0ab0ac7d1, type: 2}

@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Group1 {
     public class WeaponManager : MonoBehaviour
     {
-        [SerializeField] MeleeWeaponDamageCollider meleeDamageCollider;
+        public MeleeWeaponDamageCollider meleeDamageCollider;
 
         private void Awake()
         {
@@ -15,6 +15,8 @@ namespace Group1 {
             meleeDamageCollider.characterCausingDamage = characterWieldingWeapon;
             meleeDamageCollider.physicalDamage = weapon.physicalDamage;
             meleeDamageCollider.magicDamage = weapon.magicDamage;
+
+            meleeDamageCollider.light_Attack_01_Modifier = weapon.light_Attack_01_Modifier;
         }
     }
 }

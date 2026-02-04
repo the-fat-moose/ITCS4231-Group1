@@ -53,7 +53,6 @@ namespace Group1{
                 playerControls.PlayerActions.RB.performed += i => RB_Input = true;
                 //holding activates
                 playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
-                Debug.Log("sprintInput called");
                 //release deactivates
                 playerControls.PlayerActions.Sprint.canceled += i => sprintInput = false;
             }

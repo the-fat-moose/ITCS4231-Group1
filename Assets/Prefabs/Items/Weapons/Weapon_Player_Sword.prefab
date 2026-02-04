@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 656554186d68bb74cba2b8643e61a652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponManager
-  meleeDamageCollider: {fileID: 0}
+  meleeDamageCollider: {fileID: 1327121592505187574}
 --- !u!1 &3038690354422038452
 GameObject:
   m_ObjectHideFlags: 0

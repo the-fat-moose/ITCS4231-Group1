@@ -18,14 +18,15 @@ namespace Group1 {
         public int magicDamage = 0;
 
         // WEAPON GUARD ABSORPTIONS
-
-        // WEAPON MODIFIERS
+        [Header("Attack Modifier")]
+        public float light_Attack_01_Modifier = 1.1f;
         // LIGHT ATTACK MODIFIER
         // HEAVY ATTACK MODIFIER
         // CRITICAL DAMAGE MODIFIER ETC
 
         [Header("Stamina Costs")]
         public int baseStaminaCost = 20;
+        public float lightAttackStaminaModifier = 0.9f;
         // RUNNING ATTACK STAMINA COST MODIFIER
         // LIGHT ATTACK STAMINA COST MODIFIER
         // HEAVY ATTACK STAMINA COST MODIFIER

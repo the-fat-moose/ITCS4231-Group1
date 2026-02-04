@@ -127,5 +127,15 @@ namespace Group1 {
                 // ASSIGN WEAPON DAMAGE, TO ITS COLLIDER
             }
         }
+
+        public void OpenDamageCollider()
+        {
+            rightWeaponManager.meleeDamageCollider.EnableCollider();
+        }
+
+        public void CloseDamageCollider()
+        {
+            rightWeaponManager.meleeDamageCollider.DisableCollider();
+        }
     }
 }

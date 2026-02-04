@@ -1656,6 +1656,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4078617143967461477, guid: dac196aab4cfb4d4f947a2c5914e0e69, type: 3}
+      propertyPath: weaponItemActions.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078617143967461477, guid: dac196aab4cfb4d4f947a2c5914e0e69, type: 3}
+      propertyPath: 'weaponItemActions.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a6433101743e9ff4396e79a0ab0ac7d1, type: 2}
     - target: {fileID: 5905379055965345332, guid: dac196aab4cfb4d4f947a2c5914e0e69, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

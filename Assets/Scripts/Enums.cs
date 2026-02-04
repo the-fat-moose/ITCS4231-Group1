@@ -10,4 +10,10 @@ namespace Group1 {
     {
         RightHand
     }
+
+    public enum AttackType
+    {
+        Light,
+        Heavy
+    }
 }
