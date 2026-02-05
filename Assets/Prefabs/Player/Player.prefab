@@ -81,6 +81,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   characterEffectsManager: {fileID: 0}
   characterAnimatorManager: {fileID: 0}
+  characterCombatManager: {fileID: 0}
   isSprinting: 0
   isDead: 0
   isPerformingAction: 0
@@ -124,7 +125,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 129
-  groundCheckSphereRadius: 0.09
+  groundCheckSphereRadius: 0.2
   yVelocity: {x: 0, y: 0, z: 0}
   groundedYVelocity: -20
   fallStartYVelocity: -5
@@ -155,6 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42e81422a3c85864196b487661ce3b90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Group1.PlayerCombatManager
+  currentAttackType: 0
   currentWeaponBeingUsed: {fileID: 0}
 --- !u!143 &3043051438168417331
 CharacterController:
