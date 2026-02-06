@@ -15,6 +15,8 @@ namespace Group1{
 
         public bool isDead = false;
 
+        public bool isLockedOn = false;
+
         [Header("Flags")]
         public bool isPerformingAction = false;
         public bool isGrounded = true;

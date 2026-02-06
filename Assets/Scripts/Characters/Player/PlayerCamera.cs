@@ -1,9 +1,13 @@
+using System;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Group1{
     public class PlayerCamera : MonoBehaviour
     {
         public static PlayerCamera cam;
+        private WorldUtilityManager utility;
 
         public Camera cameraObject;
         public PlayerManager player;
@@ -25,6 +29,14 @@ namespace Group1{
         [SerializeField] float upAndDownLookAngle;
         private float cameraZPosition;
         private float targetCameraZPosition;
+
+        [Header("Lock On")]
+        [SerializeField] private float lockOnRadius = 20f;
+        [SerializeField] private float minimumViewableAngle = -50f;
+        [SerializeField] private float maximumViewableAngle = 50f;
+        private List<CharacterManager> avaliableTarget = new List<CharacterManager>();
+        public CharacterManager nearestLockOnTarget;
+        private float shortestDistance;
 
         private void Awake()
         {
@@ -97,6 +109,71 @@ namespace Group1{
             }
             cameraObjPos.z = Mathf.Lerp(cameraObject.transform.localPosition.z, targetCameraZPosition, 0.2f);
             cameraObject.transform.localPosition = cameraObjPos;
+        }
+
+        public void HandleLocatingLockOnTargets()
+        {
+            float shortDistance = Mathf.Infinity;
+            float shortDistanceOfRightTarget = Mathf.Infinity;
+            float shortDistanceOfLeftTarget = -Mathf.Infinity;
+
+            Collider[] colliders = Physics.OverlapSphere(player.transform.position, lockOnRadius, utility.Instance.GetCharacterLayers());
+
+            for(int i = 0; i < colliders.Length; i++)
+            {
+                CharacterManager lockOnTarget = colliders[i].GetComponent<CharacterManager>();
+
+                if(lockOnTarget != null)
+                {
+                    Vector3 lockOnTargetsDirection = lockOnTarget.transform.position - player.transform.position;
+                    float distanceFromTarget = Vector3.Distance(player.transform.position, lockOnTarget.transform.position);
+                    float viewableAngle = Vector3.Angle(lockOnTargetsDirection, cameraObject.transform.position);
+
+                    if(lockOnTarget.isDead) return;
+
+                    if(lockOnTarget.transform.root == player.transform.root) continue;
+
+                    if(viewableAngle > minimumViewableAngle && viewableAngle < maximumViewableAngle)
+                    {
+                        RaycastHit hit;
+
+                        if(Physics.Linecast(player.playerCombatManager.lockOnTransform.position, lockOnTarget.characterCombatManager.lockOnTransform.position, out hit, utility.Instance.GetEnviroLayers()))
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            Debug.Log("WE MADE IT");
+                            avaliableTarget.Add(lockOnTarget);
+                        }
+                    }
+                }
+            }
+
+            for(int k = 0; k < avaliableTarget.Count; k++)
+            {
+                if(avaliableTarget[k] != null)
+                {
+                    float distanceFromTarget = Vector3.Distance(player.transform.position, avaliableTarget[k].transform.position);
+
+                    if(distanceFromTarget < shortestDistance)
+                    {
+                        shortestDistance = distanceFromTarget;
+                        nearestLockOnTarget = avaliableTarget[k];
+                    }
+                }
+                else
+                {
+                    ClearLockOnTarget();
+                    player.isLockedOn = false;
+                }
+            }
+        }
+
+        public void ClearLockOnTarget()
+        {
+            nearestLockOnTarget = null;
+            avaliableTarget.Clear();
         }
     }
 }

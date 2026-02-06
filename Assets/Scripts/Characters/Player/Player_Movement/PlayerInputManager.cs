@@ -23,8 +23,10 @@ namespace Group1{
 
         [Header("Camera Movement Input")]
         [SerializeField] Vector2 camMovement;
+        [SerializeField] private bool lockInput = false;
         public float verticalCameraInput;
         public float horizontalCameraInput;
+        
 
         private void Awake()
         {
@@ -51,6 +53,7 @@ namespace Group1{
                 playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
                 playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
                 playerControls.PlayerActions.RB.performed += i => RB_Input = true;
+                playerControls.PlayerActions.LockOn.performed += i => lockInput = true;
                 //holding activates
                 playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
                 //release deactivates
@@ -68,11 +71,46 @@ namespace Group1{
         private void HandleAllInputs()
         {
             MovementInput();
+            HandleLockOnInput();
             HandleCameraInput();
             HandleDodgeInput();
             HandleSprinting();
             HandleJumpInput();
             HandleRBInput();
+        }
+
+        private void HandleLockOnInput()
+        {
+            if (player.isLockedOn)
+            {
+                if (player.playerCombatManager.currentTarget == null) return;
+
+                if (player.playerCombatManager.currentTarget.isDead)
+                {
+                    player.isLockedOn = false;
+                }
+            }
+
+            if (lockInput && player.isLockedOn)
+            {
+                lockInput = false;
+                PlayerCamera.cam.ClearLockOnTarget();
+                player.isLockedOn = false;
+                return;
+            }
+
+            if (lockInput && !player.isLockedOn)
+            {
+                lockInput = true;
+                
+                PlayerCamera.cam.HandleLocatingLockOnTargets();
+
+                if(PlayerCamera.cam.nearestLockOnTarget != null)
+                {
+                    player.playerCombatManager.SetTarget(PlayerCamera.cam.nearestLockOnTarget);
+                    player.isLockedOn = true;
+                }
+            }
         }
         
         //movements
