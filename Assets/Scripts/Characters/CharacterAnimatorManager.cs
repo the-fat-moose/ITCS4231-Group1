@@ -16,17 +16,60 @@ namespace Group1{
             horizontal = Animator.StringToHash("Horizontal");
         }
 
-        public void UpdateAnimatorMovementParameters(float horizontalValue, float verticalValue, bool isSprinting)
+        public void UpdateAnimatorMovementParameters(float horizontalMovement, float verticalMovement, bool isSprinting)
         {
-            float horizontalAmount = horizontalValue;
-            float verticalAmount = verticalValue;
-            if(isSprinting)
+            float snappedHorizontal;
+            float snappedVertical;
+
+            if(horizontalMovement > 0 && horizontalMovement <= 0.5f)
             {
-                verticalAmount = 2f;
+                snappedHorizontal = 0.5f;
+            }
+            else if(horizontalMovement > 0.5f && horizontalMovement <= 1f)
+            {
+                snappedHorizontal = 1f;
+            }
+            else if(horizontalMovement < -0f && horizontalMovement >= -0.5f)
+            {
+                snappedHorizontal = -0.5f;
+            }
+            else if(horizontalMovement < -0.5f && horizontalMovement >= -1f)
+            {
+                snappedHorizontal = -1f;
+            }
+            else
+            {
+                snappedHorizontal = 0f;
             }
 
-            character.animator.SetFloat(horizontal, horizontalAmount, 0.1f, Time.deltaTime);
-            character.animator.SetFloat(vertical, verticalAmount, 0.1f, Time.deltaTime);
+            if(verticalMovement > 0 && verticalMovement <= 0.5f)
+            {
+                snappedVertical = 0.5f;
+            }
+            else if(verticalMovement > 0.5f && verticalMovement <= 1f)
+            {
+                snappedVertical = 1f;
+            }
+            else if(verticalMovement < 0f && verticalMovement >= -0.5f)
+            {
+                snappedVertical = -0.5f;
+            }
+            else if(verticalMovement < -0.5f && verticalMovement >= -1f)
+            {
+                snappedVertical = -1f;
+            }
+            else
+            {
+                snappedVertical = 0f;
+            }
+
+            if(isSprinting)
+            {
+                snappedVertical = 2f;
+            }
+
+            character.animator.SetFloat(horizontal, snappedHorizontal, 0.1f, Time.deltaTime);
+            character.animator.SetFloat(vertical, snappedVertical, 0.1f, Time.deltaTime);
         }
     
         public virtual void PlayTargetActionAnimation(string targetAnimation, bool isPerformingAction, bool applyRootMotion = true, bool canRotate = false, bool canMove = false)

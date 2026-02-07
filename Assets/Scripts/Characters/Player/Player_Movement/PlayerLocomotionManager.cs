@@ -66,8 +66,8 @@ namespace Group1{
             if(!player.canMove) return;
 
             //move dir is based on camera and inputs
-            moveDir = PlayerCamera.cam.transform.forward * verticalMovement;
-            moveDir = moveDir + PlayerCamera.cam.transform.right * horizontalMovement;
+            moveDir = PlayerCamera.cam.cameraObject.transform.forward * verticalMovement;
+            moveDir += PlayerCamera.cam.cameraObject.transform.right * horizontalMovement;
             moveDir.Normalize();
             moveDir.y = 0;
 
@@ -145,13 +145,13 @@ namespace Group1{
 
                     Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
                     Quaternion finalRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-                    transform.rotation = targetRotation;
+                    transform.rotation = finalRotation;
                 }
             }
             else
             {
                 targetRotation = Vector3.zero;
-                targetRotation = PlayerCamera.cam.cameraObject.transform.forward *verticalMovement;
+                targetRotation = PlayerCamera.cam.cameraObject.transform.forward * verticalMovement;
                 targetRotation = targetRotation + PlayerCamera.cam.cameraObject.transform.right * horizontalMovement;
                 targetRotation.Normalize();
                 targetRotation.y = 0;

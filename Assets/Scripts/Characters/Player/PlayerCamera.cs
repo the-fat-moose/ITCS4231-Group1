@@ -284,7 +284,7 @@ namespace Group1{
                     else
                     {
                         cameraPivotTransform.transform.localPosition =
-                        Vector3. SmoothDamp (cameraPivotTransform.transform.localPosition, newUnlockedCameraHeight, ref velocity, setCameraHeightSpeed);
+                        Vector3.SmoothDamp(cameraPivotTransform.transform.localPosition, newUnlockedCameraHeight, ref velocity, setCameraHeightSpeed);
                     }
 
                     yield return null;
