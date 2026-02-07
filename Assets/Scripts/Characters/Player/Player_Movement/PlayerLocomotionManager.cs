@@ -31,7 +31,6 @@ namespace Group1{
         [Header("Dodge")]
         [SerializeField] float rollSpeed = 6f;
         private Vector3 rollDirection;
-        public bool isRolling;
 
         protected override void Awake()
         {
@@ -115,21 +114,58 @@ namespace Group1{
 
         private void HandleRotation()
         {
+            if(player.isDead) return;
+
             if(!player.canRotate) return;
-            targetRotation = Vector3.zero;
-            targetRotation = PlayerCamera.cam.cameraObject.transform.forward *verticalMovement;
-            targetRotation = targetRotation + PlayerCamera.cam.cameraObject.transform.right * horizontalMovement;
-            targetRotation.Normalize();
-            targetRotation.y = 0;
 
-            if(targetRotation == Vector3.zero)
+            if (player.isLockedOn)
             {
-                targetRotation = transform.forward;
-            } 
+                if (player.isSprinting || isRolling)
+                {
+                    Vector3 targetDirection = Vector3.zero;
+                    targetDirection = PlayerCamera.cam.cameraObject.transform.forward * verticalMovement;
+                    targetDirection += PlayerCamera.cam.cameraObject.transform.right * horizontalMovement;
+                    targetDirection.Normalize();
+                    targetDirection.y = 0;
 
-            Quaternion newRotation = Quaternion.LookRotation(targetRotation);
-            Quaternion targetRotationTurn = Quaternion.Slerp(transform.rotation, newRotation, rotationSpeed * Time.deltaTime);
-            transform.rotation = targetRotationTurn;
+                    if(targetDirection == Vector3.zero) targetDirection = transform.forward;
+
+                    Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+                    Quaternion finalRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                    transform.rotation = finalRotation;
+                }
+                else
+                {
+                    if(player.playerCombatManager.currentTarget == null) return;
+
+                    Vector3 targetDirection;
+                    targetDirection = player.playerCombatManager.currentTarget.transform.position - transform.position;
+                    targetDirection.y = 0;
+                    targetDirection.Normalize();
+
+                    Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+                    Quaternion finalRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                    transform.rotation = targetRotation;
+                }
+            }
+            else
+            {
+                targetRotation = Vector3.zero;
+                targetRotation = PlayerCamera.cam.cameraObject.transform.forward *verticalMovement;
+                targetRotation = targetRotation + PlayerCamera.cam.cameraObject.transform.right * horizontalMovement;
+                targetRotation.Normalize();
+                targetRotation.y = 0;
+
+                if(targetRotation == Vector3.zero)
+                {
+                    targetRotation = transform.forward;
+                } 
+
+                Quaternion newRotation = Quaternion.LookRotation(targetRotation);
+                Quaternion targetRotationTurn = Quaternion.Slerp(transform.rotation, newRotation, rotationSpeed * Time.deltaTime);
+                transform.rotation = targetRotationTurn;                
+            }
+
         }
 
         public void HandleSprinting()
@@ -188,6 +224,7 @@ namespace Group1{
                 isRolling = true;
 
                 player.playerAnimatorManager.PlayTargetActionAnimation("PlayerCharacter_Dodge", true, true);
+                isRolling = true;
             }
             else
             {

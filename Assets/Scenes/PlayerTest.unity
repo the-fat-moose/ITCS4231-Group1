@@ -1885,9 +1885,11 @@ MonoBehaviour:
   jumpInput: 0
   RB_Input: 0
   camMovement: {x: 0, y: 0}
-  lockInput: 0
   verticalCameraInput: 0
   horizontalCameraInput: 0
+  lockInput: 0
+  lockOn_Left: 0
+  lockOn_Right: 0
 --- !u!4 &1729093156
 Transform:
   m_ObjectHideFlags: 0
@@ -2592,6 +2594,10 @@ PrefabInstance:
       propertyPath: utility
       value: 
       objectReference: {fileID: 837431944}
+    - target: {fileID: 5704482104397705886, guid: bdfa12a8dfbbb694586811c3c3955036, type: 3}
+      propertyPath: setCameraHeightSpeed
+      value: 0.0001
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -39,5 +39,11 @@ namespace Group1 {
 
             player.CurrentStamina -= Mathf.RoundToInt(staminaLoss);
         }
+
+        public virtual void SetTarget(CharacterManager newTarget){
+            base.SetTarget(newTarget);
+
+            PlayerCamera.cam.SetLockCameraHeight();
+        }
     }
 }

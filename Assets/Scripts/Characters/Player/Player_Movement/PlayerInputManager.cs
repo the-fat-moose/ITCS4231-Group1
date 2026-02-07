@@ -23,9 +23,14 @@ namespace Group1{
 
         [Header("Camera Movement Input")]
         [SerializeField] Vector2 camMovement;
-        [SerializeField] private bool lockInput = false;
         public float verticalCameraInput;
         public float horizontalCameraInput;
+
+        [Header("Lock On")]
+        [SerializeField] private bool lockInput = false;
+        [SerializeField] private bool lockOn_Left = false;
+        [SerializeField] private bool lockOn_Right = false;
+        private Coroutine lockOnCoroutine;
         
 
         private void Awake()
@@ -53,8 +58,10 @@ namespace Group1{
                 playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
                 playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
                 playerControls.PlayerActions.RB.performed += i => RB_Input = true;
+
                 playerControls.PlayerActions.LockOn.performed += i => lockInput = true;
-                playerControls.PlayerActions.LockOn.canceled += _ => lockInput = false;
+                playerControls.PlayerActions.SeekLeftLockOnTarget.performed += i => lockOn_Left = true;
+                playerControls.PlayerActions.SeekRightLockOnTarget.performed += i => lockOn_Right = true;
                 
                 //holding activates
                 playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
@@ -68,7 +75,7 @@ namespace Group1{
         private void Update()
         {
             HandleAllInputs();
-            if(lockInput) Debug.Log("lockInput true");
+
         }
 
         private void HandleAllInputs()
@@ -80,42 +87,72 @@ namespace Group1{
             HandleSprinting();
             HandleJumpInput();
             HandleRBInput();
+            HandleLockOnSwitchTargetInput();
         }
 
         private void HandleLockOnInput()
         {
+            if (!lockInput) return;
+
+            lockInput = false; //consume input immediately
+
             if (player.isLockedOn)
             {
-                if (player.playerCombatManager.currentTarget == null) return;
-
-                if (player.playerCombatManager.currentTarget.isDead)
-                {
-                    player.isLockedOn = false;
-                }
-            }
-
-            if (lockInput && player.isLockedOn)
-            {
-                lockInput = false;
+                if(player.playerCombatManager.currentTarget.isDead) player.isLockedOn = false;
+                
                 Debug.Log("PlayerInputManager ClearLockOnTarget called");
                 PlayerCamera.cam.ClearLockOnTarget();
                 player.isLockedOn = false;
+
+                if(lockOnCoroutine != null) StopCoroutine(lockOnCoroutine);
+                lockOnCoroutine = StartCoroutine(PlayerCamera.cam.WaitThenFindNewTarget());
+
                 return;
             }
 
-            if (lockInput && !player.isLockedOn)
-            {
-                lockInput = true;
-                
-                PlayerCamera.cam.HandleLocatingLockOnTargets();
 
-                if(PlayerCamera.cam.nearestLockOnTarget != null)
+            PlayerCamera.cam.HandleLocatingLockOnTargets();
+
+            if (PlayerCamera.cam.nearestLockOnTarget != null)
+            {
+                player.playerCombatManager.SetTarget(PlayerCamera.cam.nearestLockOnTarget);
+                player.isLockedOn = true;
+            }
+        }
+
+        private void HandleLockOnSwitchTargetInput()
+        {
+            if (lockOn_Left)
+            {
+                lockOn_Left = false;
+
+                if (player.isLockedOn)
                 {
-                    player.playerCombatManager.SetTarget(PlayerCamera.cam.nearestLockOnTarget);
-                    player.isLockedOn = true;
+                    PlayerCamera.cam.HandleLocatingLockOnTargets();
+
+                    if(PlayerCamera.cam.leftLockOnTarget != null)
+                    {
+                        player.playerCombatManager.SetTarget(PlayerCamera.cam.leftLockOnTarget);
+                    }
+                }
+            }
+
+            if (lockOn_Right)
+            {
+                lockOn_Right = false;
+
+                if (player.isLockedOn)
+                {
+                    PlayerCamera.cam.HandleLocatingLockOnTargets();
+
+                    if(PlayerCamera.cam.rightLockOnTarget != null)
+                    {
+                        player.playerCombatManager.SetTarget(PlayerCamera.cam.rightLockOnTarget);
+                    }
                 }
             }
         }
+
         
         //movements
         private void MovementInput()
@@ -141,7 +178,18 @@ namespace Group1{
                 moveAmount = 1f;
             }
 
-            player.playerAnimatorManager.UpdateAnimatorMovementParameters(0f, moveAmount, player.isSprinting);
+            if(player == null) return;
+
+            if (!player.isLockedOn)
+            {
+                player.playerAnimatorManager.UpdateAnimatorMovementParameters(0f, moveAmount, player.isSprinting);
+            }
+            else
+            {
+                player.playerAnimatorManager.UpdateAnimatorMovementParameters(horizontalInput, verticalInput, player.isSprinting);
+            }
+
+            
         }
 
         private void HandleCameraInput()

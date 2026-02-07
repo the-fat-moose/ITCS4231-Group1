@@ -13,16 +13,11 @@ namespace Group1{
                 character = animator.GetComponent<CharacterManager>();
             }
 
-            /*if(locomotion == null)
-            {
-                locomotion = animator.GetComponent<PlayerLocomotionManager>();
-            }*/
-
             character.isPerformingAction = false;
             character.applyRootMotion = false;
             character.canMove = true;
             character.canRotate = true;
-            //character.locomotion.isRolling = false;
+            character.characterLocomotionManager.isRolling = false;
             character.isJumping = false;
         }
 
