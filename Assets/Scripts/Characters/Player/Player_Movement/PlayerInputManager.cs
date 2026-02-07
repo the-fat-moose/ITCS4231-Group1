@@ -54,6 +54,8 @@ namespace Group1{
                 playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
                 playerControls.PlayerActions.RB.performed += i => RB_Input = true;
                 playerControls.PlayerActions.LockOn.performed += i => lockInput = true;
+                playerControls.PlayerActions.LockOn.canceled += _ => lockInput = false;
+                
                 //holding activates
                 playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
                 //release deactivates
@@ -66,6 +68,7 @@ namespace Group1{
         private void Update()
         {
             HandleAllInputs();
+            if(lockInput) Debug.Log("lockInput true");
         }
 
         private void HandleAllInputs()
@@ -94,6 +97,7 @@ namespace Group1{
             if (lockInput && player.isLockedOn)
             {
                 lockInput = false;
+                Debug.Log("PlayerInputManager ClearLockOnTarget called");
                 PlayerCamera.cam.ClearLockOnTarget();
                 player.isLockedOn = false;
                 return;

@@ -106,6 +106,8 @@ namespace Group1{
             // REGEN STAMINA
             playerStatsManager.RegenerateStamina();
 
+
+
             // DEBUG DELETE LATER
             DebugMenu();
         }

@@ -183,6 +183,14 @@ namespace Group1{
             
         }
 
+        public void OnIsLockedOnChanged(bool old, bool isLockedOn)
+        {
+            if (!isLockedOn)
+            {
+                characterCombatManager.currentTarget = null;
+            }
+        }
+
         public void CheckHP(int oldValue, int newValue)
         {
             if (CurrentHealth <= 0)

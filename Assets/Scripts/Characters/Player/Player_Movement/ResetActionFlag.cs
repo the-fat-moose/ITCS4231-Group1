@@ -4,7 +4,7 @@ namespace Group1{
     public class ResetActionFlag : StateMachineBehaviour
     {
         CharacterManager character;
-        PlayerLocomotionManager locomotion;
+        //PlayerLocomotionManager locomotion;
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
@@ -13,16 +13,16 @@ namespace Group1{
                 character = animator.GetComponent<CharacterManager>();
             }
 
-            if(locomotion == null)
+            /*if(locomotion == null)
             {
                 locomotion = animator.GetComponent<PlayerLocomotionManager>();
-            }
+            }*/
 
             character.isPerformingAction = false;
             character.applyRootMotion = false;
             character.canMove = true;
             character.canRotate = true;
-            locomotion.isRolling = false;
+            //character.locomotion.isRolling = false;
             character.isJumping = false;
         }
 
