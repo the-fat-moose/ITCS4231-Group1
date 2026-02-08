@@ -573,7 +573,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Two Modifiers"",
                     ""id"": ""041c7790-dc14-46e5-88b3-c80ec4953dd6"",
-                    ""path"": ""TwoModifiers"",
+                    ""path"": ""TwoModifiers(modifiersOrder=2)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -628,7 +628,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Two Modifiers"",
                     ""id"": ""b0a3d7ac-03b3-4aac-9d52-1fbb2f044e44"",
-                    ""path"": ""TwoModifiers"",
+                    ""path"": ""TwoModifiers(modifiersOrder=2)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
