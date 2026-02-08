@@ -54,7 +54,7 @@ namespace Group1{
 
         protected override void Awake()
         {
-            base.Awake();   //runs CharacterManager Awake 
+            base.Awake();   //runs CharacterManager Awake
 
             locomotion = GetComponent<PlayerLocomotionManager>();
             playerStatsManager = GetComponent<PlayerStatsManager>();
@@ -195,25 +195,25 @@ namespace Group1{
         // DEBUG DELETE LATER
         private void DebugMenu()
         {
-            if (respawnCharacter || Input.GetKeyUp(KeyCode.M))
+            if (respawnCharacter)
             {
                 respawnCharacter = false;
                 ReviveCharacter();
             }
 
-            if (setNewHealth || Input.GetKeyUp(KeyCode.L))
+            if (setNewHealth)
             {
                 setNewHealth = false;
                 CurrentHealth = MaxHealth * newHealthPercentage / 100;
             }
 
-            if (switchRightWeapon || Input.GetKeyUp(KeyCode.O))
+            if (switchRightWeapon)
             {
                 switchRightWeapon = false;
                 playerEquipmentManager.SwitchRightWeapon();
             }
 
-            if (resetScene || Input.GetKeyUp(KeyCode.Minus))
+            if (resetScene)
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
