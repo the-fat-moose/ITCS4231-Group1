@@ -18,8 +18,9 @@ namespace Group1 {
         {
             // PERFORM THE ACTION
             //weaponAction.AttemptToPerformAction(player, weaponPerformingAction);
-
-            player.PerformWeaponBasedAction(weaponAction.actionID, weaponPerformingAction.itemID);
+            if (weaponAction != null && weaponPerformingAction != null) {
+                player.PerformWeaponBasedAction(weaponAction.actionID, weaponPerformingAction.itemID);
+            }
         }
 
         public virtual void DrainStaminaBasedOnAttack()

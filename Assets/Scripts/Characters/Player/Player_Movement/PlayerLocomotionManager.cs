@@ -34,6 +34,9 @@ namespace Group1{
 
         protected override void Awake()
         {
+            Debug.Log("PlayerLocomotionManager AWAKE");
+            Debug.LogError("PlayerLocomotionManager AWAKE");
+
             base.Awake();
 
             player = GetComponent<PlayerManager>();

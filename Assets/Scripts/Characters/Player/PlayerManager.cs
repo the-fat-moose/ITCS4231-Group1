@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Group1{
     public class PlayerManager : CharacterManager
@@ -10,7 +10,6 @@ namespace Group1{
         [SerializeField] bool setNewHealth = false;
         [SerializeField] [Range(0, 100)] int newHealthPercentage = 0;
         [SerializeField] bool switchRightWeapon = false;
-        [SerializeField] bool resetScene = false;
 
         [HideInInspector] public PlayerAnimatorManager playerAnimatorManager;
         [HideInInspector] public PlayerLocomotionManager locomotion;
@@ -63,39 +62,53 @@ namespace Group1{
             playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
             playerCombatManager = GetComponent<PlayerCombatManager>();
 
-            // UPDATE TOTAL AMOUNT OF HEALTH, STAMINA, MANA WHEN THE STAT LINKED TO EITHER CHANGES
-            OnEnduranceChanged += SetNewMaxStaminaValue;
-            OnVitalityChanged += SetNewMaxHealthValue;
-            OnMindChanged += SetNewMaxManaValue;
-
-            // Stamina Setup
-            OnStaminaChanged += PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue;
-            OnStaminaChanged += playerStatsManager.ResetStaminaRegenTimer;
-            
-            MaxStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(Endurance);
-            CurrentStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(Endurance);
-            PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(MaxStamina);
-
-            // Health Setup
-            OnHealthChanged += PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue;
-
-            MaxHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel(Vitality);
-            CurrentHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel(Vitality);
-            PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(MaxHealth);
-
-            // Mana Setup
-            OnManaChanged += PlayerUIManager.instance.playerUIHudManager.SetNewManaValue;
-
-            MaxMana = playerStatsManager.CalculateManaBasedOnMindLevel(Mind);
-            CurrentMana = playerStatsManager.CalculateManaBasedOnMindLevel(Mind);
-            PlayerUIManager.instance.playerUIHudManager.SetMaxManaValue(MaxMana);
-
-            // Death and Healing Handling
-            OnHealthChanged += CheckHP;
-
             // Equipment
             OnRightHandWeaponIDChanged += OnCurrentRightHandWeaponIDChange;
             OnCurrentWeaponBeingUsedChanged += OnCurrentWeaponBeingUsedIDChange;
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+
+            if (PlayerUIManager.instance != null)
+            {
+                Debug.LogError("PlayerUIManager.instance wasn't null");
+
+                // UPDATE TOTAL AMOUNT OF HEALTH, STAMINA, MANA WHEN THE STAT LINKED TO EITHER CHANGES
+                OnEnduranceChanged += SetNewMaxStaminaValue;
+                OnVitalityChanged += SetNewMaxHealthValue;
+                OnMindChanged += SetNewMaxManaValue;
+
+                // Stamina Setup
+                OnStaminaChanged += PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue;
+                OnStaminaChanged += playerStatsManager.ResetStaminaRegenTimer;
+                
+                MaxStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(Endurance);
+                CurrentStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(Endurance);
+                PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(MaxStamina);
+
+                // Health Setup
+                OnHealthChanged += PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue;
+
+                MaxHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel(Vitality);
+                CurrentHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel(Vitality);
+                PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(MaxHealth);
+
+                // Mana Setup
+                OnManaChanged += PlayerUIManager.instance.playerUIHudManager.SetNewManaValue;
+
+                MaxMana = playerStatsManager.CalculateManaBasedOnMindLevel(Mind);
+                CurrentMana = playerStatsManager.CalculateManaBasedOnMindLevel(Mind);
+                PlayerUIManager.instance.playerUIHudManager.SetMaxManaValue(MaxMana);
+
+                // Death and Healing Handling
+                OnHealthChanged += CheckHP;
+            }
+            else
+            {
+                Debug.LogError("PlayerUIManager.instance was null");
+            }
         }
 
         protected override void Update()
@@ -212,10 +225,38 @@ namespace Group1{
                 switchRightWeapon = false;
                 playerEquipmentManager.SwitchRightWeapon();
             }
+        }
 
-            if (resetScene)
+        public void DebugRespawnPlayer()
+        {
+            respawnCharacter = true;
+            GameObject playerUIManager = GameObject.Find("PlayerUIManager");
+            if (playerUIManager != null)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                // playerUIManager/Hud Manager/Debug Manager/Debug Panel/Respawn Toggle
+                playerUIManager.transform.GetChild(0).transform.GetChild(1).transform.GetChild(0).transform.GetChild(0).GetComponent<Toggle>().isOn = false;
+            }
+        }
+
+        public void DebugDie()
+        {
+            setNewHealth = true;
+            GameObject playerUIManager = GameObject.Find("PlayerUIManager");
+            if (playerUIManager != null)
+            {
+                // playerUIManager/Hud Manager/Debug Manager/Debug Panel/Die Toggle
+                playerUIManager.transform.GetChild(0).transform.GetChild(1).transform.GetChild(0).transform.GetChild(1).GetComponent<Toggle>().isOn = false;
+            }
+        }
+
+        public void DebugSwitchWeapon()
+        {
+            switchRightWeapon = true;
+            GameObject playerUIManager = GameObject.Find("PlayerUIManager");
+            if (playerUIManager != null)
+            {
+                // playerUIManager/Hud Manager/Debug Manager/Debug Panel/Switch Weapon Toggle
+                playerUIManager.transform.GetChild(0).transform.GetChild(1).transform.GetChild(0).transform.GetChild(2).GetComponent<Toggle>().isOn = false;
             }
         }
     }       
