@@ -11,6 +11,22 @@ namespace Group1{
 
             player = GetComponent<PlayerManager>();
         }
+
+        private void OnEnable()
+        {
+            character.OnIsChargingAttackChanged += HandleChargingChanged;
+        }
+
+        private void OnDisable()
+        {
+            character.OnIsChargingAttackChanged -= HandleChargingChanged;
+        }
+
+        private void HandleChargingChanged(bool oldValue, bool newValue)
+        {
+            player.animator.SetBool("isChargingAttack", newValue);
+        }
+
         public void OnAnimatorMove()
         {
             if (player.applyRootMotion)

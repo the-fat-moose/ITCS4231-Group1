@@ -33,6 +33,7 @@ namespace Group1 {
 
         [Header("Actions")]
         public WeaponItemAction rb_Action;
+        public WeaponItemAction rt_Action;
 
         // ABILITIES
 

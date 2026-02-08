@@ -16,6 +16,7 @@ namespace Group1{
             horizontal = Animator.StringToHash("Horizontal");
         }
 
+
         public void UpdateAnimatorMovementParameters(float horizontalMovement, float verticalMovement, bool isSprinting)
         {
             float snappedHorizontal;
@@ -88,12 +89,20 @@ namespace Group1{
             //need to keep track of last attack performed for combo's
             character.characterCombatManager.currentAttackType = attackType;
             character.applyRootMotion = applyRootMotion;
-            character.animator.CrossFade(targetAnimation, 0.2f);
+            int layerIndex = character.animator.GetLayerIndex("Action Override");
+            Debug.Log(character.animator.HasState(
+                character.animator.GetLayerIndex("Action Override"),
+                Animator.StringToHash(targetAnimation)
+            ));
+
+            character.animator.CrossFade(targetAnimation, 0.2f, layerIndex);
+
 
             //used to stop player from performing actions while in action
             character.isPerformingAction = isPerformingAction;
             character.canMove = canMove;
             character.canRotate = canRotate;
         }
+
     }
 }

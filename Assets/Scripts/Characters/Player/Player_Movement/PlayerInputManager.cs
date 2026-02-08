@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Group1{
@@ -19,7 +20,6 @@ namespace Group1{
         [SerializeField] private bool dodgeInput = false;
         [SerializeField] private bool sprintInput = false;
         [SerializeField] private bool jumpInput = false;
-        [SerializeField] private bool RB_Input = false;
 
         [Header("Camera Movement Input")]
         [SerializeField] Vector2 camMovement;
@@ -31,6 +31,14 @@ namespace Group1{
         [SerializeField] private bool lockOn_Left = false;
         [SerializeField] private bool lockOn_Right = false;
         private Coroutine lockOnCoroutine;
+
+        [Header("Bumper inputs")]
+        [SerializeField] private bool RB_Input = false;
+
+        [Header("Trigger inputs")]
+        [SerializeField] bool RT_Input = false;
+        [SerializeField] bool Hold_RT_Input = false;
+
         
 
         private void Awake()
@@ -58,6 +66,10 @@ namespace Group1{
                 playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
                 playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
                 playerControls.PlayerActions.RB.performed += i => RB_Input = true;
+                playerControls.PlayerActions.RT.performed += i => RT_Input = true;
+
+                playerControls.PlayerActions.HoldRT.performed += i => Hold_RT_Input = true;
+                playerControls.PlayerActions.HoldRT.canceled += i => Hold_RT_Input = false;
 
                 playerControls.PlayerActions.LockOn.performed += i => lockInput = true;
                 playerControls.PlayerActions.SeekLeftLockOnTarget.performed += i => lockOn_Left = true;
@@ -82,12 +94,14 @@ namespace Group1{
         {
             MovementInput();
             HandleLockOnInput();
+            HandleLockOnSwitchTargetInput();
             HandleCameraInput();
             HandleDodgeInput();
             HandleSprinting();
             HandleJumpInput();
             HandleRBInput();
-            HandleLockOnSwitchTargetInput();
+            HandleRTInput();
+            HandleHoldRTInput();
         }
 
         private void HandleLockOnInput()
@@ -252,6 +266,26 @@ namespace Group1{
                 // TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
 
                 player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentRightHandWeapon.rb_Action, player.playerInventoryManager.currentRightHandWeapon);
+            }
+        }
+
+        private void HandleRTInput()
+        {
+            if (RT_Input)
+            {
+                RT_Input = false;
+
+                // TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
+
+                player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentRightHandWeapon.rt_Action, player.playerInventoryManager.currentRightHandWeapon);
+            }
+        }
+
+        private void HandleHoldRTInput()
+        {
+            if (player.isPerformingAction)
+            {
+                player.Charging = Hold_RT_Input;
             }
         }
     }

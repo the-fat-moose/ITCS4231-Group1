@@ -144,6 +144,7 @@ MonoBehaviour:
   characterEffectsManager: {fileID: 0}
   characterAnimatorManager: {fileID: 0}
   characterCombatManager: {fileID: 0}
+  characterLocomotionManager: {fileID: 0}
   isSprinting: 0
   isDead: 0
   isLockedOn: 0
@@ -192,13 +193,14 @@ MonoBehaviour:
   yVelocity: {x: 0, y: 0, z: 0}
   groundedYVelocity: -20
   fallStartYVelocity: -5
+  isRolling: 0
   verticalMovement: 0
   horizontalMovement: 0
   moveAmount: 0
   walkSpeed: 2
-  runSpeed: 5
+  runSpeed: 4
   rotationSpeed: 15
-  sprintingSpeed: 7
+  sprintingSpeed: 6
   jumpHeight: 2
   jumpForwardSpeed: 5
   freeFallingSpeed: 2
@@ -206,7 +208,6 @@ MonoBehaviour:
   dodgeStaminaCost: 15
   jumpStaminaCost: 15
   rollSpeed: 4
-  isRolling: 0
 --- !u!114 &766160976781920969
 MonoBehaviour:
   m_ObjectHideFlags: 0

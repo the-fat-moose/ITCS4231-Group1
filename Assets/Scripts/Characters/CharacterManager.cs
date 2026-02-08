@@ -25,6 +25,9 @@ namespace Group1{
         public bool applyRootMotion = false;
         public bool canRotate = true;
         public bool canMove = true;
+        public bool isChargingAttack = false;
+
+        public event System.Action<bool, bool> OnIsChargingAttackChanged;
 
     #region Stat Variables
         [Header("Stats")]
@@ -72,6 +75,19 @@ namespace Group1{
                 int oldValue = mind;
                 mind = value;
                 OnMindChanged?.Invoke(oldValue, mind);
+            }
+        }
+
+        public bool Charging
+        {
+            get => isChargingAttack;
+            set
+            {
+                if(Charging == value) return;
+
+                bool oldStatus = isChargingAttack;
+                isChargingAttack = value;
+                OnIsChargingAttackChanged?.Invoke(oldStatus, isChargingAttack);
             }
         }
 
@@ -178,7 +194,7 @@ namespace Group1{
         protected virtual void FixedUpdate()
         {
             
-        }
+        } 
 
         protected virtual void LateUpdate()
         {
