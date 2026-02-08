@@ -573,7 +573,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Two Modifiers"",
                     ""id"": ""041c7790-dc14-46e5-88b3-c80ec4953dd6"",
-                    ""path"": ""TwoModifiers(modifiersOrder=2)"",
+                    ""path"": ""TwoModifiers"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -628,7 +628,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Two Modifiers"",
                     ""id"": ""b0a3d7ac-03b3-4aac-9d52-1fbb2f044e44"",
-                    ""path"": ""TwoModifiers(modifiersOrder=2)"",
+                    ""path"": ""TwoModifiers"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -714,6 +714,94 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Debug Actions"",
+            ""id"": ""ff5b3318-6dee-47bc-8836-15943355895f"",
+            ""actions"": [
+                {
+                    ""name"": ""Switch Weapon"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""7e6f1bda-7572-4a8a-be79-c5c13bbd2a3b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Die"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""fe93d700-f0ae-4364-8cb9-2f2efc83f1da"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Respawn Player"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""db779585-ed1b-4f45-9d25-cc30c885a11b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reload Scene"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""64daf410-bb10-4a43-8ab5-19ec9af2ebc1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""51ea31e1-cf45-4c1a-97ab-4e822b60ca1b"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Switch Weapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""70273a39-16ea-4f77-9b8e-29937858b75b"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Die"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d86bad51-f9d0-48d9-95be-3726ddd91adf"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Respawn Player"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0bfe9bf1-52f2-417e-8ae2-c4660cad26e2"",
+                    ""path"": ""<Keyboard>/minus"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload Scene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -736,6 +824,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerActions_LockOn = m_PlayerActions.FindAction("Lock On", throwIfNotFound: true);
         m_PlayerActions_SeekLeftLockOnTarget = m_PlayerActions.FindAction("Seek Left Lock On Target", throwIfNotFound: true);
         m_PlayerActions_SeekRightLockOnTarget = m_PlayerActions.FindAction("Seek Right Lock On Target", throwIfNotFound: true);
+        // Debug Actions
+        m_DebugActions = asset.FindActionMap("Debug Actions", throwIfNotFound: true);
+        m_DebugActions_SwitchWeapon = m_DebugActions.FindAction("Switch Weapon", throwIfNotFound: true);
+        m_DebugActions_Die = m_DebugActions.FindAction("Die", throwIfNotFound: true);
+        m_DebugActions_RespawnPlayer = m_DebugActions.FindAction("Respawn Player", throwIfNotFound: true);
+        m_DebugActions_ReloadScene = m_DebugActions.FindAction("Reload Scene", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -743,6 +837,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_PlayerMovement.enabled, "This will cause a leak and performance issues, PlayerControls.PlayerMovement.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_PlayerCamera.enabled, "This will cause a leak and performance issues, PlayerControls.PlayerCamera.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_PlayerActions.enabled, "This will cause a leak and performance issues, PlayerControls.PlayerActions.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_DebugActions.enabled, "This will cause a leak and performance issues, PlayerControls.DebugActions.Disable() has not been called.");
     }
 
     /// <summary>
@@ -1201,6 +1296,135 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="PlayerActionsActions" /> instance referencing this action map.
     /// </summary>
     public PlayerActionsActions @PlayerActions => new PlayerActionsActions(this);
+
+    // Debug Actions
+    private readonly InputActionMap m_DebugActions;
+    private List<IDebugActionsActions> m_DebugActionsActionsCallbackInterfaces = new List<IDebugActionsActions>();
+    private readonly InputAction m_DebugActions_SwitchWeapon;
+    private readonly InputAction m_DebugActions_Die;
+    private readonly InputAction m_DebugActions_RespawnPlayer;
+    private readonly InputAction m_DebugActions_ReloadScene;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "Debug Actions".
+    /// </summary>
+    public struct DebugActionsActions
+    {
+        private @PlayerControls m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public DebugActionsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "DebugActions/SwitchWeapon".
+        /// </summary>
+        public InputAction @SwitchWeapon => m_Wrapper.m_DebugActions_SwitchWeapon;
+        /// <summary>
+        /// Provides access to the underlying input action "DebugActions/Die".
+        /// </summary>
+        public InputAction @Die => m_Wrapper.m_DebugActions_Die;
+        /// <summary>
+        /// Provides access to the underlying input action "DebugActions/RespawnPlayer".
+        /// </summary>
+        public InputAction @RespawnPlayer => m_Wrapper.m_DebugActions_RespawnPlayer;
+        /// <summary>
+        /// Provides access to the underlying input action "DebugActions/ReloadScene".
+        /// </summary>
+        public InputAction @ReloadScene => m_Wrapper.m_DebugActions_ReloadScene;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_DebugActions; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="DebugActionsActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(DebugActionsActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="DebugActionsActions" />
+        public void AddCallbacks(IDebugActionsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_DebugActionsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_DebugActionsActionsCallbackInterfaces.Add(instance);
+            @SwitchWeapon.started += instance.OnSwitchWeapon;
+            @SwitchWeapon.performed += instance.OnSwitchWeapon;
+            @SwitchWeapon.canceled += instance.OnSwitchWeapon;
+            @Die.started += instance.OnDie;
+            @Die.performed += instance.OnDie;
+            @Die.canceled += instance.OnDie;
+            @RespawnPlayer.started += instance.OnRespawnPlayer;
+            @RespawnPlayer.performed += instance.OnRespawnPlayer;
+            @RespawnPlayer.canceled += instance.OnRespawnPlayer;
+            @ReloadScene.started += instance.OnReloadScene;
+            @ReloadScene.performed += instance.OnReloadScene;
+            @ReloadScene.canceled += instance.OnReloadScene;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="DebugActionsActions" />
+        private void UnregisterCallbacks(IDebugActionsActions instance)
+        {
+            @SwitchWeapon.started -= instance.OnSwitchWeapon;
+            @SwitchWeapon.performed -= instance.OnSwitchWeapon;
+            @SwitchWeapon.canceled -= instance.OnSwitchWeapon;
+            @Die.started -= instance.OnDie;
+            @Die.performed -= instance.OnDie;
+            @Die.canceled -= instance.OnDie;
+            @RespawnPlayer.started -= instance.OnRespawnPlayer;
+            @RespawnPlayer.performed -= instance.OnRespawnPlayer;
+            @RespawnPlayer.canceled -= instance.OnRespawnPlayer;
+            @ReloadScene.started -= instance.OnReloadScene;
+            @ReloadScene.performed -= instance.OnReloadScene;
+            @ReloadScene.canceled -= instance.OnReloadScene;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="DebugActionsActions.UnregisterCallbacks(IDebugActionsActions)" />.
+        /// </summary>
+        /// <seealso cref="DebugActionsActions.UnregisterCallbacks(IDebugActionsActions)" />
+        public void RemoveCallbacks(IDebugActionsActions instance)
+        {
+            if (m_Wrapper.m_DebugActionsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="DebugActionsActions.AddCallbacks(IDebugActionsActions)" />
+        /// <seealso cref="DebugActionsActions.RemoveCallbacks(IDebugActionsActions)" />
+        /// <seealso cref="DebugActionsActions.UnregisterCallbacks(IDebugActionsActions)" />
+        public void SetCallbacks(IDebugActionsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_DebugActionsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_DebugActionsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="DebugActionsActions" /> instance referencing this action map.
+    /// </summary>
+    public DebugActionsActions @DebugActions => new DebugActionsActions(this);
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player Movement" which allows adding and removing callbacks.
     /// </summary>
@@ -1308,5 +1532,41 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSeekRightLockOnTarget(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Debug Actions" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="DebugActionsActions.AddCallbacks(IDebugActionsActions)" />
+    /// <seealso cref="DebugActionsActions.RemoveCallbacks(IDebugActionsActions)" />
+    public interface IDebugActionsActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Switch Weapon" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSwitchWeapon(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Die" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDie(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Respawn Player" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRespawnPlayer(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Reload Scene" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnReloadScene(InputAction.CallbackContext context);
     }
 }

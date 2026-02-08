@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Group1{
     public class PlayerManager : CharacterManager
@@ -9,6 +10,7 @@ namespace Group1{
         [SerializeField] bool setNewHealth = false;
         [SerializeField] [Range(0, 100)] int newHealthPercentage = 0;
         [SerializeField] bool switchRightWeapon = false;
+        [SerializeField] bool resetScene = false;
 
         [HideInInspector] public PlayerAnimatorManager playerAnimatorManager;
         [HideInInspector] public PlayerLocomotionManager locomotion;
@@ -193,22 +195,27 @@ namespace Group1{
         // DEBUG DELETE LATER
         private void DebugMenu()
         {
-            if (respawnCharacter)
+            if (respawnCharacter || Input.GetKeyUp(KeyCode.M))
             {
                 respawnCharacter = false;
                 ReviveCharacter();
             }
 
-            if (setNewHealth)
+            if (setNewHealth || Input.GetKeyUp(KeyCode.L))
             {
                 setNewHealth = false;
                 CurrentHealth = MaxHealth * newHealthPercentage / 100;
             }
 
-            if (switchRightWeapon)
+            if (switchRightWeapon || Input.GetKeyUp(KeyCode.O))
             {
                 switchRightWeapon = false;
                 playerEquipmentManager.SwitchRightWeapon();
+            }
+
+            if (resetScene || Input.GetKeyUp(KeyCode.Minus))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
     }       
