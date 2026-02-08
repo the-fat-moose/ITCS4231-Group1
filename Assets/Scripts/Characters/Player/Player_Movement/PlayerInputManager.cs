@@ -68,12 +68,8 @@ namespace Group1{
                 playerControls.PlayerActions.RB.performed += i => RB_Input = true;
                 playerControls.PlayerActions.RT.performed += i => RT_Input = true;
 
-                /*playerControls.PlayerActions.HoldRT.performed += i => Hold_RT_Input = true;
-                playerControls.PlayerActions.HoldRT.canceled += i => Hold_RT_Input = false;*/
-
-                playerControls.PlayerActions.HoldRT.started += _ => StartCharging();
-                playerControls.PlayerActions.HoldRT.canceled += _ => ReleaseCharge();
-
+                playerControls.PlayerActions.HoldRT.performed += i => Hold_RT_Input = true;
+                playerControls.PlayerActions.HoldRT.canceled += i => Hold_RT_Input = false;
 
                 playerControls.PlayerActions.LockOn.performed += i => lockInput = true;
                 playerControls.PlayerActions.SeekLeftLockOnTarget.performed += i => lockOn_Left = true;
@@ -293,19 +289,7 @@ namespace Group1{
             }
         }
 
-        void StartCharging()
-        {
-            player.Charging = true;
-            player.isPerformingAction = true;
-            player.canMove = false;
-        }
 
-        void ReleaseCharge()
-        {
-            player.Charging = false;
-            player.isPerformingAction = false;
-            player.canMove = true;
-        }
 
     }
 }
