@@ -16,7 +16,8 @@ namespace Group1 {
             meleeDamageCollider.physicalDamage = weapon.physicalDamage;
             meleeDamageCollider.magicDamage = weapon.magicDamage;
 
-            meleeDamageCollider.light_Attack_01_Modifier = weapon.light_Attack_01_Modifier;
+            meleeDamageCollider.light_Attack_Modifier = weapon.light_Attack_Modifier;
+            meleeDamageCollider.heavy_Attack_Modifier = weapon.heavy_Attack_Modifier;
         }
     }
 }

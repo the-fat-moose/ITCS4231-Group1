@@ -25,6 +25,8 @@ namespace Group1 {
 
         public virtual void DrainStaminaBasedOnAttack()
         {
+            Debug.Log("DrainStaminaBasedOnAttack CALLED");
+
             float staminaLoss = 0;
 
             if(currentWeaponBeingUsed == null) return;
@@ -34,6 +36,9 @@ namespace Group1 {
                 case AttackType.Light:
                     staminaLoss = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.lightAttackStaminaModifier;
                     break;
+                case AttackType.Heavy:
+                    staminaLoss = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttackStaminaModifier;
+                    break;
                 default:
                     break;
             }
@@ -41,7 +46,7 @@ namespace Group1 {
             player.CurrentStamina -= Mathf.RoundToInt(staminaLoss);
         }
 
-        public virtual void SetTarget(CharacterManager newTarget){
+        public override void SetTarget(CharacterManager newTarget){
             base.SetTarget(newTarget);
 
             PlayerCamera.cam.SetLockCameraHeight();

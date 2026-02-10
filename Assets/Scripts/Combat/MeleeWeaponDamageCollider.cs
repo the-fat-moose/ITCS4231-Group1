@@ -7,7 +7,8 @@ namespace Group1 {
         public CharacterManager characterCausingDamage; // (when calculating damage, this is used to check for attacker damage modifiers, effects, etc.)
 
         [Header("Weapon Attack Modifiers")]
-        public float light_Attack_01_Modifier;
+        public float light_Attack_Modifier;
+        public float heavy_Attack_Modifier;
 
         protected override void Awake()
         {
@@ -47,7 +48,10 @@ namespace Group1 {
             switch (characterCausingDamage.characterCombatManager.currentAttackType)
             {
                 case AttackType.Light:
-                    ApplyAttackDamageModifiers(light_Attack_01_Modifier, damageEffect);
+                    ApplyAttackDamageModifiers(light_Attack_Modifier, damageEffect);
+                    break;
+                case AttackType.Heavy:
+                    ApplyAttackDamageModifiers(heavy_Attack_Modifier, damageEffect);
                     break;
                 default:
                     break;
