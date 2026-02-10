@@ -14,26 +14,17 @@ namespace Group1 {
 
         protected virtual void Awake()
         {
-            Debug.LogError("UI_StatBar AWAKE");
-
             slider = GetComponent<Slider>();
             rectTransform = GetComponent<RectTransform>();
-
-            Debug.LogError("UI_StatBar slider: " + slider);
-            Debug.LogError("UI_StatBar rectTransform:" + rectTransform);
         }
 
         public virtual void SetStat(int newValue)
         {
-            Debug.LogError("SetStat CALLED, SetStat newValue = " + newValue);
-
             slider.value = newValue;
         }
 
         public virtual void SetMaxStat(int maxValue)
         {
-            Debug.LogError("SetMaxStat CALLED, SetMaxStat maxValue = " + maxValue);
-
             slider.maxValue = maxValue;
             slider.value = maxValue;
 

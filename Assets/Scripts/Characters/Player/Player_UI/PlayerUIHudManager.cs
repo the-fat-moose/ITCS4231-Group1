@@ -9,15 +9,11 @@ namespace Group1 {
 
         public void SetNewHealthValue(int oldValue, int newValue)
         {
-            Debug.LogError("SetNewHealthValue CALLED");
-
             healthBar.SetStat(Mathf.RoundToInt(newValue));
         }
 
         public void SetMaxHealthValue(int maxHealth)
         {
-            Debug.LogError("SetMaxHealthValue CALLED");
-
             healthBar.SetMaxStat(Mathf.RoundToInt(maxHealth));
         }
 

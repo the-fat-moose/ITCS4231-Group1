@@ -73,8 +73,6 @@ namespace Group1{
 
             if (PlayerUIManager.instance != null)
             {
-                Debug.LogError("PlayerUIManager.instance wasn't null");
-
                 // UPDATE TOTAL AMOUNT OF HEALTH, STAMINA, MANA WHEN THE STAT LINKED TO EITHER CHANGES
                 OnEnduranceChanged += SetNewMaxStaminaValue;
                 OnVitalityChanged += SetNewMaxHealthValue;
@@ -104,10 +102,6 @@ namespace Group1{
 
                 // Death and Healing Handling
                 OnHealthChanged += CheckHP;
-            }
-            else
-            {
-                Debug.LogError("PlayerUIManager.instance was null");
             }
         }
 
