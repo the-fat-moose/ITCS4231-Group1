@@ -302,6 +302,8 @@ namespace Group1{
             {
                 switch_Weapon_Input = false;
                 player.playerEquipmentManager.SwitchRightWeapon();
+
+                Debug.Log("Switch Weapon Input CALLED");
             }
         }
     }

@@ -48,7 +48,7 @@ namespace Group1 {
 
         public void SwitchRightWeapon()
         {
-            player.playerAnimatorManager.PlayTargetActionAnimation("PlayerCharacter_Equip", false, true, true, true);
+            player.playerAnimatorManager.PlayTargetActionAnimation("PlayerCharacter_Equip", false, false, true, true);
 
             WeaponItem selectedWeapon = null;
             
