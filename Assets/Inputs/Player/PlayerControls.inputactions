@@ -366,6 +366,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Switch Weapon",
+                    "type": "PassThrough",
+                    "id": "27aca3f3-522b-4076-819e-f7e77aa03670",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Seek Left Lock On Target",
                     "type": "Button",
                     "id": "37313341-25cd-4f7d-bab8-27076184fe87",
@@ -470,6 +479,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "RB",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "28f5f672-1a71-417a-85a5-9e52de6ca3c7",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Switch Weapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f23e8623-8d80-4723-8985-76c4e89533c6",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Switch Weapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

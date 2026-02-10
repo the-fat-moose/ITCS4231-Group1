@@ -20,6 +20,7 @@ namespace Group1{
         [SerializeField] private bool dodgeInput = false;
         [SerializeField] private bool sprintInput = false;
         [SerializeField] private bool jumpInput = false;
+        [SerializeField] private bool switch_Weapon_Input = false;
 
         [Header("Camera Movement Input")]
         [SerializeField] Vector2 camMovement;
@@ -38,8 +39,6 @@ namespace Group1{
         [Header("Trigger inputs")]
         [SerializeField] bool RT_Input = false;
         [SerializeField] bool Hold_RT_Input = false;
-
-        
 
         private void Awake()
         {
@@ -63,14 +62,21 @@ namespace Group1{
 
                 playerControls.PlayerMovement.Movement.performed += i => movement = i.ReadValue<Vector2>();
                 playerControls.PlayerCamera.Movement.performed += i => camMovement = i.ReadValue<Vector2>();
+
+                // ACTIONS
                 playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
                 playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
+                playerControls.PlayerActions.SwitchWeapon.performed += i => switch_Weapon_Input = true;
+                
+                // BUMPERS
                 playerControls.PlayerActions.RB.performed += i => RB_Input = true;
+                
+                // TRIGGERS
                 playerControls.PlayerActions.RT.performed += i => RT_Input = true;
-
                 playerControls.PlayerActions.HoldRT.performed += i => Hold_RT_Input = true;
                 playerControls.PlayerActions.HoldRT.canceled += i => Hold_RT_Input = false;
 
+                // LOCK ON
                 playerControls.PlayerActions.LockOn.performed += i => lockInput = true;
                 playerControls.PlayerActions.SeekLeftLockOnTarget.performed += i => lockOn_Left = true;
                 playerControls.PlayerActions.SeekRightLockOnTarget.performed += i => lockOn_Right = true;
@@ -102,6 +108,7 @@ namespace Group1{
             HandleRBInput();
             HandleRTInput();
             HandleHoldRTInput();
+            HandleSwitchWeaponInput();
         }
 
         private void HandleLockOnInput()
@@ -289,7 +296,13 @@ namespace Group1{
             }
         }
 
-
-
+        private void HandleSwitchWeaponInput()
+        {
+            if (switch_Weapon_Input)
+            {
+                switch_Weapon_Input = false;
+                player.playerEquipmentManager.SwitchRightWeapon();
+            }
+        }
     }
 }

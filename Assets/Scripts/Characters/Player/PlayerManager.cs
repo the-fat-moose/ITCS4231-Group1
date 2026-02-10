@@ -61,10 +61,6 @@ namespace Group1{
             playerInventoryManager = GetComponent<PlayerInventoryManager>();
             playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
             playerCombatManager = GetComponent<PlayerCombatManager>();
-
-            // Equipment
-            OnRightHandWeaponIDChanged += OnCurrentRightHandWeaponIDChange;
-            OnCurrentWeaponBeingUsedChanged += OnCurrentWeaponBeingUsedIDChange;
         }
 
         protected override void Start()
@@ -102,6 +98,10 @@ namespace Group1{
 
                 // Death and Healing Handling
                 OnHealthChanged += CheckHP;
+
+                // Equipment
+                OnRightHandWeaponIDChanged += OnCurrentRightHandWeaponIDChange;
+                OnCurrentWeaponBeingUsedChanged += OnCurrentWeaponBeingUsedIDChange;
             }
         }
 
@@ -177,6 +177,8 @@ namespace Group1{
             WeaponItem newWeapon = Instantiate(WorldItemDatabase.instance.GetWeaponByID(newID));
             playerInventoryManager.currentRightHandWeapon = newWeapon;
             playerEquipmentManager.LoadRightWeapon();
+
+            PlayerUIManager.instance.playerUIHudManager.SetWeaponQuickSlotIcon(newID);
         }
 
         public void OnCurrentWeaponBeingUsedIDChange(int oldID, int newID)
