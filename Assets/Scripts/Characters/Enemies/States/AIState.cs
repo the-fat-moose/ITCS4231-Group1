@@ -7,5 +7,16 @@ namespace Group1 {
         {
             return this;
         }
+
+        protected virtual AIState SwitchState(AICharacterManager aiCharacter, AIState newState)
+        {
+            ResetStateFlags(aiCharacter);
+            return newState;
+        }
+
+        protected virtual void ResetStateFlags(AICharacterManager aICharacter)
+        {
+            // RESET ANY FLAGS HERE
+        }
     }
 }
