@@ -33,8 +33,11 @@ namespace Group1 {
                     if (viewableAngle > minimumDetectionAngle && viewableAngle < maximumDetectionAngle)
                     {
                         // CHECK FOR ENVIRONMENTAL BLOCKS
-                        if (Physics.Linecast(aiCharacter.characterCombatManager.lockOnTransform.position, targetCharacter.characterCombatManager.lockOnTransform.position))
+                        if (Physics.Linecast(aiCharacter.characterCombatManager.lockOnTransform.position, 
+                                            targetCharacter.characterCombatManager.lockOnTransform.position, 
+                                            WorldUtilityManager.Instance.GetEnviroLayers()))
                         {
+                            Debug.DrawLine(aiCharacter.characterCombatManager.lockOnTransform.position, targetCharacter.characterCombatManager.lockOnTransform.position);
                             Debug.Log("AiCharacterCombatManager Linecast to target BLOCKED");
                         }
                         else

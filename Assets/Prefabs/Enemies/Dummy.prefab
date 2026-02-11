@@ -1702,6 +1702,7 @@ GameObject:
   - component: {fileID: 8683372406126429682}
   - component: {fileID: 1793247499300864951}
   - component: {fileID: 762055401733701164}
+  - component: {fileID: 6834871040521049252}
   - component: {fileID: 2325208607160062316}
   - component: {fileID: 3647117377906868687}
   - component: {fileID: 1364234591725285538}
@@ -1777,6 +1778,7 @@ MonoBehaviour:
   isSprinting: 0
   isDead: 0
   isLockedOn: 0
+  characterGroup: 1
   isPerformingAction: 0
   isGrounded: 1
   isJumping: 0
@@ -1793,7 +1795,26 @@ MonoBehaviour:
   maxHealth: 0
   currentMana: 0
   maxMana: 0
+  aiCharacterCombatManager: {fileID: 0}
   currentState: {fileID: 11400000, guid: 5c577e05925e04b4989398aeff23d7b5, type: 2}
+--- !u!114 &6834871040521049252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4469859677074108028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a294d98e2783bb8439f1f708892e8255, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Group1.AiCharacterCombatManager
+  currentTarget: {fileID: 0}
+  currentAttackType: 0
+  lockOnTransform: {fileID: 3213715044472173178}
+  detectionRadius: 15
+  minimumDetectionAngle: -35
+  maximumDetectionAngle: 35
 --- !u!143 &2325208607160062316
 CharacterController:
   m_ObjectHideFlags: 0

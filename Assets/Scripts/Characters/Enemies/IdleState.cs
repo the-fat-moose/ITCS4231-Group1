@@ -9,7 +9,7 @@ namespace Group1 {
             if (aiCharacter.characterCombatManager.currentTarget != null)
             {
                 // RETURN THE PURSUE TARGET STATE
-                Debug.Log("WE HAVE A TARGET");
+                Debug.Log("Enemy AI State: Idle State: WE HAVE A TARGET");
 
                 return this;
             }
@@ -17,6 +17,7 @@ namespace Group1 {
             {
                 // RETURN THIS STATE, TO CONTINUALLY SEARCH FOR A TARGET
                 aiCharacter.aiCharacterCombatManager.FindATargetViaLineOfSight(aiCharacter);
+                Debug.Log("Enemy AI State: Idle State: SEARCHING FOR A TARGET");
 
                 return this;
             }
