@@ -6,6 +6,12 @@ namespace Group1 {
         
     }
 
+    public enum CharacterGroup
+    {
+        Team01, // Friendly (Player)
+        Team02 // Enemy AI
+    }
+
     public enum WeaponModelSlot
     {
         RightHand

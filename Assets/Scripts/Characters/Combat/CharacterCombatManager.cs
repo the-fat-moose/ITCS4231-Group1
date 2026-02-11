@@ -4,7 +4,7 @@ using UnityEngine.TextCore.Text;
 namespace Group1 {
     public class CharacterCombatManager : MonoBehaviour
     {
-        CharacterManager character;
+        protected CharacterManager character;
         
         [Header("Attack Target")]
         public CharacterManager currentTarget;

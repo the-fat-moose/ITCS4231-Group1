@@ -6,7 +6,7 @@ namespace Group1 {
     {
         public override AIState Tick(AICharacterManager aiCharacter)
         {
-            if (true /*aiCharacter.characterCombatManager.currentTarget != null*/)
+            if (aiCharacter.characterCombatManager.currentTarget != null)
             {
                 // RETURN THE PURSUE TARGET STATE
                 Debug.Log("WE HAVE A TARGET");
