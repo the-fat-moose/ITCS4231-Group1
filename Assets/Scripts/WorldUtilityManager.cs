@@ -1,12 +1,10 @@
-using System.Runtime.InteropServices.WindowsRuntime;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Group1
 {
     public class WorldUtilityManager : MonoBehaviour
     {
-        public WorldUtilityManager Instance;
+        public static WorldUtilityManager Instance;
 
         [Header("Layers")]
         [SerializeField] LayerMask characterLayers;
@@ -39,7 +37,7 @@ namespace Group1
                         return false;
                     case CharacterGroup.Team02:
                         return true;
-                    case default:
+                    default:
                         break;
                 }
             }
@@ -51,7 +49,7 @@ namespace Group1
                         return true;
                     case CharacterGroup.Team02:
                         return false;
-                    case default:
+                    default:
                         break;
                 }
             }

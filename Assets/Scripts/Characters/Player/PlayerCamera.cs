@@ -8,7 +8,6 @@ namespace Group1{
     public class PlayerCamera : MonoBehaviour
     {
         public static PlayerCamera cam;
-        [SerializeField] private WorldUtilityManager utility;
 
         public Camera cameraObject;
         public PlayerManager player;
@@ -155,7 +154,7 @@ namespace Group1{
             float shortDistanceOfRightTarget = Mathf.Infinity;
             float shortDistanceOfLeftTarget = -Mathf.Infinity;
             
-            Collider[] colliders = Physics.OverlapSphere(player.transform.position, lockOnRadius, utility.Instance.GetCharacterLayers());
+            Collider[] colliders = Physics.OverlapSphere(player.transform.position, lockOnRadius, WorldUtilityManager.Instance.GetCharacterLayers());
 
             for(int i = 0; i < colliders.Length; i++)
             {
@@ -176,7 +175,7 @@ namespace Group1{
                     if(viewableAngle > minimumViewableAngle && viewableAngle < maximumViewableAngle)
                     {
                         RaycastHit hit;
-                        if(Physics.Linecast(player.playerCombatManager.lockOnTransform.position, lockOnTarget.characterCombatManager.lockOnTransform.position, out hit, utility.Instance.GetEnviroLayers()))
+                        if(Physics.Linecast(player.playerCombatManager.lockOnTransform.position, lockOnTarget.characterCombatManager.lockOnTransform.position, out hit, WorldUtilityManager.Instance.GetEnviroLayers()))
                         {
                             continue;
                         }

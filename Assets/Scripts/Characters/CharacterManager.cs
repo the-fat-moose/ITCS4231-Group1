@@ -18,6 +18,9 @@ namespace Group1{
 
         public bool isLockedOn = false;
 
+        [Header("Character Group")]
+        public CharacterGroup characterGroup;
+
         [Header("Flags")]
         public bool isPerformingAction = false;
         public bool isGrounded = true;

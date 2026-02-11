@@ -10,14 +10,16 @@ namespace Group1 {
             {
                 // RETURN THE PURSUE TARGET STATE
                 Debug.Log("WE HAVE A TARGET");
+
+                return this;
             }
             else
             {
                 // RETURN THIS STATE, TO CONTINUALLY SEARCH FOR A TARGET
-                Debug.Log("WE HAVE NO TARGET");
-            }
+                aiCharacter.aiCharacterCombatManager.FindATargetViaLineOfSight(aiCharacter);
 
-            return this;
+                return this;
+            }
         }
     }
 }

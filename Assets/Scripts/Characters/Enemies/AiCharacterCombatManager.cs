@@ -5,8 +5,10 @@ namespace Group1 {
     {
         [Header("Detection")]
         [SerializeField] float detectionRadius = 15f;
+        [SerializeField] float minimumDetectionAngle = -35;
+        [SerializeField] float maximumDetectionAngle = 35;
 
-        private void FindATargetViaLineOfSight(AICharacterManager aiCharacter)
+        public void FindATargetViaLineOfSight(AICharacterManager aiCharacter)
         {
             if (currentTarget != null) return;
 
@@ -22,7 +24,25 @@ namespace Group1 {
 
                 if (targetCharacter.isDead) continue;
 
-                //if (WorldUtilityManager.Instance.CanIDamageThisTarget(aiCharacter, targetCharacter))
+                if (WorldUtilityManager.Instance.CanIDamageThisTarget(aiCharacter.characterGroup, targetCharacter.characterGroup))
+                {
+                    // IF A POTENTIAL TARGET IS FOUND, IT HAS TO BE IN FRONT OF US
+                    Vector3 targetDirection = targetCharacter.transform.position - aiCharacter.transform.position;
+                    float viewableAngle = Vector3.Angle(targetDirection, aiCharacter.transform.forward);
+
+                    if (viewableAngle > minimumDetectionAngle && viewableAngle < maximumDetectionAngle)
+                    {
+                        // CHECK FOR ENVIRONMENTAL BLOCKS
+                        if (Physics.Linecast(aiCharacter.characterCombatManager.lockOnTransform.position, targetCharacter.characterCombatManager.lockOnTransform.position))
+                        {
+                            Debug.Log("AiCharacterCombatManager Linecast to target BLOCKED");
+                        }
+                        else
+                        {
+                            aiCharacter.characterCombatManager.SetTarget(targetCharacter);
+                        }
+                    }
+                }
             }
         }
     }
