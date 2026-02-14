@@ -36,5 +36,21 @@ namespace Group1{
                 player.transform.rotation *= player.animator.deltaRotation;
             }
         }
+    
+        public void EnableCanDoCombo()
+        {
+            if(player.CurrentWeaponBeingUsed != 0)
+            {
+                player.playerCombatManager.canComboWithMainHandWeapon = true;
+            }
+        }
+
+        public void DisableCanDoCombo()
+        {
+            
+            player.playerCombatManager.canComboWithMainHandWeapon = false;
+
+        }
+    
     }
 }

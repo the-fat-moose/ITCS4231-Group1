@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Group1 {
@@ -6,6 +7,9 @@ namespace Group1 {
         PlayerManager player;
 
         public WeaponItem currentWeaponBeingUsed;
+
+        [Header("Flags")]
+        public bool canComboWithMainHandWeapon = false;
 
         protected override void Awake()
         {
@@ -51,5 +55,6 @@ namespace Group1 {
 
             PlayerCamera.cam.SetLockCameraHeight();
         }
+    
     }
 }
