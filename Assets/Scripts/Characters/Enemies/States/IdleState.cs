@@ -10,8 +10,7 @@ namespace Group1 {
             {
                 // RETURN THE PURSUE TARGET STATE
                 Debug.Log("Enemy AI State: Idle State: WE HAVE A TARGET");
-                SwitchState(aiCharacter, aiCharacter.pursueTarget);
-                return this;
+                return SwitchState(aiCharacter, aiCharacter.pursueTarget);
             }
             else
             {
