@@ -16,6 +16,8 @@ namespace Group1 {
             // MAKE SURE OUR NAV MESH AGENT IS ACTIVE; IF ITS NOT, ENABLE IT
             if (!aiCharacter.navMeshAgent.enabled) aiCharacter.navMeshAgent.enabled = true;
 
+            aiCharacter.aiCharacterLocomotionManager.RotateTowardsAgent(aiCharacter);
+
             // IF WE ARE WITHIN COMBAT RANGE, SWITCH TO A COMBAT STANCE STATE
 
             // IF THE TARGET IS NOT REACHABLE, RETURN HOME

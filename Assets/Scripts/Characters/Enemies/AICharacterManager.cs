@@ -5,6 +5,7 @@ namespace Group1 {
     public class AICharacterManager : CharacterManager
     {
         [HideInInspector] public AiCharacterCombatManager aiCharacterCombatManager;
+        [HideInInspector] public AICharacterLocomotionManager aiCharacterLocomotionManager;
 
         [Header("Navmesh Agent")]
         public NavMeshAgent navMeshAgent;
@@ -23,6 +24,7 @@ namespace Group1 {
             base.Awake();
 
             aiCharacterCombatManager = GetComponent<AiCharacterCombatManager>();
+            aiCharacterLocomotionManager = GetComponent<AICharacterLocomotionManager>();
 
             navMeshAgent = GetComponentInChildren<NavMeshAgent>();
 
@@ -54,6 +56,10 @@ namespace Group1 {
             {
                 currentState = nextState;
             }
+
+            // THE POSITION/ROTATION SHOULD BE RESET ONLY AFTER THE STATE MACHINE HAS PROCESSED ITS TICK
+            navMeshAgent.transform.localPosition = Vector3.zero;
+            navMeshAgent.transform.localRotation = Quaternion.identity;
 
             if (navMeshAgent.enabled)
             {
