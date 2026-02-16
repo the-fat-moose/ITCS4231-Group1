@@ -13,10 +13,9 @@ namespace Group1{
         [HideInInspector] public CharacterLocomotionManager characterLocomotionManager;
 
         public bool isSprinting = false;
-
         public bool isDead = false;
-
         public bool isLockedOn = false;
+        private bool isMoving = false;
 
         [Header("Character Group")]
         public CharacterGroup characterGroup;
@@ -31,6 +30,20 @@ namespace Group1{
         public bool isChargingAttack = false;
 
         public event System.Action<bool, bool> OnIsChargingAttackChanged;
+        public event System.Action<bool, bool> OnIsMovingValueChanged;
+
+        public bool IsMoving
+        {
+            get => isMoving;
+            set
+            {
+                if (isMoving == value) return;
+
+                bool oldValue = isMoving;
+                isMoving = value;
+                OnIsMovingValueChanged?.Invoke(oldValue, isMoving);
+            }
+        }
 
     #region Stat Variables
         [Header("Stats")]
@@ -182,6 +195,8 @@ namespace Group1{
             characterAnimatorManager = GetComponent<CharacterAnimatorManager>();
             characterCombatManager = GetComponent<CharacterCombatManager>();
             characterLocomotionManager = GetComponent<CharacterLocomotionManager>();
+
+            OnIsMovingValueChanged += OnIsMovingChanged;
         }
 
         protected virtual void Start()
@@ -210,6 +225,11 @@ namespace Group1{
             {
                 characterCombatManager.currentTarget = null;
             }
+        }
+
+        public void OnIsMovingChanged(bool oldStatus, bool newStatus)
+        {
+            animator.SetBool("isMoving", IsMoving);
         }
 
         public void CheckHP(int oldValue, int newValue)

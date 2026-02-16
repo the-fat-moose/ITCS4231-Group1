@@ -37,6 +37,8 @@ namespace Group1 {
             base.FixedUpdate();
 
             ProcessStateMachine();
+
+            Debug.Log("AICHARACTER.IsMoving: " + IsMoving);
         }
 
         private void ProcessStateMachine()
@@ -51,6 +53,25 @@ namespace Group1 {
             if (nextState != null)
             {
                 currentState = nextState;
+            }
+
+            if (navMeshAgent.enabled)
+            {
+                Vector3 agentDestination = navMeshAgent.destination;
+                float remainingDistance = Vector3.Distance(agentDestination, transform.position);
+
+                if (remainingDistance > navMeshAgent.stoppingDistance)
+                {
+                    IsMoving = true;
+                }
+                else
+                {
+                    IsMoving = false;
+                }
+            }
+            else
+            {
+                IsMoving = false;
             }
         }
     }

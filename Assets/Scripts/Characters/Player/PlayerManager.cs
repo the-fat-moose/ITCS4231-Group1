@@ -119,6 +119,8 @@ namespace Group1{
 
             // DEBUG DELETE LATER
             DebugMenu();
+
+            Debug.Log("Player.IsMoving: " + IsMoving);
         }
 
         protected override void LateUpdate()

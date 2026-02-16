@@ -201,6 +201,15 @@ namespace Group1{
 
             if(player == null) return;
 
+            if (moveAmount != 0)
+            {
+                player.IsMoving = true;
+            }
+            else
+            {
+                player.IsMoving = false;
+            }
+
             if (!player.isLockedOn)
             {
                 player.playerAnimatorManager.UpdateAnimatorMovementParameters(0f, moveAmount, player.isSprinting);
