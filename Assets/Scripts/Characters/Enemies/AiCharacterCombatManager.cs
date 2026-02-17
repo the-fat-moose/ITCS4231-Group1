@@ -38,7 +38,6 @@ namespace Group1 {
                                             WorldUtilityManager.Instance.GetEnviroLayers()))
                         {
                             Debug.DrawLine(aiCharacter.characterCombatManager.lockOnTransform.position, targetCharacter.characterCombatManager.lockOnTransform.position);
-                            Debug.Log("AiCharacterCombatManager Linecast to target BLOCKED");
                         }
                         else
                         {
