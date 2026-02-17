@@ -786,10 +786,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1292200284453413035, guid: 22c18d0506fc23948a117056285b8db6, type: 3}
-      propertyPath: lockOnTransform
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1453775332707212851, guid: 22c18d0506fc23948a117056285b8db6, type: 3}
       propertyPath: m_Name
       value: GroundEnemyV1
@@ -833,10 +829,6 @@ PrefabInstance:
     - target: {fileID: 2230229121026221470, guid: 22c18d0506fc23948a117056285b8db6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047314040093243002, guid: 22c18d0506fc23948a117056285b8db6, type: 3}
-      propertyPath: lockOnTransform
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

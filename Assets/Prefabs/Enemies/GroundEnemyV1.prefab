@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 1449229378129587977}
   - component: {fileID: 3102941538331553953}
   - component: {fileID: 7417673789264356850}
-  - component: {fileID: 1292200284453413035}
   - component: {fileID: 1579067845349630700}
   - component: {fileID: 2976235878826204985}
   - component: {fileID: 1137223777938862359}
@@ -56,7 +55,7 @@ Animator:
   m_GameObject: {fileID: 1453775332707212851}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 76d85a44286241741bc68d89630671ee, type: 3}
-  m_Controller: {fileID: 9100000, guid: c6a51f4e00b2cd6468ba60363569f896, type: 2}
+  m_Controller: {fileID: 9100000, guid: dd4b7fbf623e57440a091259c5c0b064, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -126,7 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Group1.AiCharacterCombatManager
   currentTarget: {fileID: 0}
   currentAttackType: 0
-  lockOnTransform: {fileID: 0}
+  lockOnTransform: {fileID: 1503146515982556040}
   detectionRadius: 15
   minimumDetectionAngle: -35
   maximumDetectionAngle: 35
@@ -228,21 +227,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e3be0c2d854cd43acba6728b037328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Group1.CharacterInventoryManager
---- !u!114 &1292200284453413035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1453775332707212851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8a5eb58b38e04443b8583ec743049c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Group1.CharacterCombatManager
-  currentTarget: {fileID: 0}
-  currentAttackType: 0
-  lockOnTransform: {fileID: 0}
 --- !u!114 &1579067845349630700
 MonoBehaviour:
   m_ObjectHideFlags: 0
