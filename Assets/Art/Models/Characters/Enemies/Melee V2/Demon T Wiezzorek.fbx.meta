@@ -3,7 +3,22 @@ guid: 3782a031dee76ed47a61610bc1ffd629
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Demon__diffuse
+    second: {fileID: 2800000, guid: 37cc416888c1a144282b263aa0b88153, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Demon__normal
+    second: {fileID: 2800000, guid: dd5b454052cd13041ad30499602dfe02, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Demon__specular
+    second: {fileID: 2800000, guid: 7aa8177617f4a8540b71dd73760accd0, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
