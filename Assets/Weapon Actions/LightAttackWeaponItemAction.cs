@@ -4,7 +4,7 @@ namespace Group1 {
     [CreateAssetMenu(menuName = "Character Actions/Weapon Actions/Light Attack Action")]
     public class LightAttackWeaponItemAction : WeaponItemAction
     {
-        [SerializeField] string light_Attack_01 = "PlayerCharacter_LightAttack";
+        [SerializeField] string light_Attack_01 = "PlayerCharacter_LightAttack01";
         public override void AttemptToPerformAction(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
         {
             base.AttemptToPerformAction(playerPerformingAction, weaponPerformingAction);
