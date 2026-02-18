@@ -3,6 +3,11 @@ using UnityEngine;
 namespace Group1 {
     public class AiCharacterCombatManager : CharacterCombatManager
     {
+        [Header("Target Information")]
+        public float viewableAngle;
+        public Vector3 targetsDirection;
+        public float distanceFromTarget;
+
         [Header("Detection")]
         [SerializeField] float detectionRadius = 15f;
         [SerializeField] float minimumDetectionAngle = -35;
@@ -28,9 +33,9 @@ namespace Group1 {
                 {
                     // IF A POTENTIAL TARGET IS FOUND, IT HAS TO BE IN FRONT OF US
                     Vector3 targetDirection = targetCharacter.transform.position - aiCharacter.transform.position;
-                    float viewableAngle = Vector3.Angle(targetDirection, aiCharacter.transform.forward);
+                    float angleOfPotentialTarget = Vector3.Angle(targetDirection, aiCharacter.transform.forward);
 
-                    if (viewableAngle > minimumDetectionAngle && viewableAngle < maximumDetectionAngle)
+                    if (angleOfPotentialTarget > minimumDetectionAngle && angleOfPotentialTarget < maximumDetectionAngle)
                     {
                         // CHECK FOR ENVIRONMENTAL BLOCKS
                         if (Physics.Linecast(aiCharacter.characterCombatManager.lockOnTransform.position, 
@@ -41,6 +46,8 @@ namespace Group1 {
                         }
                         else
                         {
+                            targetsDirection = targetCharacter.transform.position - transform.position;
+                            viewableAngle = WorldUtilityManager.Instance.GetAngleOfTarget(transform, targetsDirection);
                             aiCharacter.characterCombatManager.SetTarget(targetCharacter);
                         }
                     }
