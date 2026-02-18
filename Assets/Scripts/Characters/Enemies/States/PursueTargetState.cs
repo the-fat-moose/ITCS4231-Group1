@@ -19,6 +19,9 @@ namespace Group1 {
             aiCharacter.aiCharacterLocomotionManager.RotateTowardsAgent(aiCharacter);
 
             // IF WE ARE WITHIN COMBAT RANGE, SWITCH TO A COMBAT STANCE STATE
+            if (aiCharacter.aiCharacterCombatManager.distanceFromTarget <= aiCharacter.navMeshAgent.stoppingDistance) 
+                return SwitchState(aiCharacter, aiCharacter.combatStance);
+            
 
             // IF THE TARGET IS NOT REACHABLE, RETURN HOME
 

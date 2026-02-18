@@ -16,8 +16,8 @@ namespace Group1 {
         [Header("States")]
         public IdleState idle;
         public PursueTargetState pursueTarget;
-        // COMBAT STANCE
-        // ATTACK STANCE
+        public CombatStanceState combatStance;
+        public AttackState attack;
 
         protected override void Awake()
         {
@@ -32,6 +32,13 @@ namespace Group1 {
             pursueTarget = Instantiate(pursueTarget);
 
             currentState = idle;
+        }
+
+        protected override void Update()
+        {
+            base.Update();
+
+            aiCharacterCombatManager.HandleActionRecovery(this);
         }
 
         protected override void FixedUpdate()

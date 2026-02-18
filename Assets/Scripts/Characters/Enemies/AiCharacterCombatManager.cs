@@ -3,6 +3,9 @@ using UnityEngine;
 namespace Group1 {
     public class AiCharacterCombatManager : CharacterCombatManager
     {
+        [Header("Action Recovery")]
+        public float actionRecoveryTimer = 0;
+
         [Header("Target Information")]
         public float viewableAngle;
         public Vector3 targetsDirection;
@@ -12,6 +15,9 @@ namespace Group1 {
         [SerializeField] float detectionRadius = 15f;
         [SerializeField] float minimumDetectionAngle = -35;
         [SerializeField] float maximumDetectionAngle = 35;
+
+        [Header("Attack Rotation Speed")]
+        public float attackRotationSpeed = 25f;
 
         public void FindATargetViaLineOfSight(AICharacterManager aiCharacter)
         {
@@ -51,6 +57,46 @@ namespace Group1 {
                             aiCharacter.characterCombatManager.SetTarget(targetCharacter);
                         }
                     }
+                }
+            }
+        }
+    
+        public void RotateTowardsAgent(AICharacterManager aiCharacter)
+        {
+            if (aiCharacter.IsMoving)
+            {
+                aiCharacter.transform.rotation = aiCharacter.navMeshAgent.transform.rotation;
+            }
+        }
+
+        public void RotateTowardsTargetWhilstAttacking(AICharacterManager aiCharacter)
+        {
+            if (currentTarget == null) return;
+
+            // CHECK IF WE CAN ROTATE
+            if (!aiCharacter.canRotate) return;
+
+            if (!aiCharacter.isPerformingAction) return;
+
+            // ROTATE TOWARDS THE TARGET AT A SPECIFIED ROTATION SPEED DURING SPECIFIED FRAMES
+            Vector3 targetDirection = currentTarget.transform.position - aiCharacter.transform.position;
+            targetDirection.y = 0;
+            targetDirection.Normalize();
+
+            if (targetDirection == Vector3.zero) targetDirection = aiCharacter.transform.forward;
+
+            Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+
+            aiCharacter.transform.rotation = Quaternion.Slerp(aiCharacter.transform.rotation, targetRotation, attackRotationSpeed * Time.deltaTime);
+        }
+        
+        public void HandleActionRecovery(AICharacterManager aiCharacter)
+        {
+            if (actionRecoveryTimer > 0)
+            {
+                if (!aiCharacter.isPerformingAction)
+                {
+                    actionRecoveryTimer -= Time.deltaTime;
                 }
             }
         }

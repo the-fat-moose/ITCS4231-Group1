@@ -111,6 +111,8 @@ MonoBehaviour:
   currentState: {fileID: 11400000, guid: 5c577e05925e04b4989398aeff23d7b5, type: 2}
   idle: {fileID: 11400000, guid: 5c577e05925e04b4989398aeff23d7b5, type: 2}
   pursueTarget: {fileID: 11400000, guid: 46ce2d633be6790448b26e0ee26ef3fe, type: 2}
+  combatStance: {fileID: 11400000, guid: 39aac73eecd584c40ae6ba42cc1ab5a7, type: 2}
+  attack: {fileID: 11400000, guid: 5d77743cff2bdf346b73f4a716814c9c, type: 2}
 --- !u!114 &8047314040093243002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,9 +128,14 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   currentAttackType: 0
   lockOnTransform: {fileID: 1503146515982556040}
+  actionRecoveryTimer: 0
+  viewableAngle: 0
+  targetsDirection: {x: 0, y: 0, z: 0}
+  distanceFromTarget: 0
   detectionRadius: 15
   minimumDetectionAngle: -35
   maximumDetectionAngle: 35
+  attackRotationSpeed: 25
 --- !u!143 &3849197057468383021
 CharacterController:
   m_ObjectHideFlags: 0

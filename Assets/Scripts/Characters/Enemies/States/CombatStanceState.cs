@@ -20,7 +20,7 @@ namespace Group1 {
         protected bool hasRolledForComboChance = false; // if we have already rolled for the chance during this state
 
         [Header("Engagement Distance")]
-        [SerializeField] protected float maximumEngagementDistance = 5f; // the distance we have to be away from the target before we enter the pursue target state
+        [SerializeField] public float maximumEngagementDistance = 5f; // the distance we have to be away from the target before we enter the pursue target state
 
         // process any combat logic while waiting to attack
         // if targets moves out of combat range, switch to pursue target state
@@ -33,6 +33,7 @@ namespace Group1 {
             if (!aiCharacter.navMeshAgent.enabled) aiCharacter.navMeshAgent.enabled = true;
 
             // ROTATE TO FACE OUR TARGET
+            aiCharacter.aiCharacterCombatManager.RotateTowardsAgent(aiCharacter);
 
             if (aiCharacter.aiCharacterCombatManager.currentTarget == null) return SwitchState(aiCharacter, aiCharacter.idle);
 
@@ -43,10 +44,11 @@ namespace Group1 {
             }
             else
             {
-                // CHECK RECOVERY TIMER,
                 // PASS ATTACK TO ATTACK STATE
+                aiCharacter.attack.currentAttack = chosenAttack;
                 // ROLL FOR COMBO CHANCE
                 // SWITCH STATE
+                return SwitchState(aiCharacter, aiCharacter.attack);
             }
 
             if (aiCharacter.aiCharacterCombatManager.distanceFromTarget > maximumEngagementDistance) return SwitchState(aiCharacter, aiCharacter.pursueTarget);
@@ -63,7 +65,7 @@ namespace Group1 {
             potentialAttacks = new List<AICharacterAttackAction>();
 
             // Sort through all possible attacks
-            foreach(var potentialAttack in potentialAttacks)
+            foreach(var potentialAttack in aiCharacterAttacks)
             {
                 // Remove attacks that cant be used in a given situation
                 if (potentialAttack.minimumAttackDistance > aiCharacter.aiCharacterCombatManager.distanceFromTarget) continue; // too close
@@ -101,6 +103,7 @@ namespace Group1 {
                     chosenAttack = attack;
                     previousAttack = chosenAttack;
                     hasAttack = true;
+                    return;
                 }
             }
         }
