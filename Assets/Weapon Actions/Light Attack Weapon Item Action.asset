@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4b3c1870d86ce40b8f5b9de9acfbb0, type: 3}
   m_Name: Light Attack Weapon Item Action
   m_EditorClassIdentifier: Assembly-CSharp::Group1.LightAttackWeaponItemAction
-  actionID: 0
-  light_Attack_01: PlayerCharacter_LightAttack
+  actionID: 1
+  light_Attack_01: PlayerCharacter_LightAttack01
+  light_Attack_02: PlayerCharacter_LightAttack02

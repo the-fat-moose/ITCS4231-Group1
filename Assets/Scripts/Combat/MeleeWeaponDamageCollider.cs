@@ -47,7 +47,13 @@ namespace Group1 {
 
             switch (characterCausingDamage.characterCombatManager.currentAttackType)
             {
-                case AttackType.Light:
+                case AttackType.Light01:
+                    ApplyAttackDamageModifiers(light_Attack_Modifier, damageEffect);
+                    break;
+                case AttackType.Light02:
+                    ApplyAttackDamageModifiers(light_Attack_Modifier, damageEffect);
+                    break;
+                case AttackType.Light03:
                     ApplyAttackDamageModifiers(light_Attack_Modifier, damageEffect);
                     break;
                 case AttackType.Heavy:

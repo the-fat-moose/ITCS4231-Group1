@@ -9,7 +9,7 @@ namespace Group1 {
         public WeaponItem currentWeaponBeingUsed;
 
         [Header("Flags")]
-        public bool canComboWithMainHandWeapon = false;
+        public bool canComboWithMainHandWeapon = true;
 
         protected override void Awake()
         {
@@ -37,7 +37,13 @@ namespace Group1 {
 
             switch (currentAttackType)
             {
-                case AttackType.Light:
+                case AttackType.Light01:
+                    staminaLoss = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.lightAttackStaminaModifier;
+                    break;
+                case AttackType.Light02:
+                    staminaLoss = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.lightAttackStaminaModifier;
+                    break;
+                case AttackType.Light03:
                     staminaLoss = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.lightAttackStaminaModifier;
                     break;
                 case AttackType.Heavy:

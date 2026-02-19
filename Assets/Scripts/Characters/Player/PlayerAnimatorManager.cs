@@ -37,7 +37,7 @@ namespace Group1{
             }
         }
     
-        public void EnableCanDoCombo()
+        public override void EnableCanDoCombo()
         {
             if(player.CurrentWeaponBeingUsed != 0)
             {
@@ -45,7 +45,7 @@ namespace Group1{
             }
         }
 
-        public void DisableCanDoCombo()
+        public override void DisableCanDoCombo()
         {
             
             player.playerCombatManager.canComboWithMainHandWeapon = false;

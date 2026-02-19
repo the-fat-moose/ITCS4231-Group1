@@ -19,7 +19,9 @@ namespace Group1 {
 
     public enum AttackType
     {
-        Light,
+        Light01,
+        Light02,
+        Light03,
         Heavy
     }
 }

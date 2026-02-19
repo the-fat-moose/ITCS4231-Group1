@@ -88,6 +88,7 @@ namespace Group1{
         {
             //need to keep track of last attack performed for combo's
             character.characterCombatManager.currentAttackType = attackType;
+            character.characterCombatManager.lastAttackAnimationPerformed = targetAnimation;
             character.applyRootMotion = applyRootMotion;
             int layerIndex = character.animator.GetLayerIndex("Action Override");
             Debug.Log(character.animator.HasState(
@@ -102,6 +103,16 @@ namespace Group1{
             character.isPerformingAction = isPerformingAction;
             character.canMove = canMove;
             character.canRotate = canRotate;
+        }
+
+        public virtual void EnableCanDoCombo()
+        {
+
+        }
+
+        public virtual void DisableCanDoCombo()
+        {
+
         }
 
     }
