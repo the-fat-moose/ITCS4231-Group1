@@ -63,7 +63,7 @@ namespace Group1 {
                     break;
             }
 
-            //damageTarget.characterEffectsManager.ProcessInstantEffect(damageEffect);
+            damageTarget.characterEffectsManager.ProcessInstantEffect(damageEffect);
         }
 
         private void ApplyAttackDamageModifiers(float modifier, TakeDamageEffect damage)

@@ -18,6 +18,8 @@ namespace Group1 {
         protected virtual void Awake()
         {
             character = GetComponent<CharacterManager>();
+
+            lockOnTransform = GetComponentInChildren<LockOnTransform>().transform;
         }
 
         public virtual void SetTarget(CharacterManager newTarget)
