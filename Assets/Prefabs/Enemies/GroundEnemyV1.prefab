@@ -107,7 +107,7 @@ MonoBehaviour:
   maxMana: 0
   aiCharacterCombatManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
-  navMeshAgent: {fileID: 0}
+  navMeshAgent: {fileID: 1094103724539326154}
   currentState: {fileID: 11400000, guid: 5c577e05925e04b4989398aeff23d7b5, type: 2}
   idle: {fileID: 11400000, guid: 5c577e05925e04b4989398aeff23d7b5, type: 2}
   pursueTarget: {fileID: 11400000, guid: 46ce2d633be6790448b26e0ee26ef3fe, type: 2}
