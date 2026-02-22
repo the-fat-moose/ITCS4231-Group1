@@ -91,7 +91,7 @@ MonoBehaviour:
   characterGroup: 1
   isPerformingAction: 0
   isGrounded: 1
-  isJumping: 0
+  isJumping: 1
   applyRootMotion: 0
   canRotate: 1
   canMove: 1
