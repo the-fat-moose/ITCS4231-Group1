@@ -40,6 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 145142477686612402}
+  - component: {fileID: 432237990511752782}
   m_Layer: 8
   m_Name: LockOnTarget
   m_TagString: Untagged
@@ -62,6 +63,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7070114399704089488}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &432237990511752782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848759270065341564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1b313c1ebe533742a45dc11de6117a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Group1.LockOnTransform
 --- !u!1 &5786037847892666633
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,12 +161,14 @@ MonoBehaviour:
   isSprinting: 0
   isDead: 0
   isLockedOn: 0
+  characterGroup: 0
   isPerformingAction: 0
   isGrounded: 1
   isJumping: 0
   applyRootMotion: 0
   canRotate: 1
   canMove: 1
+  isChargingAttack: 0
   endurance: 10
   vitality: 10
   mind: 10
@@ -220,10 +235,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42e81422a3c85864196b487661ce3b90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Group1.PlayerCombatManager
+  lastAttackAnimationPerformed: 
   currentTarget: {fileID: 0}
   currentAttackType: 0
   lockOnTransform: {fileID: 145142477686612402}
   currentWeaponBeingUsed: {fileID: 0}
+  canComboWithMainHandWeapon: 0
 --- !u!143 &3043051438168417331
 CharacterController:
   m_ObjectHideFlags: 0
@@ -333,7 +350,7 @@ MonoBehaviour:
   weaponsInRightHandSlots:
   - {fileID: 11400000, guid: 9d591de22dca28a428e880fba18f3ef3, type: 2}
   - {fileID: 11400000, guid: 9d591de22dca28a428e880fba18f3ef3, type: 2}
-  - {fileID: 11400000, guid: 9d591de22dca28a428e880fba18f3ef3, type: 2}
+  - {fileID: 11400000, guid: c44b6d7661e595c449781e80e2fcfd16, type: 2}
   rightHandWeaponIndex: 0
 --- !u!114 &3690826846574739967
 MonoBehaviour:
