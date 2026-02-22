@@ -4,7 +4,7 @@ namespace Group1 {
     public class AIGroundEnemyV1CombatManager : AiCharacterCombatManager
     {
         [Header("Damage Colliders")]
-        [SerializeField] MeleeWeaponDamageCollider meleeWeaponDamageCollider;
+        [SerializeField] GroundEnemyV1WeaponDamageCollider groundEnemyV1WeaponDamageCollider;
 
         [Header("Damage")]
         [SerializeField] int baseDamage = 25;
@@ -13,22 +13,22 @@ namespace Group1 {
 
         public void SetAttack01Damage()
         {
-            meleeWeaponDamageCollider.physicalDamage = baseDamage * attack01DamageModifier;
+            groundEnemyV1WeaponDamageCollider.physicalDamage = baseDamage * attack01DamageModifier;
         }
 
         public void SetAttack02Damage()
         {
-            meleeWeaponDamageCollider.physicalDamage = baseDamage * attack02DamageModifier;
+            groundEnemyV1WeaponDamageCollider.physicalDamage = baseDamage * attack02DamageModifier;
         }
 
         public void OpenMeleeWeaponDamageCollider()
         {
-            meleeWeaponDamageCollider.EnableCollider();
+            groundEnemyV1WeaponDamageCollider.EnableCollider();
         }
 
         public void CloseMeleeWeaponDamageCollider()
         {
-            meleeWeaponDamageCollider.DisableCollider();
+            groundEnemyV1WeaponDamageCollider.DisableCollider();
         }
     }
 }

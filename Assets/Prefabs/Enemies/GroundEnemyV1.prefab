@@ -137,7 +137,7 @@ MonoBehaviour:
   minimumDetectionAngle: -35
   maximumDetectionAngle: 35
   attackRotationSpeed: 25
-  meleeWeaponDamageCollider: {fileID: 7465217113316108511}
+  groundEnemyV1WeaponDamageCollider: {fileID: 2069772746755619224}
   baseDamage: 25
   attack01DamageModifier: 1
   attack02DamageModifier: 1.4
@@ -497,22 +497,36 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2506202138522787488, guid: d36837ab479d04f4fab3bf3c964df547, type: 3}
+    - {fileID: 6613510696240867033, guid: d36837ab479d04f4fab3bf3c964df547, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6331679116815646003, guid: d36837ab479d04f4fab3bf3c964df547, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2069772746755619224}
   m_SourcePrefab: {fileID: 100100000, guid: d36837ab479d04f4fab3bf3c964df547, type: 3}
---- !u!114 &7465217113316108511 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6613510696240867033, guid: d36837ab479d04f4fab3bf3c964df547, type: 3}
+--- !u!1 &7746344215226839861 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6331679116815646003, guid: d36837ab479d04f4fab3bf3c964df547, type: 3}
   m_PrefabInstance: {fileID: 4349966627315469830}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+--- !u!114 &2069772746755619224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7746344215226839861}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 576f0a4a7e88cfb408b0d39f3c2bb030, type: 3}
+  m_Script: {fileID: 11500000, guid: 7350a0a0f513b204b96b21cd59ce1c0a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Group1.MeleeWeaponDamageCollider
+  m_EditorClassIdentifier: '::'
+  damageCollider: {fileID: 0}
+  physicalDamage: 0
+  magicDamage: 0
 --- !u!4 &7916791772513189508 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5872755167380861058, guid: d36837ab479d04f4fab3bf3c964df547, type: 3}

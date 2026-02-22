@@ -46,8 +46,6 @@ namespace Group1 {
             base.FixedUpdate();
 
             ProcessStateMachine();
-
-            Debug.Log("AICHARACTER.IsMoving: " + IsMoving);
         }
 
         private void ProcessStateMachine()
