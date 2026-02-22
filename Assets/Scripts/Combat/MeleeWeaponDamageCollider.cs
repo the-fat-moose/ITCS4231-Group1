@@ -56,7 +56,10 @@ namespace Group1 {
                 case AttackType.Light03:
                     ApplyAttackDamageModifiers(light_Attack_Modifier, damageEffect);
                     break;
-                case AttackType.Heavy:
+                case AttackType.Heavy01:
+                    ApplyAttackDamageModifiers(heavy_Attack_Modifier, damageEffect);
+                    break;
+                case AttackType.Heavy02:
                     ApplyAttackDamageModifiers(heavy_Attack_Modifier, damageEffect);
                     break;
                 default:

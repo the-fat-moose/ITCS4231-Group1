@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Group1.HeavyAttackWeaponAction
   actionID: 2
   heavy_Attack_01: PlayerCharacter_HeavyAttack_Hold
+  heavy_Attack_02: PlayerCharacter_HeavyAttack_Hold02

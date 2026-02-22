@@ -46,7 +46,7 @@ namespace Group1 {
                 case AttackType.Light03:
                     staminaLoss = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.lightAttackStaminaModifier;
                     break;
-                case AttackType.Heavy:
+                case AttackType.Heavy01:
                     staminaLoss = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttackStaminaModifier;
                     break;
                 default:

@@ -22,6 +22,7 @@ namespace Group1 {
         Light01,
         Light02,
         Light03,
-        Heavy
+        Heavy01, 
+        Heavy02
     }
 }

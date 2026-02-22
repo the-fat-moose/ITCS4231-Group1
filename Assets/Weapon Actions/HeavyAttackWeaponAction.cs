@@ -5,6 +5,7 @@ namespace Group1{
     public class HeavyAttackWeaponAction : WeaponItemAction
     {
         [SerializeField] string heavy_Attack_01 = "PlayerCharacter_HeavyAttack_Hold";
+        [SerializeField] string heavy_Attack_02 = "PlayerCharacter_HeavyAttack_02";
         public override void AttemptToPerformAction(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
         {
             base.AttemptToPerformAction(playerPerformingAction, weaponPerformingAction);
@@ -19,7 +20,24 @@ namespace Group1{
 
         private void PerformHeavyAttack(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
         {
-            playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.Heavy, heavy_Attack_01, true);
+            //If we are attacking already do combo
+            if (playerPerformingAction.playerCombatManager.canComboWithMainHandWeapon && playerPerformingAction.isPerformingAction)
+            {
+                if(playerPerformingAction.characterCombatManager.lastAttackAnimationPerformed == heavy_Attack_01)
+                {
+                    playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.Heavy02, heavy_Attack_02, true);
+                }
+                else
+                {
+                    playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.Heavy01, heavy_Attack_01, true);
+                }
+            }
+            else if(!playerPerformingAction.isPerformingAction)
+            {
+                playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.Heavy01, heavy_Attack_01, true);
+
+                playerPerformingAction.playerCombatManager.canComboWithMainHandWeapon = true;
+            }
         }
     }
 }
