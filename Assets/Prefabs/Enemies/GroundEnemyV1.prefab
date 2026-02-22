@@ -485,9 +485,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -180.168
       objectReference: {fileID: 0}
+    - target: {fileID: 6613510696240867033, guid: d36837ab479d04f4fab3bf3c964df547, type: 3}
+      propertyPath: characterCausingDamage
+      value: 
+      objectReference: {fileID: 5848172694087581370}
     - target: {fileID: 7812997574115518007, guid: d36837ab479d04f4fab3bf3c964df547, type: 3}
       propertyPath: m_Name
       value: Weapon_GroundEnemyV1_Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 8223357972271915092, guid: d36837ab479d04f4fab3bf3c964df547, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

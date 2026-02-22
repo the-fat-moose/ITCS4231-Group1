@@ -58,21 +58,21 @@ ModelImporter:
       - time: 0
         functionName: SetAttack01Damage
         data: 
-        objectReferenceParameter: {instanceID: 0}
+        objectReferenceParameter: {fileID: 1453775332707212851, guid: 22c18d0506fc23948a117056285b8db6, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
       - time: 0.2510576
         functionName: OpenMeleeWeaponDamageCollider
         data: 
-        objectReferenceParameter: {instanceID: 0}
+        objectReferenceParameter: {fileID: 1453775332707212851, guid: 22c18d0506fc23948a117056285b8db6, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
       - time: 0.3781805
         functionName: CloseMeleeWeaponDamageCollider
         data: 
-        objectReferenceParameter: {instanceID: 0}
+        objectReferenceParameter: {fileID: 1453775332707212851, guid: 22c18d0506fc23948a117056285b8db6, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
