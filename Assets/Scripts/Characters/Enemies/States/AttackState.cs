@@ -19,6 +19,7 @@ namespace Group1 {
             if (aiCharacter.aiCharacterCombatManager.currentTarget.isDead) return SwitchState(aiCharacter, aiCharacter.idle);
 
             // ROTATE TOWARDS THE TARGET WHILST ATTACKING
+            aiCharacter.aiCharacterCombatManager.RotateTowardsTargetWhilstAttacking(aiCharacter);
 
             // SET MOVEMENT VALUES TO 0
             aiCharacter.characterAnimatorManager.UpdateAnimatorMovementParameters(0, 0, false);
@@ -33,6 +34,8 @@ namespace Group1 {
                     //currentAttack.comboAction.AttemptToPerformAction(aiCharacter);
                 }
             }
+
+            if (aiCharacter.isPerformingAction) return this;
 
             if (!hasPerformedAttack)
             {
