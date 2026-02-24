@@ -403,9 +403,27 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Que RB"",
+                    ""type"": ""Button"",
+                    ""id"": ""1f391ee9-e182-4a23-81c3-e10819b2535b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""RT"",
                     ""type"": ""Button"",
                     ""id"": ""1f279fde-8454-4024-a49a-91a99dda398d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Que RT"",
+                    ""type"": ""Button"",
+                    ""id"": ""edf8f9cb-b2ad-4b46-b0f6-8d56583b2855"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -548,6 +566,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""b7e66f8c-1dd8-4dc2-b4fe-da29ccc87bd9"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Que RB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""08125bb4-11af-4425-8e43-eba4ea7c0faa"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Que RB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""28f5f672-1a71-417a-85a5-9e52de6ca3c7"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
@@ -587,6 +627,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""RT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f447ed78-feee-4ed9-b651-73986d4a8379"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Que RT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""93c0f0d3-e5a9-4e55-95d3-a170bdc61992"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Que RT"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -674,7 +736,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerActions_Sprint = m_PlayerActions.FindAction("Sprint", throwIfNotFound: true);
         m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
         m_PlayerActions_RB = m_PlayerActions.FindAction("RB", throwIfNotFound: true);
+        m_PlayerActions_QueRB = m_PlayerActions.FindAction("Que RB", throwIfNotFound: true);
         m_PlayerActions_RT = m_PlayerActions.FindAction("RT", throwIfNotFound: true);
+        m_PlayerActions_QueRT = m_PlayerActions.FindAction("Que RT", throwIfNotFound: true);
         m_PlayerActions_HoldRT = m_PlayerActions.FindAction("Hold RT", throwIfNotFound: true);
         m_PlayerActions_LockOn = m_PlayerActions.FindAction("Lock On", throwIfNotFound: true);
         m_PlayerActions_SwitchWeapon = m_PlayerActions.FindAction("Switch Weapon", throwIfNotFound: true);
@@ -969,7 +1033,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_Sprint;
     private readonly InputAction m_PlayerActions_Jump;
     private readonly InputAction m_PlayerActions_RB;
+    private readonly InputAction m_PlayerActions_QueRB;
     private readonly InputAction m_PlayerActions_RT;
+    private readonly InputAction m_PlayerActions_QueRT;
     private readonly InputAction m_PlayerActions_HoldRT;
     private readonly InputAction m_PlayerActions_LockOn;
     private readonly InputAction m_PlayerActions_SwitchWeapon;
@@ -1003,9 +1069,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @RB => m_Wrapper.m_PlayerActions_RB;
         /// <summary>
+        /// Provides access to the underlying input action "PlayerActions/QueRB".
+        /// </summary>
+        public InputAction @QueRB => m_Wrapper.m_PlayerActions_QueRB;
+        /// <summary>
         /// Provides access to the underlying input action "PlayerActions/RT".
         /// </summary>
         public InputAction @RT => m_Wrapper.m_PlayerActions_RT;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerActions/QueRT".
+        /// </summary>
+        public InputAction @QueRT => m_Wrapper.m_PlayerActions_QueRT;
         /// <summary>
         /// Provides access to the underlying input action "PlayerActions/HoldRT".
         /// </summary>
@@ -1064,9 +1138,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @RB.started += instance.OnRB;
             @RB.performed += instance.OnRB;
             @RB.canceled += instance.OnRB;
+            @QueRB.started += instance.OnQueRB;
+            @QueRB.performed += instance.OnQueRB;
+            @QueRB.canceled += instance.OnQueRB;
             @RT.started += instance.OnRT;
             @RT.performed += instance.OnRT;
             @RT.canceled += instance.OnRT;
+            @QueRT.started += instance.OnQueRT;
+            @QueRT.performed += instance.OnQueRT;
+            @QueRT.canceled += instance.OnQueRT;
             @HoldRT.started += instance.OnHoldRT;
             @HoldRT.performed += instance.OnHoldRT;
             @HoldRT.canceled += instance.OnHoldRT;
@@ -1105,9 +1185,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @RB.started -= instance.OnRB;
             @RB.performed -= instance.OnRB;
             @RB.canceled -= instance.OnRB;
+            @QueRB.started -= instance.OnQueRB;
+            @QueRB.performed -= instance.OnQueRB;
+            @QueRB.canceled -= instance.OnQueRB;
             @RT.started -= instance.OnRT;
             @RT.performed -= instance.OnRT;
             @RT.canceled -= instance.OnRT;
+            @QueRT.started -= instance.OnQueRT;
+            @QueRT.performed -= instance.OnQueRT;
+            @QueRT.canceled -= instance.OnQueRT;
             @HoldRT.started -= instance.OnHoldRT;
             @HoldRT.performed -= instance.OnHoldRT;
             @HoldRT.canceled -= instance.OnHoldRT;
@@ -1229,12 +1315,26 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnRB(InputAction.CallbackContext context);
         /// <summary>
+        /// Method invoked when associated input action "Que RB" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnQueRB(InputAction.CallbackContext context);
+        /// <summary>
         /// Method invoked when associated input action "RT" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnRT(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Que RT" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnQueRT(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Hold RT" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
