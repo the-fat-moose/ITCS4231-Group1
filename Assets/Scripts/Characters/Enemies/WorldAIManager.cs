@@ -9,7 +9,7 @@ namespace Group1 {
         public static WorldAIManager instance;
 
         [Header("Characters")]
-        [SerializeField] private GameObject[] aiCharacters;
+        [SerializeField] private List<AICharacterSpawner> aiCharacterSpawners;
         [SerializeField] private List<GameObject> spawnedInCharacters;
 
         private void Awake()
@@ -23,30 +23,11 @@ namespace Group1 {
                 Destroy(gameObject);
             }
         }
-
-        private void Start()
+        
+        public void SpawnCharacter(AICharacterSpawner spawner)
         {
-            // SPAWN ALL AI IN SCENE
-            StartCoroutine(WaitForSceneToLoadThenSpawnCharacters());
-        }
-
-        private IEnumerator WaitForSceneToLoadThenSpawnCharacters()
-        {
-            while (!SceneManager.GetActiveScene().isLoaded)
-            {
-                yield return null;
-            }
-
-            SpawnAllCharacters();
-        }
-
-        private void SpawnAllCharacters()
-        {
-            foreach (var character in aiCharacters)
-            {
-                GameObject instantiatedCharacter = Instantiate(character);
-                spawnedInCharacters.Add(instantiatedCharacter);
-            }
+            aiCharacterSpawners.Add(spawner);
+            spawner.AttemptToSpawnCharacter();
         }
 
         private void DespawnAllCharacters()

@@ -130,7 +130,7 @@ MonoBehaviour:
   lastAttackAnimationPerformed: 
   currentTarget: {fileID: 0}
   currentAttackType: 0
-  lockOnTransform: {fileID: 0}
+  lockOnTransform: {fileID: 1503146515982556040}
   actionRecoveryTimer: 0
   viewableAngle: 0
   targetsDirection: {x: 0, y: 0, z: 0}
