@@ -21,14 +21,17 @@ namespace Group1 {
 
         private void PerformLightAttack(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
         {
-            //trying to fix attack being interupted
-            if (playerPerformingAction.isPerformingAction && !playerPerformingAction.playerCombatManager.canComboWithMainHandWeapon) { return; }
-
-
-            //If we are attacking already do combo
-            if (playerPerformingAction.playerCombatManager.canComboWithMainHandWeapon && playerPerformingAction.isPerformingAction)
+            // If we are attacking but the combo window is not open, ignore the input
+            if (playerPerformingAction.isPerformingAction &&
+                !playerPerformingAction.playerCombatManager.canComboWithMainHandWeapon)
             {
-                if(playerPerformingAction.characterCombatManager.lastAttackAnimationPerformed == light_Attack_01)
+                return;
+            }
+
+            // If we are attacking AND combo window is open → do combo
+            if (playerPerformingAction.playerCombatManager.canComboWithMainHandWeapon)
+            {
+                if (playerPerformingAction.characterCombatManager.lastAttackAnimationPerformed == light_Attack_01)
                 {
                     playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.Light02, light_Attack_02, true);
                 }
@@ -36,13 +39,17 @@ namespace Group1 {
                 {
                     playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.Light01, light_Attack_01, true);
                 }
+
+                return;
             }
-            else if(!playerPerformingAction.isPerformingAction)
+
+            // If not attacking → start first attack
+            if (!playerPerformingAction.isPerformingAction)
             {
                 playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.Light01, light_Attack_01, true);
-
-                playerPerformingAction.playerCombatManager.canComboWithMainHandWeapon = true;
+                return;
             }
         }
+
     }
 }

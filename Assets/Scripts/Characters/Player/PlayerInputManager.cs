@@ -333,7 +333,7 @@ namespace Group1{
             que_RB_input = false;
             que_RT_input = false;
 
-            if(player.isPerformingAction || player.isJumping)
+            if(!player.playerCombatManager.canComboWithMainHandWeapon)
             {
                 quedInput = true;
                 que_Input_Timer = default_Que_Input_Timer;
