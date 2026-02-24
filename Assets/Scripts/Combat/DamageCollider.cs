@@ -18,6 +18,10 @@ namespace Group1 {
         [Header("Characters Damaged")]
         protected List<CharacterManager> charactersDamaged = new List<CharacterManager>();
 
+        [Header("Block")]
+        protected Vector3 directionFromAttackToDamageTarget;
+        protected float dotValueFromAttackToDamageTarget;
+
         protected virtual void Awake()
         {
             
@@ -44,14 +48,25 @@ namespace Group1 {
         {
             if(charactersDamaged.Contains(damageTarget)) return;
 
-            Vector3 directionFromAttackToDamageTarget = transform.position - damageTarget.transform.position;
-            float dotValueFromAttackToDamageTarget = Vector3.Dot(directionFromAttackToDamageTarget, damageTarget.transform.forward);
+            GetBlockingDotValue(damageTarget);
 
             if (damageTarget.isBlocking && dotValueFromAttackToDamageTarget > 0.3f)
             {
                 charactersDamaged.Add(damageTarget);
-                //TakeBlockedDamageEffect takeDamageEffect = Instantiate(WorldCharacterEffectsManager.instance.takeBlockedDamageEffect);
+
+                TakeBlockedDamageEffect damageEffect = Instantiate(WorldCharacterEffectsManager.instance.takeBlockedDamageEffect);
+
+                damageEffect.physicalDamage = physicalDamage;
+                damageEffect.magicDamage = magicDamage;
+
+                damageTarget.characterEffectsManager.ProcessInstantEffect(damageEffect);
             }
+        }
+
+        protected virtual void GetBlockingDotValue(CharacterManager damageTarget)
+        {
+            directionFromAttackToDamageTarget = transform.position - damageTarget.transform.position;
+            dotValueFromAttackToDamageTarget = Vector3.Dot(directionFromAttackToDamageTarget, damageTarget.transform.forward);
         }
 
         protected virtual void DamageTarget(CharacterManager damageTarget)

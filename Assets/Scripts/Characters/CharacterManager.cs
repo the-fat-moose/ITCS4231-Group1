@@ -11,6 +11,8 @@ namespace Group1{
         [HideInInspector] public CharacterAnimatorManager characterAnimatorManager;
         [HideInInspector] public CharacterCombatManager characterCombatManager;
         [HideInInspector] public CharacterLocomotionManager characterLocomotionManager;
+        [HideInInspector] public CharacterStatsManager characterStatsManager;
+
 
         public bool isSprinting = false;
         public bool isDead = false;
@@ -196,6 +198,7 @@ namespace Group1{
             characterAnimatorManager = GetComponent<CharacterAnimatorManager>();
             characterCombatManager = GetComponent<CharacterCombatManager>();
             characterLocomotionManager = GetComponent<CharacterLocomotionManager>();
+            characterStatsManager = GetComponent<CharacterStatsManager>();
 
             OnIsMovingValueChanged += OnIsMovingChanged;
         }

@@ -85,6 +85,7 @@ MonoBehaviour:
   characterAnimatorManager: {fileID: 0}
   characterCombatManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
+  characterStatsManager: {fileID: 0}
   isSprinting: 0
   isDead: 0
   isLockedOn: 0
@@ -96,6 +97,7 @@ MonoBehaviour:
   canRotate: 1
   canMove: 1
   isChargingAttack: 0
+  isBlocking: 0
   endurance: 10
   vitality: 10
   mind: 10
@@ -253,6 +255,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Group1.CharacterStatsManager
   staminaRegenerationDelay: 2
   staminaRegenerationAmount: 2
+  blockingPhysicalAbsorption: 65
+  blockingMagicAbsorption: 65
 --- !u!114 &2976235878826204985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -527,6 +531,7 @@ MonoBehaviour:
   damageCollider: {fileID: 0}
   physicalDamage: 0
   magicDamage: 0
+  AICharacter: {fileID: 5848172694087581370}
 --- !u!4 &7916791772513189508 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5872755167380861058, guid: d36837ab479d04f4fab3bf3c964df547, type: 3}

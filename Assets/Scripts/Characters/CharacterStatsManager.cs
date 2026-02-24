@@ -11,6 +11,11 @@ namespace Group1 {
         [SerializeField] private float staminaRegenerationDelay = 2f;
         [SerializeField] private int staminaRegenerationAmount = 2;
 
+        public float blockingPhysicalAbsorption = 65f;
+        public float blockingMagicAbsorption = 65f;
+
+        
+
         protected virtual void Awake()
         {
             character = GetComponent<CharacterManager>();

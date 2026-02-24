@@ -270,6 +270,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundEnemyV1
       objectReference: {fileID: 0}
+    - target: {fileID: 2069772746755619224, guid: 22c18d0506fc23948a117056285b8db6, type: 3}
+      propertyPath: AICharacter
+      value: 
+      objectReference: {fileID: 1941221527}
     - target: {fileID: 2230229121026221470, guid: 22c18d0506fc23948a117056285b8db6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.98
@@ -1230,6 +1234,10 @@ MonoBehaviour:
   lockInput: 0
   lockOn_Left: 0
   lockOn_Right: 0
+  default_Que_Input_Timer: 0.35
+  que_Input_Timer: 0
+  que_RB_input: 0
+  que_RT_input: 0
   RB_Input: 0
   RT_Input: 0
   Hold_RT_Input: 0
@@ -1360,6 +1368,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1734118605}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1941221527 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5848172694087581370, guid: 22c18d0506fc23948a117056285b8db6, type: 3}
+  m_PrefabInstance: {fileID: 153862899}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d30eb8619bc5db4fbdbd76c2d278fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Group1.AICharacterManager
 --- !u!1001 &1980837515
 PrefabInstance:
   m_ObjectHideFlags: 0

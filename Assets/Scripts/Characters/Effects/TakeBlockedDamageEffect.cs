@@ -32,6 +32,8 @@ namespace Group1
         {
             base.ProcessEffect(character);
 
+            Debug.LogError("HIT WAS Blocked");
+
             // IF THE CHARACTER IS DEAD, NO ADDITIONAL DAMAGE EFFECTS SHOULD BE PROCESSED
             if (character.isDead) return;
 
@@ -53,7 +55,10 @@ namespace Group1
                 // CHECK FOR DAMAGE MODIFIERS AND MODIFY BASE DAMAGE (Physical damage buff, magic damage buff, etc)
             }
 
+            Debug.LogError("Original Physical Damage " + physicalDamage);
+
             // CHECK CHARACTER FOR FLAT DAMAGE REDUCTION AND SUBTRACT THEM FROM THE DAMAGE
+            physicalDamage -= physicalDamage * (character.characterStatsManager.blockingPhysicalAbsorption / 100);
 
             // ADD ALL DAMAGE TYPES TOGETHER AND PROCESS AND APPLY FINAL DAMAGE
             finalDamage = Mathf.RoundToInt(physicalDamage + magicDamage);
@@ -62,6 +67,8 @@ namespace Group1
             {
                 finalDamage = 1;
             }
+
+            Debug.LogError("Final Physical Damage " + physicalDamage);
 
             character.CurrentHealth -= finalDamage;
         }

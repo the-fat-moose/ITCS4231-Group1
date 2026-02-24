@@ -3,11 +3,18 @@ using UnityEngine;
 namespace Group1 {
     public class GroundEnemyV1WeaponDamageCollider : DamageCollider
     {
+        [SerializeField] AICharacterManager AICharacter;
         protected override void Awake()
         {
             base.Awake();
 
             damageCollider = GetComponent<Collider>();
+        }
+
+        protected override void GetBlockingDotValue(CharacterManager damageTarget)
+        {
+            directionFromAttackToDamageTarget = AICharacter.transform.position - damageTarget.transform.position;
+            dotValueFromAttackToDamageTarget = Vector3.Dot(directionFromAttackToDamageTarget, damageTarget.transform.forward);
         }
 
         protected override void DamageTarget(CharacterManager damageTarget)
