@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 509306634653140755}
   - component: {fileID: 3849197057468383021}
   - component: {fileID: 8153312339754007719}
-  - component: {fileID: 1449229378129587977}
+  - component: {fileID: 8313320373782300252}
   - component: {fileID: 3102941538331553953}
   - component: {fileID: 7417673789264356850}
   - component: {fileID: 1579067845349630700}
@@ -195,7 +195,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1449229378129587977
+--- !u!114 &8313320373782300252
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -204,9 +204,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1453775332707212851}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9797b73abd183f643b38dd75bfa56577, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ada5cf03f0d3124787ea36587ef29b0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Group1.CharacterAnimatorManager
+  m_EditorClassIdentifier: Assembly-CSharp::Group1.AICharacterAnimatorManager
   character: {fileID: 0}
 --- !u!114 &3102941538331553953
 MonoBehaviour:

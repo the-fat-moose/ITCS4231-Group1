@@ -1759,7 +1759,7 @@ GameObject:
   - component: {fileID: 6834871040521049252}
   - component: {fileID: 2325208607160062316}
   - component: {fileID: 3647117377906868687}
-  - component: {fileID: 1364234591725285538}
+  - component: {fileID: 3041260806976281469}
   - component: {fileID: 6168792092556798461}
   - component: {fileID: 7421368681362654179}
   - component: {fileID: 6016712944976388764}
@@ -1830,6 +1830,7 @@ MonoBehaviour:
   characterAnimatorManager: {fileID: 0}
   characterCombatManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
+  characterStatsManager: {fileID: 0}
   isSprinting: 0
   isDead: 0
   isLockedOn: 0
@@ -1841,6 +1842,7 @@ MonoBehaviour:
   canRotate: 1
   canMove: 1
   isChargingAttack: 0
+  isBlocking: 0
   endurance: 10
   vitality: 10
   mind: 10
@@ -1856,6 +1858,8 @@ MonoBehaviour:
   currentState: {fileID: 11400000, guid: 5c577e05925e04b4989398aeff23d7b5, type: 2}
   idle: {fileID: 11400000, guid: 5c577e05925e04b4989398aeff23d7b5, type: 2}
   pursueTarget: {fileID: 11400000, guid: 46ce2d633be6790448b26e0ee26ef3fe, type: 2}
+  combatStance: {fileID: 0}
+  attack: {fileID: 0}
 --- !u!114 &6834871040521049252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1868,12 +1872,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a294d98e2783bb8439f1f708892e8255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Group1.AiCharacterCombatManager
+  lastAttackAnimationPerformed: 
   currentTarget: {fileID: 0}
   currentAttackType: 0
   lockOnTransform: {fileID: 3213715044472173178}
+  actionRecoveryTimer: 0
+  viewableAngle: 0
+  targetsDirection: {x: 0, y: 0, z: 0}
+  distanceFromTarget: 0
   detectionRadius: 15
   minimumDetectionAngle: -35
   maximumDetectionAngle: 35
+  attackRotationSpeed: 25
 --- !u!143 &2325208607160062316
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1926,7 +1936,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1364234591725285538
+--- !u!114 &3041260806976281469
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1935,9 +1945,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4469859677074108028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9797b73abd183f643b38dd75bfa56577, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ada5cf03f0d3124787ea36587ef29b0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Group1.CharacterAnimatorManager
+  m_EditorClassIdentifier: Assembly-CSharp::Group1.AICharacterAnimatorManager
   character: {fileID: 0}
 --- !u!114 &6168792092556798461
 MonoBehaviour:
@@ -1986,6 +1996,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Group1.CharacterStatsManager
   staminaRegenerationDelay: 2
   staminaRegenerationAmount: 2
+  blockingPhysicalAbsorption: 65
+  blockingMagicAbsorption: 65
 --- !u!114 &2092613043169024246
 MonoBehaviour:
   m_ObjectHideFlags: 0

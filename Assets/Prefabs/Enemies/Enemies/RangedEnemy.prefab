@@ -2457,7 +2457,7 @@ GameObject:
   - component: {fileID: 8186767426188961981}
   - component: {fileID: 1574804015902678830}
   - component: {fileID: 4527612502526666354}
-  - component: {fileID: 7980085786923700968}
+  - component: {fileID: 677249053973602802}
   - component: {fileID: 4181127494904144841}
   - component: {fileID: 5758819413464783097}
   - component: {fileID: 3600050260863856767}
@@ -2528,6 +2528,7 @@ MonoBehaviour:
   characterAnimatorManager: {fileID: 0}
   characterCombatManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
+  characterStatsManager: {fileID: 0}
   isSprinting: 0
   isDead: 0
   isLockedOn: 0
@@ -2539,6 +2540,7 @@ MonoBehaviour:
   canRotate: 1
   canMove: 1
   isChargingAttack: 0
+  isBlocking: 0
   endurance: 10
   vitality: 10
   mind: 10
@@ -2632,7 +2634,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7980085786923700968
+--- !u!114 &677249053973602802
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2641,9 +2643,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7880423593256122770}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9797b73abd183f643b38dd75bfa56577, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ada5cf03f0d3124787ea36587ef29b0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Group1.CharacterAnimatorManager
+  m_EditorClassIdentifier: Assembly-CSharp::Group1.AICharacterAnimatorManager
   character: {fileID: 0}
 --- !u!114 &4181127494904144841
 MonoBehaviour:
@@ -2692,6 +2694,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Group1.CharacterStatsManager
   staminaRegenerationDelay: 2
   staminaRegenerationAmount: 2
+  blockingPhysicalAbsorption: 65
+  blockingMagicAbsorption: 65
 --- !u!114 &8707064278442745319
 MonoBehaviour:
   m_ObjectHideFlags: 0
