@@ -21,7 +21,10 @@ namespace Group1 {
 
         private void PerformLightAttack(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
         {
-            
+            //trying to fix attack being interupted
+            if (playerPerformingAction.isPerformingAction && !playerPerformingAction.playerCombatManager.canComboWithMainHandWeapon) { return; }
+
+
             //If we are attacking already do combo
             if (playerPerformingAction.playerCombatManager.canComboWithMainHandWeapon && playerPerformingAction.isPerformingAction)
             {

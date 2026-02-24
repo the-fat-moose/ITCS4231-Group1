@@ -86,23 +86,24 @@ namespace Group1{
 
         public virtual void PlayTargetAttackActionAnimation(AttackType attackType, string targetAnimation, bool isPerformingAction, bool applyRootMotion = true, bool canRotate = false, bool canMove = false)
         {
-            //need to keep track of last attack performed for combo's
-            character.characterCombatManager.currentAttackType = attackType;
-            character.characterCombatManager.lastAttackAnimationPerformed = targetAnimation;
-            character.applyRootMotion = applyRootMotion;
             int layerIndex = character.animator.GetLayerIndex("Action Override");
+
             Debug.Log(character.animator.HasState(
                 character.animator.GetLayerIndex("Action Override"),
                 Animator.StringToHash(targetAnimation)
             ));
 
-            character.animator.CrossFade(targetAnimation, 0.2f, layerIndex);
-
-
             //used to stop player from performing actions while in action
             character.isPerformingAction = isPerformingAction;
             character.canMove = canMove;
             character.canRotate = canRotate;
+
+            character.animator.CrossFade(targetAnimation, 0.2f, layerIndex);
+
+            //need to keep track of last attack performed for combo's
+            character.characterCombatManager.currentAttackType = attackType;
+            character.characterCombatManager.lastAttackAnimationPerformed = targetAnimation;
+            character.applyRootMotion = applyRootMotion;
         }
 
         public virtual void EnableCanDoCombo()
