@@ -28,6 +28,7 @@ namespace Group1{
         public bool canRotate = true;
         public bool canMove = true;
         public bool isChargingAttack = false;
+        public bool isBlocking = false;
 
         public event System.Action<bool, bool> OnIsChargingAttackChanged;
         public event System.Action<bool, bool> OnIsMovingValueChanged;

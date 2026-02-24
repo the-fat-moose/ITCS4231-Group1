@@ -34,8 +34,23 @@ namespace Group1 {
                 // CHECK IF THE TARGET IS BLOCKING
 
                 // CHECK IF THE TARGET IS INVULNERABLE
+                CheckForBlock(damageTarget);
 
                 DamageTarget(damageTarget);
+            }
+        }
+
+        protected virtual void CheckForBlock(CharacterManager damageTarget)
+        {
+            if(charactersDamaged.Contains(damageTarget)) return;
+
+            Vector3 directionFromAttackToDamageTarget = transform.position - damageTarget.transform.position;
+            float dotValueFromAttackToDamageTarget = Vector3.Dot(directionFromAttackToDamageTarget, damageTarget.transform.forward);
+
+            if (damageTarget.isBlocking && dotValueFromAttackToDamageTarget > 0.3f)
+            {
+                charactersDamaged.Add(damageTarget);
+                //TakeBlockedDamageEffect takeDamageEffect = Instantiate(WorldCharacterEffectsManager.instance.takeBlockedDamageEffect);
             }
         }
 
