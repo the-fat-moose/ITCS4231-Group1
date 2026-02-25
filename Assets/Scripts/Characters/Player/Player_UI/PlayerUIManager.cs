@@ -13,7 +13,6 @@ namespace Group1 {
             if (instance == null)
             {
                 instance = this;
-                DontDestroyOnLoad(this);
             }
             else
             {
@@ -22,6 +21,11 @@ namespace Group1 {
 
             playerUIHudManager = GetComponentInChildren<PlayerUIHudManager>();
             playerUIPopUpManager = GetComponentInChildren<PlayerUIPopUpManager>();
+        }
+
+        private void Start()
+        {
+            DontDestroyOnLoad(this);
         }
     }
 }

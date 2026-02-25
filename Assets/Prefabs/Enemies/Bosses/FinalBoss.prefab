@@ -64,6 +64,60 @@ Transform:
   - {fileID: 427530430099201547}
   m_Father: {fileID: 7789123311595433579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &215913379179804461
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2205335308160763382}
+  - component: {fileID: 3086726334785517109}
+  m_Layer: 0
+  m_Name: NavMesh Agent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2205335308160763382
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215913379179804461}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5643810957383035658}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!195 &3086726334785517109
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215913379179804461}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2.5
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &256147934546661525
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,6 +636,37 @@ Transform:
   m_Children:
   - {fileID: 3075872292362559923}
   m_Father: {fileID: 8797573294680985763}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1889359128426971607
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6601278267541411593}
+  m_Layer: 0
+  m_Name: Root
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6601278267541411593
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889359128426971607}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5643810957383035658}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1897028398585504914
 GameObject:
@@ -2093,7 +2178,7 @@ GameObject:
   - component: {fileID: 5643810957383035658}
   - component: {fileID: 2085845343277391128}
   - component: {fileID: 1231333947033157760}
-  - component: {fileID: 9054581184558217461}
+  - component: {fileID: 126339453259423026}
   - component: {fileID: 7793801027852880519}
   - component: {fileID: 7794327462836498939}
   - component: {fileID: 6966264921010832010}
@@ -2122,6 +2207,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8134527369356668370}
+  - {fileID: 6601278267541411593}
+  - {fileID: 2205335308160763382}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &2085845343277391128
@@ -2169,7 +2256,7 @@ MonoBehaviour:
   minimumDetectionAngle: -35
   maximumDetectionAngle: 35
   attackRotationSpeed: 25
---- !u!114 &9054581184558217461
+--- !u!114 &126339453259423026
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2178,9 +2265,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5787781822967198947}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d30eb8619bc5db4fbdbd76c2d278fe2, type: 3}
+  m_Script: {fileID: 11500000, guid: b4b53a48268627545b252654365b4eb3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Group1.AICharacterManager
+  m_EditorClassIdentifier: Assembly-CSharp::AIBossCharacterManager
   characterController: {fileID: 0}
   animator: {fileID: 0}
   characterEffectsManager: {fileID: 0}
@@ -2191,7 +2278,7 @@ MonoBehaviour:
   isSprinting: 0
   isDead: 0
   isLockedOn: 0
-  characterGroup: 0
+  characterGroup: 1
   isPerformingAction: 0
   isGrounded: 1
   isJumping: 0
