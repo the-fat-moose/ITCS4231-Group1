@@ -19,5 +19,15 @@ namespace Group1 {
         public float xPosition;
         public float yPosition;
         public float zPosition;
+
+        [Header("Resources")]
+        public int currentHealth;
+        public int currentStamina;
+        public int currentMana;
+
+        [Header("Stats")]
+        public int vitality;
+        public int endurance;
+        public int mind;
     }
 }

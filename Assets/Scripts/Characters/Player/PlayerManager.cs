@@ -86,24 +86,12 @@ namespace Group1{
                 // Stamina Setup
                 OnStaminaChanged += PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue;
                 OnStaminaChanged += playerStatsManager.ResetStaminaRegenTimer;
-                
-                MaxStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(Endurance);
-                CurrentStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(Endurance);
-                PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(MaxStamina);
 
                 // Health Setup
                 OnHealthChanged += PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue;
 
-                MaxHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel(Vitality);
-                CurrentHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel(Vitality);
-                PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(MaxHealth);
-
                 // Mana Setup
                 OnManaChanged += PlayerUIManager.instance.playerUIHudManager.SetNewManaValue;
-
-                MaxMana = playerStatsManager.CalculateManaBasedOnMindLevel(Mind);
-                CurrentMana = playerStatsManager.CalculateManaBasedOnMindLevel(Mind);
-                PlayerUIManager.instance.playerUIHudManager.SetMaxManaValue(MaxMana);
 
                 // Death and Healing Handling
                 OnHealthChanged += CheckHP;
@@ -146,6 +134,22 @@ namespace Group1{
             characterName = currentCharacterData.characterName;
             Vector3 myPosition = new Vector3(currentCharacterData.xPosition, currentCharacterData.yPosition, currentCharacterData.zPosition);
             transform.position = myPosition;
+
+            Endurance = currentCharacterData.endurance;
+            Vitality = currentCharacterData.vitality;
+            Mind = currentCharacterData.mind;
+
+            MaxStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(Endurance);
+            CurrentStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(Endurance);
+            PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(MaxStamina);
+
+            MaxHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel(Vitality);
+            CurrentHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel(Vitality);
+            PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(MaxHealth);
+
+            MaxMana = playerStatsManager.CalculateManaBasedOnMindLevel(Mind);
+            CurrentMana = playerStatsManager.CalculateManaBasedOnMindLevel(Mind);
+            PlayerUIManager.instance.playerUIHudManager.SetMaxManaValue(MaxMana);
         }
 
         public override IEnumerator ProcessDeathEvent()
