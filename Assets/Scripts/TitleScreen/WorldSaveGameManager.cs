@@ -283,6 +283,17 @@ namespace Group1 {
             saveFileDataWriter.CreateNewCharacterSaveFile(currentCharacterData);
         }
         
+        public void DeleteGame(CharacterSlot characterSlot)
+        {
+            // CHOOSE A FILE BASED ON NAME
+            saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(characterSlot);
+
+            saveFileDataWriter = new SaveFileDataWriter();
+            saveFileDataWriter.saveDataDirectoryPath = Application.persistentDataPath;
+            saveFileDataWriter.saveFileName = saveFileName;
+            saveFileDataWriter.DeleteSaveFile();
+        }
+
         // LOAD ALL CHARACTER PROFILES ON DEVICE WHEN STARTING GAME
         private void LoadAllCharacterSlots()
         {
