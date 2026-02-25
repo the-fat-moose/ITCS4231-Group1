@@ -16,6 +16,8 @@ namespace Group1 {
 
             if (!playerPerformingAction.isGrounded) return; // CHANGE THIS WHEN AERIAL ATTACKS ARE ADDED
 
+            playerPerformingAction.isAttacking = true;
+
             PerformLightAttack(playerPerformingAction, weaponPerformingAction);
         }
 

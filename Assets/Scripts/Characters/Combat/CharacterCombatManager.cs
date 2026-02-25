@@ -6,6 +6,8 @@ namespace Group1 {
     {
         protected CharacterManager character;
 
+        public bool canBlock = true;
+
         [Header("Last Attack Animation Performed")]
         public string lastAttackAnimationPerformed;
         
