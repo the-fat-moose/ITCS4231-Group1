@@ -22,8 +22,8 @@ namespace Group1 {
 
         [Header("Resources")]
         public int currentHealth;
-        public int currentStamina;
-        public int currentMana;
+        public float currentStamina;
+        public int currentMana = -1; // Defaulted to -1 because mana cannot be lower than 0, so if this is read as less than 0, then the character is set to their max mana
 
         [Header("Stats")]
         public int vitality;

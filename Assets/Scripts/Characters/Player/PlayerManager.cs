@@ -123,10 +123,23 @@ namespace Group1{
         public void SaveGameDataToCurrentCharacterData(ref CharacterSaveData currentCharacterData)
         {
             currentCharacterData.sceneIndex = SceneManager.GetActiveScene().buildIndex;
+            if (currentCharacterData.sceneIndex <= 0)
+            {
+                currentCharacterData.sceneIndex = 1; // DEFAULT FIRST PLAYABLE SCENE
+            }
+            
             currentCharacterData.characterName = characterName.ToString();
             currentCharacterData.xPosition = transform.position.x;
             currentCharacterData.yPosition = transform.position.y;
             currentCharacterData.zPosition = transform.position.z;
+
+            currentCharacterData.currentStamina = CurrentStamina;
+            currentCharacterData.currentHealth = CurrentHealth;
+            currentCharacterData.currentMana = CurrentMana;
+
+            currentCharacterData.endurance = Endurance;
+            currentCharacterData.vitality = Vitality;
+            currentCharacterData.mind = Mind;
         }
 
         public void LoadGameDataFromCurrentCharacterData(ref CharacterSaveData currentCharacterData)
@@ -140,15 +153,29 @@ namespace Group1{
             Mind = currentCharacterData.mind;
 
             MaxStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(Endurance);
-            CurrentStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(Endurance);
+            CurrentStamina = currentCharacterData.currentStamina;
             PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(MaxStamina);
 
             MaxHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel(Vitality);
-            CurrentHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel(Vitality);
+            if (currentCharacterData.currentHealth <= 0)
+            {
+                CurrentHealth = MaxHealth;
+            }
+            else
+            {
+                CurrentHealth = currentCharacterData.currentHealth;
+            }
             PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(MaxHealth);
 
             MaxMana = playerStatsManager.CalculateManaBasedOnMindLevel(Mind);
-            CurrentMana = playerStatsManager.CalculateManaBasedOnMindLevel(Mind);
+            if (currentCharacterData.currentMana < 0)
+            {
+                CurrentMana = MaxMana;
+            }
+            else
+            {
+                CurrentMana = currentCharacterData.currentMana;
+            }
             PlayerUIManager.instance.playerUIHudManager.SetMaxManaValue(MaxMana);
         }
 

@@ -128,7 +128,7 @@ namespace Group1 {
                 currentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_01;
                 currentCharacterData = new CharacterSaveData();
 
-                StartCoroutine(LoadWorldScene());
+                NewGame();
                 return;
             }
 
@@ -141,7 +141,7 @@ namespace Group1 {
                 currentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_02;
                 currentCharacterData = new CharacterSaveData();
 
-                StartCoroutine(LoadWorldScene());
+                NewGame();
                 return;
             }
 
@@ -154,7 +154,7 @@ namespace Group1 {
                 currentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_03;
                 currentCharacterData = new CharacterSaveData();
 
-                StartCoroutine(LoadWorldScene());
+                NewGame();
                 return;
             }
 
@@ -167,7 +167,7 @@ namespace Group1 {
                 currentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_04;
                 currentCharacterData = new CharacterSaveData();
 
-                StartCoroutine(LoadWorldScene());
+                NewGame();
                 return;
             }
             
@@ -180,7 +180,7 @@ namespace Group1 {
                 currentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_05;
                 currentCharacterData = new CharacterSaveData();
 
-                StartCoroutine(LoadWorldScene());
+                NewGame();
                 return;
             }
 
@@ -193,7 +193,7 @@ namespace Group1 {
                 currentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_06;
                 currentCharacterData = new CharacterSaveData();
 
-                StartCoroutine(LoadWorldScene());
+                NewGame();
                 return;
             }
 
@@ -206,7 +206,7 @@ namespace Group1 {
                 currentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_07;
                 currentCharacterData = new CharacterSaveData();
 
-                StartCoroutine(LoadWorldScene());
+                NewGame();
                 return;
             }
 
@@ -219,7 +219,7 @@ namespace Group1 {
                 currentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_08;
                 currentCharacterData = new CharacterSaveData();
 
-                StartCoroutine(LoadWorldScene());
+                NewGame();
                 return;
             }
 
@@ -232,7 +232,7 @@ namespace Group1 {
                 currentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_09;
                 currentCharacterData = new CharacterSaveData();
 
-                StartCoroutine(LoadWorldScene());
+                NewGame();
                 return;
             }
 
@@ -245,12 +245,19 @@ namespace Group1 {
                 currentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_10;
                 currentCharacterData = new CharacterSaveData();
 
-                StartCoroutine(LoadWorldScene());
+                NewGame();
                 return;
             }
 
             // IF THERE ARE NO FREE SLOTS, NOTIFY THE PLAYER
             TitleScreenManager.instance.DisplayNoFreeCharacterSlotsPopUp();
+        }
+        
+        private void NewGame()
+        {
+            // SAVES THE NEWLY CREATED CHARACTERS STATS, ITEMS, ETC.
+            SaveGame();
+            StartCoroutine(LoadWorldScene());
         }
 
         public void LoadGame()
@@ -334,6 +341,8 @@ namespace Group1 {
         public IEnumerator LoadWorldScene()
         {
             //AsyncOperation loadOperation = SceneManager.LoadSceneAsync(worldSceneIndex);
+
+            Debug.Log("WorldSaveGameManager.currentCharacterData: " + currentCharacterData);
 
             // USED FOR DIFFERENT SCENES FOR LEVELS
             AsyncOperation loadOperation = SceneManager.LoadSceneAsync(currentCharacterData.sceneIndex);
