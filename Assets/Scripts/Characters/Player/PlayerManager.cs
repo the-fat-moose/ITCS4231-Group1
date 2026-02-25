@@ -72,6 +72,10 @@ namespace Group1{
         {
             base.Start();
 
+            PlayerCamera.cam.player = this;
+            PlayerInputManager.inputs.player = this;
+            WorldSaveGameManager.instance.player = this;
+
             if (PlayerUIManager.instance != null)
             {
                 // UPDATE TOTAL AMOUNT OF HEALTH, STAMINA, MANA WHEN THE STAT LINKED TO EITHER CHANGES

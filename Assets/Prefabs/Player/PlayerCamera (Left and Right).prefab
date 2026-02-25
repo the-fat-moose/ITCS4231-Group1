@@ -51,6 +51,7 @@ MonoBehaviour:
   cameraSmoothSpeed: 10
   leftAndRightRotationSpeed: 20
   upAndDownRotationSpeed: 20
+  setCameraHeightSpeed: 0.0001
   minimumPivot: -60
   maximumPivot: 60
   cameraCollisionOffset: 0.2
@@ -59,6 +60,16 @@ MonoBehaviour:
     m_Bits: 129
   leftAndRightLookAngle: 0
   upAndDownLookAngle: 0
+  lockOnRadius: 20
+  minimumViewableAngle: -50
+  maximumViewableAngle: 50
+  maximumLockOnDistance: 20
+  lockOnTargetFollowSpeed: 0.2
+  unlockedCameraHeight: 1.65
+  lockedCameraHeight: 2
+  nearestLockOnTarget: {fileID: 0}
+  leftLockOnTarget: {fileID: 0}
+  rightLockOnTarget: {fileID: 0}
 --- !u!1 &5483104116713962436
 GameObject:
   m_ObjectHideFlags: 0

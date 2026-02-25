@@ -52,6 +52,7 @@ namespace Group1{
             if(inputs == null)
             {
                 inputs = this;
+                DontDestroyOnLoad(gameObject);
             }
             else
             {
