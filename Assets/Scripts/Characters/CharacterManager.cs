@@ -174,6 +174,8 @@ namespace Group1{
                 if (currentMana == value) return;
 
                 int oldValue = currentMana;
+                currentMana = value;
+                
                 OnManaChanged?.Invoke(oldValue, currentMana);
             }
         }

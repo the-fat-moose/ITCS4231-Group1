@@ -153,7 +153,7 @@ namespace Group1{
             Mind = currentCharacterData.mind;
 
             MaxStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(Endurance);
-            CurrentStamina = currentCharacterData.currentStamina;
+            CurrentStamina = MaxStamina;
             PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(MaxStamina);
 
             MaxHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel(Vitality);
@@ -168,7 +168,7 @@ namespace Group1{
             PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(MaxHealth);
 
             MaxMana = playerStatsManager.CalculateManaBasedOnMindLevel(Mind);
-            if (currentCharacterData.currentMana < 0)
+            if (currentCharacterData.currentMana <= 0)
             {
                 CurrentMana = MaxMana;
             }
