@@ -3663,8 +3663,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -325}
-  m_SizeDelta: {x: 0, y: 650}
+  m_AnchoredPosition: {x: 0, y: -343.59894}
+  m_SizeDelta: {x: 0, y: 687.198}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1499918537
 MonoBehaviour:
@@ -4642,6 +4642,7 @@ GameObject:
   - component: {fileID: 1859964257}
   - component: {fileID: 1859964259}
   - component: {fileID: 1859964258}
+  - component: {fileID: 1859964260}
   m_Layer: 5
   m_Name: Mask
   m_TagString: Untagged
@@ -4707,6 +4708,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1859964256}
   m_CullTransparentMesh: 1
+--- !u!114 &1859964260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859964256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Mask
+  m_ShowMaskGraphic: 0
 --- !u!224 &1889949524 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2452459483832413724, guid: b9dddb8a664fc964ca89afa856b2296a, type: 3}
@@ -4860,6 +4874,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1966440254}
   - component: {fileID: 1966440255}
+  - component: {fileID: 1966440256}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -4918,6 +4933,23 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1966440256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966440253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dd9c9de68d007840832830cbbe96697, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  currentSelected: {fileID: 0}
+  previouslySelected: {fileID: 0}
+  currentlySelectedTransform: {fileID: 0}
+  contentPanel: {fileID: 1499918536}
+  scrollRect: {fileID: 1966440255}
 --- !u!1 &2021186641
 GameObject:
   m_ObjectHideFlags: 0

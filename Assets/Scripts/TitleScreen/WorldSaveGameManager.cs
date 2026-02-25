@@ -333,7 +333,10 @@ namespace Group1 {
 
         public IEnumerator LoadWorldScene()
         {
-            AsyncOperation loadOperation = SceneManager.LoadSceneAsync(worldSceneIndex);
+            //AsyncOperation loadOperation = SceneManager.LoadSceneAsync(worldSceneIndex);
+
+            // USED FOR DIFFERENT SCENES FOR LEVELS
+            AsyncOperation loadOperation = SceneManager.LoadSceneAsync(currentCharacterData.sceneIndex);
 
             player.LoadGameDataFromCurrentCharacterData(ref currentCharacterData);
 

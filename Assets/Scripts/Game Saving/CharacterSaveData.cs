@@ -5,6 +5,9 @@ namespace Group1 {
     // SINCE WE WANT TO REFERENCE THIS DATA FOR EVERY SAVE FILE, THIS SCRIPT IS NOT A MONOBEHAVIOR AND IS INSTEAD SERIALIZABLE
     public class CharacterSaveData
     {
+        [Header("Scene Index")]
+        public int sceneIndex = 1; // Defaulted to the first level
+
         [Header("Character Name")]
         public string characterName = "Character";
 
