@@ -1,10 +1,15 @@
 using System.Collections;
+using Unity.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Group1{
     public class PlayerManager : CharacterManager
     {
+        [Header("Generic Save Data Variables")]
+        public FixedString64Bytes characterName = "Character";
+
         [Header("DEBUG MENU")]
         [SerializeField] bool respawnCharacter = false;
         [SerializeField] bool setNewHealth = false;
@@ -128,6 +133,21 @@ namespace Group1{
             base.LateUpdate();
 
             PlayerCamera.cam.HandleCameraActions();
+        }
+
+        public void SaveGameDataToCurrentCharacterData(ref CharacterSaveData currentCharacterData)
+        {
+            currentCharacterData.characterName = characterName.ToString();
+            currentCharacterData.xPosition = transform.position.x;
+            currentCharacterData.yPosition = transform.position.y;
+            currentCharacterData.zPosition = transform.position.z;
+        }
+
+        public void LoadGameDataFromCurrentCharacterData(ref CharacterSaveData currentCharacterData)
+        {
+            characterName = currentCharacterData.characterName;
+            Vector3 myPosition = new Vector3(currentCharacterData.xPosition, currentCharacterData.yPosition, currentCharacterData.zPosition);
+            transform.position = myPosition;
         }
 
         public override IEnumerator ProcessDeathEvent()
