@@ -112,9 +112,9 @@ namespace Group1 {
 
         public void DeleteCharacterSlot()
         {
+            WorldSaveGameManager.instance.DeleteGame(currentSelectedSlot);
             deleteCharacterSlotPopUp.SetActive(false);
             loadMenuReturnButton.Select();
-            WorldSaveGameManager.instance.DeleteGame(currentSelectedSlot);
         }
 
         public void CloseDeleteCharacterPopUp()

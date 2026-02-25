@@ -283,10 +283,10 @@ namespace Group1 {
             saveFileDataWriter.CreateNewCharacterSaveFile(currentCharacterData);
         }
         
-        public void DeleteGame(CharacterSlot characterSlot)
+        public void DeleteGame(CharacterSlot characterSlotToDelete)
         {
             // CHOOSE A FILE BASED ON NAME
-            saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(characterSlot);
+            saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(characterSlotToDelete);
 
             saveFileDataWriter = new SaveFileDataWriter();
             saveFileDataWriter.saveDataDirectoryPath = Application.persistentDataPath;
