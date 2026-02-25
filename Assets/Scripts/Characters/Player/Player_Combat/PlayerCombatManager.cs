@@ -29,8 +29,6 @@ namespace Group1 {
 
         public virtual void DrainStaminaBasedOnAttack()
         {
-            Debug.Log("DrainStaminaBasedOnAttack CALLED");
-
             float staminaLoss = 0;
 
             if(currentWeaponBeingUsed == null) return;

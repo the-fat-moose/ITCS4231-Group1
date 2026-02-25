@@ -110,18 +110,21 @@ namespace Group1{
 
         private void HandleAllInputs()
         {
-            MovementInput();
-            HandleLockOnInput();
-            HandleLockOnSwitchTargetInput();
-            HandleCameraInput();
-            HandleDodgeInput();
-            HandleSprinting();
-            HandleJumpInput();
-            HandleRBInput();
-            HandleRTInput();
-            HandleHoldRTInput();
-            HandleSwitchWeaponInput();
-            HandleAllQuedInputs();
+            if (player != null) 
+            {
+                MovementInput();
+                HandleLockOnInput();
+                HandleLockOnSwitchTargetInput();
+                HandleCameraInput();
+                HandleDodgeInput();
+                HandleSprinting();
+                HandleJumpInput();
+                HandleRBInput();
+                HandleRTInput();
+                HandleHoldRTInput();
+                HandleSwitchWeaponInput();
+                HandleAllQuedInputs();
+            }
         }
 
         private void HandleLockOnInput()
@@ -334,7 +337,7 @@ namespace Group1{
             que_RB_input = false;
             que_RT_input = false;
 
-            if(!player.playerCombatManager.canComboWithMainHandWeapon)
+            if(player != null && !player.playerCombatManager.canComboWithMainHandWeapon)
             {
                 quedInput = true;
                 que_Input_Timer = default_Que_Input_Timer;

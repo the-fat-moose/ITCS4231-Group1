@@ -123,13 +123,6 @@ namespace Group1{
 
             // REGEN STAMINA
             playerStatsManager.RegenerateStamina();
-
-
-
-            // DEBUG DELETE LATER
-            DebugMenu();
-
-            Debug.Log("Player.IsMoving: " + IsMoving);
         }
 
         protected override void LateUpdate()

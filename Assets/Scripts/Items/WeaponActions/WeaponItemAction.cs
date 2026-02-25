@@ -10,8 +10,6 @@ namespace Group1
         public virtual void AttemptToPerformAction(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
         {
             playerPerformingAction.CurrentWeaponBeingUsed = weaponPerformingAction.itemID;
-
-            Debug.Log("THE ACTION HAS FIRED");
         }
     }
 }

@@ -88,11 +88,6 @@ namespace Group1{
         {
             int layerIndex = character.animator.GetLayerIndex("Action Override");
 
-            Debug.Log(character.animator.HasState(
-                character.animator.GetLayerIndex("Action Override"),
-                Animator.StringToHash(targetAnimation)
-            ));
-
             //used to stop player from performing actions while in action
             character.isPerformingAction = isPerformingAction;
             character.canMove = canMove;
