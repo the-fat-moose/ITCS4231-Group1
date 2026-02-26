@@ -42,6 +42,7 @@ namespace Group1{
 
         [Header("Bumper inputs")]
         [SerializeField] private bool RB_Input = false;
+        [SerializeField] private bool LB_Input = false;
 
         [Header("Trigger inputs")]
         [SerializeField] bool RT_Input = false;
@@ -78,6 +79,8 @@ namespace Group1{
                 
                 // BUMPERS
                 playerControls.PlayerActions.RB.performed += i => RB_Input = true;
+                playerControls.PlayerActions.LB.performed += i => LB_Input = true;
+                playerControls.PlayerActions.LB.canceled += i => LB_Input = false;
                 
                 // TRIGGERS
                 playerControls.PlayerActions.RT.performed += i => RT_Input = true;
@@ -120,6 +123,7 @@ namespace Group1{
                 HandleSprinting();
                 HandleJumpInput();
                 HandleRBInput();
+                HandleLBInput();
                 HandleRTInput();
                 HandleHoldRTInput();
                 HandleSwitchWeaponInput();
@@ -298,6 +302,18 @@ namespace Group1{
                 // TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
 
                 player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentRightHandWeapon.rb_Action, player.playerInventoryManager.currentRightHandWeapon);
+            }
+        }
+
+        private void HandleLBInput()
+        {
+            if (LB_Input)
+            {
+                player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentRightHandWeapon.lb_Action, player.playerInventoryManager.currentRightHandWeapon);
+            }
+            else
+            {
+                player.IsBlocking = false;
             }
         }
 

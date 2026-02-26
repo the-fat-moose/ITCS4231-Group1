@@ -403,6 +403,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""LB"",
+                    ""type"": ""Button"",
+                    ""id"": ""1ed66c3b-4665-4d2c-856c-351e04bdca76"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Que RB"",
                     ""type"": ""Button"",
                     ""id"": ""1f391ee9-e182-4a23-81c3-e10819b2535b"",
@@ -566,6 +575,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""14bd72b1-a233-46bb-b7a0-641f6bba287f"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""78f2a466-8142-4a6d-b446-19bab482d63b"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""b7e66f8c-1dd8-4dc2-b4fe-da29ccc87bd9"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
@@ -622,7 +653,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""38f7ac45-d327-4c21-8139-84a2d1056446"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""path"": ""<Keyboard>/x"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -644,7 +675,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""93c0f0d3-e5a9-4e55-95d3-a170bdc61992"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""path"": ""<Keyboard>/x"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -710,7 +741,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""8233644f-7002-4c67-b2ef-7b7190d59e88"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""path"": ""<Keyboard>/x"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -775,6 +806,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerActions_Sprint = m_PlayerActions.FindAction("Sprint", throwIfNotFound: true);
         m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
         m_PlayerActions_RB = m_PlayerActions.FindAction("RB", throwIfNotFound: true);
+        m_PlayerActions_LB = m_PlayerActions.FindAction("LB", throwIfNotFound: true);
         m_PlayerActions_QueRB = m_PlayerActions.FindAction("Que RB", throwIfNotFound: true);
         m_PlayerActions_RT = m_PlayerActions.FindAction("RT", throwIfNotFound: true);
         m_PlayerActions_QueRT = m_PlayerActions.FindAction("Que RT", throwIfNotFound: true);
@@ -1076,6 +1108,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_Sprint;
     private readonly InputAction m_PlayerActions_Jump;
     private readonly InputAction m_PlayerActions_RB;
+    private readonly InputAction m_PlayerActions_LB;
     private readonly InputAction m_PlayerActions_QueRB;
     private readonly InputAction m_PlayerActions_RT;
     private readonly InputAction m_PlayerActions_QueRT;
@@ -1111,6 +1144,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "PlayerActions/RB".
         /// </summary>
         public InputAction @RB => m_Wrapper.m_PlayerActions_RB;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerActions/LB".
+        /// </summary>
+        public InputAction @LB => m_Wrapper.m_PlayerActions_LB;
         /// <summary>
         /// Provides access to the underlying input action "PlayerActions/QueRB".
         /// </summary>
@@ -1181,6 +1218,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @RB.started += instance.OnRB;
             @RB.performed += instance.OnRB;
             @RB.canceled += instance.OnRB;
+            @LB.started += instance.OnLB;
+            @LB.performed += instance.OnLB;
+            @LB.canceled += instance.OnLB;
             @QueRB.started += instance.OnQueRB;
             @QueRB.performed += instance.OnQueRB;
             @QueRB.canceled += instance.OnQueRB;
@@ -1228,6 +1268,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @RB.started -= instance.OnRB;
             @RB.performed -= instance.OnRB;
             @RB.canceled -= instance.OnRB;
+            @LB.started -= instance.OnLB;
+            @LB.performed -= instance.OnLB;
+            @LB.canceled -= instance.OnLB;
             @QueRB.started -= instance.OnQueRB;
             @QueRB.performed -= instance.OnQueRB;
             @QueRB.canceled -= instance.OnQueRB;
@@ -1453,6 +1496,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnRB(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "LB" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLB(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Que RB" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

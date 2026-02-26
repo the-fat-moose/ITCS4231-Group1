@@ -9,19 +9,18 @@ namespace Group1
         public override void AttemptToPerformAction(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
         {
             base.AttemptToPerformAction(playerPerformingAction, weaponPerformingAction);
-
             if(!playerPerformingAction.playerCombatManager.canBlock) return;
 
             if (playerPerformingAction.isAttacking)
             {
-                playerPerformingAction.isBlocking = false;
+                playerPerformingAction.IsBlocking = false;
 
                 return;
             }
 
-            if(playerPerformingAction.isBlocking) return;
+            if(playerPerformingAction.IsBlocking) return;
 
-            playerPerformingAction.isBlocking = true;
+            playerPerformingAction.IsBlocking = true;
         }
     }
 }

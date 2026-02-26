@@ -50,7 +50,7 @@ namespace Group1 {
 
             GetBlockingDotValue(damageTarget);
 
-            if (damageTarget.isBlocking && dotValueFromAttackToDamageTarget > 0.3f)
+            if (damageTarget.IsBlocking && dotValueFromAttackToDamageTarget > 0.3f)
             {
                 charactersDamaged.Add(damageTarget);
 

@@ -35,7 +35,7 @@ namespace Group1{
 
         public event System.Action<bool, bool> OnIsChargingAttackChanged;
         public event System.Action<bool, bool> OnIsMovingValueChanged;
-
+        public event System.Action<bool, bool> OnIsBlockingValueChanged;
         public bool IsMoving
         {
             get => isMoving;
@@ -46,6 +46,19 @@ namespace Group1{
                 bool oldValue = isMoving;
                 isMoving = value;
                 OnIsMovingValueChanged?.Invoke(oldValue, isMoving);
+            }
+        }
+
+        public bool IsBlocking
+        {
+            get => isBlocking;
+            set
+            {
+                if(isBlocking == value) return;
+
+                bool oldValue = isBlocking;
+                isBlocking = value;
+                OnIsBlockingValueChanged?.Invoke(oldValue, isBlocking);
             }
         }
 
@@ -203,6 +216,7 @@ namespace Group1{
             characterStatsManager = GetComponent<CharacterStatsManager>();
 
             OnIsMovingValueChanged += OnIsMovingChanged;
+            OnIsBlockingValueChanged += OnIsBlockingChanged;
         }
 
         protected virtual void Start()
@@ -236,6 +250,11 @@ namespace Group1{
         public void OnIsMovingChanged(bool oldStatus, bool newStatus)
         {
             animator.SetBool("isMoving", IsMoving);
+        }
+
+        public void OnIsBlockingChanged(bool oldStatus, bool newStatus)
+        {
+            animator.SetBool("isBlocking", newStatus);
         }
 
         public void CheckHP(int oldValue, int newValue)

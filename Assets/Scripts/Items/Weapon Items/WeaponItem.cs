@@ -17,6 +17,10 @@ namespace Group1 {
         public int physicalDamage = 0;
         public int magicDamage = 0;
 
+        [Header("Blocking Absorption")]
+        public int physicalDamageAbsorption = 70;
+        public int magicDamageAbsorption = 70;
+
         // WEAPON GUARD ABSORPTIONS
         [Header("Attack Modifier")]
         public float light_Attack_Modifier = 1.1f;
@@ -32,6 +36,7 @@ namespace Group1 {
         [Header("Actions")]
         public WeaponItemAction rb_Action;
         public WeaponItemAction rt_Action;
+        public WeaponItemAction lb_Action;
 
         // ABILITIES
 
