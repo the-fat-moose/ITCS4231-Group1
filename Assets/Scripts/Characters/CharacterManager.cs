@@ -32,10 +32,14 @@ namespace Group1{
         public bool isChargingAttack = false;
         public bool isBlocking = false;
         public bool isAttacking = false;
+        public bool isActive = true;
 
         public event System.Action<bool, bool> OnIsChargingAttackChanged;
         public event System.Action<bool, bool> OnIsMovingValueChanged;
         public event System.Action<bool, bool> OnIsBlockingValueChanged;
+
+        public event System.Action<bool, bool> OnIsActiveValueChanged;
+
         public bool IsMoving
         {
             get => isMoving;
@@ -59,6 +63,19 @@ namespace Group1{
                 bool oldValue = isBlocking;
                 isBlocking = value;
                 OnIsBlockingValueChanged?.Invoke(oldValue, isBlocking);
+            }
+        }
+
+        public bool IsActive
+        {
+            get => isActive;
+            set
+            {
+                if (isActive == value) return;
+
+                bool oldValue = isActive;
+                isActive = value;
+                OnIsActiveValueChanged?.Invoke(oldValue, isBlocking);
             }
         }
 
@@ -222,6 +239,9 @@ namespace Group1{
         protected virtual void Start()
         {
             IgnoreMyOwnColliders();
+
+            OnIsActiveChanged(false, IsActive);
+            OnIsActiveValueChanged += OnIsActiveChanged;
         }
 
         protected virtual void Update()
@@ -255,6 +275,11 @@ namespace Group1{
         public void OnIsBlockingChanged(bool oldStatus, bool newStatus)
         {
             animator.SetBool("isBlocking", newStatus);
+        }
+
+        public void OnIsActiveChanged(bool oldStatus, bool newStatus)
+        {
+            gameObject.SetActive(IsActive);
         }
 
         public void CheckHP(int oldValue, int newValue)

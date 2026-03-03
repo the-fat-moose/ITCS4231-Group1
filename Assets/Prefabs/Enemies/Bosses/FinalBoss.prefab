@@ -2176,6 +2176,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5643810957383035658}
+  - component: {fileID: 3549983606047134766}
   - component: {fileID: 2085845343277391128}
   - component: {fileID: 1231333947033157760}
   - component: {fileID: 126339453259423026}
@@ -2211,6 +2212,28 @@ Transform:
   - {fileID: 2205335308160763382}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!95 &3549983606047134766
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5787781822967198947}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 76d85a44286241741bc68d89630671ee, type: 3}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &2085845343277391128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2244,6 +2267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11deaf7e4725a7a4e9980be5d7c06ee3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Group1.AIFinalBossCombatManager
+  canBlock: 1
   lastAttackAnimationPerformed: 
   currentTarget: {fileID: 0}
   currentAttackType: 0
@@ -2287,6 +2311,7 @@ MonoBehaviour:
   canMove: 1
   isChargingAttack: 0
   isBlocking: 0
+  isAttacking: 0
   endurance: 10
   vitality: 10
   mind: 10
@@ -2300,10 +2325,13 @@ MonoBehaviour:
   aiCharacterLocomotionManager: {fileID: 0}
   navMeshAgent: {fileID: 0}
   currentState: {fileID: 0}
-  idle: {fileID: 0}
-  pursueTarget: {fileID: 0}
-  combatStance: {fileID: 0}
-  attack: {fileID: 0}
+  idle: {fileID: 11400000, guid: 5c577e05925e04b4989398aeff23d7b5, type: 2}
+  pursueTarget: {fileID: 11400000, guid: 46ce2d633be6790448b26e0ee26ef3fe, type: 2}
+  combatStance: {fileID: 11400000, guid: 39aac73eecd584c40ae6ba42cc1ab5a7, type: 2}
+  attack: {fileID: 11400000, guid: 5d77743cff2bdf346b73f4a716814c9c, type: 2}
+  bossID: 0
+  hasBeenDefeated: 0
+  defeatedBossDebug: 0
 --- !u!114 &7793801027852880519
 MonoBehaviour:
   m_ObjectHideFlags: 0
