@@ -14,7 +14,6 @@ namespace Group1{
         [SerializeField] bool respawnCharacter = false;
         [SerializeField] bool setNewHealth = false;
         [SerializeField] [Range(0, 100)] int newHealthPercentage = 0;
-        [SerializeField] bool switchRightWeapon = false;
 
         [HideInInspector] public PlayerAnimatorManager playerAnimatorManager;
         [HideInInspector] public PlayerLocomotionManager locomotion;
@@ -111,6 +110,14 @@ namespace Group1{
 
             // REGEN STAMINA
             playerStatsManager.RegenerateStamina();
+
+            if (setNewHealth)
+            {
+                setNewHealth = false;
+                CurrentHealth = newHealthPercentage * MaxHealth;
+            }
+
+            DebugMenu();
         }
 
         protected override void LateUpdate()
@@ -199,7 +206,7 @@ namespace Group1{
             isDead = false;
 
             // PLAY REBIRTH EFFECTS
-            // playerAnimatorManager.PlayTargetActionAnimation("Empty", false);
+            playerAnimatorManager.PlayTargetActionAnimation("Empty", false, true, false, false);
         }
 
         private void SetNewMaxHealthValue(int oldVitality, int newVitality)
@@ -265,45 +272,6 @@ namespace Group1{
             {
                 setNewHealth = false;
                 CurrentHealth = MaxHealth * newHealthPercentage / 100;
-            }
-
-            if (switchRightWeapon)
-            {
-                switchRightWeapon = false;
-                playerEquipmentManager.SwitchRightWeapon();
-            }
-        }
-
-        public void DebugRespawnPlayer()
-        {
-            respawnCharacter = true;
-            GameObject playerUIManager = GameObject.Find("PlayerUIManager");
-            if (playerUIManager != null)
-            {
-                // playerUIManager/Hud Manager/Debug Manager/Debug Panel/Respawn Toggle
-                playerUIManager.transform.GetChild(0).transform.GetChild(1).transform.GetChild(0).transform.GetChild(0).GetComponent<Toggle>().isOn = false;
-            }
-        }
-
-        public void DebugDie()
-        {
-            setNewHealth = true;
-            GameObject playerUIManager = GameObject.Find("PlayerUIManager");
-            if (playerUIManager != null)
-            {
-                // playerUIManager/Hud Manager/Debug Manager/Debug Panel/Die Toggle
-                playerUIManager.transform.GetChild(0).transform.GetChild(1).transform.GetChild(0).transform.GetChild(1).GetComponent<Toggle>().isOn = false;
-            }
-        }
-
-        public void DebugSwitchWeapon()
-        {
-            switchRightWeapon = true;
-            GameObject playerUIManager = GameObject.Find("PlayerUIManager");
-            if (playerUIManager != null)
-            {
-                // playerUIManager/Hud Manager/Debug Manager/Debug Panel/Switch Weapon Toggle
-                playerUIManager.transform.GetChild(0).transform.GetChild(1).transform.GetChild(0).transform.GetChild(2).GetComponent<Toggle>().isOn = false;
             }
         }
     }       
