@@ -279,7 +279,7 @@ namespace Group1{
             // RESET ANY FLAGS HERE THAT NEED TO BE RESET
             // NOTHING YET
 
-            //characterAnimatorManager.PlayTargetActionAnimation("Death", true);
+            characterAnimatorManager.PlayTargetActionAnimation("Death", true);
 
             // PLAY SOME DEATH SFX
 
