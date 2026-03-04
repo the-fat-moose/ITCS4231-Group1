@@ -10,7 +10,7 @@ namespace Group1 {
         public int fogWallID;
 
         [Header("Active")]
-        private bool isActive = true;
+        private bool isActive = false;
 
         public event System.Action<bool, bool> OnIsActiveValueChanged;
 

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Group1 {
@@ -6,12 +7,17 @@ namespace Group1 {
     {
         // GIVE THE AI A UNIQUE ID
         public int bossID = 0;
-        [SerializeField] bool hasBeenDefeated = false;
+        [SerializeField] private bool hasBeenDefeated = false;
+        [SerializeField] private bool hasBeenAwakened = false;
+        [SerializeField] private List<FogWallInteractable> fogWalls;
 
         // WHEN THE AI IS SPAWNED, CHECK IF THE BOSS HAS BEEN DEFEATED
         // IF THE BOSS HAS BEEN DEFEATED, DISABLE THIS OBJECT
         // IF THE HAS NOT BEEN DEFEATED, DO NOT DISABLE IT
         // HANDLE TRIGGERS WHEN THE BOSS HAS BEEN INTERACTED WITH AT LEAST ONCE
+
+        [Header("DEBUG")]
+        [SerializeField] private bool wakeBossUp = false;
 
         protected override void Start()
         {
@@ -27,10 +33,60 @@ namespace Group1 {
             else
             {
                 hasBeenDefeated = WorldSaveGameManager.instance.currentCharacterData.bossesDefeated[bossID];
+                hasBeenAwakened = WorldSaveGameManager.instance.currentCharacterData.bossesAwakened[bossID];
+            }
 
-                if (hasBeenDefeated)
+            // LOCATE FOG WALL
+            StartCoroutine(GetFogWallsFromWorldObjectManager());
+
+            // IF THE BOSS HAS BEEN AWAKENED, ENABLE THE FOG WALLS
+            if (hasBeenAwakened)
+            {
+                for (int i = 0; i < fogWalls.Count; i++)
                 {
-                    IsActive = false;
+                    fogWalls[i].IsActive = true;
+                }
+            }
+
+            // IF THE BOSS HAS BEEN DEFEATED, DISABLE THE FOG WALLS
+            if (hasBeenDefeated)
+            {
+                for (int i = 0; i < fogWalls.Count; i++)
+                {
+                    fogWalls[i].IsActive = false;
+                }
+
+                IsActive = false;
+            }
+        }
+
+        protected override void Update()
+        {
+            base.Update();
+
+            if (wakeBossUp)
+            {
+                wakeBossUp = false;
+
+                WakeBoss();
+            }
+        }
+
+        private IEnumerator GetFogWallsFromWorldObjectManager()
+        {
+            while (WorldObjectManager.instance.fogWalls.Count == 0)
+            {
+                yield return new WaitForEndOfFrame();
+            }
+
+            fogWalls = new List<FogWallInteractable>();
+
+            // LOCATE FOG WALL
+            foreach (var fogWall in WorldObjectManager.instance.fogWalls)
+            {
+                if (fogWall.fogWallID == bossID)
+                {
+                    fogWalls.Add(fogWall);
                 }
             }
         }
@@ -68,6 +124,28 @@ namespace Group1 {
             yield return new WaitForSeconds(5f);
             
             // DISABLE CHARACTER
+        }
+    
+        public void WakeBoss()
+        {
+            hasBeenAwakened = true;
+
+            // IF OUR SAVE DATA DOES NOT CONTAIN INFO ON THIS BOSS, ADD IT
+            if (!WorldSaveGameManager.instance.currentCharacterData.bossesAwakened.ContainsKey(bossID))
+            {
+                WorldSaveGameManager.instance.currentCharacterData.bossesAwakened.Add(bossID, true);
+            }
+            // OTHERWISE, LOAD THE DATA THAT ALREADY EXISTS ON THIS BOSS
+            else
+            {
+                WorldSaveGameManager.instance.currentCharacterData.bossesAwakened.Remove(bossID);
+                WorldSaveGameManager.instance.currentCharacterData.bossesAwakened.Add(bossID, true);
+            }
+
+            for (int i = 0; i < fogWalls.Count; i++)
+            {
+                fogWalls[i].IsActive = true;
+            }
         }
     }
 }
