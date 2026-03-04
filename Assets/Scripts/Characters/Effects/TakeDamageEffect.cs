@@ -41,6 +41,7 @@ namespace Group1 {
             // CHECK WHICH DIRECTION THE DAMAGE CAME FROM
             // PLAY A DAMAGE ANIMATION (IF APPLICABLE)
             // PLAY DAMAGE SOUND FX
+            PlayDamageSFX(character);
             // PLAY DAMAGE VFX (BLOOD)
             PlayDamageVFX(character);
 
@@ -78,9 +79,11 @@ namespace Group1 {
 
         private void PlayDamageSFX(CharacterManager character)
         {
-            // IF WE HAVE MAGIC DAMAGE, PLAY MAGIC SOUND
+            AudioClip physicalDamageSFX = WorldSoundFXManager.instance.ChooseRandomSFXFromArray(WorldSoundFXManager.instance.physicalDamageSFX);
 
-            
+            character.characterSoundFXManager.PlaySoundFX(physicalDamageSFX);
+
+            // IF WE HAVE MAGIC DAMAGE, PLAY MAGIC SOUND
         }
     }
 }

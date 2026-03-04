@@ -12,6 +12,7 @@ namespace Group1{
         [HideInInspector] public CharacterCombatManager characterCombatManager;
         [HideInInspector] public CharacterLocomotionManager characterLocomotionManager;
         [HideInInspector] public CharacterStatsManager characterStatsManager;
+        [HideInInspector] public CharacterSoundFXManager characterSoundFXManager;
 
 
         public bool isSprinting = false;
@@ -231,6 +232,7 @@ namespace Group1{
             characterCombatManager = GetComponent<CharacterCombatManager>();
             characterLocomotionManager = GetComponent<CharacterLocomotionManager>();
             characterStatsManager = GetComponent<CharacterStatsManager>();
+            characterSoundFXManager = GetComponent<CharacterSoundFXManager>();
 
             OnIsMovingValueChanged += OnIsMovingChanged;
             OnIsBlockingValueChanged += OnIsBlockingChanged;

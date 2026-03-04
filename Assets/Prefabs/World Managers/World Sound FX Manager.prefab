@@ -44,4 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edf635d9f6509e74c9ec26dd440d4534, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldSoundFXManager
+  physicalDamageSFX:
+  - {fileID: 8300000, guid: 7cbd6cd765888ff418d01d98bd1ce9c2, type: 3}
+  - {fileID: 8300000, guid: 3df9bbbc130ccb344af5f3fc793a630f, type: 3}
   rollSFX: {fileID: 8300000, guid: a8624a5631e1ba149964f2e506240a47, type: 3}
