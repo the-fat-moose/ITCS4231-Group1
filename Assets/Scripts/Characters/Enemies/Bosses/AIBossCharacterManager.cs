@@ -13,9 +13,6 @@ namespace Group1 {
         // IF THE HAS NOT BEEN DEFEATED, DO NOT DISABLE IT
         // HANDLE TRIGGERS WHEN THE BOSS HAS BEEN INTERACTED WITH AT LEAST ONCE
 
-        [Header("TEST")]
-        [SerializeField] bool defeatedBossDebug = false;
-
         protected override void Start()
         {
             base.Start();

@@ -35,8 +35,6 @@ namespace Group1 {
             {
                 contactPoint = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
 
-                Debug.Log("DAMAGE COLLIDER CONTACT POINT: " + contactPoint);
-
                 // CHECK IF THE TARGET IS BLOCKING
 
                 // CHECK IF THE TARGET IS INVULNERABLE
