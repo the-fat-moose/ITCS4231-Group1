@@ -76,7 +76,7 @@ namespace Group1{
 
                 bool oldValue = isActive;
                 isActive = value;
-                OnIsActiveValueChanged?.Invoke(oldValue, isBlocking);
+                OnIsActiveValueChanged?.Invoke(oldValue, isActive);
             }
         }
 
