@@ -98,6 +98,8 @@ MonoBehaviour:
   canMove: 1
   isChargingAttack: 0
   isBlocking: 0
+  isAttacking: 0
+  isActive: 1
   endurance: 10
   vitality: 10
   mind: 10
@@ -127,6 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e48bd9b71e15fc4bbea48b1288913a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AIGroundEnemyV1CombatManager
+  canBlock: 1
   lastAttackAnimationPerformed: 
   currentTarget: {fileID: 0}
   currentAttackType: 0
@@ -281,6 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55059e3ecf8145740a711bb087fc77dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Group1.CharacterEffectsManager
+  bloodSplatterVFX: {fileID: 0}
 --- !u!1 &4736051697357972447
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,7 +406,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 1
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
