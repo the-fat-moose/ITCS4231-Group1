@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &479397048370490563
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9107504109425820702}
-  m_Layer: 8
-  m_Name: Target
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &9107504109425820702
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 479397048370490563}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.086, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7070114399704089488}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1848759270065341564
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,8 +62,10 @@ GameObject:
   - component: {fileID: 5225235949794452445}
   - component: {fileID: 7842898494225634399}
   - component: {fileID: 9100049149628205151}
+  - component: {fileID: 7211474492445298594}
   - component: {fileID: 1438274532058176364}
   - component: {fileID: 3690826846574739967}
+  - component: {fileID: 8488742000158188457}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -158,6 +129,7 @@ MonoBehaviour:
   characterAnimatorManager: {fileID: 0}
   characterCombatManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
+  characterStatsManager: {fileID: 0}
   isSprinting: 0
   isDead: 0
   isLockedOn: 0
@@ -169,6 +141,9 @@ MonoBehaviour:
   canRotate: 1
   canMove: 1
   isChargingAttack: 0
+  isBlocking: 0
+  isAttacking: 0
+  isActive: 1
   endurance: 10
   vitality: 10
   mind: 10
@@ -178,10 +153,77 @@ MonoBehaviour:
   maxHealth: 0
   currentMana: 0
   maxMana: 0
+  characterName:
+    utf8LengthInBytes: 9
+    bytes:
+      offset0000:
+        byte0000: 67
+        byte0001: 104
+        byte0002: 97
+        byte0003: 114
+        byte0004: 97
+        byte0005: 99
+        byte0006: 116
+        byte0007: 101
+        byte0008: 114
+        byte0009: 0
+        byte0010: 0
+        byte0011: 0
+        byte0012: 0
+        byte0013: 0
+        byte0014: 0
+        byte0015: 0
+      offset0016:
+        byte0000: 0
+        byte0001: 0
+        byte0002: 0
+        byte0003: 0
+        byte0004: 0
+        byte0005: 0
+        byte0006: 0
+        byte0007: 0
+        byte0008: 0
+        byte0009: 0
+        byte0010: 0
+        byte0011: 0
+        byte0012: 0
+        byte0013: 0
+        byte0014: 0
+        byte0015: 0
+      offset0032:
+        byte0000: 0
+        byte0001: 0
+        byte0002: 0
+        byte0003: 0
+        byte0004: 0
+        byte0005: 0
+        byte0006: 0
+        byte0007: 0
+        byte0008: 0
+        byte0009: 0
+        byte0010: 0
+        byte0011: 0
+        byte0012: 0
+        byte0013: 0
+        byte0014: 0
+        byte0015: 0
+      byte0048: 0
+      byte0049: 0
+      byte0050: 0
+      byte0051: 0
+      byte0052: 0
+      byte0053: 0
+      byte0054: 0
+      byte0055: 0
+      byte0056: 0
+      byte0057: 0
+      byte0058: 0
+      byte0059: 0
+      byte0060: 0
+      byte0061: 0
   respawnCharacter: 0
   setNewHealth: 0
   newHealthPercentage: 0
-  switchRightWeapon: 0
   playerAnimatorManager: {fileID: 0}
   locomotion: {fileID: 0}
   playerStatsManager: {fileID: 0}
@@ -235,6 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42e81422a3c85864196b487661ce3b90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Group1.PlayerCombatManager
+  canBlock: 1
   lastAttackAnimationPerformed: 
   currentTarget: {fileID: 0}
   currentAttackType: 0
@@ -307,6 +350,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Group1.PlayerStatsManager
   staminaRegenerationDelay: 2
   staminaRegenerationAmount: 2
+  blockingPhysicalAbsorption: 65
+  blockingMagicAbsorption: 65
 --- !u!114 &7842898494225634399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,8 +377,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f6cd7d953711814d9e5c5d7ae494547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Group1.PlayerEffectsManager
+  bloodSplatterVFX: {fileID: 0}
   effectToTest: {fileID: 11400000, guid: a650101118bb82c49977e81c9c69b294, type: 2}
   processEffect: 0
+--- !u!114 &7211474492445298594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5786037847892666633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 614af0a4bc2c7394ba7c57fe85e9eef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Group1.PlayerSoundFXManager
 --- !u!114 &1438274532058176364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,6 +425,103 @@ MonoBehaviour:
   rightHandSlot: {fileID: 0}
   rightWeaponManager: {fileID: 0}
   rightHandWeaponModel: {fileID: 0}
+--- !u!82 &8488742000158188457
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5786037847892666633}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &7425026170528257023
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -703,9 +858,6 @@ PrefabInstance:
     - {fileID: 5866666021909216657, guid: 76d85a44286241741bc68d89630671ee, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 366175167995203695, guid: 76d85a44286241741bc68d89630671ee, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 9107504109425820702}
     - targetCorrespondingSourceObject: {fileID: 366175167995203695, guid: 76d85a44286241741bc68d89630671ee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 145142477686612402}

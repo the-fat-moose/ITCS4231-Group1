@@ -75,5 +75,12 @@ namespace Group1 {
 
             Debug.Log("TakeDamageEffect CONTACT POINT: " + contactPoint);
         }
+
+        private void PlayDamageSFX(CharacterManager character)
+        {
+            // IF WE HAVE MAGIC DAMAGE, PLAY MAGIC SOUND
+
+            
+        }
     }
 }
