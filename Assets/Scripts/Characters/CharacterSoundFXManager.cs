@@ -12,7 +12,7 @@ namespace Group1 {
 
         public void PlayRollSoundFX()
         {
-            audioSource.PlayOneShot(WorldSoundFXManager.instance.rollSFX);
+            audioSource.PlayOneShot(WorldSoundFXManager.instance.rollSFX, 0.25f);
         }
     }
 }
