@@ -35,6 +35,8 @@ namespace Group1 {
             {
                 contactPoint = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
 
+                Debug.Log("DAMAGE COLLIDER CONTACT POINT: " + contactPoint);
+
                 // CHECK IF THE TARGET IS BLOCKING
 
                 // CHECK IF THE TARGET IS INVULNERABLE
@@ -80,6 +82,7 @@ namespace Group1 {
             TakeDamageEffect damageEffect = Instantiate(WorldCharacterEffectsManager.instance.takeDamageEffect);
             damageEffect.physicalDamage = physicalDamage;
             damageEffect.magicDamage = magicDamage;
+            damageEffect.contactPoint = contactPoint;
 
             damageTarget.characterEffectsManager.ProcessInstantEffect(damageEffect);
         }

@@ -49,6 +49,7 @@ namespace Group1 {
             TakeDamageEffect damageEffect = Instantiate(WorldCharacterEffectsManager.instance.takeDamageEffect);
             damageEffect.physicalDamage = physicalDamage;
             damageEffect.magicDamage = magicDamage;
+            damageEffect.contactPoint = contactPoint;
 
             switch (characterCausingDamage.characterCombatManager.currentAttackType)
             {

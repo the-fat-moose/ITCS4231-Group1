@@ -42,6 +42,7 @@ namespace Group1 {
             // PLAY A DAMAGE ANIMATION (IF APPLICABLE)
             // PLAY DAMAGE SOUND FX
             // PLAY DAMAGE VFX (BLOOD)
+            PlayDamageVFX(character);
 
             // IF CHARACTER IS A.I, CHECK FOR NEW TARGET IF CHARACTER CAUSING DAMAGE IS PRESENT
         }
@@ -64,6 +65,15 @@ namespace Group1 {
             }
 
             character.CurrentHealth -= finalDamage;
+        }
+    
+        private void PlayDamageVFX(CharacterManager character)
+        {
+            // IF WE HAVE MAGIC DAMAGE, PLAY MAGIC PARTICLES
+
+            character.characterEffectsManager.PlayBloodSplatterVFX(contactPoint);
+
+            Debug.Log("TakeDamageEffect CONTACT POINT: " + contactPoint);
         }
     }
 }

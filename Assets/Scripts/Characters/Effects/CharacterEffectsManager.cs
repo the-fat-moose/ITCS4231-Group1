@@ -5,6 +5,9 @@ namespace Group1 {
     {
         CharacterManager character;
 
+        [Header("VFX")]
+        [SerializeField] GameObject bloodSplatterVFX;
+
         protected virtual void Awake()
         {
             character = GetComponent<CharacterManager>();
@@ -23,5 +26,19 @@ namespace Group1 {
         // PROCESS TIMED EFFECTS (POISON, BUILD UPS)
 
         // PROCESS STATIC EFFECTS (ADDING/REMOVING BUFFS FROM LUMENS ETC)
+
+        public void PlayBloodSplatterVFX(Vector3 contactPoint)
+        {
+            // IF WE MANUALLY HAVE PLACED A BLOOD SPLATTER VFX ON THIS MODEL, PLAY ITS VERSION
+            if (bloodSplatterVFX != null)
+            {
+                GameObject bloodSplatter = Instantiate(bloodSplatterVFX, contactPoint, Quaternion.identity);
+            }
+            // ELSE USE THE GENERIC VERSION
+            else
+            {
+                GameObject bloodSplatter = Instantiate(WorldCharacterEffectsManager.instance.bloodSplatterVFX, contactPoint, Quaternion.identity);
+            }
+        }
     }
 }

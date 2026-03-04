@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4419062de89c68d43a340403a7970e2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldCharacterEffectsManager
+  bloodSplatterVFX: {fileID: 194062, guid: 8c27aeead6d968e4ba986702d6b84335, type: 3}
   takeDamageEffect: {fileID: 11400000, guid: 4621f8798218c3d45a732ae9c7e6a2c4, type: 2}
   takeBlockedDamageEffect: {fileID: 11400000, guid: 3e97a0124105d8947aef7dde13f48522, type: 2}
   instantEffects:
