@@ -47,4 +47,10 @@ MonoBehaviour:
   physicalDamageSFX:
   - {fileID: 8300000, guid: 7cbd6cd765888ff418d01d98bd1ce9c2, type: 3}
   - {fileID: 8300000, guid: 3df9bbbc130ccb344af5f3fc793a630f, type: 3}
+  blockSFX:
+  - {fileID: 8300000, guid: 97b972ebcfca0ce4a9b0e8233124b030, type: 3}
+  - {fileID: 8300000, guid: 401e2c65f67eea84c975a891d40d1b31, type: 3}
+  - {fileID: 8300000, guid: 92763638dfad54840a7137b030fae6b7, type: 3}
+  parrySFX:
+  - {fileID: 8300000, guid: 228578ae0446efd418416d19bdf920ac, type: 3}
   rollSFX: {fileID: 8300000, guid: a8624a5631e1ba149964f2e506240a47, type: 3}
