@@ -5286,6 +5286,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 397768983774257513, guid: ce81bcb08fe6e854885b6994cbef11af, type: 3}
+      propertyPath: blockSFX.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 397768983774257513, guid: ce81bcb08fe6e854885b6994cbef11af, type: 3}
+      propertyPath: parrySFX.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 397768983774257513, guid: ce81bcb08fe6e854885b6994cbef11af, type: 3}
+      propertyPath: 'blockSFX.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 97b972ebcfca0ce4a9b0e8233124b030, type: 3}
+    - target: {fileID: 397768983774257513, guid: ce81bcb08fe6e854885b6994cbef11af, type: 3}
+      propertyPath: 'blockSFX.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 401e2c65f67eea84c975a891d40d1b31, type: 3}
+    - target: {fileID: 397768983774257513, guid: ce81bcb08fe6e854885b6994cbef11af, type: 3}
+      propertyPath: 'blockSFX.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 92763638dfad54840a7137b030fae6b7, type: 3}
+    - target: {fileID: 397768983774257513, guid: ce81bcb08fe6e854885b6994cbef11af, type: 3}
+      propertyPath: 'parrySFX.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 228578ae0446efd418416d19bdf920ac, type: 3}
     - target: {fileID: 2941451018053933244, guid: ce81bcb08fe6e854885b6994cbef11af, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
