@@ -33,12 +33,13 @@ namespace Group1{
         public bool isChargingAttack = false;
         public bool isBlocking = false;
         public bool isAttacking = false;
+        public bool parried = false;
         public bool isActive = true;
 
         public event System.Action<bool, bool> OnIsChargingAttackChanged;
         public event System.Action<bool, bool> OnIsMovingValueChanged;
         public event System.Action<bool, bool> OnIsBlockingValueChanged;
-
+        public event System.Action<bool, bool> OnIsParriedValueChanged;
         public event System.Action<bool, bool> OnIsActiveValueChanged;
 
         public bool IsMoving
@@ -51,6 +52,19 @@ namespace Group1{
                 bool oldValue = isMoving;
                 isMoving = value;
                 OnIsMovingValueChanged?.Invoke(oldValue, isMoving);
+            }
+        }
+
+        public bool Parried
+        {
+            get => parried;
+            set
+            {
+                if(parried == value) return;
+
+                bool oldValue = parried;
+                parried = value;
+                OnIsParriedValueChanged?.Invoke(oldValue, parried);
             }
         }
 
@@ -236,6 +250,7 @@ namespace Group1{
 
             OnIsMovingValueChanged += OnIsMovingChanged;
             OnIsBlockingValueChanged += OnIsBlockingChanged;
+            OnIsParriedValueChanged += OnIsParriedChanged;
         }
 
         protected virtual void Start()
@@ -277,6 +292,12 @@ namespace Group1{
         public void OnIsBlockingChanged(bool oldStatus, bool newStatus)
         {
             animator.SetBool("isBlocking", newStatus);
+        }
+
+        public void OnIsParriedChanged(bool oldStatus, bool newStatus)
+        {
+            animator.SetBool("parried", newStatus);
+            Debug.LogError("Parried");
         }
 
         public void OnIsActiveChanged(bool oldStatus, bool newStatus)
@@ -342,6 +363,16 @@ namespace Group1{
                     Physics.IgnoreCollision(collider, otherCollider, true);
                 }
             }
+        }
+
+        public void EnableParryWindow()
+        {
+            characterCombatManager.canParry = true;
+        }
+
+        public void DisableParryWindow()
+        {
+            characterCombatManager.canParry = false;
         }
     }
 }

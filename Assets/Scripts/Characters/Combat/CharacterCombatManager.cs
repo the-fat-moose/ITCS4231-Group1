@@ -7,6 +7,10 @@ namespace Group1 {
         protected CharacterManager character;
 
         public bool canBlock = true;
+        public bool canParry = false;
+
+        public float parryWindow = 0.3f;
+        
 
         [Header("Last Attack Animation Performed")]
         public string lastAttackAnimationPerformed;

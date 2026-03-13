@@ -7,6 +7,8 @@ namespace Group1 {
 
         [Header("Damage Sounds")]
         public AudioClip[] physicalDamageSFX;
+        public AudioClip[] blockSFX;
+        public AudioClip[] parrySFX;
 
         [Header("Action Sounds")]
         public AudioClip rollSFX;

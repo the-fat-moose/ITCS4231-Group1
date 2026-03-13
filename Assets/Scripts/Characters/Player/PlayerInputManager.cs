@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -47,6 +48,9 @@ namespace Group1{
         [Header("Trigger inputs")]
         [SerializeField] bool RT_Input = false;
         [SerializeField] bool Hold_RT_Input = false;
+
+        [Header("Blocking flags")]
+        [SerializeField] bool stillBlocking = false;
 
         private void Awake()
         {
@@ -309,11 +313,17 @@ namespace Group1{
         {
             if (LB_Input)
             {
-                player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentRightHandWeapon.lb_Action, player.playerInventoryManager.currentRightHandWeapon);
+                if(!player.IsBlocking)
+                {
+                    player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentRightHandWeapon.lb_Action, player.playerInventoryManager.currentRightHandWeapon);
+                }
             }
             else
             {
-                player.IsBlocking = false;
+                if(player.IsBlocking)
+                {
+                    player.IsBlocking = false;
+                }
             }
         }
 

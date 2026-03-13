@@ -38,8 +38,21 @@ namespace Group1
             if (character.isDead) return;
 
             // CHECK FOR INVULNERABILITY
+            if(character.characterCombatManager.canParry)
+            {
+                character.Parried = true;
+                character.animator.CrossFade("PlayerCharacter_Parry", 0.1f);
+                PlayParrySFX(character);
+                Debug.LogError("Parry registered in TakeDamageEffect");
+            }
+            if (character.Parried)    //if player parries then no damage taken - jo (feel free to change this, didn't know a safer way to take no damage while not messing your stuff up)
+            {
+                character.Parried = false;
 
+                return;
+            }
             CalculateDamage(character);
+            PlayBlockSFX(character);
             // CHECK WHICH DIRECTION THE DAMAGE CAME FROM
             // PLAY A DAMAGE ANIMATION (IF APPLICABLE)
             // PLAY DAMAGE SOUND FX
@@ -71,6 +84,24 @@ namespace Group1
             Debug.LogError("Final Physical Damage " + physicalDamage);
 
             character.CurrentHealth -= finalDamage;
+        }
+
+        private void PlayBlockSFX(CharacterManager character)
+        {
+            AudioClip blockSFX = WorldSoundFXManager.instance.ChooseRandomSFXFromArray(WorldSoundFXManager.instance.blockSFX);
+
+            character.characterSoundFXManager.PlaySoundFX(blockSFX);
+
+            // IF WE HAVE MAGIC DAMAGE, PLAY MAGIC SOUND
+        }
+
+        private void PlayParrySFX(CharacterManager character)
+        {
+            AudioClip parrySFX = WorldSoundFXManager.instance.ChooseRandomSFXFromArray(WorldSoundFXManager.instance.parrySFX);
+
+            character.characterSoundFXManager.PlaySoundFX(parrySFX);
+
+            // IF WE HAVE MAGIC DAMAGE, PLAY MAGIC SOUND
         }
     }   
 }

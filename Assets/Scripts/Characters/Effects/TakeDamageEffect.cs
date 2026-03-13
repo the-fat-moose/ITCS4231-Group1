@@ -52,6 +52,7 @@ namespace Group1 {
         {
             if (characterCausingDamage != null)
             {
+                
                 // CHECK FOR DAMAGE MODIFIERS AND MODIFY BASE DAMAGE (Physical damage buff, magic damage buff, etc)
             }
 

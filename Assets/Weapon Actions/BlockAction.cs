@@ -21,6 +21,8 @@ namespace Group1
             if(playerPerformingAction.IsBlocking) return;
 
             playerPerformingAction.IsBlocking = true;
+            playerPerformingAction.animator.CrossFade("PlayerCharacter_InitialBlock", 0.2f);
+
         }
     }
 }
