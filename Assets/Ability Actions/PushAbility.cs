@@ -12,7 +12,7 @@ namespace Group1
             if (!player.isGrounded) return;
             if (player.isPerformingAction) return;
 
-            //player.playerAnimatorManager.PlayTargetActionAnimation(kickAnimation, true);
+            //player.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.PushAbility, kickAnimation, true);
         }
     }   
 }

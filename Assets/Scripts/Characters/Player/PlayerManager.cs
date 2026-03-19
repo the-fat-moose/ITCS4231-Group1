@@ -259,6 +259,22 @@ namespace Group1{
             }
         }
 
+        public void PerformAbilityAction(int abilityID)
+        {
+            PlayerAbilityAction abilityAction = WorldActionManager.instance.GetPlayerAbilityActionByID(abilityID);
+
+            if (abilityAction != null)
+            {
+                abilityAction.AttemptToPerformAbility(this);
+            }
+            else
+            {
+                Debug.LogError("ABILITY ACTION IS NULL, CANNOT BE PERFORMED");
+            }
+        }
+
+
+
         // DEBUG DELETE LATER
         private void DebugMenu()
         {

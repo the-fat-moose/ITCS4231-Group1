@@ -8,6 +8,7 @@ namespace Group1 {
 
         [Header("Weapon Item Actions")]
         public WeaponItemAction[] weaponItemActions;
+        public PlayerAbilityAction[] playerAbilityActions;
 
         private void Awake()
         {
@@ -29,11 +30,21 @@ namespace Group1 {
             {
                 weaponItemActions[i].actionID = i;
             }
+
+            for (int i = 0; i < playerAbilityActions.Length; i++)
+            {
+                playerAbilityActions[i].actionID = i;
+            }
         }
     
         public WeaponItemAction GetWeaponItemActionByID(int ID)
         {
             return weaponItemActions.FirstOrDefault(action => action.actionID == ID);
+        }
+
+        public PlayerAbilityAction GetPlayerAbilityActionByID(int ID)
+        {
+            return playerAbilityActions.FirstOrDefault(action => action.actionID == ID);
         }
     }
 }

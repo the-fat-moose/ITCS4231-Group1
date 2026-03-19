@@ -27,6 +27,15 @@ namespace Group1 {
             }
         }
 
+        public void PerformAbilityAction(PlayerAbilityAction abilityAction)
+        {
+            // PERFORM THE ACTION
+            //abilityAction.AttemptToPerformAbility(player);
+            if (abilityAction != null) {
+                player.PerformAbilityAction(abilityAction.actionID);
+            }
+        }
+
         public virtual void DrainStaminaBasedOnAttack()
         {
             float staminaLoss = 0;

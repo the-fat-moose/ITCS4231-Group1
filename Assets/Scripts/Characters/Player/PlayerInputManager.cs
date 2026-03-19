@@ -52,6 +52,9 @@ namespace Group1{
         [Header("Blocking flags")]
         [SerializeField] bool stillBlocking = false;
 
+        [Header("Ability Inputs")]
+        [SerializeField] bool pushAbility_Input = false;
+
         private void Awake()
         {
             if(inputs == null)
@@ -104,6 +107,9 @@ namespace Group1{
                 //Qued inputs
                 playerControls.PlayerActions.QueRB.performed += i => QueInput(ref que_RB_input);
                 playerControls.PlayerActions.QueRT.performed += i => QueInput(ref que_RT_input);
+
+                //Ability inputs
+                playerControls.PlayerActions.PushAbility.performed += i => pushAbility_Input = true;
             }
 
             playerControls.Enable();
@@ -356,6 +362,17 @@ namespace Group1{
 
                 Debug.Log("Switch Weapon Input CALLED");
             }
+        }
+
+        private void HandlePushAbilityInput()
+        {
+            if (pushAbility_Input)
+            {
+                pushAbility_Input = false;
+
+                // TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
+
+            player.PerformAbilityAction(player.playerInventoryManager.pushAbility.actionID);            }
         }
 
         private void QueInput(ref bool quedInput)   //using ref passes the bool object and not just the value, this lets us manipulate the bool from this method

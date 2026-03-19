@@ -38,6 +38,10 @@ namespace Group1 {
         Light02,
         Light03,
         Heavy01, 
-        Heavy02
+        Heavy02, 
+        PushAbility,
+        KnockUpAbility,
+        CageAbility,
+        AOEAbility
     }
 }

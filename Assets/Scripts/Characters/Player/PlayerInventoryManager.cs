@@ -8,5 +8,9 @@ namespace Group1 {
         [Header("Quick Slots")]
         public WeaponItem[] weaponsInRightHandSlots = new WeaponItem[3];
         public int rightHandWeaponIndex = 0;
+
+        public PlayerAbilityAction pushAbility;
+        public PlayerAbilityAction knockUpAbility;
+        public PlayerAbilityAction cageAbility;
     }
 }
