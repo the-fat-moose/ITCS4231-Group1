@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 1137223777938862359}
   - component: {fileID: -1579958740763869209}
   - component: {fileID: 1092844811387696121}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: GroundEnemyV1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,6 +89,7 @@ MonoBehaviour:
   characterLocomotionManager: {fileID: 0}
   characterStatsManager: {fileID: 0}
   characterSoundFXManager: {fileID: 0}
+  aiCharacterManager: {fileID: 0}
   isSprinting: 0
   isDead: 0
   isLockedOn: 0
