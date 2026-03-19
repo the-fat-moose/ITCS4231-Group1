@@ -8,6 +8,10 @@ namespace Group1 {
         [HideInInspector] public PlayerUIHudManager playerUIHudManager;
         [HideInInspector] public PlayerUIPopUpManager playerUIPopUpManager;
 
+        [Header("UI Flags")]
+        public bool menuWindowIsOpen = false; // INVENTORY SCREEN, EQUIPMENT MENU, ETC
+        public bool popUpWindowIsOpen = false; // ITEM PICK UP
+
         private void Awake()
         {
             if (instance == null)

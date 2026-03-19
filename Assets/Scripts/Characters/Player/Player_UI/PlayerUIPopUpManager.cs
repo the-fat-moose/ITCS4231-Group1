@@ -5,11 +5,22 @@ using System.Collections;
 namespace Group1 {
     public class PlayerUIPopUpManager : MonoBehaviour
     {
+        [Header("Message Pop Up")]
+        [SerializeField] private TextMeshProUGUI popUpMessageText;
+        [SerializeField] private GameObject popUpMessageGameObject;
+
         [Header("YOU DIED Pop Up")]
         [SerializeField] private GameObject youDiedPopUpGameObject;
         [SerializeField] private TextMeshProUGUI youDiedPopUpBackgroundText;
         [SerializeField] private TextMeshProUGUI youDiedPopUpText;
         [SerializeField] private CanvasGroup youDiedPopUpCanvasGroup; // allows us to set the alpha to fade over time
+
+        public void SendPlayerMessagePopUp(string messageText)
+        {
+            PlayerUIManager.instance.popUpWindowIsOpen = true;
+            popUpMessageText.text = messageText;
+            popUpMessageGameObject.SetActive(true);
+        }
 
         public void SendYouDiedPopUp()
         {
