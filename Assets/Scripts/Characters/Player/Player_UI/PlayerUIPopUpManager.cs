@@ -15,6 +15,13 @@ namespace Group1 {
         [SerializeField] private TextMeshProUGUI youDiedPopUpText;
         [SerializeField] private CanvasGroup youDiedPopUpCanvasGroup; // allows us to set the alpha to fade over time
 
+        public void CloseAllPopUpWindows()
+        {
+            popUpMessageGameObject.SetActive(false);
+
+            PlayerUIManager.instance.popUpWindowIsOpen = false;
+        }
+
         public void SendPlayerMessagePopUp(string messageText)
         {
             PlayerUIManager.instance.popUpWindowIsOpen = true;

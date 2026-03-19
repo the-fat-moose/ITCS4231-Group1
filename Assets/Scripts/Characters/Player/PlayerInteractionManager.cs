@@ -43,5 +43,47 @@ namespace Group1 {
                 PlayerUIManager.instance.playerUIPopUpManager.SendPlayerMessagePopUp(currentInteractableActions[0].interactableText);
             }
         }
+
+        private void RefreshInteractionList()
+        {
+            for (int i = currentInteractableActions.Count - 1; i > -1; i--)
+            {
+                if (currentInteractableActions[i] == null)
+                {
+                    currentInteractableActions.RemoveAt(i);
+                }
+            }
+        }
+
+        public void AddInteractionToList(Interactable interactableObject)
+        {
+            RefreshInteractionList();
+
+            if (!currentInteractableActions.Contains(interactableObject))
+            {
+                currentInteractableActions.Add(interactableObject);
+            }
+        }
+
+        public void RemoveInteractionFromList(Interactable interactableObject)
+        {
+            if (currentInteractableActions.Contains(interactableObject))
+            {
+                currentInteractableActions.Remove(interactableObject);
+            }
+
+            RefreshInteractionList();
+        }
+
+        public void Interact()
+        {
+            if (currentInteractableActions.Count == 0) return;
+            
+            if (currentInteractableActions[0] != null)
+            {
+                currentInteractableActions[0].Interact(player);
+                RefreshInteractionList();
+            }
+        }
     }
 }

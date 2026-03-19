@@ -22,6 +22,7 @@ namespace Group1{
         [SerializeField] private bool sprintInput = false;
         [SerializeField] private bool jumpInput = false;
         [SerializeField] private bool switch_Weapon_Input = false;
+        [SerializeField] private bool interaction_Input = false;
 
         [Header("Camera Movement Input")]
         [SerializeField] Vector2 camMovement;
@@ -83,6 +84,7 @@ namespace Group1{
                 playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
                 playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
                 playerControls.PlayerActions.SwitchWeapon.performed += i => switch_Weapon_Input = true;
+                playerControls.PlayerActions.Interact.performed += i => interaction_Input = true;
                 
                 // BUMPERS
                 playerControls.PlayerActions.RB.performed += i => RB_Input = true;
@@ -138,6 +140,7 @@ namespace Group1{
                 HandleHoldRTInput();
                 HandleSwitchWeaponInput();
                 HandleAllQuedInputs();
+                HandleInteractionInput();
 
                 //abilites
                 HandlePushAbilityInput();
@@ -375,6 +378,17 @@ namespace Group1{
 
                 // TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
                 player.PerformAbilityAction(player.playerInventoryManager.pushAbility.actionID);           
+            }
+        }
+
+        private void HandleInteractionInput()
+        {
+            if (interaction_Input)
+            {
+                interaction_Input = false;
+
+                // CLOSE POP UP
+                player.playerInteractionManager.Interact();
             }
         }
 
