@@ -28,11 +28,11 @@ namespace Group1
         public void ExecutePush(PlayerManager player)
         {
             Vector3 forward = player.transform.forward;
-            Vector3 origin = player.transform.position + forward * (range * 0.5f);
+            Vector3 origin = player.transform.position + (forward * (range * 0.6f));
 
             Quaternion rotation = Quaternion.LookRotation(forward);
 
-            Collider[] hits = Physics.OverlapBox(origin, new Vector3(width * 0.5f, height * 0.5f, range * 0.5f), rotation, LayerMask.GetMask("Damageable Character"));
+            Collider[] hits = Physics.OverlapBox(origin, new Vector3(width * 0.5f, height * 0.5f, range * 0.5f), rotation, LayerMask.GetMask("Character"));
 
             foreach (var hit in hits)
             {
@@ -52,7 +52,7 @@ namespace Group1
         public void DrawDebug(PlayerManager player)
         {
             Vector3 forward = player.transform.forward;
-            Vector3 origin = player.transform.position + forward * (range * 0.5f);
+            Vector3 origin = player.transform.position + forward * (range * 0.6f);
             Quaternion rotation = Quaternion.LookRotation(forward);
 
             Matrix4x4 m = Matrix4x4.TRS(origin, rotation, Vector3.one);

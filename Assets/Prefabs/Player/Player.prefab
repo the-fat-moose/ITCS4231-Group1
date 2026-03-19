@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 8488742000158188457}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,6 +131,7 @@ MonoBehaviour:
   characterLocomotionManager: {fileID: 0}
   characterStatsManager: {fileID: 0}
   characterSoundFXManager: {fileID: 0}
+  aiCharacterManager: {fileID: 0}
   isSprinting: 0
   isDead: 0
   isLockedOn: 0
