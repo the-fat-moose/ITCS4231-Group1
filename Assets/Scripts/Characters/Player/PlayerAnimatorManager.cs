@@ -27,6 +27,14 @@ namespace Group1{
             player.animator.SetBool("isChargingAttack", newValue);
         }
 
+        public void OnPushAbilityHit()
+        {
+            if (player.playerInventoryManager.pushAbility is PushAbility push)
+            {
+                push.ExecutePush(player);
+            }
+        }
+
         public void OnAnimatorMove()
         {
             if (player.applyRootMotion)

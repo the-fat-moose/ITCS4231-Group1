@@ -138,6 +138,9 @@ namespace Group1{
                 HandleHoldRTInput();
                 HandleSwitchWeaponInput();
                 HandleAllQuedInputs();
+
+                //abilites
+                HandlePushAbilityInput();
             }
         }
 
@@ -371,8 +374,8 @@ namespace Group1{
                 pushAbility_Input = false;
 
                 // TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
-
-            player.PerformAbilityAction(player.playerInventoryManager.pushAbility.actionID);            }
+                player.PerformAbilityAction(player.playerInventoryManager.pushAbility.actionID);           
+            }
         }
 
         private void QueInput(ref bool quedInput)   //using ref passes the bool object and not just the value, this lets us manipulate the bool from this method

@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -46,6 +48,36 @@ namespace Group1 {
             base.FixedUpdate();
 
             ProcessStateMachine();
+        }
+
+        public void ApplyKnockback(Vector3 direction, float force, float duration = 0.2f)
+        {
+            StartCoroutine(KnockbackRoutine(direction, force, duration));
+        }
+
+        private IEnumerator KnockbackRoutine(Vector3 direction, float force, float duration)
+        {
+            Debug.LogError("KnockBackRoutine");
+            // Stop AI movement
+            if (navMeshAgent != null) navMeshAgent.enabled = false;
+
+            // Disable root motion temporarily
+            animator.applyRootMotion = false;
+
+            float timer = 0f;
+
+            while (timer < duration)
+            {
+                transform.position += direction * force * Time.deltaTime;
+                timer += Time.deltaTime;
+                yield return null;
+            }
+
+            // Re-enable AI
+            if (navMeshAgent != null) navMeshAgent.enabled = true;
+
+            // Re-enable root motion
+            animator.applyRootMotion = true;
         }
 
         private void ProcessStateMachine()

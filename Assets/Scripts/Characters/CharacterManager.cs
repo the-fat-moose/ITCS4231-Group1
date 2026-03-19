@@ -13,6 +13,7 @@ namespace Group1{
         [HideInInspector] public CharacterLocomotionManager characterLocomotionManager;
         [HideInInspector] public CharacterStatsManager characterStatsManager;
         [HideInInspector] public CharacterSoundFXManager characterSoundFXManager;
+        [HideInInspector] public AICharacterManager aiCharacterManager;
 
 
         public bool isSprinting = false;
@@ -248,6 +249,8 @@ namespace Group1{
             characterStatsManager = GetComponent<CharacterStatsManager>();
             characterSoundFXManager = GetComponent<CharacterSoundFXManager>();
 
+            TryGetComponent<AICharacterManager>(out aiCharacterManager);
+
             OnIsMovingValueChanged += OnIsMovingChanged;
             OnIsBlockingValueChanged += OnIsBlockingChanged;
             OnIsParriedValueChanged += OnIsParriedChanged;
@@ -341,6 +344,17 @@ namespace Group1{
             
         }
 
+        public void ApplyKnockback(Vector3 direction, float force)
+        {
+            Debug.LogError("Apply knock back");
+            if (aiCharacterManager != null)
+            {
+                aiCharacterManager.ApplyKnockback(direction, force);
+                Debug.LogError("Should apply knock back");
+            }
+        }
+
+
         protected virtual void IgnoreMyOwnColliders()
         {
             Collider characterControllerCollider = GetComponent<Collider>();
@@ -364,6 +378,7 @@ namespace Group1{
                 }
             }
         }
+
 
         public void EnableParryWindow()
         {

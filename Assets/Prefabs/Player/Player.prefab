@@ -130,6 +130,7 @@ MonoBehaviour:
   characterCombatManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
   characterStatsManager: {fileID: 0}
+  characterSoundFXManager: {fileID: 0}
   isSprinting: 0
   isDead: 0
   isLockedOn: 0
@@ -143,6 +144,7 @@ MonoBehaviour:
   isChargingAttack: 0
   isBlocking: 0
   isAttacking: 0
+  parried: 0
   isActive: 1
   endurance: 10
   vitality: 10
@@ -278,6 +280,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Group1.PlayerCombatManager
   canBlock: 1
+  canParry: 0
+  parryWindow: 0.3
   lastAttackAnimationPerformed: 
   currentTarget: {fileID: 0}
   currentAttackType: 0
@@ -410,6 +414,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9d591de22dca28a428e880fba18f3ef3, type: 2}
   - {fileID: 11400000, guid: c44b6d7661e595c449781e80e2fcfd16, type: 2}
   rightHandWeaponIndex: 0
+  pushAbility: {fileID: 11400000, guid: 00d00687d46b047489efc7350cfaaf12, type: 2}
+  knockUpAbility: {fileID: 0}
+  cageAbility: {fileID: 0}
 --- !u!114 &3690826846574739967
 MonoBehaviour:
   m_ObjectHideFlags: 0

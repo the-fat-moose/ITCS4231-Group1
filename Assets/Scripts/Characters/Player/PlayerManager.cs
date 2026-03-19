@@ -273,7 +273,13 @@ namespace Group1{
             }
         }
 
-
+        void OnDrawGizmos()
+        {
+            if (playerInventoryManager.pushAbility is PushAbility push)
+            {
+                push.DrawDebug(this);
+            }
+        }
 
         // DEBUG DELETE LATER
         private void DebugMenu()
