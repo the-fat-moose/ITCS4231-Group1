@@ -92,6 +92,7 @@ MonoBehaviour:
   characterStatsManager: {fileID: 0}
   characterSoundFXManager: {fileID: 0}
   aiCharacterManager: {fileID: 0}
+  characterUIManager: {fileID: 0}
   isSprinting: 0
   isDead: 0
   isLockedOn: 0
@@ -417,6 +418,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfebb7113ffacfd46838f1f9d1f6f914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  hasFloatingHPBar: 1
+  characterHPBar: {fileID: 3768215579725738027}
 --- !u!1 &4736051697357972447
 GameObject:
   m_ObjectHideFlags: 0
@@ -806,6 +809,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 788ef2c01e1c1a24bb42d42e47b124c3, type: 3}
+--- !u!114 &3768215579725738027 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8716000434675756595, guid: 788ef2c01e1c1a24bb42d42e47b124c3, type: 3}
+  m_PrefabInstance: {fileID: 5529875180338978328}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 287195aca6bd70745873afe442139ce9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!224 &5363089118159238693 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 491900675081267261, guid: 788ef2c01e1c1a24bb42d42e47b124c3, type: 3}
