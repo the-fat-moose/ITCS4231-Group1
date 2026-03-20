@@ -317,6 +317,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "OpenCharacterMenu",
+                    "type": "Button",
+                    "id": "598c89d6-9045-49ca-b291-101d50c5b4b0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Interact",
                     "type": "Button",
                     "id": "bfd6bfb1-bc57-495b-91c5-16379daf9f15",
@@ -502,6 +511,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "RB",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6abf87c0-79fe-42d0-9d54-56aa5f1db916",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenCharacterMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "85585f3e-f639-41a0-a740-33eccad6c690",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenCharacterMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

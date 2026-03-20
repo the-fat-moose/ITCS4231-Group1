@@ -4,6 +4,8 @@ using UnityEngine.UI;
 namespace Group1 {
     public class PlayerUIHudManager : MonoBehaviour
     {
+        [SerializeField] private CanvasGroup[] canvasGroup;
+
         [Header("Stat Bars")]
         [SerializeField] UI_StatBar healthBar;
         [SerializeField] UI_StatBar manaBar;
@@ -11,6 +13,29 @@ namespace Group1 {
 
         [Header("Quick Slots")]
         [SerializeField] Image weaponQuickSlotIcon;
+
+        public void ToggleHUD(bool status)
+        {
+            if (status)
+            {
+                foreach (var canvas in canvasGroup)
+                {
+                    canvas.alpha = 1;
+                }
+            }
+            else
+            {
+                foreach (var canvas in canvasGroup)
+                {
+                    canvas.alpha = 0;
+                }
+            }
+        }
+
+        public void RefreshHUD()
+        {
+            
+        }
 
         public void SetNewHealthValue(int oldValue, int newValue)
         {
