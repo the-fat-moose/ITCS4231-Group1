@@ -36,6 +36,7 @@ namespace Group1{
         public bool isAttacking = false;
         public bool parried = false;
         public bool isActive = true;
+        public bool isInvulnerable = false;
 
         public event System.Action<bool, bool> OnIsChargingAttackChanged;
         public event System.Action<bool, bool> OnIsMovingValueChanged;

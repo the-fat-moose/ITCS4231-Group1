@@ -33,6 +33,8 @@ namespace Group1 {
 
             if (damageTarget != null)
             {
+                if (damageTarget.isInvulnerable) return;
+
                 contactPoint = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
 
                 // CHECK IF THE TARGET IS BLOCKING
