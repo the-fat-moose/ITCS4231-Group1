@@ -10,8 +10,6 @@ namespace Group1
 
         public void OnHPChanged(int oldValue, int newValue)
         {
-            Debug.Log(this.gameObject + ": CharacterUIManager.OnHPChanged oldValue: " + oldValue + ", newValue: " + newValue);
-
             characterHPBar.oldHealthValue = oldValue;
             characterHPBar.SetStat(newValue);
         }

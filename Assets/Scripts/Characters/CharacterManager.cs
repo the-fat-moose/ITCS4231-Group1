@@ -110,7 +110,7 @@ namespace Group1{
         }
 
     #region Stat and Resource Variables
-    
+
     #region Stats
         [Header("Stats")]
         [SerializeField] private int endurance = 10;
@@ -328,8 +328,6 @@ namespace Group1{
 
         public void CheckHP(int oldValue, int newValue)
         {
-            Debug.Log(this.gameObject + ": IS CALLING CHECK HP");
-
             if (CurrentHealth <= 0)
             {
                 StartCoroutine(ProcessDeathEvent());
