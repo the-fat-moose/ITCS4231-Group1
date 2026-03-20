@@ -14,7 +14,7 @@ namespace Group1{
         [HideInInspector] public CharacterStatsManager characterStatsManager;
         [HideInInspector] public CharacterSoundFXManager characterSoundFXManager;
         [HideInInspector] public AICharacterManager aiCharacterManager;
-
+        [HideInInspector] public CharacterUIManager characterUIManager;
 
         public bool isSprinting = false;
         public bool isDead = false;
@@ -249,12 +249,23 @@ namespace Group1{
             characterLocomotionManager = GetComponent<CharacterLocomotionManager>();
             characterStatsManager = GetComponent<CharacterStatsManager>();
             characterSoundFXManager = GetComponent<CharacterSoundFXManager>();
+            characterUIManager = GetComponent<CharacterUIManager>();
 
             TryGetComponent<AICharacterManager>(out aiCharacterManager);
 
             OnIsMovingValueChanged += OnIsMovingChanged;
             OnIsBlockingValueChanged += OnIsBlockingChanged;
             OnIsParriedValueChanged += OnIsParriedChanged;
+        }
+
+        protected virtual void OnEnable()
+        {
+            
+        }
+
+        protected virtual void OnDisable()
+        {
+            
         }
 
         protected virtual void Start()
@@ -355,7 +366,6 @@ namespace Group1{
             }
         }
 
-
         protected virtual void IgnoreMyOwnColliders()
         {
             Collider characterControllerCollider = GetComponent<Collider>();
@@ -379,7 +389,6 @@ namespace Group1{
                 }
             }
         }
-
 
         public void EnableParryWindow()
         {

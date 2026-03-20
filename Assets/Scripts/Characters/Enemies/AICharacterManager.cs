@@ -6,6 +6,9 @@ using UnityEngine.AI;
 namespace Group1 {
     public class AICharacterManager : CharacterManager
     {
+        [Header("Character Name")]
+        public string characterName = "";
+
         [HideInInspector] public AiCharacterCombatManager aiCharacterCombatManager;
         [HideInInspector] public AICharacterLocomotionManager aiCharacterLocomotionManager;
 
@@ -34,6 +37,22 @@ namespace Group1 {
             pursueTarget = Instantiate(pursueTarget);
 
             currentState = idle;
+        }
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+
+            if (characterUIManager.hasFloatingHPBar)
+                OnHealthChanged += characterUIManager.OnHPChanged;
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            
+            if (characterUIManager.hasFloatingHPBar)
+                OnHealthChanged -= characterUIManager.OnHPChanged;
         }
 
         protected override void Update()
