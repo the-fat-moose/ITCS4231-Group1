@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Group1
@@ -47,6 +48,15 @@ namespace Group1
 
             OnIsActivatedChanged(false, IsActivated);
             OnIsActivatedValueChanged += OnIsActivatedChanged;
+
+            if (IsActivated)
+            {
+                interactableText = activatedInteractionText;
+            }
+            else
+            {
+                interactableText = unactivatedInteractionText;
+            }
         }
 
         private void ShatterGeode(PlayerManager player)
@@ -64,15 +74,31 @@ namespace Group1
             player.playerAnimatorManager.PlayTargetActionAnimation("Activate_Geode_01", true);
 
             // SEND A POP UP
-
+            PlayerUIManager.instance.playerUIPopUpManager.SendGeodeShatteredPopUp("GEODE SHATTERED");
 
             // ENABLE/ACTIVATE THE GEODE
+            StartCoroutine(WaitForAnimationAndPopUpThenRestoreCollider());
         }
 
         private void RestAtGeode(PlayerManager player)
         {
+            Debug.Log("RESTING");
+            interactableCollider.enabled = true;
+            // RESTORE HEALTH, STAMINA, AND MANA
+            player.CurrentHealth = player.MaxHealth;
+            player.CurrentStamina = player.MaxStamina;
+            player.CurrentMana = player.MaxMana;
+
             // REFILL FLASKS
             // RESET MONSTERS/CHARACTER LOCATIONS
+            WorldAIManager.instance.ResetAllCharacters();
+        }
+
+        private IEnumerator WaitForAnimationAndPopUpThenRestoreCollider()
+        {
+            yield return new WaitForSeconds(3f);
+
+            interactableCollider.enabled = true;
         }
 
         private void OnIsActivatedChanged(bool oldStatus, bool newStatus)
@@ -80,7 +106,16 @@ namespace Group1
             if (IsActivated)
             {
                 // PLAY SOME FX HERE TO ENABLE A LIGHT OR SOMETHING TO INDICATE THE CHECKPOINT IS ON
-                activatedParticles.SetActive(true);
+                //activatedParticles.SetActive(true);
+
+                if (IsActivated)
+                {
+                    interactableText = activatedInteractionText;
+                }
+                else
+                {
+                    interactableText = unactivatedInteractionText;
+                }
             }
         }
 

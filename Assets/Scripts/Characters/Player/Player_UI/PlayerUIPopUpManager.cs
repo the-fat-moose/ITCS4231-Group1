@@ -9,6 +9,12 @@ namespace Group1 {
         [SerializeField] private TextMeshProUGUI popUpMessageText;
         [SerializeField] private GameObject popUpMessageGameObject;
 
+        [Header("GEODE SHATTERED Pop Up")]
+        [SerializeField] private GameObject geodeShatteredPopUpGameObject;
+        [SerializeField] private TextMeshProUGUI geodeShatteredPopUpBackgroundText;
+        [SerializeField] private TextMeshProUGUI geodeShatteredPopUpText;
+        [SerializeField] private CanvasGroup geodeShatteredPopUpCanvasGroup;
+
         [Header("YOU DIED Pop Up")]
         [SerializeField] private GameObject youDiedPopUpGameObject;
         [SerializeField] private TextMeshProUGUI youDiedPopUpBackgroundText;
@@ -29,6 +35,19 @@ namespace Group1 {
             popUpMessageGameObject.SetActive(true);
         }
 
+        public void SendGeodeShatteredPopUp(string geodeShatteredMessage)
+        {
+            // ACTIVATE ANY POST PROCESSING EFFECTS
+
+            geodeShatteredPopUpText.text = geodeShatteredMessage;
+            geodeShatteredPopUpBackgroundText.text = geodeShatteredMessage;
+            geodeShatteredPopUpGameObject.SetActive(true);
+            geodeShatteredPopUpBackgroundText.characterSpacing = 0;
+            StartCoroutine(StretchPopUpTextOverTime(geodeShatteredPopUpBackgroundText, 8f, 19f));
+            StartCoroutine(FadeInPopUpOverTime(geodeShatteredPopUpCanvasGroup, 5f));
+            StartCoroutine(WaitThenFadeOutPopUpOverTime(geodeShatteredPopUpCanvasGroup, 2f, 5f));
+        }
+        
         public void SendYouDiedPopUp()
         {
             // ACTIVATE ANY POST PROCESSING EFFECTS

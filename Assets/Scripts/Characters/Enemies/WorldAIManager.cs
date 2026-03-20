@@ -30,6 +30,16 @@ namespace Group1 {
             spawner.AttemptToSpawnCharacter();
         }
 
+        public void ResetAllCharacters()
+        {
+            DespawnAllCharacters();
+
+            foreach (var spawner in aiCharacterSpawners)
+            {
+                spawner.AttemptToSpawnCharacter();
+            }
+        }
+
         private void DespawnAllCharacters()
         {
             foreach (var character in spawnedInCharacters)
