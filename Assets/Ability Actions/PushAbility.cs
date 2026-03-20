@@ -11,6 +11,10 @@ namespace Group1
         public float height = 3f;
         public float pushForce = 10f;
 
+        [Header("VFX")]
+        public GameObject pushVFX;
+        public Vector3 vfxOffset = new Vector3(0, 1f, 1f);
+
         [Header("Animation")]
         public string pushAnimation = "PlayerCharacter_Ability_Push";
 
@@ -31,6 +35,15 @@ namespace Group1
             Vector3 origin = player.transform.position + (forward * (range * 0.6f));
 
             Quaternion rotation = Quaternion.LookRotation(forward);
+
+            if (pushVFX != null)
+            {
+                Vector3 spawnPos = player.transform.position + player.transform.forward * vfxOffset.z + player.transform.up * vfxOffset.y;
+
+                Quaternion spawnRot = Quaternion.LookRotation(player.transform.forward);
+
+                GameObject vfx = GameObject.Instantiate(pushVFX, spawnPos, spawnRot);
+            }
 
             Collider[] hits = Physics.OverlapBox(origin, new Vector3(width * 0.5f, height * 0.5f, range * 0.5f), rotation, LayerMask.GetMask("Character"));
 

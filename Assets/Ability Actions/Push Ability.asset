@@ -17,4 +17,6 @@ MonoBehaviour:
   width: 5
   height: 3
   pushForce: 20
+  pushVFX: {fileID: 3398366222349601506, guid: 3af328b9a7e29044bade7641dd722166, type: 3}
+  vfxOffset: {x: 0, y: 1, z: 1}
   pushAnimation: PlayerCharacter_Ability_Push
