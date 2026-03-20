@@ -25,6 +25,8 @@ namespace Group1 {
                 instantiatedGameObject = Instantiate(characterGameObject);
                 instantiatedGameObject.transform.position = transform.position;
                 instantiatedGameObject.transform.rotation = transform.rotation;
+
+                WorldAIManager.instance.spawnedInCharacters.Add(instantiatedGameObject);
             }
         }
     }

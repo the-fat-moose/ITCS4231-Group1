@@ -10,7 +10,7 @@ namespace Group1 {
 
         [Header("Characters")]
         [SerializeField] private List<AICharacterSpawner> aiCharacterSpawners;
-        [SerializeField] private List<GameObject> spawnedInCharacters;
+        public List<GameObject> spawnedInCharacters;
 
         private void Awake()
         {
