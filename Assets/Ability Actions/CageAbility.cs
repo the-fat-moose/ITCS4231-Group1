@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public class CageAbility : MonoBehaviour
+namespace Group1
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [CreateAssetMenu(menuName = "Character Actions/Player Abilities/Cage Ability")]
+    public class CageAbility : PlayerAbilityAction
     {
-        
-    }
+        [Header("VFX")]
+        public GameObject cageVFX;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        [Header("Animation")]
+        public string cageAnimation = "PlayerCharacter_Ability_Freeze";
+
+
     }
 }

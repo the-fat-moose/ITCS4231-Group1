@@ -69,6 +69,7 @@ namespace Group1{
         public void DisableInvulnerability()
         {
             player.isInvulnerable = false;
+            Debug.LogError("Player is now vulnerable");
         }
     
     }

@@ -21,6 +21,8 @@ namespace Group1{
             character.characterAnimatorManager.DisableCanDoCombo();
             character.isJumping = false;
 
+            //character.isInvulnerable = false;
+
             character.isAttacking = false;
         }
 
