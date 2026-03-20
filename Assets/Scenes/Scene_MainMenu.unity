@@ -163,6 +163,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerUIManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2692581850731266116, guid: bb8b8def33741594c8b5c1065e35d535, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692581850731266116, guid: bb8b8def33741594c8b5c1065e35d535, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692581850731266116, guid: bb8b8def33741594c8b5c1065e35d535, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692581850731266116, guid: bb8b8def33741594c8b5c1065e35d535, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2802550517838048349, guid: bb8b8def33741594c8b5c1065e35d535, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2802550517838048349, guid: bb8b8def33741594c8b5c1065e35d535, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2802550517838048349, guid: bb8b8def33741594c8b5c1065e35d535, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2802550517838048349, guid: bb8b8def33741594c8b5c1065e35d535, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3202059463674164860, guid: bb8b8def33741594c8b5c1065e35d535, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

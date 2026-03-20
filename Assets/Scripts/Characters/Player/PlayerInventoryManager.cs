@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Group1 {
@@ -16,5 +17,18 @@ namespace Group1 {
 
         [Header("Lumens")]
         public LumenEquipmentItem[] lumenEquipmentItemSlots = new LumenEquipmentItem[4];
+
+        [Header("Inventory")]
+        public List<Item> itemsInInventory;
+
+        public void AddItemToInventory(Item item)
+        {
+            itemsInInventory.Add(item);
+        }
+
+        public void RemoveItemFromInventory()
+        {
+            
+        }
     }
 }

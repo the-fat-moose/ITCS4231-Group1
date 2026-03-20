@@ -11,6 +11,7 @@ namespace Group1 {
         public AudioClip[] parrySFX;
 
         [Header("Action Sounds")]
+        public AudioClip pickupItemSFX;
         public AudioClip rollSFX;
 
         private void Awake()

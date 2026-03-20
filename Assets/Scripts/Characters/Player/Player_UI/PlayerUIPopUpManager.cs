@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.UI;
 
 namespace Group1 {
     public class PlayerUIPopUpManager : MonoBehaviour
@@ -8,6 +9,12 @@ namespace Group1 {
         [Header("Message Pop Up")]
         [SerializeField] private TextMeshProUGUI popUpMessageText;
         [SerializeField] private GameObject popUpMessageGameObject;
+
+        [Header("Item Pop Up")]
+        [SerializeField] private GameObject itemPopUpGameObject;
+        [SerializeField] private Image itemIcon;
+        [SerializeField] private TextMeshProUGUI itemName;
+        [SerializeField] private TextMeshProUGUI itemAmount;
 
         [Header("GEODE SHATTERED Pop Up")]
         [SerializeField] private GameObject geodeShatteredPopUpGameObject;
@@ -24,6 +31,7 @@ namespace Group1 {
         public void CloseAllPopUpWindows()
         {
             popUpMessageGameObject.SetActive(false);
+            itemPopUpGameObject.SetActive(false);
 
             PlayerUIManager.instance.popUpWindowIsOpen = false;
         }
@@ -34,6 +42,22 @@ namespace Group1 {
             popUpMessageText.text = messageText;
             popUpMessageGameObject.SetActive(true);
         }
+
+        public void SendItemPopUp(Item item, int amount)
+        {
+            itemAmount.enabled = false;
+            itemIcon.sprite = item.itemIcon;
+            itemName.text = item.itemName;
+
+            if (amount > 1)
+            {
+                itemAmount.enabled = true;
+                itemAmount.text = "x" + amount.ToString();
+            }
+
+            itemPopUpGameObject.SetActive(true);
+            PlayerUIManager.instance.popUpWindowIsOpen = true;
+        }        
 
         public void SendGeodeShatteredPopUp(string geodeShatteredMessage)
         {

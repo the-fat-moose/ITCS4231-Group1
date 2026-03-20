@@ -44,4 +44,10 @@ namespace Group1 {
         CageAbility,
         AOEAbility
     }
+
+    public enum ItemPickUpType
+    {
+        WorldSpawn,
+        CharacterDrop
+    }
 }
