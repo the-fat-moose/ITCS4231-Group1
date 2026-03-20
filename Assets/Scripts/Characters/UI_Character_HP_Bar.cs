@@ -15,6 +15,7 @@ namespace Group1 {
         [SerializeField] int currentDamageTaken = 0;
         [SerializeField] TextMeshProUGUI characterName;
         [SerializeField] TextMeshProUGUI characterDamage;
+        [HideInInspector] public int oldHealthValue = 0;
 
         protected override void Awake()
         {
@@ -27,7 +28,6 @@ namespace Group1 {
                 aiCharacter = character as AICharacterManager;
                 playerCharacter = character as PlayerManager;
             }
-                
         }
 
         protected override void Start()
@@ -56,8 +56,7 @@ namespace Group1 {
             // RUN SECONDARY BAR LOGIC (YELLOW BAR THAT APPEARS BEHIND HP WHEN DAMAGED)
 
             // TOTAL THE DAMAGE TAKEN WHILST THE BAR IS ACTIVE
-            float oldDamage = currentDamageTaken;
-            currentDamageTaken = Mathf.RoundToInt(currentDamageTaken + (oldDamage = newValue));
+            currentDamageTaken = Mathf.RoundToInt(currentDamageTaken + (oldHealthValue - newValue));
 
             if (currentDamageTaken < 0)
             {

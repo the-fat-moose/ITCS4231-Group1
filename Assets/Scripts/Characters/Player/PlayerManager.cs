@@ -211,21 +211,21 @@ namespace Group1{
             playerAnimatorManager.PlayTargetActionAnimation("Empty", false, true, false, false);
         }
 
-        private void SetNewMaxHealthValue(int oldVitality, int newVitality)
+        public override void SetNewMaxHealthValue(int oldVitality, int newVitality)
         {
             MaxHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel(newVitality);
             PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(MaxHealth);
             CurrentHealth = MaxHealth;
         }
 
-        private void SetNewMaxStaminaValue(int oldEndurance, int newEndurance)
+        public override void SetNewMaxStaminaValue(int oldEndurance, int newEndurance)
         {
             MaxStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(newEndurance);
             PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(MaxStamina);
             CurrentStamina = MaxStamina;
         }
 
-        private void SetNewMaxManaValue(int oldMind, int newMind)
+        public override void SetNewMaxManaValue(int oldMind, int newMind)
         {
             MaxMana = playerStatsManager.CalculateManaBasedOnMindLevel(newMind);
             PlayerUIManager.instance.playerUIHudManager.SetMaxManaValue(MaxMana);

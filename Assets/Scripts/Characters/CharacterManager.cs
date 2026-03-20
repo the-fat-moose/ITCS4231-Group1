@@ -96,7 +96,22 @@ namespace Group1{
             }
         }
 
-    #region Stat Variables
+        public bool Charging
+        {
+            get => isChargingAttack;
+            set
+            {
+                if(Charging == value) return;
+
+                bool oldStatus = isChargingAttack;
+                isChargingAttack = value;
+                OnIsChargingAttackChanged?.Invoke(oldStatus, isChargingAttack);
+            }
+        }
+
+    #region Stat and Resource Variables
+    
+    #region Stats
         [Header("Stats")]
         [SerializeField] private int endurance = 10;
         [SerializeField] private int vitality = 10;
@@ -144,20 +159,9 @@ namespace Group1{
                 OnMindChanged?.Invoke(oldValue, mind);
             }
         }
+    #endregion
 
-        public bool Charging
-        {
-            get => isChargingAttack;
-            set
-            {
-                if(Charging == value) return;
-
-                bool oldStatus = isChargingAttack;
-                isChargingAttack = value;
-                OnIsChargingAttackChanged?.Invoke(oldStatus, isChargingAttack);
-            }
-        }
-
+    #region Resources
         public event System.Action<float, float> OnStaminaChanged;
         public event System.Action<int, int> OnHealthChanged;
         public event System.Action<int, int> OnManaChanged;
@@ -234,6 +238,8 @@ namespace Group1{
             get => maxMana;
             protected set => maxMana = value;
         }
+    
+    #endregion
     
     #endregion
 
@@ -322,6 +328,8 @@ namespace Group1{
 
         public void CheckHP(int oldValue, int newValue)
         {
+            Debug.Log(this.gameObject + ": IS CALLING CHECK HP");
+
             if (CurrentHealth <= 0)
             {
                 StartCoroutine(ProcessDeathEvent());
@@ -332,6 +340,25 @@ namespace Group1{
             {
                 CurrentHealth = MaxHealth;
             }
+        }
+
+        public virtual void SetNewMaxHealthValue(int oldVitality, int newVitality)
+        {
+            MaxHealth = characterStatsManager.CalculateHealthBasedOnVitalityLevel(newVitality);
+            CurrentHealth = MaxHealth;
+        }
+
+        public virtual void SetNewMaxStaminaValue(int oldEndurance, int newEndurance)
+        {
+            MaxStamina = characterStatsManager.CalculateStaminaBasedOnEnduranceLevel(newEndurance);
+            CurrentStamina = MaxStamina;
+        }
+
+        public virtual void SetNewMaxManaValue(int oldMind, int newMind)
+        {
+            MaxMana = characterStatsManager.CalculateManaBasedOnMindLevel(newMind);
+            PlayerUIManager.instance.playerUIHudManager.SetMaxManaValue(MaxMana);
+            CurrentMana = MaxMana;
         }
 
         public virtual IEnumerator ProcessDeathEvent()

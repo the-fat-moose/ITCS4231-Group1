@@ -39,6 +39,23 @@ namespace Group1 {
             currentState = idle;
         }
 
+        protected override void Start()
+        {
+            base.Start();
+
+            // UPDATE TOTAL AMOUNT OF HEALTH, STAMINA, MANA WHEN THE STAT LINKED TO EITHER CHANGES
+            OnEnduranceChanged += SetNewMaxStaminaValue;
+            OnVitalityChanged += SetNewMaxHealthValue;
+            OnMindChanged += SetNewMaxManaValue;
+
+            SetNewMaxHealthValue(0, Vitality);
+            SetNewMaxManaValue(0, Mind);
+            SetNewMaxStaminaValue(0, Endurance);
+
+            // Death and Healing Handling
+            OnHealthChanged += CheckHP;
+        }
+
         protected override void OnEnable()
         {
             base.OnEnable();
