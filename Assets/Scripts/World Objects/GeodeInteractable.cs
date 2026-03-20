@@ -106,7 +106,7 @@ namespace Group1
             if (IsActivated)
             {
                 // PLAY SOME FX HERE TO ENABLE A LIGHT OR SOMETHING TO INDICATE THE CHECKPOINT IS ON
-                //activatedParticles.SetActive(true);
+                activatedParticles.SetActive(true);
 
                 if (IsActivated)
                 {
