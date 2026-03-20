@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace Group1 {
-    public class WeaponItem : Item
+    public class WeaponItem : EquipmentItem
     {
         // ANIMATOR CONTROLLER OVERRIDE (Change attack animations based on weapon you are currently using)
 

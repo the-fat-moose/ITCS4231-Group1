@@ -5,10 +5,13 @@ namespace Group1 {
     {
         PlayerManager player;
 
+        [Header("Weapon Model Instantiation Slot")]
         public WeaponModelInstantiationSlot rightHandSlot;
 
+        [Header("Weapon Managers")]
         [SerializeField] WeaponManager rightWeaponManager;
 
+        [Header("Weapon Models")]
         public GameObject rightHandWeaponModel;
 
         protected override void Awake()
@@ -28,6 +31,20 @@ namespace Group1 {
             LoadWeaponInHand();
         }
 
+        // EQUIPMENT
+        public void LoadLumenEquipment(LumenEquipmentItem equipment)
+        {
+            // UNLOAD OLD EQUIPMENT IF ANY
+
+            // IF EQUIPMENT IS NULL, SET THE EQUIPMENT TO NULL IN INVENTORY AND RETURN
+
+            // CALL THE OnItemEquipped FUNCTION ON YOUR EQUIPMENT IF APPLICABLE
+
+            // SET CURRENT EQUIPMENT IN PLAYER INVENTORY TO THE EQUIPMENT THAT IS PASSED TO THIS FUNCTION
+        }
+
+        // WEAPON
+
         private void InitializeWeaponSlot()
         {
             WeaponModelInstantiationSlot[] weaponSlots = GetComponentsInChildren<WeaponModelInstantiationSlot>();
@@ -40,7 +57,7 @@ namespace Group1 {
                 }
             }
         }
-    
+
         public void LoadWeaponInHand()
         {
             LoadRightWeapon();
@@ -127,6 +144,8 @@ namespace Group1 {
                 // ASSIGN WEAPON DAMAGE, TO ITS COLLIDER
             }
         }
+
+        // ATTACK COLLISIONS
 
         public void OpenDamageCollider()
         {

@@ -37,6 +37,17 @@ namespace Group1 {
         public SerializableDictionary<int, bool> bossesAwakened; // THE INT IS THE BOSS I.D, THE BOOL IS THE AWAKENED STATUS
         public SerializableDictionary<int, bool> bossesDefeated; // THE INT IS THE BOSS I.D, THE BOOL IS THE DEFEATED STATUS
 
+        [Header("Equipment")]
+        public int rightWeaponIndex;
+        public int rightWeapon01;
+        public int rightWeapon02;
+        public int rightWeapon03;
+
+        public int lumen01;
+        public int lumen02;
+        public int lumen03;
+        public int lumen04;
+
         public CharacterSaveData()
         {
             geodes = new SerializableDictionary<int, bool>();

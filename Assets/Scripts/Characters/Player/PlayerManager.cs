@@ -56,6 +56,8 @@ namespace Group1{
             }
         }
 
+        #region Unity Functions
+
         protected override void Awake()
         {
             base.Awake();   //runs CharacterManager Awake
@@ -129,6 +131,10 @@ namespace Group1{
             PlayerCamera.cam.HandleCameraActions();
         }
 
+        #endregion
+
+        #region Player Saving and Loading
+
         public void SaveGameDataToCurrentCharacterData(ref CharacterSaveData currentCharacterData)
         {
             currentCharacterData.sceneIndex = SceneManager.GetActiveScene().buildIndex;
@@ -149,18 +155,37 @@ namespace Group1{
             currentCharacterData.endurance = Endurance;
             currentCharacterData.vitality = Vitality;
             currentCharacterData.mind = Mind;
+
+            // EQUIPMENT
+            currentCharacterData.rightWeaponIndex = playerInventoryManager.rightHandWeaponIndex;
+
+            currentCharacterData.rightWeapon01 = playerInventoryManager.weaponsInRightHandSlots[0].itemID; // THIS SHOULD NEVER BE NULL (should always default to unarmed)
+            currentCharacterData.rightWeapon02 = playerInventoryManager.weaponsInRightHandSlots[1].itemID; // THIS SHOULD NEVER BE NULL (should always default to unarmed)
+            currentCharacterData.rightWeapon03 = playerInventoryManager.weaponsInRightHandSlots[2].itemID; // THIS SHOULD NEVER BE NULL (should always default to unarmed)
+
+            /*
+            currentCharacterData.lumen01 = playerInventoryManager.lumenEquipmentItemSlots[0].itemID;
+            currentCharacterData.lumen02 = playerInventoryManager.lumenEquipmentItemSlots[1].itemID;
+            currentCharacterData.lumen03 = playerInventoryManager.lumenEquipmentItemSlots[2].itemID;
+            currentCharacterData.lumen04 = playerInventoryManager.lumenEquipmentItemSlots[3].itemID;
+            */
         }
 
         public void LoadGameDataFromCurrentCharacterData(ref CharacterSaveData currentCharacterData)
         {
+            // ------------ NAME ------------
             characterName = currentCharacterData.characterName;
+            
+            // ------------ POSITION ------------
             Vector3 myPosition = new Vector3(currentCharacterData.xPosition, currentCharacterData.yPosition, currentCharacterData.zPosition);
             transform.position = myPosition;
 
+            // ------------ STATS ------------
             Endurance = currentCharacterData.endurance;
             Vitality = currentCharacterData.vitality;
             Mind = currentCharacterData.mind;
 
+            // ------------ RESOURCES ------------
             MaxStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(Endurance);
             CurrentStamina = MaxStamina;
             PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(MaxStamina);
@@ -186,7 +211,89 @@ namespace Group1{
                 CurrentMana = currentCharacterData.currentMana;
             }
             PlayerUIManager.instance.playerUIHudManager.SetMaxManaValue(MaxMana);
+
+            // ------------ EQUIPMENT ------------
+            // WEAPON EQUIPMENT 
+            if (WorldItemDatabase.instance.GetWeaponByID(currentCharacterData.rightWeapon01))
+            {
+                WeaponItem rightWeapon01 = Instantiate(WorldItemDatabase.instance.GetWeaponByID(currentCharacterData.rightWeapon01));
+                playerInventoryManager.weaponsInRightHandSlots[0] = rightWeapon01;
+            }
+            else
+            {
+                playerInventoryManager.weaponsInRightHandSlots[0] = null;
+            }
+
+            if (WorldItemDatabase.instance.GetWeaponByID(currentCharacterData.rightWeapon02))
+            {
+                WeaponItem rightWeapon02 = Instantiate(WorldItemDatabase.instance.GetWeaponByID(currentCharacterData.rightWeapon02));
+                playerInventoryManager.weaponsInRightHandSlots[1] = rightWeapon02;
+            }
+            else
+            {
+                playerInventoryManager.weaponsInRightHandSlots[1] = null;
+            }
+
+            if (WorldItemDatabase.instance.GetWeaponByID(currentCharacterData.rightWeapon03))
+            {
+                WeaponItem rightWeapon03 = Instantiate(WorldItemDatabase.instance.GetWeaponByID(currentCharacterData.rightWeapon03));
+                playerInventoryManager.weaponsInRightHandSlots[2] = rightWeapon03;
+            }
+            else
+            {
+                playerInventoryManager.weaponsInRightHandSlots[2] = null;
+            }
+
+            playerInventoryManager.rightHandWeaponIndex = currentCharacterData.rightWeaponIndex;
+            CurrentRightHandWeaponID = playerInventoryManager.weaponsInRightHandSlots[currentCharacterData.rightWeaponIndex].itemID;
+
+            // LUMEN EQUIPMENT
+            /*
+            if (WorldItemDatabase.instance.GetLumenEquipmentByID(currentCharacterData.lumen01))
+            {
+                LumenEquipmentItem lumen01 = Instantiate(WorldItemDatabase.instance.GetLumenEquipmentByID(currentCharacterData.lumen01));
+                playerInventoryManager.lumenEquipmentItemSlots[0] = lumen01;
+            }
+            else
+            {
+                playerInventoryManager.lumenEquipmentItemSlots[0] = null;
+            }
+
+            if (WorldItemDatabase.instance.GetLumenEquipmentByID(currentCharacterData.lumen02))
+            {
+                LumenEquipmentItem lumen02 = Instantiate(WorldItemDatabase.instance.GetLumenEquipmentByID(currentCharacterData.lumen02));
+                playerInventoryManager.lumenEquipmentItemSlots[1] = lumen02;
+            }
+            else
+            {
+                playerInventoryManager.lumenEquipmentItemSlots[1] = null;
+            }
+
+            if (WorldItemDatabase.instance.GetLumenEquipmentByID(currentCharacterData.lumen03))
+            {
+                LumenEquipmentItem lumen03 = Instantiate(WorldItemDatabase.instance.GetLumenEquipmentByID(currentCharacterData.lumen03));
+                playerInventoryManager.lumenEquipmentItemSlots[2] = lumen03;
+            }
+            else
+            {
+                playerInventoryManager.lumenEquipmentItemSlots[2] = null;
+            }
+            
+            if (WorldItemDatabase.instance.GetLumenEquipmentByID(currentCharacterData.lumen04))
+            {
+                LumenEquipmentItem lumen04 = Instantiate(WorldItemDatabase.instance.GetLumenEquipmentByID(currentCharacterData.lumen04));
+                playerInventoryManager.lumenEquipmentItemSlots[3] = lumen04;
+            }
+            else
+            {
+                playerInventoryManager.lumenEquipmentItemSlots[3] = null;
+            }
+            */
         }
+
+        #endregion
+
+        #region Death Handling
 
         public override IEnumerator ProcessDeathEvent()
         {
@@ -195,7 +302,7 @@ namespace Group1{
             return base.ProcessDeathEvent();
 
             // CHECK FOR PLAYERS THAT ARE ALIVE, IF 0 RESPAWN CHARACTERS
-        }
+        }    
 
         public override void ReviveCharacter()
         {
@@ -210,6 +317,10 @@ namespace Group1{
             // PLAY REBIRTH EFFECTS
             playerAnimatorManager.PlayTargetActionAnimation("Empty", false, true, false, false);
         }
+
+        #endregion
+
+        #region Stat Setting
 
         public override void SetNewMaxHealthValue(int oldVitality, int newVitality)
         {
@@ -231,6 +342,10 @@ namespace Group1{
             PlayerUIManager.instance.playerUIHudManager.SetMaxManaValue(MaxMana);
             CurrentMana = MaxMana;
         }
+
+        #endregion
+
+        #region Actions
 
         public void OnCurrentRightHandWeaponIDChange(int oldID, int newID)
         {
@@ -274,6 +389,8 @@ namespace Group1{
                 Debug.LogError("ABILITY ACTION IS NULL, CANNOT BE PERFORMED");
             }
         }
+
+        #endregion
 
         void OnDrawGizmos()
         {
