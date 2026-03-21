@@ -51,6 +51,7 @@ namespace Group1
 
             switch (currentSelectedEquipmentSlot)
             {
+                // LOGIC FOR WEAPONS
                 case EquipmentSlotType.RightWeapon01:
                     lastSelectedButton = rightHandSlot01.GetComponentInParent<Button>();
                     break;
@@ -60,7 +61,19 @@ namespace Group1
                 case EquipmentSlotType.RightWeapon03:
                     lastSelectedButton = rightHandSlot03.GetComponentInParent<Button>();
                     break;
-                // ADD LOGIC FOR TALISMANS (Lumens)
+                // LOGIC FOR TALISMANS (Lumens)
+                case EquipmentSlotType.LumenEquipment01:
+                    lastSelectedButton = lumenEquipmentSlot01.GetComponentInParent<Button>();
+                    break;
+                case EquipmentSlotType.LumenEquipment02:
+                    lastSelectedButton = lumenEquipmentSlot02.GetComponentInParent<Button>();
+                    break;
+                case EquipmentSlotType.LumenEquipment03:
+                    lastSelectedButton = lumenEquipmentSlot03.GetComponentInParent<Button>();
+                    break;
+                case EquipmentSlotType.LumenEquipment04:
+                    lastSelectedButton = lumenEquipmentSlot04.GetComponentInParent<Button>();
+                    break;
                 default:
                     break;
             }

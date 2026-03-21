@@ -124,10 +124,10 @@ namespace Group1
 
                         // THEN REPLACE THE LUMEN IN THAT SLOT WITH OUR NEW LUMEN
                         player.playerInventoryManager.lumenEquipmentItemSlots[0] = equippedItem as LumenEquipmentItem;
-                        //player.SetLumenEquipmentID(0, player.playerInventoryManager.lumenEquipmentItemSlots[0].itemID);
+                        player.SetLumenEquipmentID(0, player.playerInventoryManager.lumenEquipmentItemSlots[0].itemID);
 
                         // EQUIP NEW LUMEN
-                        player.playerEquipmentManager.LoadLumenEquipment(player.playerInventoryManager.lumenEquipmentItemSlots[0], 0);
+                        //player.playerEquipmentManager.LoadLumenEquipment(player.playerInventoryManager.lumenEquipmentItemSlots[0], 0);
 
                         // REFRESHES EQUIPMENT WINDOW
                         PlayerUIManager.instance.playerUIEquipmentManager.RefreshMenu();
@@ -144,10 +144,10 @@ namespace Group1
 
                         // THEN REPLACE THE LUMEN IN THAT SLOT WITH OUR NEW LUMEN
                         player.playerInventoryManager.lumenEquipmentItemSlots[1] = equippedItem as LumenEquipmentItem;
-                        //player.SetLumenEquipmentID(1, player.playerInventoryManager.lumenEquipmentItemSlots[1].itemID);
+                        player.SetLumenEquipmentID(1, player.playerInventoryManager.lumenEquipmentItemSlots[1].itemID);
 
                         // EQUIP NEW LUMEN
-                        player.playerEquipmentManager.LoadLumenEquipment(player.playerInventoryManager.lumenEquipmentItemSlots[1], 1);
+                        //player.playerEquipmentManager.LoadLumenEquipment(player.playerInventoryManager.lumenEquipmentItemSlots[1], 1);
 
                         // REFRESHES EQUIPMENT WINDOW
                         PlayerUIManager.instance.playerUIEquipmentManager.RefreshMenu();
@@ -164,10 +164,10 @@ namespace Group1
 
                         // THEN REPLACE THE LUMEN IN THAT SLOT WITH OUR NEW LUMEN
                         player.playerInventoryManager.lumenEquipmentItemSlots[2] = equippedItem as LumenEquipmentItem;
-                        //player.SetLumenEquipmentID(2, player.playerInventoryManager.lumenEquipmentItemSlots[2].itemID);
+                        player.SetLumenEquipmentID(2, player.playerInventoryManager.lumenEquipmentItemSlots[2].itemID);
 
                         // EQUIP NEW LUMEN
-                        player.playerEquipmentManager.LoadLumenEquipment(player.playerInventoryManager.lumenEquipmentItemSlots[2], 2);
+                        //player.playerEquipmentManager.LoadLumenEquipment(player.playerInventoryManager.lumenEquipmentItemSlots[2], 2);
 
                         // REFRESHES EQUIPMENT WINDOW
                         PlayerUIManager.instance.playerUIEquipmentManager.RefreshMenu();
@@ -184,10 +184,10 @@ namespace Group1
 
                         // THEN REPLACE THE LUMEN IN THAT SLOT WITH OUR NEW LUMEN
                         player.playerInventoryManager.lumenEquipmentItemSlots[3] = equippedItem as LumenEquipmentItem;
-                        //player.SetLumenEquipmentID(3, player.playerInventoryManager.lumenEquipmentItemSlots[3].itemID);
+                        player.SetLumenEquipmentID(3, player.playerInventoryManager.lumenEquipmentItemSlots[3].itemID);
 
                         // EQUIP NEW LUMEN
-                        player.playerEquipmentManager.LoadLumenEquipment(player.playerInventoryManager.lumenEquipmentItemSlots[3], 3);
+                        //player.playerEquipmentManager.LoadLumenEquipment(player.playerInventoryManager.lumenEquipmentItemSlots[3], 3);
 
                         // REFRESHES EQUIPMENT WINDOW
                         PlayerUIManager.instance.playerUIEquipmentManager.RefreshMenu();
