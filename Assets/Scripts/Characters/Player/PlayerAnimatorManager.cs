@@ -67,18 +67,5 @@ namespace Group1{
             player.playerCombatManager.canComboWithMainHandWeapon = false;
 
         }
-
-        public void EnableInvulnerability()
-        {
-            player.isInvulnerable = true;
-            Debug.LogError("Player is now invulnerable");
-        }
-
-        public void DisableInvulnerability()
-        {
-            player.isInvulnerable = false;
-            Debug.LogError("Player is now vulnerable");
-        }
-    
     }
 }

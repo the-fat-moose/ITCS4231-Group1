@@ -56,14 +56,14 @@ ModelImporter:
       curves: []
       events:
       - time: 0.044261683
-        functionName: EnableInvulnerability
+        functionName: EnableIsInvulnerable
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
       - time: 0.3366274
-        functionName: DisableInvulnerability
+        functionName: DisableIsInvulnerable
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
