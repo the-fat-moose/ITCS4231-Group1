@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edc5b40ad0078c74b8ed1c00d15793fa, type: 3}
-  m_Name: Pursue Target
-  m_EditorClassIdentifier: Assembly-CSharp::Group1.PursueTargetState
+  m_Script: {fileID: 11500000, guid: 604767c2aec2c3e4191052bc888cb859, type: 3}
+  m_Name: FinalBoss_Idle State
+  m_EditorClassIdentifier: Assembly-CSharp::Group1.IdleState

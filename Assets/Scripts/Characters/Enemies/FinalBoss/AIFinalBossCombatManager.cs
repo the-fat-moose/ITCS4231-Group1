@@ -21,12 +21,12 @@ namespace Group1 {
             finalBossMeleeWeaponDamageCollider.physicalDamage = baseDamage * attack02DamageModifier;
         }
 
-        public void OpenMeleeWeaponDamageCollider()
+        public void OpenFinalBossMeleeWeaponDamageCollider()
         {
             finalBossMeleeWeaponDamageCollider.EnableCollider();
         }
 
-        public void CloseMeleeWeaponDamageCollider()
+        public void CloseFinalBossMeleeWeaponDamageCollider()
         {
             finalBossMeleeWeaponDamageCollider.DisableCollider();
         }

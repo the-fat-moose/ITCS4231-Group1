@@ -2493,7 +2493,7 @@ MonoBehaviour:
   lastAttackAnimationPerformed: 
   currentTarget: {fileID: 0}
   currentAttackType: 0
-  lockOnTransform: {fileID: 0}
+  lockOnTransform: {fileID: 7161884841874793837}
   actionRecoveryTimer: 0
   viewableAngle: 0
   targetsDirection: {x: 0, y: 0, z: 0}
@@ -2502,7 +2502,7 @@ MonoBehaviour:
   minimumDetectionAngle: -35
   maximumDetectionAngle: 35
   attackRotationSpeed: 25
-  finalBossMeleeWeaponDamageCollider: {fileID: 0}
+  finalBossMeleeWeaponDamageCollider: {fileID: 7707428182314657952}
   baseDamage: 25
   attack01DamageModifier: 1
   attack02DamageModifier: 1.4
@@ -2518,7 +2518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4b53a48268627545b252654365b4eb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AIBossCharacterManager
-  characterController: {fileID: 0}
+  characterController: {fileID: 7118222727435136489}
   animator: {fileID: 0}
   characterEffectsManager: {fileID: 0}
   characterAnimatorManager: {fileID: 0}
@@ -2556,12 +2556,12 @@ MonoBehaviour:
   characterName: 
   aiCharacterCombatManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
-  navMeshAgent: {fileID: 0}
-  currentState: {fileID: 11400000, guid: 5c577e05925e04b4989398aeff23d7b5, type: 2}
-  idle: {fileID: 11400000, guid: 5c577e05925e04b4989398aeff23d7b5, type: 2}
-  pursueTarget: {fileID: 11400000, guid: 46ce2d633be6790448b26e0ee26ef3fe, type: 2}
-  combatStance: {fileID: 11400000, guid: 39aac73eecd584c40ae6ba42cc1ab5a7, type: 2}
-  attack: {fileID: 11400000, guid: 5d77743cff2bdf346b73f4a716814c9c, type: 2}
+  navMeshAgent: {fileID: 3086726334785517109}
+  currentState: {fileID: 11400000, guid: 0a7c71b4d5a97fa449fa0d734e099c01, type: 2}
+  idle: {fileID: 11400000, guid: 0a7c71b4d5a97fa449fa0d734e099c01, type: 2}
+  pursueTarget: {fileID: 11400000, guid: 6ae1862d2594ba041b2e48b1e9f02273, type: 2}
+  combatStance: {fileID: 11400000, guid: bbd51b5257036904aa61a352068208d9, type: 2}
+  attack: {fileID: 11400000, guid: e4a795dcbd3f2b04195817d11f023c52, type: 2}
   bossID: 0
   hasBeenDefeated: 0
   hasBeenAwakened: 0
@@ -4437,6 +4437,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7111054158473328429, guid: 47ff5aa93acfff048afb7a1f79d4821f, type: 3}
   m_PrefabInstance: {fileID: 33281293707793069}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7707428182314657952 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7674261521319164429, guid: 47ff5aa93acfff048afb7a1f79d4821f, type: 3}
+  m_PrefabInstance: {fileID: 33281293707793069}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bcd8e3f708602e42a574083a523a2a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Group1.FinalBossMeleeWeaponDamageCollider
 --- !u!1001 &6204464550070650166
 PrefabInstance:
   m_ObjectHideFlags: 0
