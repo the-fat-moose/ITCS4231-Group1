@@ -4,6 +4,8 @@ using UnityEngine;
 namespace Group1 {
     public class AIFinalBossCombatManager : AiCharacterCombatManager
     {
+        AIFinalBossCharacterManager aiFinalBossCharacter;
+
         [Header("Damage Collider")]
         [SerializeField] FinalBossMeleeWeaponDamageCollider finalBossMeleeWeaponDamageCollider;
 
@@ -21,12 +23,11 @@ namespace Group1 {
         [Header("Special Attack VFXs")]
         [SerializeField] GameObject circleAOEVFX;
 
-        private void OnDrawGizmosSelected()
+        protected override void Awake()
         {
-            Vector3 circleAOECenterPosition = gameObject.transform.position + transform.forward * circleAOEDistanceInFront;
+            base.Awake();
 
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere (circleAOECenterPosition, circleAOERadius);
+            aiFinalBossCharacter = GetComponent<AIFinalBossCharacterManager>();
         }
 
         public void SetAttack01Damage()
@@ -41,7 +42,7 @@ namespace Group1 {
 
         public void ActivateFinalBossCircleAOE()
         {
-            Vector3 circleAOECenterPosition = gameObject.transform.position + transform.forward * circleAOEDistanceInFront;
+            Vector3 circleAOECenterPosition = aiFinalBossCharacter.gameObject.transform.position + transform.forward * circleAOEDistanceInFront;
 
             // SHOW VFX
             GameObject circleAOEObject = Instantiate(circleAOEVFX, circleAOECenterPosition, Quaternion.identity);
@@ -56,7 +57,9 @@ namespace Group1 {
             {
                 CharacterManager character = collider.GetComponentInParent<CharacterManager>();
 
-                if (character != null && character.characterGroup != this.gameObject.GetComponent<CharacterManager>().characterGroup)
+                if (character == aiFinalBossCharacter) continue; // IGNORE BOSS
+
+                if (character != null)
                 {
                     if (charactersDamaged.Contains(character)) continue;
 

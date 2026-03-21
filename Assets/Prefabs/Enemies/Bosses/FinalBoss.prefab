@@ -2395,12 +2395,12 @@ GameObject:
   - component: {fileID: 3549983606047134766}
   - component: {fileID: 2085845343277391128}
   - component: {fileID: 1231333947033157760}
-  - component: {fileID: 126339453259423026}
+  - component: {fileID: 2335758378731615156}
   - component: {fileID: 7793801027852880519}
   - component: {fileID: 7794327462836498939}
   - component: {fileID: 6966264921010832010}
   - component: {fileID: 662894994378216698}
-  - component: {fileID: 4166832449381427348}
+  - component: {fileID: 6926449479873276724}
   - component: {fileID: 5248175474961700616}
   - component: {fileID: 6628305317445991179}
   - component: {fileID: 7118222727435136489}
@@ -2510,7 +2510,7 @@ MonoBehaviour:
   circleAOERadius: 2
   circleAOEMagicDamage: 50
   circleAOEVFX: {fileID: 8719263370430895187, guid: 7d34a61c458188a47ba85f8bcac01f94, type: 3}
---- !u!114 &126339453259423026
+--- !u!114 &2335758378731615156
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2519,9 +2519,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5787781822967198947}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4b53a48268627545b252654365b4eb3, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e8c2dfedc797494895d20237587de4f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AIBossCharacterManager
+  m_EditorClassIdentifier: Assembly-CSharp::Group1.AIFinalBossCharacterManager
   characterController: {fileID: 7118222727435136489}
   animator: {fileID: 0}
   characterEffectsManager: {fileID: 0}
@@ -2548,9 +2548,9 @@ MonoBehaviour:
   parried: 0
   isActive: 1
   isInvulnerable: 0
-  endurance: 10
-  vitality: 10
-  mind: 10
+  endurance: 20
+  vitality: 30
+  mind: 20
   currentStamina: 0
   maxStamina: 0
   currentHealth: 0
@@ -2625,7 +2625,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Group1.CharacterEffectsManager
   bloodSplatterVFX: {fileID: 0}
---- !u!114 &4166832449381427348
+--- !u!114 &6926449479873276724
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2634,9 +2634,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5787781822967198947}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcb6ad002cddcb34985bf58e6e5dfe0a, type: 3}
+  m_Script: {fileID: 11500000, guid: d520ac38ed98dc744acde26759fd3308, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Group1.CharacterSoundFXManager
+  m_EditorClassIdentifier: Assembly-CSharp::Group1.AIFinalBossSoundFXManager
 --- !u!114 &5248175474961700616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4427,10 +4427,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 93.322
       objectReference: {fileID: 0}
-    - target: {fileID: 7674261521319164429, guid: 47ff5aa93acfff048afb7a1f79d4821f, type: 3}
-      propertyPath: AICharacter
-      value: 
-      objectReference: {fileID: 126339453259423026}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
