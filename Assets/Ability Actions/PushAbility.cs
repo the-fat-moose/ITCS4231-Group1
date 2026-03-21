@@ -43,6 +43,8 @@ namespace Group1
                 Quaternion spawnRot = Quaternion.LookRotation(player.transform.forward);
 
                 GameObject vfx = GameObject.Instantiate(pushVFX, spawnPos, spawnRot);
+
+                Destroy(vfx, 1.2f); // Destroy VFX after 2 seconds
             }
 
             Collider[] hits = Physics.OverlapBox(origin, new Vector3(width * 0.5f, height * 0.5f, range * 0.5f), rotation, LayerMask.GetMask("Character"));

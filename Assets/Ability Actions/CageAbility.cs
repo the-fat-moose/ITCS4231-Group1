@@ -1,3 +1,4 @@
+using PixPlays.ElementalVFX;
 using UnityEngine;
 
 namespace Group1
@@ -50,7 +51,9 @@ namespace Group1
                     Vector3 pos = character.transform.position;
                     Quaternion rot = Quaternion.identity; // or face player if you want
 
-                    GameObject.Instantiate(cageVFX, pos, rot);
+                    GameObject cageObj = GameObject.Instantiate(cageVFX, pos, rot);
+
+                    Destroy(cageObj, freezeDuration + 0.3f); // Destroy VFX after freeze duration
                 }
 
                 // Apply freeze effect
