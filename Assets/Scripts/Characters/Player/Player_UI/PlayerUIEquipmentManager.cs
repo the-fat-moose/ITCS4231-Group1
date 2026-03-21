@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,11 +16,20 @@ namespace Group1
         [SerializeField] private Image rightHandSlot02;
         [SerializeField] private Image rightHandSlot03;
 
+        // THIS INVENTORY POPULATES WITH RELATED ITEMS WHEN CHANGING EQUIPMENT
+        [Header("Equipment Inventory")]
+        [SerializeField] GameObject equipmentInventoryWindow;
+        public EquipmentSlotType currentSelectedEquipmentSlot;
+        [SerializeField] private GameObject equipmentInventorySlotPrefab;
+        [SerializeField] private Transform equipmentInventoryContentWindow;
+        [SerializeField] private Item currentSelectedItem;
+
         public void OpenEquipmentMenu()
         {
             PlayerUIManager.instance.menuWindowIsOpen = true;
             menu.SetActive(true);
-
+            equipmentInventoryWindow.SetActive(false);
+            ClearEquipmentInventory();
             RefreshWeaponSlotIcons();
         }
 
@@ -71,6 +82,75 @@ namespace Group1
                 else
                 {
                     rightHandSlot03.enabled = false;
+                }
+            }
+        }
+    
+        private void ClearEquipmentInventory()
+        {
+            foreach (Transform item in equipmentInventoryContentWindow)
+            {
+                Destroy(item.gameObject);
+            }
+        }
+
+        public void LoadEquipmentInventory()
+        {
+            equipmentInventoryWindow.SetActive(true);
+
+            switch (currentSelectedEquipmentSlot)
+            {
+                case EquipmentSlotType.RightWeapon01:
+                    LoadWeaponInventory();
+                    break;
+                case EquipmentSlotType.RightWeapon02:
+                    LoadWeaponInventory();
+                    break;
+                case EquipmentSlotType.RightWeapon03:
+                    LoadWeaponInventory();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void LoadWeaponInventory()
+        {
+            List<WeaponItem> weaponsInInventory = new List<WeaponItem>();
+
+            PlayerManager player = FindFirstObjectByType<PlayerManager>();
+
+            if (player != null)
+            {
+                for(int i = 0; i < player.playerInventoryManager.itemsInInventory.Count; i++)
+                {
+                    WeaponItem weapon = player.playerInventoryManager.itemsInInventory[i] as WeaponItem;
+
+                    if (weapon != null)
+                        weaponsInInventory.Add(weapon);
+                }
+
+                if (weaponsInInventory.Count <= 0)
+                {
+                    OpenEquipmentMenu();
+                    return;
+                }
+
+                bool hasSelectedFirstInventorySlot = false;
+
+                for (int i = 0; i < weaponsInInventory.Count; i++)
+                {
+                    GameObject inventorySlotGameObject = Instantiate(equipmentInventorySlotPrefab, equipmentInventoryContentWindow);
+                    UI_EquipmentInventorySlot equipmentInventorySlot = inventorySlotGameObject.GetComponent<UI_EquipmentInventorySlot>();
+                    equipmentInventorySlot.AddItem(weaponsInInventory[i]);
+
+                    // THIS WILL SELECT THE FIRST BUTTON IN THE LIST
+                    if (!hasSelectedFirstInventorySlot)
+                    {
+                        Button inventorySlotButton = inventorySlotGameObject.GetComponent<Button>();
+                        inventorySlotButton.Select();
+                        inventorySlotButton.OnSelect(null);
+                    }
                 }
             }
         }

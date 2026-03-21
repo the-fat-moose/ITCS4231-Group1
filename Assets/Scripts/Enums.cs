@@ -32,6 +32,13 @@ namespace Group1 {
         RightHand
     }
 
+    public enum EquipmentSlotType
+    {
+        RightWeapon01,
+        RightWeapon02,
+        RightWeapon03
+    }
+
     public enum AttackType
     {
         Light01,
