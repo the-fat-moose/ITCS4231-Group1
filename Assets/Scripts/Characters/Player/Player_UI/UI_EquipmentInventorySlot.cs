@@ -144,7 +144,9 @@ namespace Group1
 
                         // THEN REPLACE THE LUMEN IN THAT SLOT WITH OUR NEW LUMEN
                         player.playerInventoryManager.lumenEquipmentItemSlots[1] = equippedItem as LumenEquipmentItem;
+                        Debug.LogError("Equipped Lumen ID: " + player.playerInventoryManager.lumenEquipmentItemSlots[1].itemID);
                         player.SetLumenEquipmentID(1, player.playerInventoryManager.lumenEquipmentItemSlots[1].itemID);
+                        
 
                         // EQUIP NEW LUMEN
                         //player.playerEquipmentManager.LoadLumenEquipment(player.playerInventoryManager.lumenEquipmentItemSlots[1], 1);

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Maliketh's Black Blade
+* source:	https://sketchfab.com/3d-models/malikeths-black-blade-2a05bdc774cb46daaae3b04a606b456c
+* author:	Michal Cavrnoch (https://sketchfab.com/MichalCavrnoch)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Maliketh's Black Blade" (https://sketchfab.com/3d-models/malikeths-black-blade-2a05bdc774cb46daaae3b04a606b456c) by Michal Cavrnoch (https://sketchfab.com/MichalCavrnoch) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
