@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: FinalBoss_Combat Stance
   m_EditorClassIdentifier: Assembly-CSharp::Group1.CombatStanceState
   aiCharacterAttacks:
-  - {fileID: 11400000, guid: 9f5a624f18de69242aeed759f71d8e54, type: 2}
-  - {fileID: 11400000, guid: 4324f8aeb7cfce546b9a5c6f8d32fd82, type: 2}
+  - {fileID: 11400000, guid: 03126ecaa6a6b4c4e9ded249fd062592, type: 2}
+  - {fileID: 11400000, guid: 18f3021ab4e706b44933b1165334f6f6, type: 2}
   canPerformCombo: 0
   chanceToPerformCombo: 25
   maximumEngagementDistance: 5

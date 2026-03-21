@@ -39,5 +39,15 @@ namespace Group1 {
                 currentTarget = null;
             }
         }
+    
+        public void EnableIsInvulnerable()
+        {
+            character.isInvulnerable = true;
+        }
+
+        public void DisableIsInvulnerable()
+        {
+            character.isInvulnerable = false;
+        }
     }
 }

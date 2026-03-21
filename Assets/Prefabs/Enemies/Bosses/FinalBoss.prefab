@@ -2553,7 +2553,7 @@ MonoBehaviour:
   maxHealth: 0
   currentMana: 0
   maxMana: 0
-  characterName: 
+  characterName: Lord Serethion, Veilbreaker
   aiCharacterCombatManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
   navMeshAgent: {fileID: 3086726334785517109}
