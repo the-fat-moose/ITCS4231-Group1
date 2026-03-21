@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 656554186d68bb74cba2b8643e61a652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Group1.WeaponManager
-  meleeDamageCollider: {fileID: 5307339602008551044}
+  meleeDamageCollider: {fileID: 0}
 --- !u!1 &2289667274214481786
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,8 +242,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7172173273579086406}
-  - component: {fileID: 5307339602008551044}
   - component: {fileID: 493085906329837770}
+  - component: {fileID: 7674261521319164429}
   m_Layer: 10
   m_Name: Damage Collider
   m_TagString: Untagged
@@ -266,24 +266,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4403148770645996326}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5307339602008551044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2934596976656984342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 576f0a4a7e88cfb408b0d39f3c2bb030, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Group1.MeleeWeaponDamageCollider
-  damageCollider: {fileID: 493085906329837770}
-  physicalDamage: 0
-  magicDamage: 0
-  characterCausingDamage: {fileID: 0}
-  light_Attack_Modifier: 0
-  heavy_Attack_Modifier: 0
 --- !u!65 &493085906329837770
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -305,6 +287,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.006, y: 0.06, z: 0.0005}
   m_Center: {x: 0, y: 0.0075, z: 0}
+--- !u!114 &7674261521319164429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2934596976656984342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bcd8e3f708602e42a574083a523a2a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Group1.FinalBossMeleeWeaponDamageCollider
+  damageCollider: {fileID: 493085906329837770}
+  physicalDamage: 0
+  magicDamage: 0
+  AICharacter: {fileID: 0}
 --- !u!1 &2992126632832661300
 GameObject:
   m_ObjectHideFlags: 0
