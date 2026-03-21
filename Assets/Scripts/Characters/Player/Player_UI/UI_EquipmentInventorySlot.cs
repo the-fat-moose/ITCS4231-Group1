@@ -36,19 +36,20 @@ namespace Group1
         public void EquipItem()
         {
             PlayerManager player = FindFirstObjectByType<PlayerManager>();
-            WeaponItem currentWeapon;
+            Item equippedItem;
 
             if (player != null) 
             {
                 switch (PlayerUIManager.instance.playerUIEquipmentManager.currentSelectedEquipmentSlot)
                 {
+                    // LOGIC FOR WEAPONS
                     case EquipmentSlotType.RightWeapon01:
-                        currentWeapon = player.playerInventoryManager.weaponsInRightHandSlots[0];
+                        equippedItem = player.playerInventoryManager.weaponsInRightHandSlots[0];
                         
                         // IF OUR CURRENT WEAPON IN THIS SLOT IS NOT AN UNARMED ITEM, ADD IT TO OUR INVENTORY
-                        if (currentWeapon.itemID != WorldItemDatabase.instance.unarmedWeapon.itemID)
+                        if (equippedItem.itemID != WorldItemDatabase.instance.unarmedWeapon.itemID)
                         {
-                            player.playerInventoryManager.AddItemToInventory(currentWeapon);
+                            player.playerInventoryManager.AddItemToInventory(equippedItem);
                         }
 
                         // THEN REPLACE THE WEAPON IN THAT SLOT WITH OUR NEW WEAPON
@@ -66,12 +67,12 @@ namespace Group1
 
                         break;
                     case EquipmentSlotType.RightWeapon02:
-                        currentWeapon = player.playerInventoryManager.weaponsInRightHandSlots[1];
+                        equippedItem = player.playerInventoryManager.weaponsInRightHandSlots[1];
                         
                         // IF OUR CURRENT WEAPON IN THIS SLOT IS NOT AN UNARMED ITEM, ADD IT TO OUR INVENTORY
-                        if (currentWeapon.itemID != WorldItemDatabase.instance.unarmedWeapon.itemID)
+                        if (equippedItem.itemID != WorldItemDatabase.instance.unarmedWeapon.itemID)
                         {
-                            player.playerInventoryManager.AddItemToInventory(currentWeapon);
+                            player.playerInventoryManager.AddItemToInventory(equippedItem);
                         }
 
                         // THEN REPLACE THE WEAPON IN THAT SLOT WITH OUR NEW WEAPON
@@ -89,12 +90,12 @@ namespace Group1
 
                         break;
                     case EquipmentSlotType.RightWeapon03:
-                        currentWeapon = player.playerInventoryManager.weaponsInRightHandSlots[2];
+                        equippedItem = player.playerInventoryManager.weaponsInRightHandSlots[2];
                         
                         // IF OUR CURRENT WEAPON IN THIS SLOT IS NOT AN UNARMED ITEM, ADD IT TO OUR INVENTORY
-                        if (currentWeapon.itemID != WorldItemDatabase.instance.unarmedWeapon.itemID)
+                        if (equippedItem.itemID != WorldItemDatabase.instance.unarmedWeapon.itemID)
                         {
-                            player.playerInventoryManager.AddItemToInventory(currentWeapon);
+                            player.playerInventoryManager.AddItemToInventory(equippedItem);
                         }
 
                         // THEN REPLACE THE WEAPON IN THAT SLOT WITH OUR NEW WEAPON
@@ -111,7 +112,87 @@ namespace Group1
                         PlayerUIManager.instance.playerUIEquipmentManager.RefreshMenu();
 
                         break;
-                    // ADD LOGIC FOR TALISMANS (Lumens)
+                    // LOGIC FOR TALISMANS (Lumens)
+                    case EquipmentSlotType.LumenEquipment01:
+                        equippedItem = player.playerInventoryManager.lumenEquipmentItemSlots[0];
+
+                        // IF OUR CURRENT LUMEN IN THIS SLOT IS NOT NULL, ADD IT TO OUR INVENTORY
+                        if (equippedItem != null)
+                        {
+                            player.playerInventoryManager.AddItemToInventory(equippedItem);
+                        }
+
+                        // THEN REPLACE THE LUMEN IN THAT SLOT WITH OUR NEW LUMEN
+                        player.playerInventoryManager.lumenEquipmentItemSlots[0] = equippedItem as LumenEquipmentItem;
+                        //player.SetLumenEquipmentID(0, player.playerInventoryManager.lumenEquipmentItemSlots[0].itemID);
+
+                        // EQUIP NEW LUMEN
+                        player.playerEquipmentManager.LoadLumenEquipment(player.playerInventoryManager.lumenEquipmentItemSlots[0], 0);
+
+                        // REFRESHES EQUIPMENT WINDOW
+                        PlayerUIManager.instance.playerUIEquipmentManager.RefreshMenu();
+
+                        break;
+                    case EquipmentSlotType.LumenEquipment02:
+                        equippedItem = player.playerInventoryManager.lumenEquipmentItemSlots[1];
+
+                        // IF OUR CURRENT LUMEN IN THIS SLOT IS NOT NULL, ADD IT TO OUR INVENTORY
+                        if (equippedItem != null)
+                        {
+                            player.playerInventoryManager.AddItemToInventory(equippedItem);
+                        }
+
+                        // THEN REPLACE THE LUMEN IN THAT SLOT WITH OUR NEW LUMEN
+                        player.playerInventoryManager.lumenEquipmentItemSlots[1] = equippedItem as LumenEquipmentItem;
+                        //player.SetLumenEquipmentID(1, player.playerInventoryManager.lumenEquipmentItemSlots[1].itemID);
+
+                        // EQUIP NEW LUMEN
+                        player.playerEquipmentManager.LoadLumenEquipment(player.playerInventoryManager.lumenEquipmentItemSlots[1], 1);
+
+                        // REFRESHES EQUIPMENT WINDOW
+                        PlayerUIManager.instance.playerUIEquipmentManager.RefreshMenu();
+
+                        break;
+                    case EquipmentSlotType.LumenEquipment03:
+                        equippedItem = player.playerInventoryManager.lumenEquipmentItemSlots[2];
+
+                        // IF OUR CURRENT LUMEN IN THIS SLOT IS NOT NULL, ADD IT TO OUR INVENTORY
+                        if (equippedItem != null)
+                        {
+                            player.playerInventoryManager.AddItemToInventory(equippedItem);
+                        }
+
+                        // THEN REPLACE THE LUMEN IN THAT SLOT WITH OUR NEW LUMEN
+                        player.playerInventoryManager.lumenEquipmentItemSlots[2] = equippedItem as LumenEquipmentItem;
+                        //player.SetLumenEquipmentID(2, player.playerInventoryManager.lumenEquipmentItemSlots[2].itemID);
+
+                        // EQUIP NEW LUMEN
+                        player.playerEquipmentManager.LoadLumenEquipment(player.playerInventoryManager.lumenEquipmentItemSlots[2], 2);
+
+                        // REFRESHES EQUIPMENT WINDOW
+                        PlayerUIManager.instance.playerUIEquipmentManager.RefreshMenu();
+
+                        break;
+                    case EquipmentSlotType.LumenEquipment04:
+                        equippedItem = player.playerInventoryManager.lumenEquipmentItemSlots[3];
+
+                        // IF OUR CURRENT LUMEN IN THIS SLOT IS NOT NULL, ADD IT TO OUR INVENTORY
+                        if (equippedItem != null)
+                        {
+                            player.playerInventoryManager.AddItemToInventory(equippedItem);
+                        }
+
+                        // THEN REPLACE THE LUMEN IN THAT SLOT WITH OUR NEW LUMEN
+                        player.playerInventoryManager.lumenEquipmentItemSlots[3] = equippedItem as LumenEquipmentItem;
+                        //player.SetLumenEquipmentID(3, player.playerInventoryManager.lumenEquipmentItemSlots[3].itemID);
+
+                        // EQUIP NEW LUMEN
+                        player.playerEquipmentManager.LoadLumenEquipment(player.playerInventoryManager.lumenEquipmentItemSlots[3], 3);
+
+                        // REFRESHES EQUIPMENT WINDOW
+                        PlayerUIManager.instance.playerUIEquipmentManager.RefreshMenu();
+
+                        break;
                     default:
                         break;
                 }
