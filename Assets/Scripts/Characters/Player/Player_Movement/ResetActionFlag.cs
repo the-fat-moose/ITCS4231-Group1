@@ -24,6 +24,7 @@ namespace Group1{
             //character.isInvulnerable = false;
 
             character.isAttacking = false;
+            character.isInvulnerable = false;
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
