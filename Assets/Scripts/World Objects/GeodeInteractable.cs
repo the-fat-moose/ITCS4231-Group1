@@ -70,6 +70,12 @@ namespace Group1
             }
             WorldSaveGameManager.instance.currentCharacterData.geodes.Add(geodeID, true);
 
+            // FACE TOWARDS GEODE
+            Vector3 direction = (transform.position - player.gameObject.transform.position).normalized;
+            Vector3 flatDirection = new Vector3(direction.x, 0, direction.y);
+            Quaternion targetRotation = Quaternion.LookRotation(flatDirection);
+            player.transform.rotation = targetRotation;
+
             // PLAY AN ANIMATION
             player.playerAnimatorManager.PlayTargetActionAnimation("Activate_Geode_01", true);
 
