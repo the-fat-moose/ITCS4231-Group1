@@ -8,6 +8,7 @@ namespace Group1 {
         [HideInInspector] public PlayerUIHudManager playerUIHudManager;
         [HideInInspector] public PlayerUIPopUpManager playerUIPopUpManager;
         [HideInInspector] public PlayerUICharacterMenuManager playerUICharacterMenuManager;
+        [HideInInspector] public PlayerUIEquipmentManager playerUIEquipmentManager;
 
         [Header("UI Flags")]
         public bool menuWindowIsOpen = false; // INVENTORY SCREEN, EQUIPMENT MENU, ETC
@@ -27,6 +28,7 @@ namespace Group1 {
             playerUIHudManager = GetComponentInChildren<PlayerUIHudManager>();
             playerUIPopUpManager = GetComponentInChildren<PlayerUIPopUpManager>();
             playerUICharacterMenuManager = GetComponentInChildren<PlayerUICharacterMenuManager>();
+            playerUIEquipmentManager = GetComponentInChildren<PlayerUIEquipmentManager>();
         }
 
         private void Start()
@@ -37,6 +39,7 @@ namespace Group1 {
         public void CloseAllMenuWindows()
         {
             playerUICharacterMenuManager.CloseCharacterMenu();
+            playerUIEquipmentManager.CloseEquipmentMenu();
         }
     }
 }
