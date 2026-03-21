@@ -9,7 +9,7 @@ namespace Group1 {
         private float staminaRegenerationTimer = 0;
         private float staminaTickTimer = 0;
         [SerializeField] private float staminaRegenerationDelay = 2f;
-        [SerializeField] private int staminaRegenerationAmount = 2;
+        public int staminaRegenerationAmount = 2;
 
         public float blockingPhysicalAbsorption = 65f;
         public float blockingMagicAbsorption = 65f;

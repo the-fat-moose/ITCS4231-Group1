@@ -3,6 +3,7 @@ using Unity.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 namespace Group1{
     public class PlayerManager : CharacterManager
@@ -26,9 +27,11 @@ namespace Group1{
         [Header("Equipment")]
         private int currentRightHandWeaponID = 0;
         private int currentWeaponBeingUsed = 0;
+        public List<int> lumenEquipmentIDs = new List<int>();
 
         public event System.Action<int, int> OnRightHandWeaponIDChanged;
         public event System.Action<int, int> OnCurrentWeaponBeingUsedChanged;
+        public event System.Action<int, int, int> OnLumenEquipmentIDChanged;
 
         public int CurrentRightHandWeaponID
         {
@@ -102,6 +105,7 @@ namespace Group1{
                 // Equipment
                 OnRightHandWeaponIDChanged += OnCurrentRightHandWeaponIDChange;
                 OnCurrentWeaponBeingUsedChanged += OnCurrentWeaponBeingUsedIDChange;
+                OnLumenEquipmentIDChanged += OnLumenEquipmentIDChange;
             }
         }
 
@@ -387,6 +391,33 @@ namespace Group1{
             else
             {
                 Debug.LogError("ABILITY ACTION IS NULL, CANNOT BE PERFORMED");
+            }
+        }
+
+        public void SetLumenEquipmentID(int index, int newID)
+        {
+            if (index < 0 || index >= lumenEquipmentIDs.Count) return;
+
+            int oldID = lumenEquipmentIDs[index];
+
+            if (oldID == newID) return;
+
+            lumenEquipmentIDs[index] = newID;
+
+            OnLumenEquipmentIDChanged?.Invoke(index, oldID, newID);
+        }
+
+        public void OnLumenEquipmentIDChange(int index, int oldID, int newID)
+        {
+            LumenEquipmentItem lumenEquipmentItem = WorldItemDatabase.instance.GetLumenEquipmentByID(newID);
+
+            if (lumenEquipmentItem != null)
+            {
+                playerEquipmentManager.LoadLumenEquipment(Instantiate(lumenEquipmentItem), index);
+            }
+            else
+            {
+                playerEquipmentManager.LoadLumenEquipment(null, index);
             }
         }
 

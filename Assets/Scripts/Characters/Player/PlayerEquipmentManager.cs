@@ -32,15 +32,23 @@ namespace Group1 {
         }
 
         // EQUIPMENT
-        public void LoadLumenEquipment(LumenEquipmentItem equipment)
+        public void LoadLumenEquipment(LumenEquipmentItem equipment, int index)
         {
             // UNLOAD OLD EQUIPMENT IF ANY
 
             // IF EQUIPMENT IS NULL, SET THE EQUIPMENT TO NULL IN INVENTORY AND RETURN
+            if (equipment == null)
+            {
+                player.playerInventoryManager.lumenEquipmentItemSlots[index] = null;
+                return;
+            }
 
             // CALL THE OnItemEquipped FUNCTION ON YOUR EQUIPMENT IF APPLICABLE
 
             // SET CURRENT EQUIPMENT IN PLAYER INVENTORY TO THE EQUIPMENT THAT IS PASSED TO THIS FUNCTION
+            player.playerInventoryManager.lumenEquipmentItemSlots[index] = equipment;
+
+            player.playerStatsManager.CalculateNewStats();
         }
 
         // WEAPON
