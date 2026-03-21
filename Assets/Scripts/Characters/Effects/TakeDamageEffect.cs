@@ -36,6 +36,7 @@ namespace Group1 {
             if (character.isDead) return;
 
             // CHECK FOR INVULNERABILITY
+            if (character.isInvulnerable) return;
 
             CalculateDamage(character);
             // CHECK WHICH DIRECTION THE DAMAGE CAME FROM
