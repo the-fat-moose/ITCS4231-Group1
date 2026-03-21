@@ -509,6 +509,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cage Ability"",
+                    ""type"": ""Button"",
+                    ""id"": ""a9f3bc49-b4d6-4b7a-b11b-0e4434e814f2"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -863,6 +872,50 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Push Ability"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""68ee83b0-594a-4549-98da-2d2abec1efbf"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cage Ability"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""One Modifier"",
+                    ""id"": ""9be4fbfe-5c3d-4887-bd12-785514e43e78"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cage Ability"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""d4e21d4f-b1f7-460b-9de5-775da04055bc"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cage Ability"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""da6fc002-5a71-4a58-8f91-b79f1b756ef8"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cage Ability"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -933,6 +986,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerActions_SeekLeftLockOnTarget = m_PlayerActions.FindAction("Seek Left Lock On Target", throwIfNotFound: true);
         m_PlayerActions_SeekRightLockOnTarget = m_PlayerActions.FindAction("Seek Right Lock On Target", throwIfNotFound: true);
         m_PlayerActions_PushAbility = m_PlayerActions.FindAction("Push Ability", throwIfNotFound: true);
+        m_PlayerActions_CageAbility = m_PlayerActions.FindAction("Cage Ability", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_X = m_UI.FindAction("X", throwIfNotFound: true);
@@ -1238,6 +1292,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_SeekLeftLockOnTarget;
     private readonly InputAction m_PlayerActions_SeekRightLockOnTarget;
     private readonly InputAction m_PlayerActions_PushAbility;
+    private readonly InputAction m_PlayerActions_CageAbility;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player Actions".
     /// </summary>
@@ -1314,6 +1369,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @PushAbility => m_Wrapper.m_PlayerActions_PushAbility;
         /// <summary>
+        /// Provides access to the underlying input action "PlayerActions/CageAbility".
+        /// </summary>
+        public InputAction @CageAbility => m_Wrapper.m_PlayerActions_CageAbility;
+        /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
@@ -1387,6 +1446,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @PushAbility.started += instance.OnPushAbility;
             @PushAbility.performed += instance.OnPushAbility;
             @PushAbility.canceled += instance.OnPushAbility;
+            @CageAbility.started += instance.OnCageAbility;
+            @CageAbility.performed += instance.OnCageAbility;
+            @CageAbility.canceled += instance.OnCageAbility;
         }
 
         /// <summary>
@@ -1446,6 +1508,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @PushAbility.started -= instance.OnPushAbility;
             @PushAbility.performed -= instance.OnPushAbility;
             @PushAbility.canceled -= instance.OnPushAbility;
+            @CageAbility.started -= instance.OnCageAbility;
+            @CageAbility.performed -= instance.OnCageAbility;
+            @CageAbility.canceled -= instance.OnCageAbility;
         }
 
         /// <summary>
@@ -1731,6 +1796,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPushAbility(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Cage Ability" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCageAbility(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

@@ -4288,12 +4288,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4078617143967461477, guid: dac196aab4cfb4d4f947a2c5914e0e69, type: 3}
       propertyPath: playerAbilityActions.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4078617143967461477, guid: dac196aab4cfb4d4f947a2c5914e0e69, type: 3}
       propertyPath: 'playerAbilityActions.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: 00d00687d46b047489efc7350cfaaf12, type: 2}
+    - target: {fileID: 4078617143967461477, guid: dac196aab4cfb4d4f947a2c5914e0e69, type: 3}
+      propertyPath: 'playerAbilityActions.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: b6bb5b2f36a60bf4ca8c9a9b14db7264, type: 2}
     - target: {fileID: 5905379055965345332, guid: dac196aab4cfb4d4f947a2c5914e0e69, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.98302

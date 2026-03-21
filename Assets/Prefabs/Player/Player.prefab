@@ -423,7 +423,13 @@ MonoBehaviour:
   rightHandWeaponIndex: 0
   pushAbility: {fileID: 11400000, guid: 00d00687d46b047489efc7350cfaaf12, type: 2}
   knockUpAbility: {fileID: 0}
-  cageAbility: {fileID: 0}
+  cageAbility: {fileID: 11400000, guid: b6bb5b2f36a60bf4ca8c9a9b14db7264, type: 2}
+  lumenEquipmentItemSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  itemsInInventory: []
 --- !u!114 &3690826846574739967
 MonoBehaviour:
   m_ObjectHideFlags: 0

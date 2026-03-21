@@ -61,17 +61,5 @@ namespace Group1
                 
             }
         }
-
-        public void DrawDebug(PlayerManager player)
-        {
-            Vector3 forward = player.transform.forward;
-            Vector3 origin = player.transform.position + forward * (range * 0.6f);
-            Quaternion rotation = Quaternion.LookRotation(forward);
-
-            Matrix4x4 m = Matrix4x4.TRS(origin, rotation, Vector3.one);
-            Gizmos.matrix = m;
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireCube(Vector3.zero, new Vector3(width, height, range));
-        }
     }
 }

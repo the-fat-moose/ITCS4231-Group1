@@ -59,6 +59,7 @@ namespace Group1{
 
         [Header("Ability Inputs")]
         [SerializeField] bool pushAbility_Input = false;
+        [SerializeField] bool cageAbility_Input = false;
 
         private void Awake()
         {
@@ -116,6 +117,7 @@ namespace Group1{
 
                 //Ability inputs
                 playerControls.PlayerActions.PushAbility.performed += i => pushAbility_Input = true;
+                playerControls.PlayerActions.CageAbility.performed += i => cageAbility_Input = true;
 
                 // UI Inputs
                 playerControls.PlayerActions.Dodge.performed += i => closeMenuInput = true;
@@ -154,6 +156,7 @@ namespace Group1{
 
                 //abilites
                 HandlePushAbilityInput();
+                HandleCageAbilityInput();
             }
         }
 
@@ -394,6 +397,16 @@ namespace Group1{
 
                 // TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
                 player.PerformAbilityAction(player.playerInventoryManager.pushAbility.actionID);           
+            }
+        }
+
+        private void HandleCageAbilityInput()
+        {
+            if (cageAbility_Input)
+            {
+                cageAbility_Input = false;
+
+                player.PerformAbilityAction(player.playerInventoryManager.cageAbility.actionID); 
             }
         }
 

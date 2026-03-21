@@ -394,9 +394,9 @@ namespace Group1{
 
         void OnDrawGizmos()
         {
-            if (playerInventoryManager.pushAbility is PushAbility push)
+            if (playerInventoryManager.cageAbility is CageAbility cage)
             {
-                push.DrawDebug(this);
+                cage.DrawDebug(this);
             }
         }
 

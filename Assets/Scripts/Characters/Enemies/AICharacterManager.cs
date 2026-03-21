@@ -86,6 +86,7 @@ namespace Group1 {
             ProcessStateMachine();
         }
 
+    #region Abilites
         public void ApplyKnockback(Vector3 direction, float force, float duration = 0.2f)
         {
             StartCoroutine(KnockbackRoutine(direction, force, duration));
@@ -115,6 +116,34 @@ namespace Group1 {
             // Re-enable root motion
             animator.applyRootMotion = true;
         }
+
+        public void Freeze(float duration)
+        {
+            Debug.LogError("Freeze called");
+            StartCoroutine(FreezeRoutine(duration));
+        }
+
+        private IEnumerator FreezeRoutine(float duration)
+        {
+            Debug.LogError("FreezeRoutine");
+            if (navMeshAgent != null) navMeshAgent.enabled = false;
+
+            animator.applyRootMotion = false;
+
+            //Stop animations
+            animator.speed = 0f;
+
+            yield return new WaitForSeconds(duration);
+
+            //Restore everything
+            if (navMeshAgent != null) navMeshAgent.enabled = true;
+
+            animator.applyRootMotion = true;
+            animator.speed = 1f;
+            Debug.LogError("FreezeRoutine End");
+        }
+
+        #endregion
 
         private void ProcessStateMachine()
         {

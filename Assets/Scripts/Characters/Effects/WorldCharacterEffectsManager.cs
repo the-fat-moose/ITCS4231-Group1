@@ -12,6 +12,7 @@ namespace Group1 {
         [Header("Damage")]
         public TakeDamageEffect takeDamageEffect;
         public TakeBlockedDamageEffect takeBlockedDamageEffect;
+        public FreezeEffect freezeEffect;
 
         [SerializeField] List<InstantCharacterEffect> instantEffects;
 

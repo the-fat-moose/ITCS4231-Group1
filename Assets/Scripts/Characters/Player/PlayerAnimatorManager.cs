@@ -35,6 +35,14 @@ namespace Group1{
             }
         }
 
+        public void OnCageAbilityHit()
+        {
+            if (player.playerInventoryManager.cageAbility is CageAbility cage)
+            {
+                cage.ExecuteCage(player);
+            }
+        }
+
         public void OnAnimatorMove()
         {
             if (player.applyRootMotion)
