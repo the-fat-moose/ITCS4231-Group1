@@ -40,7 +40,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 120, y: 150}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4152906913421039607
 CanvasRenderer:
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e68ffe261e6b9da4db88e40544620fc4, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Assembly-CSharp::Group1.UI_EquipmentInventorySlot
   itemIcon: {fileID: 3372187476298979528}
   highlightedIcon: {fileID: 4604943620098878290}
   currentItem: {fileID: 0}
@@ -228,10 +228,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5089467806695380179}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2539132726188846176
 CanvasRenderer:
@@ -279,6 +279,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5089467806695380179}
     m_Modifications:
+    - target: {fileID: 1119386642831590052, guid: 426ce77903134ed418b209af72635b8a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1321285649440342900, guid: 426ce77903134ed418b209af72635b8a, type: 3}
       propertyPath: m_Name
       value: Highlighted Item Icon
@@ -293,27 +297,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5197570216928591365, guid: 426ce77903134ed418b209af72635b8a, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5197570216928591365, guid: 426ce77903134ed418b209af72635b8a, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5197570216928591365, guid: 426ce77903134ed418b209af72635b8a, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5197570216928591365, guid: 426ce77903134ed418b209af72635b8a, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5197570216928591365, guid: 426ce77903134ed418b209af72635b8a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5197570216928591365, guid: 426ce77903134ed418b209af72635b8a, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5197570216928591365, guid: 426ce77903134ed418b209af72635b8a, type: 3}
       propertyPath: m_LocalPosition.x
