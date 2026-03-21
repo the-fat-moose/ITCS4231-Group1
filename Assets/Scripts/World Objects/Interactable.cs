@@ -25,8 +25,6 @@ namespace Group1 {
 
         public virtual void Interact(PlayerManager player)
         {
-            Debug.Log("YOU HAVE INTERACTED!");
-
             interactableCollider.enabled = false;
             player.playerInteractionManager.RemoveInteractionFromList(this);
             PlayerUIManager.instance.playerUIPopUpManager.CloseAllPopUpWindows();

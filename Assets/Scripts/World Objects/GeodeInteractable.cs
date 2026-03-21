@@ -82,7 +82,6 @@ namespace Group1
 
         private void RestAtGeode(PlayerManager player)
         {
-            Debug.Log("RESTING");
             interactableCollider.enabled = true;
             // RESTORE HEALTH, STAMINA, AND MANA
             player.CurrentHealth = player.MaxHealth;

@@ -6064,6 +6064,30 @@ PrefabInstance:
       value: Right Hand Weapon (0)
       objectReference: {fileID: 0}
     - target: {fileID: 6972199490219015033, guid: 0b4f669e0e66c6540a4e13e463cefc94, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.b
+      value: 0.3764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 6972199490219015033, guid: 0b4f669e0e66c6540a4e13e463cefc94, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.g
+      value: 0.3764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 6972199490219015033, guid: 0b4f669e0e66c6540a4e13e463cefc94, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6972199490219015033, guid: 0b4f669e0e66c6540a4e13e463cefc94, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.3726415
+      objectReference: {fileID: 0}
+    - target: {fileID: 6972199490219015033, guid: 0b4f669e0e66c6540a4e13e463cefc94, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.3726415
+      objectReference: {fileID: 0}
+    - target: {fileID: 6972199490219015033, guid: 0b4f669e0e66c6540a4e13e463cefc94, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6972199490219015033, guid: 0b4f669e0e66c6540a4e13e463cefc94, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
