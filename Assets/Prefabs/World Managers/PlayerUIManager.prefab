@@ -1250,7 +1250,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: GEODE SHATTERED
+  m_text: GEODE DISCOVERED
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2734,7 +2734,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: GEODE SHATTERED
+  m_text: GEODE DISCOVERED
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4288,6 +4288,7 @@ GameObject:
   - component: {fileID: 4202497575873027618}
   - component: {fileID: 6623763694036728970}
   - component: {fileID: 8176132169803517472}
+  - component: {fileID: 7101587836419664881}
   m_Layer: 0
   m_Name: Menu
   m_TagString: Untagged
@@ -4354,6 +4355,19 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &7101587836419664881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6619195637995087580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86de288b2cb69a641adbac9329823617, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  unequipItemInput: 0
 --- !u!1 &6649747213306247441
 GameObject:
   m_ObjectHideFlags: 0
@@ -5778,7 +5792,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6633985654922861181, guid: 0b4f669e0e66c6540a4e13e463cefc94, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6612547796112212449}
   m_SourcePrefab: {fileID: 100100000, guid: 0b4f669e0e66c6540a4e13e463cefc94, type: 3}
 --- !u!114 &2909852642258513850 stripped
 MonoBehaviour:
@@ -5796,6 +5813,40 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7003020686635152761, guid: 0b4f669e0e66c6540a4e13e463cefc94, type: 3}
   m_PrefabInstance: {fileID: 2598156289190576404}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8655399167072410473 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6633985654922861181, guid: 0b4f669e0e66c6540a4e13e463cefc94, type: 3}
+  m_PrefabInstance: {fileID: 2598156289190576404}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6612547796112212449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8655399167072410473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
+  m_Delegates:
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1057916280988690445}
+          m_TargetAssemblyTypeName: Group1.PlayerUIEquipmentManager, Assembly-CSharp
+          m_MethodName: SelectEquipmentSlot
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &3774502620170959656
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6127,6 +6178,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6633985654922861181, guid: 0b4f669e0e66c6540a4e13e463cefc94, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8779119446312607140}
+    - targetCorrespondingSourceObject: {fileID: 6633985654922861181, guid: 0b4f669e0e66c6540a4e13e463cefc94, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5762162953893438719}
   m_SourcePrefab: {fileID: 100100000, guid: 0b4f669e0e66c6540a4e13e463cefc94, type: 3}
 --- !u!1 &766317629730225576 stripped
 GameObject:
@@ -6145,6 +6199,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a7e6f2cc948ec44684def07e285496f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Group1.PlayerUISelectButtonOnEnable
+--- !u!114 &5762162953893438719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 766317629730225576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
+  m_Delegates:
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1057916280988690445}
+          m_TargetAssemblyTypeName: Group1.PlayerUIEquipmentManager, Assembly-CSharp
+          m_MethodName: SelectEquipmentSlot
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!224 &4007532042884420268 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7003020686635152761, guid: 0b4f669e0e66c6540a4e13e463cefc94, type: 3}
@@ -6284,13 +6367,50 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6633985654922861181, guid: 0b4f669e0e66c6540a4e13e463cefc94, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6224764705035548779}
   m_SourcePrefab: {fileID: 100100000, guid: 0b4f669e0e66c6540a4e13e463cefc94, type: 3}
 --- !u!224 &451541932645062277 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7003020686635152761, guid: 0b4f669e0e66c6540a4e13e463cefc94, type: 3}
   m_PrefabInstance: {fileID: 7452200414630978556}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4286070070115826049 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6633985654922861181, guid: 0b4f669e0e66c6540a4e13e463cefc94, type: 3}
+  m_PrefabInstance: {fileID: 7452200414630978556}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6224764705035548779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4286070070115826049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
+  m_Delegates:
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1057916280988690445}
+          m_TargetAssemblyTypeName: Group1.PlayerUIEquipmentManager, Assembly-CSharp
+          m_MethodName: SelectEquipmentSlot
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &7711523919315012946 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 896039229357436590, guid: 0b4f669e0e66c6540a4e13e463cefc94, type: 3}

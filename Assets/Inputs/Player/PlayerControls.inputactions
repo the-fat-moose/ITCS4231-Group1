@@ -317,6 +317,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Use Item",
+                    "type": "Button",
+                    "id": "f6f9aca7-581a-403b-8ac2-70167e5cd2c4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "OpenCharacterMenu",
                     "type": "Button",
                     "id": "598c89d6-9045-49ca-b291-101d50c5b4b0",
@@ -520,6 +529,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "RB",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4a6befe5-4cb4-47b7-9ff5-73e1431d4738",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Use Item",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3957a05c-652a-4460-9662-57845dc25f53",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Use Item",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

@@ -30,7 +30,7 @@ namespace Group1
         [SerializeField] GameObject activatedParticles;
 
         [Header("Interaction Text")]
-        [SerializeField] private string unactivatedInteractionText = "Shatter Geode";
+        [SerializeField] private string unactivatedInteractionText = "Discover Geode";
         [SerializeField] private string activatedInteractionText = "Rest";
 
         protected override void Start()
@@ -74,7 +74,7 @@ namespace Group1
             player.playerAnimatorManager.PlayTargetActionAnimation("Activate_Geode_01", true);
 
             // SEND A POP UP
-            PlayerUIManager.instance.playerUIPopUpManager.SendGeodeShatteredPopUp("GEODE SHATTERED");
+            PlayerUIManager.instance.playerUIPopUpManager.SendGeodeShatteredPopUp("GEODE DISCOVERED");
 
             // ENABLE/ACTIVATE THE GEODE
             StartCoroutine(WaitForAnimationAndPopUpThenRestoreCollider());

@@ -30,7 +30,40 @@ namespace Group1
             menu.SetActive(true);
             equipmentInventoryWindow.SetActive(false);
             ClearEquipmentInventory();
-            RefreshWeaponSlotIcons();
+            RefreshEquipmentSlotIcons();
+        }
+
+        public void RefreshMenu()
+        {
+            ClearEquipmentInventory();
+            RefreshEquipmentSlotIcons();
+        }
+
+        public void SelectLastSelectedEquipmentSlot()
+        {
+            Button lastSelectedButton = null;
+
+            switch (currentSelectedEquipmentSlot)
+            {
+                case EquipmentSlotType.RightWeapon01:
+                    lastSelectedButton = rightHandSlot01.GetComponentInParent<Button>();
+                    break;
+                case EquipmentSlotType.RightWeapon02:
+                    lastSelectedButton = rightHandSlot02.GetComponentInParent<Button>();
+                    break;
+                case EquipmentSlotType.RightWeapon03:
+                    lastSelectedButton = rightHandSlot03.GetComponentInParent<Button>();
+                    break;
+                // ADD LOGIC FOR TALISMANS (Lumens)
+                default:
+                    break;
+            }
+
+            if (lastSelectedButton != null)
+            {
+                lastSelectedButton.Select();
+                lastSelectedButton.OnSelect(null);
+            }
         }
 
         public void CloseEquipmentMenu()
@@ -39,12 +72,14 @@ namespace Group1
             menu.SetActive(false);
         }
 
-        private void RefreshWeaponSlotIcons()
+        private void RefreshEquipmentSlotIcons()
         {
             PlayerManager player = FindFirstObjectByType<PlayerManager>();
 
             if (player != null)
             {
+                // -------------------- WEAPONS --------------------
+
                 // RIGHT WEAPON 01
                 WeaponItem rightHandWeapon01 = player.playerInventoryManager.weaponsInRightHandSlots[0];
 
@@ -83,6 +118,8 @@ namespace Group1
                 {
                     rightHandSlot03.enabled = false;
                 }
+            
+                // -------------------- TALISMANS (Lumens) --------------------
             }
         }
     
@@ -109,6 +146,7 @@ namespace Group1
                 case EquipmentSlotType.RightWeapon03:
                     LoadWeaponInventory();
                     break;
+                // ADD LOGIC FOR TALISMANS (Lumens)
                 default:
                     break;
             }
@@ -132,7 +170,7 @@ namespace Group1
 
                 if (weaponsInInventory.Count <= 0)
                 {
-                    OpenEquipmentMenu();
+                    RefreshMenu();
                     return;
                 }
 
@@ -153,6 +191,69 @@ namespace Group1
                     }
                 }
             }
+        }
+    
+        public void SelectEquipmentSlot(int equipmentSlot)
+        {
+            currentSelectedEquipmentSlot = (EquipmentSlotType)equipmentSlot;
+        }
+
+        public void UnEquipSelectedItem()
+        {
+            PlayerManager player = FindFirstObjectByType<PlayerManager>();
+
+            Item unequippedItem;
+            switch (currentSelectedEquipmentSlot)
+            {
+                case EquipmentSlotType.RightWeapon01:
+                    unequippedItem = player.playerInventoryManager.weaponsInRightHandSlots[0];
+                    if (unequippedItem != null)
+                    {
+                        player.playerInventoryManager.weaponsInRightHandSlots[0] = Instantiate(WorldItemDatabase.instance.unarmedWeapon);
+
+                        if (unequippedItem.itemID != WorldItemDatabase.instance.unarmedWeapon.itemID)
+                            player.playerInventoryManager.AddItemToInventory(unequippedItem);
+                    }
+
+                    if (player.playerInventoryManager.rightHandWeaponIndex == 0)
+                        player.CurrentRightHandWeaponID = WorldItemDatabase.instance.unarmedWeapon.itemID;
+
+                    break;
+                case EquipmentSlotType.RightWeapon02:
+                    unequippedItem = player.playerInventoryManager.weaponsInRightHandSlots[1];
+                    if (unequippedItem != null)
+                    {
+                        player.playerInventoryManager.weaponsInRightHandSlots[1] = Instantiate(WorldItemDatabase.instance.unarmedWeapon);
+
+                        if (unequippedItem.itemID != WorldItemDatabase.instance.unarmedWeapon.itemID)
+                            player.playerInventoryManager.AddItemToInventory(unequippedItem);
+                    }
+
+                    if (player.playerInventoryManager.rightHandWeaponIndex == 1)
+                        player.CurrentRightHandWeaponID = WorldItemDatabase.instance.unarmedWeapon.itemID;
+                    
+                    break;
+                case EquipmentSlotType.RightWeapon03:
+                    unequippedItem = player.playerInventoryManager.weaponsInRightHandSlots[2];
+                    if (unequippedItem != null)
+                    {
+                        player.playerInventoryManager.weaponsInRightHandSlots[2] = Instantiate(WorldItemDatabase.instance.unarmedWeapon);
+
+                        if (unequippedItem.itemID != WorldItemDatabase.instance.unarmedWeapon.itemID)
+                            player.playerInventoryManager.AddItemToInventory(unequippedItem);
+                    }
+
+                    if (player.playerInventoryManager.rightHandWeaponIndex == 2)
+                        player.CurrentRightHandWeaponID = WorldItemDatabase.instance.unarmedWeapon.itemID;
+                    
+                    break;
+                // ADD LOGIC FOR TALISMANS (Lumens)
+                default:
+                    break;
+            }
+
+            // REFRESHES MENU
+            RefreshMenu();
         }
     }
 }

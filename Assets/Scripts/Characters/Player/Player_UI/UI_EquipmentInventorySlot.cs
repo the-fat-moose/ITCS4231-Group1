@@ -36,13 +36,14 @@ namespace Group1
         public void EquipItem()
         {
             PlayerManager player = FindFirstObjectByType<PlayerManager>();
+            WeaponItem currentWeapon;
 
             if (player != null) 
             {
                 switch (PlayerUIManager.instance.playerUIEquipmentManager.currentSelectedEquipmentSlot)
                 {
                     case EquipmentSlotType.RightWeapon01:
-                        WeaponItem currentWeapon = player.playerInventoryManager.weaponsInRightHandSlots[0];
+                        currentWeapon = player.playerInventoryManager.weaponsInRightHandSlots[0];
                         
                         // IF OUR CURRENT WEAPON IN THIS SLOT IS NOT AN UNARMED ITEM, ADD IT TO OUR INVENTORY
                         if (currentWeapon.itemID != WorldItemDatabase.instance.unarmedWeapon.itemID)
@@ -61,7 +62,7 @@ namespace Group1
                             player.CurrentRightHandWeaponID = currentItem.itemID;
 
                         // REFRESHES EQUIPMENT WINDOW
-                        PlayerUIManager.instance.playerUIEquipmentManager.OpenEquipmentMenu();
+                        PlayerUIManager.instance.playerUIEquipmentManager.RefreshMenu();
 
                         break;
                     case EquipmentSlotType.RightWeapon02:
@@ -84,7 +85,7 @@ namespace Group1
                             player.CurrentRightHandWeaponID = currentItem.itemID;
 
                         // REFRESHES EQUIPMENT WINDOW
-                        PlayerUIManager.instance.playerUIEquipmentManager.OpenEquipmentMenu();
+                        PlayerUIManager.instance.playerUIEquipmentManager.RefreshMenu();
 
                         break;
                     case EquipmentSlotType.RightWeapon03:
@@ -107,12 +108,15 @@ namespace Group1
                             player.CurrentRightHandWeaponID = currentItem.itemID;
 
                         // REFRESHES EQUIPMENT WINDOW
-                        PlayerUIManager.instance.playerUIEquipmentManager.OpenEquipmentMenu();
+                        PlayerUIManager.instance.playerUIEquipmentManager.RefreshMenu();
 
                         break;
+                    // ADD LOGIC FOR TALISMANS (Lumens)
                     default:
                         break;
                 }
+
+                PlayerUIManager.instance.playerUIEquipmentManager.SelectLastSelectedEquipmentSlot();
             }
         }
     }

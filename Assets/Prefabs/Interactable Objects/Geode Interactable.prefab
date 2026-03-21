@@ -49,11 +49,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2104106803cf6b4c81c8b23663e654f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GeodeInteractable
-  interactableText: Shatter Geode
+  interactableText: Discover Geode
   interactableCollider: {fileID: 2044594768446903268}
   geodeID: 0
   activatedParticles: {fileID: 8931972601031026010}
-  unactivatedInteractionText: Shatter Geode
+  unactivatedInteractionText: Discover Geode
   activatedInteractionText: Rest
 --- !u!54 &2776474016460147275
 Rigidbody:
