@@ -143,6 +143,58 @@ namespace Group1 {
             Debug.LogError("FreezeRoutine End");
         }
 
+        public void KnockUp(float liftHeight, float floatDuration, float slamDamage)
+        {
+            StartCoroutine(KnockUpRoutine(liftHeight, floatDuration, slamDamage));
+        }
+
+        private IEnumerator KnockUpRoutine(float liftHeight, float floatDuration, float slamDamage)
+        {
+            // Disable AI movement
+            if (navMeshAgent != null) navMeshAgent.enabled = false;
+
+            // Disable root motion
+            animator.applyRootMotion = false;
+
+            // Play floating animation
+            animator.CrossFade("Enemy_Float", 0.1f);
+
+            Vector3 startPos = transform.position;
+            Vector3 peakPos = startPos + Vector3.up * liftHeight;
+
+            float t = 0f;
+
+            // Lift up
+            while (t < 1f)
+            {
+                transform.position = Vector3.Lerp(startPos, peakPos, t);
+                t += Time.deltaTime * 2f;
+                yield return null;
+            }
+
+            // Float at peak
+            yield return new WaitForSeconds(floatDuration);
+
+            // Slam down
+            t = 0f;
+            while (t < 1f)
+            {
+                transform.position = Vector3.Lerp(peakPos, startPos, t);
+                t += Time.deltaTime * 3f;
+                yield return null;
+            }
+
+            // Apply slam damage
+            TakeDamageEffect dmg = Instantiate(WorldCharacterEffectsManager.instance.takeDamageEffect);
+            dmg.physicalDamage = slamDamage;
+            characterEffectsManager.ProcessInstantEffect(dmg);
+
+            // Restore AI
+            if (navMeshAgent != null) navMeshAgent.enabled = true;
+
+            animator.applyRootMotion = true;
+        }
+
         #endregion
 
         private void ProcessStateMachine()

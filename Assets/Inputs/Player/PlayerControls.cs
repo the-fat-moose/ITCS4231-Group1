@@ -527,6 +527,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Knock Up Ability"",
+                    ""type"": ""Button"",
+                    ""id"": ""9586d781-985b-4a40-802f-33aa080281c0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -947,6 +956,50 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Cage Ability"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d4e28c9f-b831-46d5-87f4-2d594244182e"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Knock Up Ability"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""One Modifier"",
+                    ""id"": ""9c4e613d-f24c-498b-a6ae-43ecc25d6054"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Knock Up Ability"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""8e380c3e-71a5-4f6b-afe1-80f400fde291"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Knock Up Ability"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""e9da61a4-2a32-40c0-b2ad-d5f2c72bc2fe"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Knock Up Ability"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -1019,6 +1072,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerActions_SeekRightLockOnTarget = m_PlayerActions.FindAction("Seek Right Lock On Target", throwIfNotFound: true);
         m_PlayerActions_PushAbility = m_PlayerActions.FindAction("Push Ability", throwIfNotFound: true);
         m_PlayerActions_CageAbility = m_PlayerActions.FindAction("Cage Ability", throwIfNotFound: true);
+        m_PlayerActions_KnockUpAbility = m_PlayerActions.FindAction("Knock Up Ability", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_X = m_UI.FindAction("X", throwIfNotFound: true);
@@ -1326,6 +1380,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_SeekRightLockOnTarget;
     private readonly InputAction m_PlayerActions_PushAbility;
     private readonly InputAction m_PlayerActions_CageAbility;
+    private readonly InputAction m_PlayerActions_KnockUpAbility;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player Actions".
     /// </summary>
@@ -1410,6 +1465,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @CageAbility => m_Wrapper.m_PlayerActions_CageAbility;
         /// <summary>
+        /// Provides access to the underlying input action "PlayerActions/KnockUpAbility".
+        /// </summary>
+        public InputAction @KnockUpAbility => m_Wrapper.m_PlayerActions_KnockUpAbility;
+        /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
@@ -1489,6 +1548,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @CageAbility.started += instance.OnCageAbility;
             @CageAbility.performed += instance.OnCageAbility;
             @CageAbility.canceled += instance.OnCageAbility;
+            @KnockUpAbility.started += instance.OnKnockUpAbility;
+            @KnockUpAbility.performed += instance.OnKnockUpAbility;
+            @KnockUpAbility.canceled += instance.OnKnockUpAbility;
         }
 
         /// <summary>
@@ -1554,6 +1616,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @CageAbility.started -= instance.OnCageAbility;
             @CageAbility.performed -= instance.OnCageAbility;
             @CageAbility.canceled -= instance.OnCageAbility;
+            @KnockUpAbility.started -= instance.OnKnockUpAbility;
+            @KnockUpAbility.performed -= instance.OnKnockUpAbility;
+            @KnockUpAbility.canceled -= instance.OnKnockUpAbility;
         }
 
         /// <summary>
@@ -1853,6 +1918,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnCageAbility(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Knock Up Ability" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnKnockUpAbility(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

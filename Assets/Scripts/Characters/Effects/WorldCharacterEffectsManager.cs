@@ -13,6 +13,7 @@ namespace Group1 {
         public TakeDamageEffect takeDamageEffect;
         public TakeBlockedDamageEffect takeBlockedDamageEffect;
         public FreezeEffect freezeEffect;
+        public KnockUpEffect knockUpEffect;
 
         [SerializeField] List<InstantCharacterEffect> instantEffects;
 
