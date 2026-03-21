@@ -1,16 +1,26 @@
+using Group1;
 using UnityEngine;
 
-public class KnockUpAbility : MonoBehaviour
+namespace Group1
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [CreateAssetMenu(menuName = "Character Actions/Player Abilities/Knock Up Ability")]
+    public class KnockUpAbility : PlayerAbilityAction
     {
-        
-    }
+        [Header("VFX")]
+        public GameObject knockUpVFX;
+        public Vector3 vfxOffset = new Vector3(0, 1f, 1f);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        [Header("Animation")]
+        public string knockUpAnimation = "PlayerCharacter_Ability_Freeze";
+
+        public override void AttemptToPerformAbility(PlayerManager player)
+            {
+                base.AttemptToPerformAbility(player);
+
+                if (player.isPerformingAction) return;
+                if (!player.isGrounded) return;
+
+                player.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.PushAbility, knockUpAnimation, true);
+            }
     }
 }

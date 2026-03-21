@@ -71,7 +71,7 @@ BlendTree:
   m_MaxThreshold: 2
   m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
-  m_BlendType: 0
+  m_BlendType: 2
 --- !u!1102 &-6945371707511035165
 AnimatorState:
   serializedVersion: 6
