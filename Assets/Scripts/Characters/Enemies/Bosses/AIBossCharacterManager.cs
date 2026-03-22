@@ -34,6 +34,8 @@ namespace Group1 {
         }
 
         [Header("Phase Shift")]
+        public float minimumHealthPercentageToShift = 50;
+        private bool hasPhaseShifted = false;
         [SerializeField] string phaseShiftAnimation = "Phase_Change_01";
 
         [Header("States")]
@@ -96,6 +98,20 @@ namespace Group1 {
                 characterAnimatorManager.PlayTargetActionAnimation(sleepAnimation, true);
                 sleepState = Instantiate(sleepState);
                 currentState = sleepState;
+            }
+        }
+
+        public override void CheckHP(int oldValue, int newValue)
+        {
+            base.CheckHP(oldValue, newValue);
+
+            if (CurrentHealth <= 0) return;
+
+            float healthNeededForShift = MaxHealth * (minimumHealthPercentageToShift / 100);
+
+            if (CurrentHealth <= healthNeededForShift && !hasPhaseShifted)
+            {
+                PhaseShift();
             }
         }
 
@@ -212,6 +228,7 @@ namespace Group1 {
     
         protected void PhaseShift()
         {
+            hasPhaseShifted = true;
             characterAnimatorManager.PlayTargetActionAnimation(phaseShiftAnimation, true);
             combatStance = Instantiate(phase02CombatStanceState);
             currentState = combatStance;
