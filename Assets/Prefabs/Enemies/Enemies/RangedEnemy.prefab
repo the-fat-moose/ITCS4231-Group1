@@ -2532,6 +2532,8 @@ MonoBehaviour:
   characterLocomotionManager: {fileID: 0}
   characterStatsManager: {fileID: 0}
   characterSoundFXManager: {fileID: 0}
+  aiCharacterManager: {fileID: 0}
+  characterUIManager: {fileID: 0}
   isSprinting: 0
   isDead: 0
   isLockedOn: 0
@@ -2545,7 +2547,9 @@ MonoBehaviour:
   isChargingAttack: 0
   isBlocking: 0
   isAttacking: 0
+  parried: 0
   isActive: 1
+  isInvulnerable: 0
   endurance: 10
   vitality: 10
   mind: 10
@@ -2555,6 +2559,7 @@ MonoBehaviour:
   maxHealth: 0
   currentMana: 0
   maxMana: 0
+  characterName: 
   aiCharacterCombatManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
   navMeshAgent: {fileID: 8154320034797384659}
@@ -2576,10 +2581,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Group1.AiCharacterCombatManager
   canBlock: 1
+  canParry: 0
+  parryWindow: 0.3
   lastAttackAnimationPerformed: 
   currentTarget: {fileID: 0}
   currentAttackType: 0
-  lockOnTransform: {fileID: 0}
+  lockOnTransform: {fileID: 2443454694525339513}
   actionRecoveryTimer: 0
   viewableAngle: 0
   targetsDirection: {x: 0, y: 0, z: 0}
@@ -2673,6 +2680,7 @@ MonoBehaviour:
   yVelocity: {x: 0, y: 0, z: 0}
   groundedYVelocity: -20
   fallStartYVelocity: -5
+  inKnockUpAbility: 0
   isRolling: 0
 --- !u!114 &5758819413464783097
 MonoBehaviour:
@@ -2739,6 +2747,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcb6ad002cddcb34985bf58e6e5dfe0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Group1.CharacterSoundFXManager
+  damageGrunts: []
+  attackGrunts: []
+  footSteps: []
 --- !u!82 &4454763538096699306
 AudioSource:
   m_ObjectHideFlags: 0
