@@ -7,6 +7,10 @@ namespace Group1 {
     {
         // GIVE THE AI A UNIQUE ID
         public int bossID = 0;
+
+        [Header("Music")]
+        [SerializeField] AudioClip bossIntroClip;
+        [SerializeField] AudioClip bossLoopClip;
         
         [Header("Polish")]
         [SerializeField] private string bossDefeatedMessage = "";
@@ -218,11 +222,17 @@ namespace Group1 {
         {
             if (BossFightIsActive)
             {
+                WorldSoundFXManager.instance.PlayBossTrack(bossIntroClip, bossLoopClip);
+
                 // CREATE A HP BAR FOR EACH BOSS THAT IS IN THE FIGHT
                 GameObject bossHealthBar = Instantiate(PlayerUIManager.instance.playerUIHudManager.bossHealthBarObject, PlayerUIManager.instance.playerUIHudManager.bossHealthBarParent);
 
                 UI_Boss_HP_Bar bossHPBar = bossHealthBar.GetComponentInChildren<UI_Boss_HP_Bar>();
                 bossHPBar.EnableBossHPBar(this);
+            }
+            else
+            {
+                WorldSoundFXManager.instance.StopBossMusic();
             }
         }
     

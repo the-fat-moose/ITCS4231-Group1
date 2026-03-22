@@ -2568,6 +2568,8 @@ MonoBehaviour:
   combatStance: {fileID: 11400000, guid: bbd51b5257036904aa61a352068208d9, type: 2}
   attack: {fileID: 11400000, guid: e4a795dcbd3f2b04195817d11f023c52, type: 2}
   bossID: 0
+  bossIntroClip: {fileID: 8300000, guid: 76e8a5c566e37b04cbafcf7e4fbb93cf, type: 3}
+  bossLoopClip: {fileID: 8300000, guid: 746301059c9d64b459fb7eb98d6aa953, type: 3}
   bossDefeatedMessage: LORD SLAIN
   hasBeenDefeated: 0
   hasBeenAwakened: 0
