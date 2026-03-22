@@ -14,6 +14,10 @@ namespace Group1 {
         [Header("Quick Slots")]
         [SerializeField] Image weaponQuickSlotIcon;
 
+        [Header("Boss Health Bar")]
+        public Transform bossHealthBarParent;
+        public GameObject bossHealthBarObject;
+
         public void ToggleHUD(bool status)
         {
             if (status)

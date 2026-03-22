@@ -9,10 +9,26 @@ namespace Group1 {
         public int bossID = 0;
 
         [Header("Status")]
-        [SerializeField] private bool hasBeenDefeated = false;
-        [SerializeField] private bool hasBeenAwakened = false;
+        public bool hasBeenDefeated = false;
+        public bool hasBeenAwakened = false;
         [SerializeField] string sleepAnimation;
         [SerializeField] string awakenAnimation;
+
+        private bool bossFightIsActive = false;
+        public event System.Action<bool, bool> OnBossFightIsActiveValueChanged;
+
+        public bool BossFightIsActive
+        {
+            get => bossFightIsActive;
+            set
+            {
+                if (bossFightIsActive == value) return;
+
+                bool oldValue = bossFightIsActive;
+                bossFightIsActive = value;
+                OnBossFightIsActiveValueChanged?.Invoke(oldValue, bossFightIsActive);
+            }
+        }
 
         [Header("States")]
         [SerializeField] BossSleepState sleepState;
@@ -28,6 +44,9 @@ namespace Group1 {
         protected override void Start()
         {
             base.Start();
+
+            OnBossFightIsActiveValueChanged += OnBossFightIsActiveChanged;
+            OnBossFightIsActiveChanged(false, BossFightIsActive);
 
             // IF OUR SAVE DATA DOES NOT CONTAIN INFO ON THIS BOSS, ADD IT
             if (!WorldSaveGameManager.instance.currentCharacterData.bossesAwakened.ContainsKey(bossID))
@@ -73,6 +92,13 @@ namespace Group1 {
             }
         }
 
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+
+            OnBossFightIsActiveValueChanged -= OnBossFightIsActiveChanged;
+        }
+
         private IEnumerator GetFogWallsFromWorldObjectManager()
         {
             while (WorldObjectManager.instance.fogWalls.Count == 0)
@@ -96,6 +122,8 @@ namespace Group1 {
         {
             CurrentHealth = 0;
             isDead = true;
+
+            BossFightIsActive = false;
 
             // RESET ANY FLAGS HERE THAT NEED TO BE RESET
             // NOTHING YET
@@ -134,6 +162,7 @@ namespace Group1 {
                 characterAnimatorManager.PlayTargetActionAnimation(awakenAnimation, true);
             }
 
+            BossFightIsActive = true;
             hasBeenAwakened = true;
             currentState = idle;
 
@@ -152,6 +181,18 @@ namespace Group1 {
             for (int i = 0; i < fogWalls.Count; i++)
             {
                 fogWalls[i].IsActive = true;
+            }
+        }
+    
+        private void OnBossFightIsActiveChanged(bool oldStatus, bool newStatus)
+        {
+            if (BossFightIsActive)
+            {
+                // CREATE A HP BAR FOR EACH BOSS THAT IS IN THE FIGHT
+                GameObject bossHealthBar = Instantiate(PlayerUIManager.instance.playerUIHudManager.bossHealthBarObject, PlayerUIManager.instance.playerUIHudManager.bossHealthBarParent);
+
+                UI_Boss_HP_Bar bossHPBar = bossHealthBar.GetComponentInChildren<UI_Boss_HP_Bar>();
+                bossHPBar.EnableBossHPBar(this);
             }
         }
     }

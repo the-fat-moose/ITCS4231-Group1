@@ -2474,6 +2474,7 @@ MonoBehaviour:
   yVelocity: {x: 0, y: 0, z: 0}
   groundedYVelocity: -20
   fallStartYVelocity: -5
+  inKnockUpAbility: 0
   isRolling: 0
 --- !u!114 &1231333947033157760
 MonoBehaviour:
@@ -2549,7 +2550,7 @@ MonoBehaviour:
   isActive: 1
   isInvulnerable: 0
   endurance: 20
-  vitality: 30
+  vitality: 90
   mind: 20
   currentStamina: 0
   maxStamina: 0
