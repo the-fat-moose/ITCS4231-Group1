@@ -32,11 +32,6 @@ namespace Group1 {
             aiCharacterLocomotionManager = GetComponent<AICharacterLocomotionManager>();
 
             navMeshAgent = GetComponentInChildren<NavMeshAgent>();
-
-            idle = Instantiate(idle);
-            pursueTarget = Instantiate(pursueTarget);
-
-            currentState = idle;
         }
 
         protected override void Start()
@@ -54,6 +49,11 @@ namespace Group1 {
 
             // Death and Healing Handling
             OnHealthChanged += CheckHP;
+
+            idle = Instantiate(idle);
+            pursueTarget = Instantiate(pursueTarget);
+
+            currentState = idle;
         }
 
         protected override void OnEnable()

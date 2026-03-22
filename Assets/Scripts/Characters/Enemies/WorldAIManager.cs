@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using System.Linq;
 
 namespace Group1 {
     public class WorldAIManager : MonoBehaviour
@@ -10,7 +10,10 @@ namespace Group1 {
 
         [Header("Characters")]
         [SerializeField] private List<AICharacterSpawner> aiCharacterSpawners;
-        public List<GameObject> spawnedInCharacters;
+        public List<AICharacterManager> spawnedInCharacters;
+
+        [Header("Bosses")]
+        public List<AIBossCharacterManager> spawnedInBossCharacters;
 
         private void Awake()
         {
@@ -28,6 +31,27 @@ namespace Group1 {
         {
             aiCharacterSpawners.Add(spawner);
             spawner.AttemptToSpawnCharacter();
+        }
+
+        public void AddCharacterToSpawnedCharactersList(AICharacterManager character)
+        {
+            if (spawnedInCharacters.Contains(character)) return;
+
+            spawnedInCharacters.Add(character);
+
+            AIBossCharacterManager bossCharacter = character as AIBossCharacterManager;
+
+            if (bossCharacter != null)
+            {
+                if (spawnedInBossCharacters.Contains(bossCharacter)) return;
+
+                spawnedInBossCharacters.Add(bossCharacter);
+            }
+        }
+
+        public AIBossCharacterManager GetBossCharacterByID(int ID)
+        {
+            return spawnedInBossCharacters.FirstOrDefault(boss => boss.bossID == ID);
         }
 
         public void ResetAllCharacters()
