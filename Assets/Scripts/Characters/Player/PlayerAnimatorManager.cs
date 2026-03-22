@@ -43,6 +43,14 @@ namespace Group1{
             }
         }
 
+        public void OnKnockUpAbilityHit()
+        {
+            if (player.playerInventoryManager.knockUpAbility is KnockUpAbility knockUp)
+            {
+                knockUp.ExecuteKnockUp(player);
+            }
+        }
+
         public void OnAnimatorMove()
         {
             if (player.applyRootMotion)

@@ -60,6 +60,7 @@ namespace Group1{
         [Header("Ability Inputs")]
         [SerializeField] bool pushAbility_Input = false;
         [SerializeField] bool cageAbility_Input = false;
+        [SerializeField] bool knockUpAbility_Input = false;
 
         private void Awake()
         {
@@ -118,6 +119,7 @@ namespace Group1{
                 //Ability inputs
                 playerControls.PlayerActions.PushAbility.performed += i => pushAbility_Input = true;
                 playerControls.PlayerActions.CageAbility.performed += i => cageAbility_Input = true;
+                playerControls.PlayerActions.KnockUpAbility.performed += i => knockUpAbility_Input = true;
 
                 // UI Inputs
                 playerControls.PlayerActions.Dodge.performed += i => closeMenuInput = true;
@@ -157,6 +159,7 @@ namespace Group1{
                 //abilites
                 HandlePushAbilityInput();
                 HandleCageAbilityInput();
+                HandleKnockUpAbilityInput();
             }
         }
 
@@ -407,6 +410,16 @@ namespace Group1{
                 cageAbility_Input = false;
 
                 player.PerformAbilityAction(player.playerInventoryManager.cageAbility.actionID); 
+            }
+        }
+
+        private void HandleKnockUpAbilityInput()
+        {
+            if (knockUpAbility_Input)
+            {
+                knockUpAbility_Input = false;
+
+                player.PerformAbilityAction(player.playerInventoryManager.knockUpAbility.actionID); 
             }
         }
 

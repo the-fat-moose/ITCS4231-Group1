@@ -239,6 +239,7 @@ MonoBehaviour:
   playerEquipmentManager: {fileID: 0}
   playerCombatManager: {fileID: 0}
   playerInteractionManager: {fileID: 0}
+  lumenEquipmentIDs: 
 --- !u!114 &2635933940703782878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,7 +423,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c44b6d7661e595c449781e80e2fcfd16, type: 2}
   rightHandWeaponIndex: 0
   pushAbility: {fileID: 11400000, guid: 00d00687d46b047489efc7350cfaaf12, type: 2}
-  knockUpAbility: {fileID: 0}
+  knockUpAbility: {fileID: 11400000, guid: 657b9859a577d074689eb9af92d5df6f, type: 2}
   cageAbility: {fileID: 11400000, guid: b6bb5b2f36a60bf4ca8c9a9b14db7264, type: 2}
   lumenEquipmentItemSlots:
   - {fileID: 0}

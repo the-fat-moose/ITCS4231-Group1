@@ -33,42 +33,52 @@ namespace Group1
 
         public void ExecuteKnockUp(PlayerManager player)
         {
-            // Spawn VFX at player
-            if (knockUpVFX != null)
-            {
-                Vector3 pos = player.transform.position 
-                            + player.transform.forward * vfxOffset.z
-                            + Vector3.up * vfxOffset.y;
-
-                Quaternion rot = Quaternion.LookRotation(player.transform.forward);
-                GameObject.Instantiate(knockUpVFX, pos, rot);
-            }
-
             // Hitbox
             Vector3 forward = player.transform.forward;
-            Vector3 origin = player.transform.position + forward * (range * 0.5f);
+            Vector3 origin = player.transform.position + forward * (range * 0.6f) + Vector3.up * (height * 0.5f);
+
             Quaternion rotation = Quaternion.LookRotation(forward);
 
-            Collider[] hits = Physics.OverlapBox(
-                origin,
-                new Vector3(width * 0.5f, height * 0.5f, range * 0.5f),
-                rotation,
-                LayerMask.GetMask("Damageable Character")
-            );
-
+            Collider[] hits = Physics.OverlapBox(origin, new Vector3(width * 0.5f, height * 0.5f, range * 0.5f), rotation, LayerMask.GetMask("Character"));
+            Debug.LogError(hits.Length + " hit(s) detected in KnockUpAbility");
             foreach (var hit in hits)
             {
+                Debug.Log("Applying KnockUpEffect");
                 CharacterManager character = hit.GetComponent<CharacterManager>();
                 if (character == null || character.isDead) continue;
+
+                // Spawn VFX at enmemy
+                if (knockUpVFX != null)
+                {
+                    Vector3 pos = player.transform.position;
+
+                    Quaternion rot = Quaternion.identity;
+                    GameObject knockVfxObj = GameObject.Instantiate(knockUpVFX, pos, rot);
+
+                    Destroy(knockVfxObj, 1.2f);
+                }
 
                 // Apply knock-up effect
                 KnockUpEffect effect = Instantiate(WorldCharacterEffectsManager.instance.knockUpEffect);
                 effect.liftHeight = liftHeight;
                 effect.floatDuration = floatDuration;
                 effect.slamDamage = slamDamage;
-
+                Debug.LogError($"Applying KnockUpEffect to {character.name}");
                 character.characterEffectsManager.ProcessInstantEffect(effect);
             }
+
+        }
+
+        public void DrawDebug(PlayerManager player)
+        {
+            Vector3 forward = player.transform.forward;
+            Vector3 origin = player.transform.position + forward * (range * 0.6f);
+            Quaternion rotation = Quaternion.LookRotation(forward);
+
+            Matrix4x4 m = Matrix4x4.TRS(origin, rotation, Vector3.one);
+            Gizmos.matrix = m;
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(Vector3.zero, new Vector3(width, height, range));
         }
     }
 }
