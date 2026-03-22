@@ -26,7 +26,13 @@ namespace Group1 {
         [SerializeField] private GameObject youDiedPopUpGameObject;
         [SerializeField] private TextMeshProUGUI youDiedPopUpBackgroundText;
         [SerializeField] private TextMeshProUGUI youDiedPopUpText;
-        [SerializeField] private CanvasGroup youDiedPopUpCanvasGroup; // allows us to set the alpha to fade over time
+        [SerializeField] private CanvasGroup youDiedPopUpCanvasGroup;
+
+        [Header("BOSS DEFEATED Pop Up")]
+        [SerializeField] private GameObject bossDefeatedPopUpGameObject;
+        [SerializeField] private TextMeshProUGUI bossDefeatedPopUpBackgroundText;
+        [SerializeField] private TextMeshProUGUI bossDefeatedPopUpText;
+        [SerializeField] private CanvasGroup bossDefeatedPopUpCanvasGroup;
 
         public void CloseAllPopUpWindows()
         {
@@ -81,6 +87,20 @@ namespace Group1 {
             StartCoroutine(StretchPopUpTextOverTime(youDiedPopUpBackgroundText, 8f, 19f));
             StartCoroutine(FadeInPopUpOverTime(youDiedPopUpCanvasGroup, 5f));
             StartCoroutine(WaitThenFadeOutPopUpOverTime(youDiedPopUpCanvasGroup, 2f, 5f));
+        }
+
+        public void SendBossDefeatedPopUp(string bossDefeatedMessage)
+        {
+            bossDefeatedPopUpText.text = bossDefeatedMessage;
+            bossDefeatedPopUpBackgroundText.text = bossDefeatedMessage;
+
+            // ACTIVATE ANY POST PROCESSING EFFECTS
+
+            bossDefeatedPopUpGameObject.SetActive(true);
+            bossDefeatedPopUpBackgroundText.characterSpacing = 0;
+            StartCoroutine(StretchPopUpTextOverTime(bossDefeatedPopUpBackgroundText, 8f, 19f));
+            StartCoroutine(FadeInPopUpOverTime(bossDefeatedPopUpCanvasGroup, 5f));
+            StartCoroutine(WaitThenFadeOutPopUpOverTime(bossDefeatedPopUpCanvasGroup, 2f, 5f));
         }
 
         private IEnumerator StretchPopUpTextOverTime(TextMeshProUGUI text, float duration, float stretchAmount)

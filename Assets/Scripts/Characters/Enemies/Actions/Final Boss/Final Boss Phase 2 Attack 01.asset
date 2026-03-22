@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7eb14cc6879037e4cb2248b0089ff856, type: 3}
-  m_Name: Final Boss Attack 02
+  m_Name: Final Boss Phase 2 Attack 01
   m_EditorClassIdentifier: Assembly-CSharp::Group1.AICharacterAttackAction
-  attackAnimation: Attack_02
+  attackAnimation: Attack_01
   comboAction: {fileID: 0}
   attackWeight: 30
-  attackType: 1
-  actionRecoveryTime: 1.25
+  attackType: 0
+  actionRecoveryTime: 0.75
   minimumAttackAngle: -35
   maximumAttackAngle: 35
   minimumAttackDistance: 0

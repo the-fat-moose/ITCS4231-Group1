@@ -326,7 +326,7 @@ namespace Group1{
             gameObject.SetActive(IsActive);
         }
 
-        public void CheckHP(int oldValue, int newValue)
+        public virtual void CheckHP(int oldValue, int newValue)
         {
             if (CurrentHealth <= 0)
             {

@@ -7,6 +7,9 @@ namespace Group1 {
     {
         // GIVE THE AI A UNIQUE ID
         public int bossID = 0;
+        
+        [Header("Polish")]
+        [SerializeField] private string bossDefeatedMessage = "";
 
         [Header("Status")]
         public bool hasBeenDefeated = false;
@@ -30,8 +33,14 @@ namespace Group1 {
             }
         }
 
+        [Header("Phase Shift")]
+        public float minimumHealthPercentageToShift = 50;
+        private bool hasPhaseShifted = false;
+        [SerializeField] string phaseShiftAnimation = "Phase_Change_01";
+
         [Header("States")]
         [SerializeField] BossSleepState sleepState;
+        [SerializeField] CombatStanceState phase02CombatStanceState;
 
         [Header("Fog Wall")]
         [SerializeField] private List<FogWallInteractable> fogWalls;
@@ -92,6 +101,20 @@ namespace Group1 {
             }
         }
 
+        public override void CheckHP(int oldValue, int newValue)
+        {
+            base.CheckHP(oldValue, newValue);
+
+            if (CurrentHealth <= 0) return;
+
+            float healthNeededForShift = MaxHealth * (minimumHealthPercentageToShift / 100);
+
+            if (CurrentHealth <= healthNeededForShift && !hasPhaseShifted)
+            {
+                PhaseShift();
+            }
+        }
+
         protected override void OnDisable()
         {
             base.OnDisable();
@@ -120,10 +143,17 @@ namespace Group1 {
 
         public override IEnumerator ProcessDeathEvent()
         {
+            PlayerUIManager.instance.playerUIPopUpManager.SendBossDefeatedPopUp(bossDefeatedMessage);
+
             CurrentHealth = 0;
             isDead = true;
 
             BossFightIsActive = false;
+
+            foreach (var fogWall in fogWalls)
+            {
+                fogWall.IsActive = false;
+            }
 
             // RESET ANY FLAGS HERE THAT NEED TO BE RESET
             // NOTHING YET
@@ -194,6 +224,14 @@ namespace Group1 {
                 UI_Boss_HP_Bar bossHPBar = bossHealthBar.GetComponentInChildren<UI_Boss_HP_Bar>();
                 bossHPBar.EnableBossHPBar(this);
             }
+        }
+    
+        protected void PhaseShift()
+        {
+            hasPhaseShifted = true;
+            characterAnimatorManager.PlayTargetActionAnimation(phaseShiftAnimation, true);
+            combatStance = Instantiate(phase02CombatStanceState);
+            currentState = combatStance;
         }
     }
 }

@@ -2500,9 +2500,9 @@ MonoBehaviour:
   targetsDirection: {x: 0, y: 0, z: 0}
   distanceFromTarget: 0
   detectionRadius: 15
-  minimumDetectionAngle: -35
-  maximumDetectionAngle: 35
-  attackRotationSpeed: 25
+  minimumDetectionAngle: -180
+  maximumDetectionAngle: 180
+  attackRotationSpeed: 50
   finalBossMeleeWeaponDamageCollider: {fileID: 7707428182314657952}
   baseDamage: 25
   attack01DamageModifier: 1
@@ -2568,11 +2568,15 @@ MonoBehaviour:
   combatStance: {fileID: 11400000, guid: bbd51b5257036904aa61a352068208d9, type: 2}
   attack: {fileID: 11400000, guid: e4a795dcbd3f2b04195817d11f023c52, type: 2}
   bossID: 0
+  bossDefeatedMessage: LORD SLAIN
   hasBeenDefeated: 0
   hasBeenAwakened: 0
   sleepAnimation: Sleep_01
   awakenAnimation: Awaken_01
+  minimumHealthPercentageToShift: 50
+  phaseShiftAnimation: Phase_Change_01
   sleepState: {fileID: 11400000, guid: 8a8ce1015146afd4bae364e768f6a37f, type: 2}
+  phase02CombatStanceState: {fileID: 11400000, guid: 396878472953abc499d8e8a8dca98810, type: 2}
   fogWalls: []
   finalBossSoundFXManager: {fileID: 0}
 --- !u!114 &7793801027852880519
