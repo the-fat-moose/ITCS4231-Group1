@@ -25,14 +25,6 @@ namespace Group1 {
         // IF THE HAS NOT BEEN DEFEATED, DO NOT DISABLE IT
         // HANDLE TRIGGERS WHEN THE BOSS HAS BEEN INTERACTED WITH AT LEAST ONCE
 
-        protected override void Awake()
-        {
-            base.Awake();
-
-            sleepState = Instantiate(sleepState);
-            currentState = sleepState;
-        }
-
         protected override void Start()
         {
             base.Start();
@@ -76,6 +68,8 @@ namespace Group1 {
             if (!hasBeenAwakened)
             {
                 characterAnimatorManager.PlayTargetActionAnimation(sleepAnimation, true);
+                sleepState = Instantiate(sleepState);
+                currentState = sleepState;
             }
         }
 

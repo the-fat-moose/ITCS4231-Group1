@@ -2569,8 +2569,11 @@ MonoBehaviour:
   bossID: 0
   hasBeenDefeated: 0
   hasBeenAwakened: 0
+  sleepAnimation: Sleep_01
+  awakenAnimation: Awaken_01
+  sleepState: {fileID: 11400000, guid: 8a8ce1015146afd4bae364e768f6a37f, type: 2}
   fogWalls: []
-  wakeBossUp: 0
+  finalBossSoundFXManager: {fileID: 0}
 --- !u!114 &7793801027852880519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2637,6 +2640,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d520ac38ed98dc744acde26759fd3308, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Group1.AIFinalBossSoundFXManager
+  damageGrunts: []
+  attackGrunts: []
+  footSteps: []
+  finalBossSwordWhooshes: []
+  aoeImpacts: []
 --- !u!114 &5248175474961700616
 MonoBehaviour:
   m_ObjectHideFlags: 0
