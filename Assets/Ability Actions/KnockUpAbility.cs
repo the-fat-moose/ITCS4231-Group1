@@ -55,7 +55,7 @@ namespace Group1
                     Quaternion rot = Quaternion.identity;
                     GameObject knockVfxObj = GameObject.Instantiate(knockUpVFX, pos, rot);
 
-                    Destroy(knockVfxObj, 1.2f);
+                    Destroy(knockVfxObj, 1.8f);
                 }
 
                 // Apply knock-up effect

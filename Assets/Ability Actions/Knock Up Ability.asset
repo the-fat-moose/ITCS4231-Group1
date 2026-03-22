@@ -19,6 +19,6 @@ MonoBehaviour:
   range: 4
   width: 3
   height: 3
-  liftHeight: 4
+  liftHeight: 2
   floatDuration: 1.2
   slamDamage: 30
