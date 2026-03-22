@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 549cc50d5be86664ab3ce3da3a5c9dbc, type: 3}
   m_Name: Knock Up Effect
   m_EditorClassIdentifier: Assembly-CSharp::Group1.KnockUpEffect
-  instantEffectID: 0
-  liftHeight: 0
-  floatDuration: 0
-  slamDamage: 0
+  instantEffectID: 4
+  liftHeight: 4
+  floatDuration: 2
+  slamDamage: 20

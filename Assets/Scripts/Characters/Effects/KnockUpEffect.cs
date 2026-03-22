@@ -11,6 +11,7 @@ namespace Group1
 
         public override void ProcessEffect(CharacterManager character)
         {
+            Debug.LogError("ProcessEffect KnockUpEffect");
             base.ProcessEffect(character);
 
             character.aiCharacterManager?.KnockUp(liftHeight, floatDuration, slamDamage);

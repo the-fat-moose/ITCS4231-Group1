@@ -425,9 +425,9 @@ namespace Group1{
 
         void OnDrawGizmos()
         {
-            if (playerInventoryManager.cageAbility is CageAbility cage)
+            if (playerInventoryManager.knockUpAbility is KnockUpAbility knockUp)
             {
-                cage.DrawDebug(this);
+                knockUp.DrawDebug(this);
             }
         }
 

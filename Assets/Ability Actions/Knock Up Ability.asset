@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fab406a2ec53cf447b4ce39a9714d256, type: 3}
   m_Name: Knock Up Ability
   m_EditorClassIdentifier: Assembly-CSharp::Group1.KnockUpAbility
-  actionID: 0
+  actionID: 2
   knockUpVFX: {fileID: 207745087118991948, guid: e656699b143494148a872961a9feb410, type: 3}
   vfxOffset: {x: 0, y: 1, z: 1}
-  knockUpAnimation: PlayerCharacter_Ability_Freeze
+  knockUpAnimation: PlayerCharacter_Ability_KnockUp
+  range: 4
+  width: 3
+  height: 3
+  liftHeight: 4
+  floatDuration: 1.2
+  slamDamage: 30

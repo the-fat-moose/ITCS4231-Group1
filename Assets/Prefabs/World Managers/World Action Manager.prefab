@@ -50,3 +50,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0c3d64cea990cdd48ba6ad44da58d407, type: 2}
   - {fileID: 11400000, guid: a0e66d8e534f73344802e3a4a1a5f0de, type: 2}
   - {fileID: 11400000, guid: a189dde18d726714fb36512d9f503880, type: 2}
+  playerAbilityActions:
+  - {fileID: 11400000, guid: 00d00687d46b047489efc7350cfaaf12, type: 2}
+  - {fileID: 11400000, guid: b6bb5b2f36a60bf4ca8c9a9b14db7264, type: 2}
+  - {fileID: 11400000, guid: 657b9859a577d074689eb9af92d5df6f, type: 2}
