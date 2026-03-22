@@ -7,6 +7,9 @@ namespace Group1 {
     {
         // GIVE THE AI A UNIQUE ID
         public int bossID = 0;
+        
+        [Header("Polish")]
+        [SerializeField] private string bossDefeatedMessage = "";
 
         [Header("Status")]
         public bool hasBeenDefeated = false;
@@ -29,6 +32,9 @@ namespace Group1 {
                 OnBossFightIsActiveValueChanged?.Invoke(oldValue, bossFightIsActive);
             }
         }
+
+        [Header("Phase Shift")]
+        [SerializeField] string phaseShiftAnimation = "Phase_Change_01";
 
         [Header("States")]
         [SerializeField] BossSleepState sleepState;
@@ -120,10 +126,17 @@ namespace Group1 {
 
         public override IEnumerator ProcessDeathEvent()
         {
+            PlayerUIManager.instance.playerUIPopUpManager.SendBossDefeatedPopUp(bossDefeatedMessage);
+
             CurrentHealth = 0;
             isDead = true;
 
             BossFightIsActive = false;
+
+            foreach (var fogWall in fogWalls)
+            {
+                fogWall.IsActive = false;
+            }
 
             // RESET ANY FLAGS HERE THAT NEED TO BE RESET
             // NOTHING YET
@@ -194,6 +207,11 @@ namespace Group1 {
                 UI_Boss_HP_Bar bossHPBar = bossHealthBar.GetComponentInChildren<UI_Boss_HP_Bar>();
                 bossHPBar.EnableBossHPBar(this);
             }
+        }
+    
+        protected void PhaseShift()
+        {
+            
         }
     }
 }

@@ -70,6 +70,8 @@ namespace Group1 {
             
             if (characterUIManager.hasFloatingHPBar)
                 OnHealthChanged -= characterUIManager.OnHPChanged;
+
+            OnHealthChanged -= CheckHP;
         }
 
         protected override void Update()

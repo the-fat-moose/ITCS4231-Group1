@@ -2568,6 +2568,7 @@ MonoBehaviour:
   combatStance: {fileID: 11400000, guid: bbd51b5257036904aa61a352068208d9, type: 2}
   attack: {fileID: 11400000, guid: e4a795dcbd3f2b04195817d11f023c52, type: 2}
   bossID: 0
+  bossDefeatedMessage: LORD SLAIN
   hasBeenDefeated: 0
   hasBeenAwakened: 0
   sleepAnimation: Sleep_01
