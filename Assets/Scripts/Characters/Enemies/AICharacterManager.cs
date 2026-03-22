@@ -150,14 +150,20 @@ namespace Group1 {
 
         private IEnumerator KnockUpRoutine(float liftHeight, float floatDuration, float slamDamage)
         {
+            Debug.LogError("KnockUpRoutine Start");
+            characterLocomotionManager.inKnockUpAbility = true;
             // Disable AI movement
             if (navMeshAgent != null) navMeshAgent.enabled = false;
 
             // Disable root motion
             animator.applyRootMotion = false;
 
+            // Disable gravity if using Rigidbody
+            Rigidbody rb = GetComponent<Rigidbody>();
+            if (rb != null) rb.useGravity = false;
+
             // Play floating animation
-            animator.CrossFade("Enemy_Float", 0.1f);
+            animator.CrossFade("PlayerCharacter_JumpIdle", 0.2f);
 
             Vector3 startPos = transform.position;
             Vector3 peakPos = startPos + Vector3.up * liftHeight;
@@ -189,11 +195,17 @@ namespace Group1 {
             dmg.physicalDamage = slamDamage;
             characterEffectsManager.ProcessInstantEffect(dmg);
 
+            // Re-enable gravity
+            if (rb != null) rb.useGravity = true;
+
             // Restore AI
             if (navMeshAgent != null) navMeshAgent.enabled = true;
 
             animator.applyRootMotion = true;
+
+            Debug.LogError("KnockUpRoutine End");
         }
+
 
         #endregion
 

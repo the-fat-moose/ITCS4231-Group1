@@ -13,6 +13,7 @@ namespace Group1{
         [SerializeField] protected float groundedYVelocity = -20;
         [SerializeField] protected float fallStartYVelocity = -5;
         protected bool fallingVelocityHasBeenSet = false;
+        [HideInInspector] public bool inKnockUpAbility = false;
         protected float inAirTimer = 0;
 
         [Header("Flags")]
@@ -25,6 +26,12 @@ namespace Group1{
         protected virtual void Update()
         {
             HandleGroundCheck();
+
+            if (inKnockUpAbility)
+            {
+                yVelocity.y = 0; // no gravity
+                return;          // do NOT move the character controller
+            }
 
             if (character.isGrounded)
             {

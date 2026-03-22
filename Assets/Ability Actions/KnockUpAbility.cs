@@ -50,7 +50,7 @@ namespace Group1
                 // Spawn VFX at enmemy
                 if (knockUpVFX != null)
                 {
-                    Vector3 pos = player.transform.position;
+                    Vector3 pos = character.transform.position + Vector3.up * 0.1f;
 
                     Quaternion rot = Quaternion.identity;
                     GameObject knockVfxObj = GameObject.Instantiate(knockUpVFX, pos, rot);
