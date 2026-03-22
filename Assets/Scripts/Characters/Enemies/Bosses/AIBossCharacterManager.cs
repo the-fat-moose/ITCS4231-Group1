@@ -7,8 +7,17 @@ namespace Group1 {
     {
         // GIVE THE AI A UNIQUE ID
         public int bossID = 0;
+
+        [Header("Status")]
         [SerializeField] private bool hasBeenDefeated = false;
         [SerializeField] private bool hasBeenAwakened = false;
+        [SerializeField] string sleepAnimation;
+        [SerializeField] string awakenAnimation;
+
+        [Header("States")]
+        [SerializeField] BossSleepState sleepState;
+
+        [Header("Fog Wall")]
         [SerializeField] private List<FogWallInteractable> fogWalls;
 
         // WHEN THE AI IS SPAWNED, CHECK IF THE BOSS HAS BEEN DEFEATED
@@ -16,8 +25,13 @@ namespace Group1 {
         // IF THE HAS NOT BEEN DEFEATED, DO NOT DISABLE IT
         // HANDLE TRIGGERS WHEN THE BOSS HAS BEEN INTERACTED WITH AT LEAST ONCE
 
-        [Header("DEBUG")]
-        [SerializeField] private bool wakeBossUp = false;
+        protected override void Awake()
+        {
+            base.Awake();
+
+            sleepState = Instantiate(sleepState);
+            currentState = sleepState;
+        }
 
         protected override void Start()
         {
@@ -58,17 +72,10 @@ namespace Group1 {
 
                 IsActive = false;
             }
-        }
 
-        protected override void Update()
-        {
-            base.Update();
-
-            if (wakeBossUp)
+            if (!hasBeenAwakened)
             {
-                wakeBossUp = false;
-
-                WakeBoss();
+                characterAnimatorManager.PlayTargetActionAnimation(sleepAnimation, true);
             }
         }
 
@@ -128,7 +135,13 @@ namespace Group1 {
     
         public void WakeBoss()
         {
+            if (!hasBeenAwakened)
+            {
+                characterAnimatorManager.PlayTargetActionAnimation(awakenAnimation, true);
+            }
+
             hasBeenAwakened = true;
+            currentState = idle;
 
             // IF OUR SAVE DATA DOES NOT CONTAIN INFO ON THIS BOSS, ADD IT
             if (!WorldSaveGameManager.instance.currentCharacterData.bossesAwakened.ContainsKey(bossID))
