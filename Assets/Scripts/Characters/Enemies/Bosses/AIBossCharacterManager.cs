@@ -38,6 +38,7 @@ namespace Group1 {
 
         [Header("States")]
         [SerializeField] BossSleepState sleepState;
+        [SerializeField] CombatStanceState phase02CombatStanceState;
 
         [Header("Fog Wall")]
         [SerializeField] private List<FogWallInteractable> fogWalls;
@@ -211,7 +212,9 @@ namespace Group1 {
     
         protected void PhaseShift()
         {
-            
+            characterAnimatorManager.PlayTargetActionAnimation(phaseShiftAnimation, true);
+            combatStance = Instantiate(phase02CombatStanceState);
+            currentState = combatStance;
         }
     }
 }

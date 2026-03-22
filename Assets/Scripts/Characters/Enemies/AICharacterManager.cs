@@ -52,6 +52,8 @@ namespace Group1 {
 
             idle = Instantiate(idle);
             pursueTarget = Instantiate(pursueTarget);
+            combatStance = Instantiate(combatStance);
+            attack = Instantiate(attack);
 
             currentState = idle;
         }
