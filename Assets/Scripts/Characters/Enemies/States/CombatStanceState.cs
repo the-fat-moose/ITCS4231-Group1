@@ -19,6 +19,9 @@ namespace Group1 {
         [SerializeField] protected int chanceToPerformCombo = 25; // The chance (in percent) of the character to perform a combo on the next attack
         protected bool hasRolledForComboChance = false; // if we have already rolled for the chance during this state
 
+        [Header("Pivot")]
+        [SerializeField] protected bool enablePivot;
+
         [Header("Engagement Distance")]
         [SerializeField] public float maximumEngagementDistance = 5f; // the distance we have to be away from the target before we enter the pursue target state
 
@@ -31,6 +34,16 @@ namespace Group1 {
             if (aiCharacter.isPerformingAction) return this;
 
             if (!aiCharacter.navMeshAgent.enabled) aiCharacter.navMeshAgent.enabled = true;
+
+            // MAKE THE AI CHARACTER TURN AND TURN TOWARDS ITS TARGET WHEN ITS OUTSIDE ITS FOV
+            if (aiCharacter.aiCharacterCombatManager.enablePivot)
+            {
+                if (!aiCharacter.IsMoving)
+                {
+                    if (aiCharacter.aiCharacterCombatManager.viewableAngle < -30 || aiCharacter.aiCharacterCombatManager.viewableAngle > 30)
+                        aiCharacter.aiCharacterCombatManager.PivotTowardsTarget(aiCharacter);
+                }
+            }
 
             // ROTATE TO FACE OUR TARGET
             aiCharacter.aiCharacterCombatManager.RotateTowardsAgent(aiCharacter);

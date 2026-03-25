@@ -17,9 +17,12 @@ namespace Group1 {
             if (!aiCharacter.navMeshAgent.enabled) aiCharacter.navMeshAgent.enabled = true;
 
             // IF THE TARGET CHARACTER IS OUTSIDE THE RANGE OF SIGHT, PIVOT TOWARDS THE TARGET CHARACTER
-            if (aiCharacter.aiCharacterCombatManager.viewableAngle < aiCharacter.aiCharacterCombatManager.minimumDetectionAngle || 
-                aiCharacter.aiCharacterCombatManager.viewableAngle > aiCharacter.aiCharacterCombatManager.maximumDetectionAngle)
-                aiCharacter.aiCharacterCombatManager.PivotTowardsTarget(aiCharacter);
+            if (aiCharacter.aiCharacterCombatManager.enablePivot) 
+            {
+                if (aiCharacter.aiCharacterCombatManager.viewableAngle < aiCharacter.aiCharacterCombatManager.minimumDetectionAngle || 
+                    aiCharacter.aiCharacterCombatManager.viewableAngle > aiCharacter.aiCharacterCombatManager.maximumDetectionAngle)
+                    aiCharacter.aiCharacterCombatManager.PivotTowardsTarget(aiCharacter);
+            }
 
             aiCharacter.aiCharacterLocomotionManager.RotateTowardsAgent(aiCharacter);
 

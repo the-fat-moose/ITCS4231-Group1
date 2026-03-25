@@ -11,7 +11,6 @@ namespace Group1 {
         public float viewableAngle;
         public Vector3 targetsDirection;
         public float distanceFromTarget;
-        public float pivotRotationSpeed = 5f;
 
         [Header("Detection")]
         [SerializeField] float detectionRadius = 15f;
@@ -20,6 +19,9 @@ namespace Group1 {
 
         [Header("Attack Rotation Speed")]
         public float attackRotationSpeed = 25f;
+
+        [Header("Pivot")]
+        public bool enablePivot;
 
         public void FindATargetViaLineOfSight(AICharacterManager aiCharacter)
         {
@@ -57,7 +59,9 @@ namespace Group1 {
                             targetsDirection = targetCharacter.transform.position - transform.position;
                             viewableAngle = WorldUtilityManager.Instance.GetAngleOfTarget(transform, targetsDirection);
                             aiCharacter.characterCombatManager.SetTarget(targetCharacter);
-                            PivotTowardsTarget(aiCharacter);
+                            
+                            if (enablePivot)
+                                PivotTowardsTarget(aiCharacter);
                         }
                     }
                 }
@@ -109,14 +113,6 @@ namespace Group1 {
             Debug.Log("VIEWABLE ANGLE: " + viewableAngle);
 
             if (aiCharacter.isPerformingAction) return;
-
-            /*Vector3 direction = aiCharacter.aiCharacterCombatManager.currentTarget.transform.position - aiCharacter.transform.position;
-            direction.y = 0f;
-
-            if (direction == Vector3.zero) return;
-
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-            aiCharacter.transform.rotation = Quaternion.Slerp(aiCharacter.transform.rotation, targetRotation, aiCharacter.aiCharacterCombatManager.pivotRotationSpeed * Time.deltaTime);*/
 
             if (viewableAngle >= 20 && viewableAngle <= 60)
             {

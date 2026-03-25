@@ -2503,6 +2503,7 @@ MonoBehaviour:
   minimumDetectionAngle: -180
   maximumDetectionAngle: 180
   attackRotationSpeed: 50
+  enablePivot: 1
   finalBossMeleeWeaponDamageCollider: {fileID: 7707428182314657952}
   baseDamage: 25
   attack01DamageModifier: 1
