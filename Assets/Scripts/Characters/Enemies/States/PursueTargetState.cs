@@ -16,6 +16,11 @@ namespace Group1 {
             // MAKE SURE OUR NAV MESH AGENT IS ACTIVE; IF ITS NOT, ENABLE IT
             if (!aiCharacter.navMeshAgent.enabled) aiCharacter.navMeshAgent.enabled = true;
 
+            // IF THE TARGET CHARACTER IS OUTSIDE THE RANGE OF SIGHT, PIVOT TOWARDS THE TARGET CHARACTER
+            if (aiCharacter.aiCharacterCombatManager.viewableAngle < aiCharacter.aiCharacterCombatManager.minimumDetectionAngle || 
+                aiCharacter.aiCharacterCombatManager.viewableAngle > aiCharacter.aiCharacterCombatManager.maximumDetectionAngle)
+                aiCharacter.aiCharacterCombatManager.PivotTowardsTarget(aiCharacter);
+
             aiCharacter.aiCharacterLocomotionManager.RotateTowardsAgent(aiCharacter);
 
             // IF WE ARE WITHIN COMBAT RANGE, SWITCH TO A COMBAT STANCE STATE

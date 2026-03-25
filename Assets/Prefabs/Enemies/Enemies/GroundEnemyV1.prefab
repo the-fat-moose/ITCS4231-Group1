@@ -150,6 +150,7 @@ MonoBehaviour:
   viewableAngle: 0
   targetsDirection: {x: 0, y: 0, z: 0}
   distanceFromTarget: 0
+  pivotRotationSpeed: 5
   detectionRadius: 15
   minimumDetectionAngle: -35
   maximumDetectionAngle: 35
@@ -243,6 +244,7 @@ MonoBehaviour:
   yVelocity: {x: 0, y: 0, z: 0}
   groundedYVelocity: -20
   fallStartYVelocity: -5
+  inKnockUpAbility: 0
   isRolling: 0
 --- !u!114 &7417673789264356850
 MonoBehaviour:
@@ -309,6 +311,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcb6ad002cddcb34985bf58e6e5dfe0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Group1.CharacterSoundFXManager
+  damageGrunts: []
+  attackGrunts: []
+  footSteps: []
 --- !u!82 &1092844811387696121
 AudioSource:
   m_ObjectHideFlags: 0
@@ -541,7 +546,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 2
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

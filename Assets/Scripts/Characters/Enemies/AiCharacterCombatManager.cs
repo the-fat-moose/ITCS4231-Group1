@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using UnityEngine;
 
 namespace Group1 {
@@ -10,11 +11,12 @@ namespace Group1 {
         public float viewableAngle;
         public Vector3 targetsDirection;
         public float distanceFromTarget;
+        public float pivotRotationSpeed = 5f;
 
         [Header("Detection")]
         [SerializeField] float detectionRadius = 15f;
-        [SerializeField] float minimumDetectionAngle = -35;
-        [SerializeField] float maximumDetectionAngle = 35;
+        public float minimumDetectionAngle = -35;
+        public float maximumDetectionAngle = 35;
 
         [Header("Attack Rotation Speed")]
         public float attackRotationSpeed = 25f;
@@ -55,6 +57,7 @@ namespace Group1 {
                             targetsDirection = targetCharacter.transform.position - transform.position;
                             viewableAngle = WorldUtilityManager.Instance.GetAngleOfTarget(transform, targetsDirection);
                             aiCharacter.characterCombatManager.SetTarget(targetCharacter);
+                            PivotTowardsTarget(aiCharacter);
                         }
                     }
                 }
@@ -98,6 +101,54 @@ namespace Group1 {
                 {
                     actionRecoveryTimer -= Time.deltaTime;
                 }
+            }
+        }
+    
+        public void PivotTowardsTarget(AICharacterManager aiCharacter)
+        {
+            Debug.Log("VIEWABLE ANGLE: " + viewableAngle);
+
+            if (aiCharacter.isPerformingAction) return;
+
+            /*Vector3 direction = aiCharacter.aiCharacterCombatManager.currentTarget.transform.position - aiCharacter.transform.position;
+            direction.y = 0f;
+
+            if (direction == Vector3.zero) return;
+
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            aiCharacter.transform.rotation = Quaternion.Slerp(aiCharacter.transform.rotation, targetRotation, aiCharacter.aiCharacterCombatManager.pivotRotationSpeed * Time.deltaTime);*/
+
+            if (viewableAngle >= 20 && viewableAngle <= 60)
+            {
+                aiCharacter.characterAnimatorManager.PlayTargetActionAnimation("Turn_Right_45", true);
+            }
+            else if (viewableAngle <= -20 && viewableAngle >= -60)
+            {
+                aiCharacter.characterAnimatorManager.PlayTargetActionAnimation("Turn_Left_45", true);
+            }
+            else if (viewableAngle >= 61 && viewableAngle <= 110)
+            {
+                aiCharacter.characterAnimatorManager.PlayTargetActionAnimation("Turn_Right_90", true);
+            }
+            else if (viewableAngle <= -61 && viewableAngle >= -110)
+            {
+                aiCharacter.characterAnimatorManager.PlayTargetActionAnimation("Turn_Left_90", true);
+            }
+            else if (viewableAngle >= 110 && viewableAngle <= 145)
+            {
+                aiCharacter.characterAnimatorManager.PlayTargetActionAnimation("Turn_Right_135", true);
+            }
+            else if (viewableAngle <= -110 && viewableAngle >= -145)
+            {
+                aiCharacter.characterAnimatorManager.PlayTargetActionAnimation("Turn_Left_135", true);
+            }
+            else if (viewableAngle >= 146 && viewableAngle <= 180)
+            {
+                aiCharacter.characterAnimatorManager.PlayTargetActionAnimation("Turn_Right_180", true);
+            }
+            else if (viewableAngle <= -146 && viewableAngle >= -180)
+            {
+                aiCharacter.characterAnimatorManager.PlayTargetActionAnimation("Turn_Left_180", true);
             }
         }
     }

@@ -2540,7 +2540,7 @@ MonoBehaviour:
   isPerformingAction: 0
   isGrounded: 1
   isJumping: 0
-  applyRootMotion: 0
+  applyRootMotion: 1
   canRotate: 1
   canMove: 1
   isChargingAttack: 0

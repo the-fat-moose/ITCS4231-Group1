@@ -12,6 +12,9 @@ namespace Group1 {
         protected bool hasPerformedAttack = false;
         protected bool hasPerformedCombo = false;
 
+        [Header("Pivot After Attack")]
+        [SerializeField] protected bool pivotAfterAttack = false;
+
         public override AIState Tick(AICharacterManager aiCharacter)
         {
             if (aiCharacter.aiCharacterCombatManager.currentTarget == null) return SwitchState(aiCharacter, aiCharacter.idle);
@@ -49,6 +52,9 @@ namespace Group1 {
                 // RETURN TO THE TOP, SO IF WE HAVE A COMBO WE PROCESS THAT WHEN WE ARE ABLE
                 return this;
             }
+
+            if (pivotAfterAttack)
+                aiCharacter.aiCharacterCombatManager.PivotTowardsTarget(aiCharacter);
 
             return SwitchState(aiCharacter, aiCharacter.combatStance);
         }
