@@ -109,9 +109,7 @@ namespace Group1 {
         }
     
         public void PivotTowardsTarget(AICharacterManager aiCharacter)
-        {
-            Debug.Log("VIEWABLE ANGLE: " + viewableAngle);
-
+        {            
             if (aiCharacter.isPerformingAction) return;
 
             if (viewableAngle >= 20 && viewableAngle <= 60)
