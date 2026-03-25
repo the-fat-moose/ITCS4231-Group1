@@ -25,7 +25,7 @@ namespace Group1 {
         [Header("Projectile Attack")]
         [SerializeField] GameObject projectilePrefab;
         [SerializeField] GameObject projectileFirePosition;
-        [SerializeField] float projectileForce = 0.0001f;
+        private float projectileForce = 1000f;
         
 
         protected override void Awake()
@@ -88,7 +88,7 @@ namespace Group1 {
 
             if (projectileAttack != null)
             {
-                projectileAttack.target = new Vector3(aiFinalBossCharacter.aiCharacterCombatManager.currentTarget.transform.position.x, projectileFirePosition.transform.position.y, aiFinalBossCharacter.aiCharacterCombatManager.currentTarget.transform.position.z);
+                projectileAttack.direction = projectileFirePosition.transform.forward.normalized;
                 projectileAttack.movementForce = projectileForce;
                 projectileAttack.fireProjectile = true;
             }
