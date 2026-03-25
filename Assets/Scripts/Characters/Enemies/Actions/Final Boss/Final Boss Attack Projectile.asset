@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Group1.AICharacterAttackAction
   attackAnimation: Attack_04_Projectile
   comboAction: {fileID: 0}
-  attackWeight: 30
+  attackWeight: 80
   attackType: 1
-  actionRecoveryTime: 1
+  actionRecoveryTime: 3
   minimumAttackAngle: -35
   maximumAttackAngle: 35
-  minimumAttackDistance: 1
-  maximumAttackDistance: 6
+  minimumAttackDistance: 5
+  maximumAttackDistance: 10

@@ -2595,6 +2595,7 @@ MonoBehaviour:
   minimumDetectionAngle: -35
   maximumDetectionAngle: 35
   attackRotationSpeed: 25
+  enablePivot: 0
 --- !u!143 &1574804015902678830
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3117,9 +3118,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8340277832613727963}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.038514093, y: 7.024806e-10, z: -6.841388e-11, w: 0.9992581}
-  m_LocalPosition: {x: -0.000024048246, y: 0.163795, z: -0.009126701}
-  m_LocalScale: {x: 0.97142845, y: 0.97142845, z: 0.97142845}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2984189496884166199}

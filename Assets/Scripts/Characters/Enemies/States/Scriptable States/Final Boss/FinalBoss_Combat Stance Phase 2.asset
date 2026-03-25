@@ -20,4 +20,4 @@ MonoBehaviour:
   canPerformCombo: 0
   chanceToPerformCombo: 25
   enablePivot: 0
-  maximumEngagementDistance: 5
+  maximumEngagementDistance: 10
