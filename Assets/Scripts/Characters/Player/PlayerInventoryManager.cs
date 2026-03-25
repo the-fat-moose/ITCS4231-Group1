@@ -15,9 +15,6 @@ namespace Group1 {
         public PlayerAbilityAction knockUpAbility;
         public PlayerAbilityAction cageAbility;
 
-        [Header("Lumens")]
-        public LumenEquipmentItem[] lumenEquipmentItemSlots = new LumenEquipmentItem[4];
-
         [Header("Inventory")]
         public List<Item> itemsInInventory;
 
