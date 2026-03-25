@@ -14554,7 +14554,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7912196246945018011}
   m_Layer: 0
-  m_Name: GlowingOrb
+  m_Name: VFX_GlowingOrb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
