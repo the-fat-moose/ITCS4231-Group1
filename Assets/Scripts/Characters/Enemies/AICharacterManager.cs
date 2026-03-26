@@ -196,7 +196,7 @@ namespace Group1 {
 
             // Apply slam damage
             TakeDamageEffect dmg = Instantiate(WorldCharacterEffectsManager.instance.takeDamageEffect);
-            dmg.physicalDamage = slamDamage;
+            dmg.magicDamage = slamDamage;
             characterEffectsManager.ProcessInstantEffect(dmg);
 
             // Re-enable gravity

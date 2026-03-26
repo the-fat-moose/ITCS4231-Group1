@@ -10,6 +10,8 @@ namespace Group1 {
         public bool canParry = false;
 
         public float parryWindow = 0.3f;
+
+        public float magicDamageMultiplier = 1f;
         
 
         [Header("Last Attack Animation Performed")]

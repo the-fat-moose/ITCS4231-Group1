@@ -27,6 +27,7 @@ namespace Group1
 
             if (player.isPerformingAction) return;
             if (!player.isGrounded) return;
+            if(player.CurrentMana < player.playerCombatManager.knockUpAbilityManaCost) return;
 
             player.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.KnockUpAbility, knockUpAnimation, true);
         }
@@ -64,6 +65,13 @@ namespace Group1
                 effect.floatDuration = floatDuration;
                 effect.slamDamage = slamDamage;
                 Debug.LogError($"Applying KnockUpEffect to {character.name}");
+
+                //handle damage
+                /*TakeDamageEffect damageEffect = Instantiate(WorldCharacterEffectsManager.instance.takeDamageEffect);
+                damageEffect.physicalDamage = 0;
+                damageEffect.magicDamage = slamDamage;
+                damageEffect.contactPoint = hit.ClosestPoint(player.transform.position);*/
+
                 character.characterEffectsManager.ProcessInstantEffect(effect);
             }
 

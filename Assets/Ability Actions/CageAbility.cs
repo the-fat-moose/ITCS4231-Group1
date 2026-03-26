@@ -24,8 +24,9 @@ namespace Group1
         {
             base.AttemptToPerformAbility(player);
 
-            if (player.isPerformingAction) return;
-            if (!player.isGrounded) return;
+            if(player.isPerformingAction) return;
+            if(!player.isGrounded) return;
+            if(player.CurrentMana < player.playerCombatManager.cageAbilityManaCost) return;
 
             player.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.CageAbility, cageAnimation, true);
         }

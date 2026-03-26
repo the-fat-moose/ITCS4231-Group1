@@ -37,6 +37,7 @@ namespace Group1{
         public bool parried = false;
         public bool isActive = true;
         public bool isInvulnerable = false;
+        public bool upgradedParry = false;
 
         public event System.Action<bool, bool> OnIsChargingAttackChanged;
         public event System.Action<bool, bool> OnIsMovingValueChanged;
@@ -422,7 +423,12 @@ namespace Group1{
 
         public void DisableParryWindow()
         {
-            characterCombatManager.canParry = false;
+            if(!upgradedParry) characterCombatManager.canParry = false;
+        }
+        
+        public void DisableParryWindowUpgrade()
+        {
+            if(upgradedParry) characterCombatManager.canParry = false;
         }
     }
 }

@@ -70,8 +70,15 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.1975659
+      - time: 0.28446695
         functionName: DisableParryWindow
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.40733394
+        functionName: DisableParryWindowUpgrade
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

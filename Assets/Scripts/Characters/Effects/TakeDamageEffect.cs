@@ -11,6 +11,7 @@ namespace Group1 {
         [Header("Damage")]
         public float physicalDamage = 0;
         public float magicDamage = 0;
+        private float magicDamageMultiplier = 1f;
 
         [Header("Final Damage")]
         private int finalDamage = 0; // damage a character takes after all damages are calculated together, accounting for resistances and modifiers
@@ -53,14 +54,14 @@ namespace Group1 {
         {
             if (characterCausingDamage != null)
             {
-                
+                magicDamageMultiplier *= characterCausingDamage.characterCombatManager.magicDamageMultiplier;
                 // CHECK FOR DAMAGE MODIFIERS AND MODIFY BASE DAMAGE (Physical damage buff, magic damage buff, etc)
             }
 
             // CHECK CHARACTER FOR FLAT DAMAGE REDUCTION AND SUBTRACT THEM FROM THE DAMAGE
 
             // ADD ALL DAMAGE TYPES TOGETHER AND PROCESS AND APPLY FINAL DAMAGE
-            finalDamage = Mathf.RoundToInt(physicalDamage + magicDamage);
+            finalDamage = Mathf.RoundToInt(physicalDamage + (magicDamage * magicDamageMultiplier));
 
             if (finalDamage <= 0)
             {

@@ -46,6 +46,13 @@ namespace Group1 {
 
             charactersDamaged.Add(damageTarget);
 
+            if(characterCausingDamage.GetComponent<PlayerManager>() != null)
+            {
+                characterCausingDamage.GetComponent<PlayerManager>().characterStatsManager.RegenerateMana();
+                Debug.Log("Player Caused Damage");
+            }
+
+
             TakeDamageEffect damageEffect = Instantiate(WorldCharacterEffectsManager.instance.takeDamageEffect);
             damageEffect.physicalDamage = physicalDamage;
             damageEffect.magicDamage = magicDamage;

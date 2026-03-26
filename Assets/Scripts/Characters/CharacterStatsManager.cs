@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Group1 {
@@ -14,7 +15,8 @@ namespace Group1 {
         public float blockingPhysicalAbsorption = 65f;
         public float blockingMagicAbsorption = 65f;
 
-        
+        [Header("Mana Regeneration")]
+        public float manaRegenMultiplier = 1f;
 
         protected virtual void Awake()
         {
@@ -81,6 +83,13 @@ namespace Group1 {
                     }
                 }
             }
+        }
+
+        public virtual void RegenerateMana()
+        {
+            float newMana = character.CurrentMana;
+            newMana += Mathf.RoundToInt(15 * manaRegenMultiplier);
+            character.CurrentMana = (int)Mathf.Clamp(newMana, 0, character.MaxMana);
         }
     
         public virtual void ResetStaminaRegenTimer(float previousStaminaAmount, float currentStaminaAmount)

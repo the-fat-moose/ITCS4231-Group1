@@ -42,6 +42,7 @@ namespace Group1
             {
                 character.Parried = true;
                 character.animator.CrossFade("PlayerCharacter_Parry", 0.1f);
+                character.characterStatsManager.RegenerateMana();
                 PlayParrySFX(character);
                 Debug.LogError("Parry registered in TakeDamageEffect");
             }

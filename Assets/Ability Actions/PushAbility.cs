@@ -24,6 +24,7 @@ namespace Group1
 
             if (player.isPerformingAction) return;
             if (!player.isGrounded) return;
+            if(player.CurrentMana < player.playerCombatManager.pushAbilityManaCost) return;
 
             player.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.PushAbility, pushAnimation, true);
         }

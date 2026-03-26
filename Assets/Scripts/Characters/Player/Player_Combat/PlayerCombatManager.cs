@@ -11,6 +11,13 @@ namespace Group1 {
         [Header("Flags")]
         public bool canComboWithMainHandWeapon = true;
 
+        [Header("ability")]
+        public float pushAbilityManaCost = 20;
+        public float knockUpAbilityManaCost = 30;
+        public float cageAbilityManaCost = 40;
+        public float aoeAbilityManaCost = 30;
+        public float abilityDamage = 20;
+ 
         protected override void Awake()
         {
             base.Awake();
@@ -56,11 +63,39 @@ namespace Group1 {
                 case AttackType.Heavy01:
                     staminaLoss = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttackStaminaModifier;
                     break;
+                case AttackType.Heavy02:
+                    staminaLoss = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttackStaminaModifier;
+                    break;
                 default:
                     break;
             }
 
             player.CurrentStamina -= Mathf.RoundToInt(staminaLoss);
+        }
+
+        public virtual void DrainManaBasedOnAbility()
+        {
+            float manaLoss = 0;
+
+            switch (currentAttackType)
+            {
+                case AttackType.PushAbility:
+                    manaLoss = pushAbilityManaCost;
+                    break;
+                case AttackType.KnockUpAbility:
+                    manaLoss = knockUpAbilityManaCost;
+                    break;
+                case AttackType.CageAbility:
+                    manaLoss = cageAbilityManaCost;
+                    break;
+                case AttackType.AOEAbility:
+                    manaLoss = aoeAbilityManaCost;
+                    break;
+                default:
+                    break;
+            }
+
+            player.CurrentMana -= Mathf.RoundToInt(manaLoss);
         }
 
         public override void SetTarget(CharacterManager newTarget){
