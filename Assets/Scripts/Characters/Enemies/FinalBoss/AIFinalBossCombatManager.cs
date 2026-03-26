@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,6 +28,11 @@ namespace Group1 {
         [SerializeField] GameObject projectileFirePosition;
         private float projectileForce = 1000f;
         
+        [Header("Line AOE Attack")]
+        [SerializeField] GameObject startAttackVFX;
+        [SerializeField] GameObject rollingRubbleVFX;
+        [SerializeField] float lineAOEStartDistanceInFront = 2;
+        [SerializeField] float lineAOEStartPositionOffset = 2;
 
         protected override void Awake()
         {
@@ -93,6 +99,71 @@ namespace Group1 {
                 projectileAttack.fireProjectile = true;
             }
         }
+
+        public void ActivateFinalBossLineAOE()
+        {
+            Vector3 impactPointPosition = aiFinalBossCharacter.gameObject.transform.position + transform.forward * lineAOEStartDistanceInFront;
+
+
+            Vector3 lineAOECenterPosition = impactPointPosition + transform.forward * lineAOEStartPositionOffset;
+            //Quaternion lineAOERotation = Quaternion.LookRotation(aiFinalBossCharacter.gameObject.transform.forward);
+            Quaternion lineAOERotation = aiFinalBossCharacter.gameObject.transform.localRotation;
+            lineAOERotation.y = 0;
+
+            // SHOW START VFX
+            GameObject lineAOEStartObject = Instantiate(startAttackVFX, impactPointPosition, lineAOERotation);
+            lineAOEStartObject.transform.localScale *= 2;
+
+            StartCoroutine(LineAOERollDelay(lineAOECenterPosition, lineAOERotation, 4, 1f, 1f));
+
+            // DESTROY VFX
+            Destroy(lineAOEStartObject, 1f);
+        }
+
+        private IEnumerator LineAOERollDelay(Vector3 startPosition, Quaternion startRotation, int iterations, float delay, float startDelay)
+        {
+            yield return new WaitForSeconds(startDelay);
+
+            int count = 0;
+
+            while (count < iterations)
+            {
+                // DEAL DAMAGE AND IGNORE BOSS
+                Collider[] colliders = Physics.OverlapBox(startPosition, new Vector3(4, 2, 0.5f), startRotation, WorldUtilityManager.Instance.GetCharacterLayers());
+
+                // SHOW ROLLING VFX
+                GameObject lineAOERollingObject = Instantiate(rollingRubbleVFX, startPosition + new Vector3(0, 0.1f, 0), startRotation);
+
+                List<CharacterManager> charactersDamaged = new List<CharacterManager>();
+
+                foreach (var collider in colliders)
+                {
+                    CharacterManager character = collider.GetComponentInParent<CharacterManager>();
+
+                    if (character == aiFinalBossCharacter) continue; // IGNORE BOSS
+
+                    if (character != null)
+                    {
+                        if (charactersDamaged.Contains(character)) continue;
+
+                        charactersDamaged.Add(character);
+
+                        TakeDamageEffect damageEffect = Instantiate(WorldCharacterEffectsManager.instance.takeDamageEffect);
+                        damageEffect.magicDamage = circleAOEMagicDamage;
+
+                        character.characterEffectsManager.ProcessInstantEffect(damageEffect);
+                    }
+                }
+
+                count++;
+                startPosition = startPosition + transform.forward * 2.1f; // MOVE THE ATTACK FORWARD
+
+                // DESTROY VFX
+                Destroy(lineAOERollingObject, 5f);
+
+                yield return new WaitForSeconds(delay);
+            }
+        } 
 
         public void OpenFinalBossMeleeWeaponDamageCollider()
         {

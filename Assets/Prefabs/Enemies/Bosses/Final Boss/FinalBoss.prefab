@@ -2546,6 +2546,10 @@ MonoBehaviour:
   circleAOEMagicDamage: 50
   projectilePrefab: {fileID: 6298733368599632320, guid: e29dfa5895120814dbe62a5358af349a, type: 3}
   projectileFirePosition: {fileID: 747630584412300604}
+  startAttackVFX: {fileID: 7907260701345176331, guid: d901313d00610f14981ccc932d3d95f7, type: 3}
+  rollingRubbleVFX: {fileID: 752244642403632843, guid: ab9759447f7196b4fb2d167391a876de, type: 3}
+  lineAOESwordImpactPoint: {fileID: 6926228413926967185}
+  lineAOEStartPositionOffset: 2
 --- !u!114 &2335758378731615156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4482,6 +4486,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47ff5aa93acfff048afb7a1f79d4821f, type: 3}
+--- !u!4 &6926228413926967185 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6947036770383680828, guid: 47ff5aa93acfff048afb7a1f79d4821f, type: 3}
+  m_PrefabInstance: {fileID: 33281293707793069}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7122925761761355136 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7111054158473328429, guid: 47ff5aa93acfff048afb7a1f79d4821f, type: 3}
