@@ -107,14 +107,14 @@ namespace Group1 {
 
             Vector3 lineAOECenterPosition = impactPointPosition + transform.forward * lineAOEStartPositionOffset;
             //Quaternion lineAOERotation = Quaternion.LookRotation(aiFinalBossCharacter.gameObject.transform.forward);
-            Quaternion lineAOERotation = aiFinalBossCharacter.gameObject.transform.localRotation;
-            lineAOERotation.y = 0;
+            Quaternion lineAOERotation = Quaternion.LookRotation(aiFinalBossCharacter.transform.forward);
+            //lineAOERotation.y = 0;
 
             // SHOW START VFX
             GameObject lineAOEStartObject = Instantiate(startAttackVFX, impactPointPosition, lineAOERotation);
             lineAOEStartObject.transform.localScale *= 2;
 
-            StartCoroutine(LineAOERollDelay(lineAOECenterPosition, lineAOERotation, 4, 1f, 1f));
+            StartCoroutine(LineAOERollDelay(lineAOECenterPosition, lineAOERotation, 3, 1f, 0.3f));
 
             // DESTROY VFX
             Destroy(lineAOEStartObject, 1f);
