@@ -40,7 +40,7 @@ namespace Group1{
         [SerializeField] float unlockedCameraHeight = 1.65f;
         [SerializeField] float lockedCameraHeight = 2f;
         private Coroutine cameraLockOnHeightCoroutine;
-        private List<CharacterManager> avaliableTargets = new List<CharacterManager>();
+        [SerializeField] private List<CharacterManager> avaliableTargets = new List<CharacterManager>();
         public CharacterManager nearestLockOnTarget;
         public CharacterManager leftLockOnTarget;
         public CharacterManager rightLockOnTarget;
@@ -101,7 +101,7 @@ namespace Group1{
                     player.playerCombatManager.SetTarget(null);
                     ClearLockOnTarget();
 
-                    // Sync free-look angles to the current camera orientation (from pivot)
+                    // Sync free look angles to the current camera orientation (from pivot)
                     Vector3 flatForward = cameraPivotTransform.forward;
                     flatForward.y = 0;
                     flatForward.Normalize();
@@ -114,9 +114,8 @@ namespace Group1{
                 }
                 else
                 {
-                    // NORMAL LOCK-ON ROTATION
-                    Vector3 direction = player.playerCombatManager.currentTarget.characterCombatManager.lockOnTransform.position
-                                        - cameraPivotTransform.position;
+                    // Normal lock on rotation
+                    Vector3 direction = player.playerCombatManager.currentTarget.characterCombatManager.lockOnTransform.position - cameraPivotTransform.position;
 
                     direction.y = 0;
                     direction.Normalize();
@@ -174,7 +173,7 @@ namespace Group1{
 
         public void HandleLocatingLockOnTargets()
         {
-            
+            Debug.Log("HandleLocatingLockOnTargets");
             avaliableTargets.Clear();
             nearestLockOnTarget = null;
             leftLockOnTarget = null;
@@ -206,10 +205,7 @@ namespace Group1{
                 if (angle < minimumViewableAngle || angle > maximumViewableAngle)
                     continue;
 
-                if (Physics.Linecast(
-                    player.playerCombatManager.lockOnTransform.position,
-                    target.characterCombatManager.lockOnTransform.position,
-                    WorldUtilityManager.Instance.GetEnviroLayers()))
+                if (Physics.Linecast(player.playerCombatManager.lockOnTransform.position, target.characterCombatManager.lockOnTransform.position, WorldUtilityManager.Instance.GetEnviroLayers()))
                     continue;
 
                 avaliableTargets.Add(target);
@@ -251,7 +247,7 @@ namespace Group1{
 
         public void ClearLockOnTarget()
         {
-            Debug.Log("ClearLockOnTarget");
+            player.isLockedOn = false;
             nearestLockOnTarget = null;
             leftLockOnTarget = null;
             rightLockOnTarget = null;

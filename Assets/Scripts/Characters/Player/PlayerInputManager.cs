@@ -166,7 +166,6 @@ namespace Group1{
         private void HandleLockOnInput()
         {
             if (!lockInput) return;
-
             lockInput = false; //consume input immediately
 
             if (player.isLockedOn)
