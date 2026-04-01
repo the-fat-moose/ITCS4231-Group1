@@ -12,6 +12,9 @@ namespace Group1 {
         [Header("Weapons")]
         [SerializeField] List<WeaponItem> weapons = new List<WeaponItem>();
 
+        [Header("Quick Slot Items")]
+        [SerializeField] List<QuickSlotItem> quickSlotItems = new List<QuickSlotItem>();
+
         // A LIST OF EVERY ITEM WE HAVE IN THE GAME
         [Header("Items")]
         private List<Item> items = new List<Item>();
@@ -32,6 +35,11 @@ namespace Group1 {
             {
                 items.Add(weapon);
             }
+            // ADD ALL OF OUR QUICK SLOT ITEMS TO THE LIST OF ITEMS 
+            foreach (var quickSlotItem in quickSlotItems)
+            {
+                items.Add(quickSlotItem);
+            }
 
             // ASSIGN ALL OF OUR ITEMS A UNIQUE ITEM ID 
             // (IF YOU CONSISTENTLY ADD NEW ITEMS, THE IDS WILL CHANGE AND THIS COULD BE BAD FOR SAVE FILES)
@@ -44,6 +52,11 @@ namespace Group1 {
         public WeaponItem GetWeaponByID(int ID)
         {
             return weapons.FirstOrDefault(weapon => weapon.itemID == ID);
+        }
+
+        public QuickSlotItem GetQuickSlotItemByID(int ID)
+        {
+            return quickSlotItems.FirstOrDefault(item => item.itemID == ID);
         }
     }
 }
