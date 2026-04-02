@@ -77,7 +77,7 @@ namespace Group1{
             }
             else
             {
-                if(PlayerInputManager.inputs.moveAmount > 0.5f)
+                if(PlayerInputManager.inputs.moveAmount > 0.5f && player.canRun)
                 {
                     //running
                     player.characterController.Move(moveDir * runSpeed * Time.deltaTime);

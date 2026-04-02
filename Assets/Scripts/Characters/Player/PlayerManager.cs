@@ -1,9 +1,7 @@
 using System.Collections;
 using Unity.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System.Collections.Generic;
 
 namespace Group1{
     public class PlayerManager : CharacterManager
@@ -23,6 +21,7 @@ namespace Group1{
         [HideInInspector] public PlayerEquipmentManager playerEquipmentManager;
         [HideInInspector] public PlayerCombatManager playerCombatManager;
         [HideInInspector] public PlayerInteractionManager playerInteractionManager;
+        [HideInInspector] public PlayerEffectsManager playerEffectsManager;
 
         [Header("Equipment")]
         private int currentRightHandWeaponID = 0;
@@ -85,6 +84,7 @@ namespace Group1{
             playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
             playerCombatManager = GetComponent<PlayerCombatManager>();
             playerInteractionManager = GetComponent<PlayerInteractionManager>();
+            playerEffectsManager = GetComponent<PlayerEffectsManager>();
         }
 
         protected override void Start()

@@ -5,16 +5,16 @@ namespace Group1
     public class QuickSlotItem : Item
     {
         [Header("Item Model")]
-        [SerializeField] GameObject itemModel;
+        [SerializeField] protected GameObject itemModel;
 
         [Header("Animation")]
-        [SerializeField] string useItemAnimation;
+        [SerializeField] protected string useItemAnimation;
 
         public virtual void AttemptToUseItem(PlayerManager player)
         {
             if (!CanIUseThisItem(player)) return;
 
-            player.playerAnimatorManager.PlayTargetActionAnimation(useItemAnimation, true);
+            player.playerAnimatorManager.PlayTargetActionAnimation(useItemAnimation, true, false, true, true);
         }
 
         public virtual bool CanIUseThisItem(PlayerManager player)

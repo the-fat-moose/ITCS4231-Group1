@@ -31,6 +31,7 @@ namespace Group1{
         public bool applyRootMotion = false;
         public bool canRotate = true;
         public bool canMove = true;
+        public bool canRun = true;
         public bool isChargingAttack = false;
         public bool isBlocking = false;
         public bool isAttacking = false;

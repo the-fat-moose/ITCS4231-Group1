@@ -1,30 +1,23 @@
 using UnityEngine;
 
-namespace Group1{
-    public class ResetActionFlag : StateMachineBehaviour
+namespace Group1
+{
+    public class ResetUpperBodyAction : StateMachineBehaviour
     {
-        CharacterManager character;
-        //PlayerLocomotionManager locomotion;
+        PlayerManager player;
+
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            if(character == null)
-            {
-                character = animator.GetComponent<CharacterManager>();
-            }
+            if (player == null)
+                player = animator.GetComponent<PlayerManager>();
 
-            character.isPerformingAction = false;
-            character.applyRootMotion = false;
-            character.canMove = true;
-            character.canRotate = true;
-            character.characterLocomotionManager.isRolling = false;
-            character.characterAnimatorManager.DisableCanDoCombo();
-            character.isJumping = false;
-            character.isAttacking = false;
-            character.isInvulnerable = false;
-            
-            if (character.characterEffectsManager.activeQuickSlotItemFX != null)
-                Destroy(character.characterEffectsManager.activeQuickSlotItemFX);
+            if (player == null) return;
+
+            if (player.playerEffectsManager.activeQuickSlotItemFX != null)
+                Destroy(player.playerEffectsManager.activeQuickSlotItemFX);
+
+            player.canRun = true;
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

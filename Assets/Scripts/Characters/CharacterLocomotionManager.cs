@@ -64,13 +64,6 @@ namespace Group1{
             character.isGrounded = Physics.CheckSphere(character.transform.position, groundCheckSphereRadius, groundLayer);
         }
 
-        protected void OnDrawGizmosSelected()
-        {
-            if(character == null) return;
-        
-            Gizmos.DrawSphere(character.transform.position, groundCheckSphereRadius);
-        }
-
         public void EnableCanRotate()
         {
             character.canRotate = true;
