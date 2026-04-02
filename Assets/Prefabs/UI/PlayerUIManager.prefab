@@ -5515,6 +5515,7 @@ MonoBehaviour:
   manaBar: {fileID: 321665005818907440}
   staminaBar: {fileID: 233617527974986881}
   weaponQuickSlotIcon: {fileID: 3531107168419687482}
+  quickSlotItemQuickSlotIcon: {fileID: 8045127924614235806}
   bossHealthBarParent: {fileID: 4069608492029845648}
   bossHealthBarObject: {fileID: 2847358586487350453, guid: d99b9b323fc67864ea5109632e70168c, type: 3}
 --- !u!1 &8094813154625368510
@@ -6419,6 +6420,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7190593660389972784, guid: 040d1ffc05c89da4aa5ee0f5f6a2ede6, type: 3}
   m_PrefabInstance: {fileID: 3774502620170959656}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8045127924614235806 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6613451503949004214, guid: 040d1ffc05c89da4aa5ee0f5f6a2ede6, type: 3}
+  m_PrefabInstance: {fileID: 3774502620170959656}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &4768797022318660559
 PrefabInstance:
   m_ObjectHideFlags: 0

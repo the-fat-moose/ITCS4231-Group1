@@ -23,6 +23,7 @@ namespace Group1{
         [SerializeField] private bool jumpInput = false;
         [SerializeField] private bool switch_Weapon_Input = false;
         [SerializeField] private bool interaction_Input = false;
+        [SerializeField] private bool use_item_Input = false;
 
         [Header("Camera Movement Input")]
         [SerializeField] Vector2 camMovement;
@@ -91,6 +92,7 @@ namespace Group1{
                 playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
                 playerControls.PlayerActions.SwitchWeapon.performed += i => switch_Weapon_Input = true;
                 playerControls.PlayerActions.Interact.performed += i => interaction_Input = true;
+                playerControls.PlayerActions.UseItem.performed += i => use_item_Input = true;
                 
                 // BUMPERS
                 playerControls.PlayerActions.RB.performed += i => RB_Input = true;
@@ -139,6 +141,7 @@ namespace Group1{
         {
             if (player != null) 
             {
+                HandleUseItemInput();
                 MovementInput();
                 HandleLockOnInput();
                 HandleLockOnSwitchTargetInput();
@@ -160,6 +163,22 @@ namespace Group1{
                 HandlePushAbilityInput();
                 HandleCageAbilityInput();
                 HandleKnockUpAbilityInput();
+            }
+        }
+
+        // Use Items
+        private void HandleUseItemInput()
+        {
+            if (use_item_Input)
+            {
+                use_item_Input = false;
+
+                if (PlayerUIManager.instance.menuWindowIsOpen) return;
+
+                if (player.playerInventoryManager.currentQuickSlotItem != null)
+                {
+                    player.playerInventoryManager.currentQuickSlotItem.AttemptToUseItem(player);
+                }
             }
         }
 

@@ -27,9 +27,11 @@ namespace Group1{
         [Header("Equipment")]
         private int currentRightHandWeaponID = 0;
         private int currentWeaponBeingUsed = 0;
+        private int currentQuickSlotItemID = 0;
 
         public event System.Action<int, int> OnRightHandWeaponIDChanged;
         public event System.Action<int, int> OnCurrentWeaponBeingUsedChanged;
+        public event System.Action<int, int> OnCurrentQuickSlotItemChanged;
 
         public int CurrentRightHandWeaponID
         {
@@ -54,6 +56,19 @@ namespace Group1{
                 int oldValue = currentWeaponBeingUsed;
                 currentWeaponBeingUsed = value;
                 OnCurrentWeaponBeingUsedChanged?.Invoke(oldValue, currentWeaponBeingUsed);
+            }
+        }
+
+        public int CurrentQuickSlotItemID
+        {
+            get => currentQuickSlotItemID;
+            set
+            {
+                if (currentQuickSlotItemID == value) return;
+
+                int oldValue = currentQuickSlotItemID;
+                currentQuickSlotItemID = value;
+                OnCurrentQuickSlotItemChanged?.Invoke(oldValue, currentQuickSlotItemID);
             }
         }
 
@@ -103,6 +118,7 @@ namespace Group1{
                 // Equipment
                 OnRightHandWeaponIDChanged += OnCurrentRightHandWeaponIDChange;
                 OnCurrentWeaponBeingUsedChanged += OnCurrentWeaponBeingUsedIDChange;
+                OnCurrentQuickSlotItemChanged += OnCurrentQuickSlotItemIDChange;
             }
         }
 
@@ -363,6 +379,21 @@ namespace Group1{
             playerCombatManager.currentWeaponBeingUsed = newWeapon;
         }
 
+        public void OnCurrentQuickSlotItemIDChange(int oldID, int newID)
+        {
+            QuickSlotItem newQuickSlotItem = null;
+
+            if (WorldItemDatabase.instance.GetQuickSlotItemByID(newID))
+                newQuickSlotItem = Instantiate(WorldItemDatabase.instance.GetQuickSlotItemByID(newID));
+            
+            if (newQuickSlotItem != null)
+            {
+                playerInventoryManager.currentQuickSlotItem = newQuickSlotItem;
+
+                PlayerUIManager.instance.playerUIHudManager.SetQuickSlotItemQuickSlotIcon(newID);
+            }
+        }
+
         public void PerformWeaponBasedAction(int actionID, int weaponID)
         {
             WeaponItemAction weaponAction = WorldActionManager.instance.GetWeaponItemActionByID(actionID);
@@ -392,14 +423,6 @@ namespace Group1{
         }
 
         #endregion
-
-        void OnDrawGizmos()
-        {
-            if (playerInventoryManager.knockUpAbility is KnockUpAbility knockUp)
-            {
-                knockUp.DrawDebug(this);
-            }
-        }
 
         // DEBUG DELETE LATER
         private void DebugMenu()

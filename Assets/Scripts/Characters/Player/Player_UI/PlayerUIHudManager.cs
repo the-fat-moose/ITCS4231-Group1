@@ -13,6 +13,7 @@ namespace Group1 {
 
         [Header("Quick Slots")]
         [SerializeField] Image weaponQuickSlotIcon;
+        [SerializeField] Image quickSlotItemQuickSlotIcon;
 
         [Header("Boss Health Bar")]
         public Transform bossHealthBarParent;
@@ -93,6 +94,33 @@ namespace Group1 {
 
             weaponQuickSlotIcon.sprite = weapon.itemIcon;
             weaponQuickSlotIcon.enabled = true;
+        }
+
+        public void SetQuickSlotItemQuickSlotIcon(int quickSlotItemID)
+        {
+            QuickSlotItem quickSlotItem = WorldItemDatabase.instance.GetQuickSlotItemByID(quickSlotItemID);
+
+            if (WorldItemDatabase.instance.GetQuickSlotItemByID(quickSlotItemID) == null)
+            {
+                Debug.Log("ITEM IS NULL");
+                quickSlotItemQuickSlotIcon.enabled = false;
+                quickSlotItemQuickSlotIcon.sprite = null;
+                return;
+            }
+
+            if (quickSlotItem.itemIcon == null)
+            {
+                Debug.Log("ITEM HAS NO ICON");
+                quickSlotItemQuickSlotIcon.enabled = false;
+                quickSlotItemQuickSlotIcon.sprite = null;
+                return;
+            }
+
+            // TO DO, UPDATE QUANTITY LEFT, SHOW IN UI
+            // FADE OUT ICON IF NONE REMAIN
+
+            quickSlotItemQuickSlotIcon.sprite = quickSlotItem.itemIcon;
+            quickSlotItemQuickSlotIcon.enabled = true;
         }
     }
 }

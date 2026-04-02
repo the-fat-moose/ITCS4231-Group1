@@ -17,5 +17,5 @@ MonoBehaviour:
   itemDescription: Used to revitalize oneself.
   itemID: 0
   itemModel: {fileID: 9213487869166976761, guid: 6ffa9bab8cb54a14aa2021f605b3d7e1, type: 3}
-  useItemAnimation: 
+  useItemAnimation: PlayerCharacter_Heal_Start
   emptyFlaskModel: {fileID: 5419108027861161895, guid: e7f7d672576dd0143b2f676a32c98011, type: 3}
