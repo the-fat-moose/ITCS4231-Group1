@@ -73,7 +73,7 @@ namespace Group1{
             character.animator.SetFloat(vertical, snappedVertical, 0.1f, Time.deltaTime);
         }
     
-        public virtual void PlayTargetActionAnimation(string targetAnimation, bool isPerformingAction, bool applyRootMotion = true, bool canRotate = false, bool canMove = false, bool canRun = true)
+        public virtual void PlayTargetActionAnimation(string targetAnimation, bool isPerformingAction, bool applyRootMotion = true, bool canRotate = false, bool canMove = false, bool canRun = true, bool canRoll = false)
         {
             character.applyRootMotion = applyRootMotion;
             character.animator.CrossFade(targetAnimation, 0.2f);
@@ -83,9 +83,10 @@ namespace Group1{
             character.canMove = canMove;
             character.canRotate = canRotate;
             character.canRun = canRun;
+            character.characterLocomotionManager.canRoll = canRoll;
         }
 
-        public virtual void PlayTargetActionAnimationInstantly(string targetAnimation, bool isPerformingAction, bool applyRootMotion = true, bool canRotate = false, bool canMove = false, bool canRun = true)
+        public virtual void PlayTargetActionAnimationInstantly(string targetAnimation, bool isPerformingAction, bool applyRootMotion = true, bool canRotate = false, bool canMove = false, bool canRun = true, bool canRoll = false)
         {
             character.applyRootMotion = applyRootMotion;
             character.animator.Play(targetAnimation);
@@ -95,9 +96,10 @@ namespace Group1{
             character.canMove = canMove;
             character.canRotate = canRotate;
             character.canRun = canRun;
+            character.characterLocomotionManager.canRoll = canRoll;
         }
 
-        public virtual void PlayTargetAttackActionAnimation(AttackType attackType, string targetAnimation, bool isPerformingAction, bool applyRootMotion = true, bool canRotate = false, bool canMove = false)
+        public virtual void PlayTargetAttackActionAnimation(AttackType attackType, string targetAnimation, bool isPerformingAction, bool applyRootMotion = true, bool canRotate = false, bool canMove = false, bool canRoll = false)
         {
             int layerIndex = character.animator.GetLayerIndex("Action Override");
 
@@ -105,6 +107,7 @@ namespace Group1{
             character.isPerformingAction = isPerformingAction;
             character.canMove = canMove;
             character.canRotate = canRotate;
+            character.characterLocomotionManager.canRoll = canRoll;
 
             character.animator.CrossFade(targetAnimation, 0.2f, layerIndex);
 

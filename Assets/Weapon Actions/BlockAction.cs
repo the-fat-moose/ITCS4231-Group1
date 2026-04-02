@@ -11,6 +11,8 @@ namespace Group1
             base.AttemptToPerformAction(playerPerformingAction, weaponPerformingAction);
             if(!playerPerformingAction.playerCombatManager.canBlock) return;
 
+            if (playerPerformingAction.playerCombatManager.isUsingItem) return;
+
             if (playerPerformingAction.isAttacking)
             {
                 playerPerformingAction.IsBlocking = false;

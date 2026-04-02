@@ -6,20 +6,21 @@ namespace Group1
     public class FlaskItem : QuickSlotItem
     {
         [Header("Flask Type")]
-        [SerializeField] bool healthFlask = true;
+        public bool healthFlask = true;
 
         [Header("Restoration Value")]
         private int flaskRestoration = 50;
         public float flaskRestorationMultiplier = 1f;
 
         [Header("Empty Item")]
-        [SerializeField] GameObject emptyFlaskModel;
+        public GameObject emptyFlaskModel;
+        public string emptyFlaskAnimation;
 
         public override bool CanIUseThisItem(PlayerManager player)
         {
-            if (healthFlask && player.remainingHealthFlasks <= 0) return false;
+            if (!player.playerCombatManager.isUsingItem && player.isPerformingAction) return false;
 
-            if (!healthFlask && player.remainingHealthFlasks <= 0) return false;
+            if (player.isAttacking) return false;
 
             return true;
         }
@@ -28,9 +29,36 @@ namespace Group1
         {
             if (!CanIUseThisItem(player)) return;
 
+            // HEALTH FLASK COUNT CHECK
+            if (healthFlask && player.remainingHealthFlasks <= 0)
+            {
+                if (player.playerCombatManager.isUsingItem) return;
+
+                player.playerCombatManager.isUsingItem = true;
+
+                player.HideWeapons();
+
+                Destroy(player.playerEffectsManager.activeQuickSlotItemFX);
+                GameObject emptyFlask = Instantiate(emptyFlaskModel, player.playerEquipmentManager.rightHandSlot.transform);
+                player.playerEffectsManager.activeQuickSlotItemFX = emptyFlask;
+
+                player.playerAnimatorManager.PlayTargetActionAnimation(emptyFlaskAnimation, false, false, true, true, false);
+                return;
+            }
+
+            // CHECK FOR CHUGGING
+            if (player.playerCombatManager.isUsingItem)
+            {
+                player.IsChugging = true;
+
+                return;
+            }
+
+            player.playerCombatManager.isUsingItem = true;
+
             player.playerEffectsManager.activeQuickSlotItemFX = Instantiate(itemModel, player.playerEquipmentManager.rightHandSlot.transform);
 
-            player.playerAnimatorManager.PlayTargetActionAnimation(useItemAnimation, true, false, true, false, false);
+            player.playerAnimatorManager.PlayTargetActionAnimation(useItemAnimation, false, false, true, true, false);
 
             player.HideWeapons();
         }

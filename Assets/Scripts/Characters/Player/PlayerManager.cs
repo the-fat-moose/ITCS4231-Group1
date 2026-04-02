@@ -73,6 +73,22 @@ namespace Group1{
 
         [Header("Flasks")]
         public int remainingHealthFlasks = 0;
+        private bool isChugging = false;
+
+        public event System.Action<bool, bool> OnIsChuggingChanged;
+
+        public bool IsChugging
+        {
+            get => isChugging;
+            set
+            {
+                if (isChugging == value) return;
+
+                bool oldValue = isChugging;
+                isChugging = value;
+                OnIsChuggingChanged?.Invoke(oldValue, isChugging);
+            }
+        }
 
         #region Unity Functions
 
@@ -122,6 +138,7 @@ namespace Group1{
                 OnRightHandWeaponIDChanged += OnCurrentRightHandWeaponIDChange;
                 OnCurrentWeaponBeingUsedChanged += OnCurrentWeaponBeingUsedIDChange;
                 OnCurrentQuickSlotItemChanged += OnCurrentQuickSlotItemIDChange;
+                OnIsChuggingChanged += OnIsChuggingValueChanged;
             }
         }
 
@@ -395,6 +412,11 @@ namespace Group1{
 
                 PlayerUIManager.instance.playerUIHudManager.SetQuickSlotItemQuickSlotIcon(newID);
             }
+        }
+
+        public void OnIsChuggingValueChanged(bool oldStatus, bool newStatus)
+        {
+            animator.SetBool("isChuggingFlask", IsChugging);
         }
 
         public void PerformWeaponBasedAction(int actionID, int weaponID)

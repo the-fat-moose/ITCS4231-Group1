@@ -201,7 +201,7 @@ namespace Group1{
 
         public void AttemptToDodge()
         {
-            if(player.isPerformingAction) return;
+            if(player.locomotion.canRoll) return;
 
             if (player.CurrentStamina <= 0) return;
 

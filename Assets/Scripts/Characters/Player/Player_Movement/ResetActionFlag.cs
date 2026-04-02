@@ -18,6 +18,7 @@ namespace Group1{
             character.canMove = true;
             character.canRotate = true;
             character.characterLocomotionManager.isRolling = false;
+            character.characterLocomotionManager.canRoll = true;
             character.characterAnimatorManager.DisableCanDoCombo();
             character.isJumping = false;
             character.isAttacking = false;

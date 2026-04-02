@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldCharacterEffectsManager
   bloodSplatterVFX: {fileID: 194062, guid: 8c27aeead6d968e4ba986702d6b84335, type: 3}
+  healingFlaskVFX: {fileID: 2336781230396761739, guid: 4e986374ae13deb4c9b27bb64d119f8e, type: 3}
   takeDamageEffect: {fileID: 11400000, guid: 4621f8798218c3d45a732ae9c7e6a2c4, type: 2}
   takeBlockedDamageEffect: {fileID: 11400000, guid: 3e97a0124105d8947aef7dde13f48522, type: 2}
   freezeEffect: {fileID: 11400000, guid: 8386ecdef388dd848a966c2139eadc79, type: 2}

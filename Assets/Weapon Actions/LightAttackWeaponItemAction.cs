@@ -11,6 +11,8 @@ namespace Group1 {
         {
             base.AttemptToPerformAction(playerPerformingAction, weaponPerformingAction);
 
+            if (playerPerformingAction.playerCombatManager.isUsingItem) return;
+
             // CHECK FOR STOPS (ex. no stamina)
             if (playerPerformingAction.CurrentStamina <= 0) return;
 

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Group1
 {
-    public class ResetUpperBodyAction : StateMachineBehaviour
+    public class ResetIsChugging : StateMachineBehaviour
     {
         PlayerManager player;
 
@@ -11,29 +11,40 @@ namespace Group1
         {
             if (player == null)
                 player = animator.GetComponent<PlayerManager>();
+            
+            if (player == null)
+                return;
 
-            if (player == null) return;
-
-            if (player.playerEffectsManager.activeQuickSlotItemFX != null)
-                Destroy(player.playerEffectsManager.activeQuickSlotItemFX);
-
-            player.canRun = true;
-            player.playerEquipmentManager.UnHideWeapons();
-
-            if (player.playerEffectsManager.activeQuickSlotItemFX != null)
-                Destroy(player.playerEffectsManager.activeQuickSlotItemFX);
-
-            // WE CHECK IF THE PLAYER IS USING AN ITEM
-            if (player.playerCombatManager.isUsingItem)
+            if (player.IsChugging)
             {
-                player.playerCombatManager.isUsingItem = false;
+                FlaskItem currentFlask = player.playerInventoryManager.currentQuickSlotItem as FlaskItem;
 
-                // ONLY IF THE PLAYER IS NOT INTERACTING, DO WE ALLOW ROLLING
-                // IF THE PLAYER IS DAMAGED AND THE DRINKING ANIMATION RETURNS TO THE "ResetUpperBodyAction" BEFORE THE DAMAGE ANIMATION RETURNS TO THE "ResetAction"
-                // THE PLAYER WILL BE FREE TO ROLL EVEN THOUGH THEY ARE STILL IN A DAMAGE ANIMATION
-                if (!player.isPerformingAction)
-                    player.locomotion.canRoll = true;
+                if (currentFlask.healthFlask)
+                {
+                    if (player.remainingHealthFlasks <= 0)
+                    {
+                        player.playerAnimatorManager.PlayTargetActionAnimation(currentFlask.emptyFlaskAnimation, false, false, true, true, false);
+                        player.HideWeapons();
+                    }
+                }
             }
+
+            if (player.IsChugging)
+            {
+                FlaskItem currentFlask = player.playerInventoryManager.currentQuickSlotItem as FlaskItem;
+
+                if (currentFlask.healthFlask)
+                {
+                    if (player.remainingHealthFlasks <= 0)
+                    {
+                        Destroy(player.playerEffectsManager.activeQuickSlotItemFX);
+                        GameObject emptyFlask = Instantiate(currentFlask.emptyFlaskModel, player.playerEquipmentManager.rightHandSlot.transform);
+                        player.playerEffectsManager.activeQuickSlotItemFX = emptyFlask;
+                    }
+                }
+            }
+        
+            player.IsChugging = false;
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

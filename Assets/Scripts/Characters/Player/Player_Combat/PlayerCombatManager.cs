@@ -10,6 +10,7 @@ namespace Group1 {
 
         [Header("Flags")]
         public bool canComboWithMainHandWeapon = true;
+        public bool isUsingItem = false;
 
         [Header("ability")]
         public float pushAbilityManaCost = 20;
