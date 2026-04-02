@@ -48,5 +48,5 @@ MonoBehaviour:
   weapons:
   - {fileID: 11400000, guid: 9d591de22dca28a428e880fba18f3ef3, type: 2}
   - {fileID: 11400000, guid: c44b6d7661e595c449781e80e2fcfd16, type: 2}
-  lumenEquipmentItems:
-  - {fileID: 11400000, guid: c717d74f9181d2c4eba17a3bd96f6d42, type: 2}
+  quickSlotItems:
+  - {fileID: 11400000, guid: 415d68f9f235f8149a3127742b568877, type: 2}

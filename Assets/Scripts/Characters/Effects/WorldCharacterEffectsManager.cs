@@ -8,6 +8,7 @@ namespace Group1 {
 
         [Header("VFX")]
         public GameObject bloodSplatterVFX;
+        public GameObject healingFlaskVFX;
 
         [Header("Damage")]
         public TakeDamageEffect takeDamageEffect;

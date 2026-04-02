@@ -103,6 +103,12 @@ namespace Group1 {
 
             PlayerCamera.cam.SetLockCameraHeight();
         }
-    
+
+        // QUICK SLOT
+        public void SuccessfullyUseQuickSlotItem()
+        {
+            if (player.playerInventoryManager.currentQuickSlotItem != null)
+                player.playerInventoryManager.currentQuickSlotItem.SuccessfullyUseItem(player);
+        }
     }
 }

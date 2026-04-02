@@ -71,6 +71,9 @@ namespace Group1{
             }
         }
 
+        [Header("Flasks")]
+        public int remainingHealthFlasks = 0;
+
         #region Unity Functions
 
         protected override void Awake()
@@ -420,6 +423,12 @@ namespace Group1{
             {
                 Debug.LogError("ABILITY ACTION IS NULL, CANNOT BE PERFORMED");
             }
+        }
+
+        public void HideWeapons()
+        {
+            if (playerEquipmentManager.rightHandWeaponModel != null)
+                playerEquipmentManager.rightHandWeaponModel.SetActive(false);
         }
 
         #endregion

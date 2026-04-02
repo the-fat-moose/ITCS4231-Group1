@@ -17,6 +17,11 @@ namespace Group1
             player.playerAnimatorManager.PlayTargetActionAnimation(useItemAnimation, true, false, true, true);
         }
 
+        public virtual void SuccessfullyUseItem(PlayerManager player)
+        {
+            
+        }
+
         public virtual bool CanIUseThisItem(PlayerManager player)
         {
             return true;

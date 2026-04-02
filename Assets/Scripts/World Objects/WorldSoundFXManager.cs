@@ -18,6 +18,7 @@ namespace Group1 {
         [Header("Action Sounds")]
         public AudioClip pickupItemSFX;
         public AudioClip rollSFX;
+        public AudioClip healingSFX;
 
         private void Awake()
         {

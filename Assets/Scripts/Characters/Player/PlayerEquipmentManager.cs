@@ -146,5 +146,12 @@ namespace Group1 {
         {
             rightWeaponManager.meleeDamageCollider.DisableCollider();
         }
+    
+        // UNHIDE WEAPONS
+        public void UnHideWeapons()
+        {
+            if (rightHandWeaponModel != null)
+                rightHandWeaponModel.SetActive(true);
+        }
     }
 }

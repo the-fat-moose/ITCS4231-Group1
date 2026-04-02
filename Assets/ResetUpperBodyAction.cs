@@ -18,6 +18,7 @@ namespace Group1
                 Destroy(player.playerEffectsManager.activeQuickSlotItemFX);
 
             player.canRun = true;
+            player.canMove = true;
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
