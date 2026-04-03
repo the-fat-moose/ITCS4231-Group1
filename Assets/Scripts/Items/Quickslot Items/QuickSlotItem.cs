@@ -10,6 +10,10 @@ namespace Group1
         [Header("Animation")]
         [SerializeField] protected string useItemAnimation;
 
+        // NOT ALL QUICK SLOT ITEMS ARE CONSUMABLE
+        [Header("Consumable")]
+        public bool isConsumable = true;
+
         public virtual void AttemptToUseItem(PlayerManager player)
         {
             if (!CanIUseThisItem(player)) return;
@@ -25,6 +29,11 @@ namespace Group1
         public virtual bool CanIUseThisItem(PlayerManager player)
         {
             return true;
+        }
+
+        public virtual int GetCurrentAmount(PlayerManager player)
+        {
+            return 0;
         }
     }
 }

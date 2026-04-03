@@ -88,5 +88,15 @@ namespace Group1
             Instantiate(WorldCharacterEffectsManager.instance.healingFlaskVFX, player.transform);
             player.characterSoundFXManager.PlaySoundFX(WorldSoundFXManager.instance.healingSFX);
         }
+
+        public override int GetCurrentAmount(PlayerManager player)
+        {
+            int currentAmount = 0;
+
+            if (healthFlask)
+                currentAmount = player.remainingHealthFlasks;
+
+            return currentAmount;
+        }
     }
 }
