@@ -37,13 +37,13 @@ namespace Group1 {
         RightWeapon01,    // 0
         RightWeapon02,    // 1
         RightWeapon03,    // 2
-        LumenEquipment01, // 3
-        LumenEquipment02, // 4
-        LumenEquipment03, // 5
-        LumenEquipment04, // 6
-        QuickSlot01,      // 7
-        QuickSlot02,      // 8
-        QuickSlot03       // 9
+        QuickSlot01,      // 3
+        QuickSlot02,      // 4
+        QuickSlot03,      // 5
+        LumenEquipment01, // 6
+        LumenEquipment02, // 7
+        LumenEquipment03, // 8
+        LumenEquipment04  // 9
     }
 
     public enum AttackType

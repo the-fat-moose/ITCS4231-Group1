@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Group1{
@@ -22,6 +21,7 @@ namespace Group1{
         [SerializeField] private bool sprintInput = false;
         [SerializeField] private bool jumpInput = false;
         [SerializeField] private bool switch_Weapon_Input = false;
+        [SerializeField] private bool switch_QuickSlot_Input = false;
         [SerializeField] private bool interaction_Input = false;
         [SerializeField] private bool use_item_Input = false;
 
@@ -91,6 +91,7 @@ namespace Group1{
                 playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
                 playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
                 playerControls.PlayerActions.SwitchWeapon.performed += i => switch_Weapon_Input = true;
+                playerControls.PlayerActions.SwitchQuickSlotItem.performed += i => switch_QuickSlot_Input = true;
                 playerControls.PlayerActions.Interact.performed += i => interaction_Input = true;
                 playerControls.PlayerActions.UseItem.performed += i => use_item_Input = true;
                 
@@ -154,6 +155,7 @@ namespace Group1{
                 HandleRTInput();
                 HandleHoldRTInput();
                 HandleSwitchWeaponInput();
+                HandleSwitchQuickSlotInput();
                 HandleAllQuedInputs();
                 HandleInteractionInput();
                 HandleCloseUIInput();
@@ -406,7 +408,27 @@ namespace Group1{
 
                 if (PlayerUIManager.instance.menuWindowIsOpen) return;
 
+                if (player.isPerformingAction) return;
+                
+                if (player.playerCombatManager.isUsingItem) return;
+
                 player.playerEquipmentManager.SwitchRightWeapon();
+            }
+        }
+
+        private void HandleSwitchQuickSlotInput()
+        {
+            if (switch_QuickSlot_Input)
+            {
+                switch_QuickSlot_Input = false;
+
+                if (PlayerUIManager.instance.menuWindowIsOpen) return;
+
+                if (player.isPerformingAction) return;
+                
+                if (player.playerCombatManager.isUsingItem) return;
+
+                player.playerEquipmentManager.SwitchQuickSlotItem();
             }
         }
 

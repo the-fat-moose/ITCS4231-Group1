@@ -113,6 +113,76 @@ namespace Group1
 
                         break;
                     // LOGIC FOR TALISMANS (Lumens)
+                    // LOGIC FOR QUICK SLOTS
+                    case EquipmentSlotType.QuickSlot01:
+                        equippedItem = player.playerInventoryManager.quickSlotItemsInQuickSlots[0];
+
+                        // IF OUR CURRENT ITEM IN THIS SLOT IS NOT NULL, ADD IT TO OUR INVENTORY
+                        if (equippedItem != null)
+                        {
+                            player.playerInventoryManager.AddItemToInventory(equippedItem);
+                        }
+
+                        // THEN REPLACE THE ITEM IN THAT SLOT WITH OUR NEW ITEM
+                        player.playerInventoryManager.quickSlotItemsInQuickSlots[0] = currentItem as QuickSlotItem;
+
+                        // THEN REMOVE THE NEW ITEM FROM OUR INVENTORY
+                        player.playerInventoryManager.RemoveItemFromInventory(currentItem);
+
+                        // RE-EQUIP THE NEW ITEM
+                        if (player.playerInventoryManager.quickSlotItemIndex == 0)
+                            player.CurrentQuickSlotItemID = currentItem.itemID;
+
+                        // REFRESHES EQUIPMENT WINDOW
+                        PlayerUIManager.instance.playerUIEquipmentManager.RefreshMenu();
+
+                        break;
+                    case EquipmentSlotType.QuickSlot02:
+                        equippedItem = player.playerInventoryManager.quickSlotItemsInQuickSlots[1];
+
+                        // IF OUR CURRENT ITEM IN THIS SLOT IS NOT NULL, ADD IT TO OUR INVENTORY
+                        if (equippedItem != null)
+                        {
+                            player.playerInventoryManager.AddItemToInventory(equippedItem);
+                        }
+
+                        // THEN REPLACE THE ITEM IN THAT SLOT WITH OUR NEW ITEM
+                        player.playerInventoryManager.quickSlotItemsInQuickSlots[1] = currentItem as QuickSlotItem;
+
+                        // THEN REMOVE THE NEW ITEM FROM OUR INVENTORY
+                        player.playerInventoryManager.RemoveItemFromInventory(currentItem);
+
+                        // RE-EQUIP THE NEW ITEM
+                        if (player.playerInventoryManager.quickSlotItemIndex == 1)
+                            player.CurrentQuickSlotItemID = currentItem.itemID;
+
+                        // REFRESHES EQUIPMENT WINDOW
+                        PlayerUIManager.instance.playerUIEquipmentManager.RefreshMenu();
+
+                        break;
+                    case EquipmentSlotType.QuickSlot03:
+                        equippedItem = player.playerInventoryManager.quickSlotItemsInQuickSlots[2];
+
+                        // IF OUR CURRENT ITEM IN THIS SLOT IS NOT NULL, ADD IT TO OUR INVENTORY
+                        if (equippedItem != null)
+                        {
+                            player.playerInventoryManager.AddItemToInventory(equippedItem);
+                        }
+
+                        // THEN REPLACE THE ITEM IN THAT SLOT WITH OUR NEW ITEM
+                        player.playerInventoryManager.quickSlotItemsInQuickSlots[2] = currentItem as QuickSlotItem;
+
+                        // THEN REMOVE THE NEW ITEM FROM OUR INVENTORY
+                        player.playerInventoryManager.RemoveItemFromInventory(currentItem);
+
+                        // RE-EQUIP THE NEW ITEM
+                        if (player.playerInventoryManager.quickSlotItemIndex == 2)
+                            player.CurrentQuickSlotItemID = currentItem.itemID;
+
+                        // REFRESHES EQUIPMENT WINDOW
+                        PlayerUIManager.instance.playerUIEquipmentManager.RefreshMenu();
+
+                        break;
                     default:
                         break;
                 }

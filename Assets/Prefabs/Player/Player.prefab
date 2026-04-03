@@ -146,12 +146,14 @@ MonoBehaviour:
   applyRootMotion: 0
   canRotate: 1
   canMove: 1
+  canRun: 1
   isChargingAttack: 0
   isBlocking: 0
   isAttacking: 0
   parried: 0
   isActive: 1
   isInvulnerable: 0
+  upgradedParry: 0
   endurance: 10
   vitality: 10
   mind: 10
@@ -239,7 +241,8 @@ MonoBehaviour:
   playerEquipmentManager: {fileID: 0}
   playerCombatManager: {fileID: 0}
   playerInteractionManager: {fileID: 0}
-  lumenEquipmentIDs: 
+  playerEffectsManager: {fileID: 0}
+  remainingHealthFlasks: 5
 --- !u!114 &2635933940703782878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,7 +263,9 @@ MonoBehaviour:
   yVelocity: {x: 0, y: 0, z: 0}
   groundedYVelocity: -20
   fallStartYVelocity: -5
+  inKnockUpAbility: 0
   isRolling: 0
+  canRoll: 1
   verticalMovement: 0
   horizontalMovement: 0
   moveAmount: 0
@@ -290,12 +295,19 @@ MonoBehaviour:
   canBlock: 1
   canParry: 0
   parryWindow: 0.3
+  magicDamageMultiplier: 1
   lastAttackAnimationPerformed: 
   currentTarget: {fileID: 0}
   currentAttackType: 0
   lockOnTransform: {fileID: 145142477686612402}
   currentWeaponBeingUsed: {fileID: 0}
   canComboWithMainHandWeapon: 0
+  isUsingItem: 0
+  pushAbilityManaCost: 20
+  knockUpAbilityManaCost: 30
+  cageAbilityManaCost: 40
+  aoeAbilityManaCost: 30
+  abilityDamage: 20
 --- !u!143 &3043051438168417331
 CharacterController:
   m_ObjectHideFlags: 0
@@ -364,6 +376,7 @@ MonoBehaviour:
   staminaRegenerationAmount: 2
   blockingPhysicalAbsorption: 65
   blockingMagicAbsorption: 65
+  manaRegenMultiplier: 1
 --- !u!114 &7842898494225634399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,6 +402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f6cd7d953711814d9e5c5d7ae494547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Group1.PlayerEffectsManager
+  activeQuickSlotItemFX: {fileID: 0}
   bloodSplatterVFX: {fileID: 0}
   effectToTest: {fileID: 11400000, guid: a650101118bb82c49977e81c9c69b294, type: 2}
   processEffect: 0
@@ -404,6 +418,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 614af0a4bc2c7394ba7c57fe85e9eef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Group1.PlayerSoundFXManager
+  damageGrunts: []
+  attackGrunts: []
+  footSteps: []
 --- !u!114 &1438274532058176364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,17 +437,20 @@ MonoBehaviour:
   weaponsInRightHandSlots:
   - {fileID: 11400000, guid: 9d591de22dca28a428e880fba18f3ef3, type: 2}
   - {fileID: 11400000, guid: 9d591de22dca28a428e880fba18f3ef3, type: 2}
-  - {fileID: 11400000, guid: c44b6d7661e595c449781e80e2fcfd16, type: 2}
+  - {fileID: 11400000, guid: 9d591de22dca28a428e880fba18f3ef3, type: 2}
   rightHandWeaponIndex: 0
+  quickSlotItemsInQuickSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  quickSlotItemIndex: 0
+  currentQuickSlotItem: {fileID: 0}
   pushAbility: {fileID: 11400000, guid: 00d00687d46b047489efc7350cfaaf12, type: 2}
   knockUpAbility: {fileID: 11400000, guid: 657b9859a577d074689eb9af92d5df6f, type: 2}
   cageAbility: {fileID: 11400000, guid: b6bb5b2f36a60bf4ca8c9a9b14db7264, type: 2}
-  lumenEquipmentItemSlots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  itemsInInventory: []
+  itemsInInventory:
+  - {fileID: 11400000, guid: c44b6d7661e595c449781e80e2fcfd16, type: 2}
+  - {fileID: 11400000, guid: 415d68f9f235f8149a3127742b568877, type: 2}
 --- !u!114 &3690826846574739967
 MonoBehaviour:
   m_ObjectHideFlags: 0

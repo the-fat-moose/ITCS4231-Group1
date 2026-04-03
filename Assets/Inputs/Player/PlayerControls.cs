@@ -493,6 +493,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Switch Quick Slot Item"",
+                    ""type"": ""Button"",
+                    ""id"": ""ebcb4fb3-d374-45c8-a24c-f1585aa23f41"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Seek Left Lock On Target"",
                     ""type"": ""Button"",
                     ""id"": ""37313341-25cd-4f7d-bab8-27076184fe87"",
@@ -756,6 +765,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Switch Weapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1575e397-4c40-4cfd-b58a-4fef544e2e1f"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Switch Quick Slot Item"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3deb3dda-6b13-41ff-b47e-2abb303cf70f"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Switch Quick Slot Item"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1068,6 +1099,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerActions_HoldRT = m_PlayerActions.FindAction("Hold RT", throwIfNotFound: true);
         m_PlayerActions_LockOn = m_PlayerActions.FindAction("Lock On", throwIfNotFound: true);
         m_PlayerActions_SwitchWeapon = m_PlayerActions.FindAction("Switch Weapon", throwIfNotFound: true);
+        m_PlayerActions_SwitchQuickSlotItem = m_PlayerActions.FindAction("Switch Quick Slot Item", throwIfNotFound: true);
         m_PlayerActions_SeekLeftLockOnTarget = m_PlayerActions.FindAction("Seek Left Lock On Target", throwIfNotFound: true);
         m_PlayerActions_SeekRightLockOnTarget = m_PlayerActions.FindAction("Seek Right Lock On Target", throwIfNotFound: true);
         m_PlayerActions_PushAbility = m_PlayerActions.FindAction("Push Ability", throwIfNotFound: true);
@@ -1376,6 +1408,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_HoldRT;
     private readonly InputAction m_PlayerActions_LockOn;
     private readonly InputAction m_PlayerActions_SwitchWeapon;
+    private readonly InputAction m_PlayerActions_SwitchQuickSlotItem;
     private readonly InputAction m_PlayerActions_SeekLeftLockOnTarget;
     private readonly InputAction m_PlayerActions_SeekRightLockOnTarget;
     private readonly InputAction m_PlayerActions_PushAbility;
@@ -1448,6 +1481,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "PlayerActions/SwitchWeapon".
         /// </summary>
         public InputAction @SwitchWeapon => m_Wrapper.m_PlayerActions_SwitchWeapon;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerActions/SwitchQuickSlotItem".
+        /// </summary>
+        public InputAction @SwitchQuickSlotItem => m_Wrapper.m_PlayerActions_SwitchQuickSlotItem;
         /// <summary>
         /// Provides access to the underlying input action "PlayerActions/SeekLeftLockOnTarget".
         /// </summary>
@@ -1536,6 +1573,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @SwitchWeapon.started += instance.OnSwitchWeapon;
             @SwitchWeapon.performed += instance.OnSwitchWeapon;
             @SwitchWeapon.canceled += instance.OnSwitchWeapon;
+            @SwitchQuickSlotItem.started += instance.OnSwitchQuickSlotItem;
+            @SwitchQuickSlotItem.performed += instance.OnSwitchQuickSlotItem;
+            @SwitchQuickSlotItem.canceled += instance.OnSwitchQuickSlotItem;
             @SeekLeftLockOnTarget.started += instance.OnSeekLeftLockOnTarget;
             @SeekLeftLockOnTarget.performed += instance.OnSeekLeftLockOnTarget;
             @SeekLeftLockOnTarget.canceled += instance.OnSeekLeftLockOnTarget;
@@ -1604,6 +1644,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @SwitchWeapon.started -= instance.OnSwitchWeapon;
             @SwitchWeapon.performed -= instance.OnSwitchWeapon;
             @SwitchWeapon.canceled -= instance.OnSwitchWeapon;
+            @SwitchQuickSlotItem.started -= instance.OnSwitchQuickSlotItem;
+            @SwitchQuickSlotItem.performed -= instance.OnSwitchQuickSlotItem;
+            @SwitchQuickSlotItem.canceled -= instance.OnSwitchQuickSlotItem;
             @SeekLeftLockOnTarget.started -= instance.OnSeekLeftLockOnTarget;
             @SeekLeftLockOnTarget.performed -= instance.OnSeekLeftLockOnTarget;
             @SeekLeftLockOnTarget.canceled -= instance.OnSeekLeftLockOnTarget;
@@ -1890,6 +1933,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSwitchWeapon(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Switch Quick Slot Item" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSwitchQuickSlotItem(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Seek Left Lock On Target" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

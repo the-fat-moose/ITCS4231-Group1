@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +15,7 @@ namespace Group1 {
         [Header("Quick Slots")]
         [SerializeField] Image weaponQuickSlotIcon;
         [SerializeField] Image quickSlotItemQuickSlotIcon;
+        [SerializeField] TextMeshProUGUI quickSlotItemCount;
 
         [Header("Boss Health Bar")]
         public Transform bossHealthBarParent;
@@ -98,6 +100,8 @@ namespace Group1 {
 
         public void SetQuickSlotItemQuickSlotIcon(int quickSlotItemID)
         {
+            PlayerManager player = FindFirstObjectByType<PlayerManager>();
+
             QuickSlotItem quickSlotItem = WorldItemDatabase.instance.GetQuickSlotItemByID(quickSlotItemID);
 
             if (WorldItemDatabase.instance.GetQuickSlotItemByID(quickSlotItemID) == null)
@@ -105,6 +109,7 @@ namespace Group1 {
                 Debug.Log("ITEM IS NULL");
                 quickSlotItemQuickSlotIcon.enabled = false;
                 quickSlotItemQuickSlotIcon.sprite = null;
+                quickSlotItemCount.enabled = false;
                 return;
             }
 
@@ -113,6 +118,7 @@ namespace Group1 {
                 Debug.Log("ITEM HAS NO ICON");
                 quickSlotItemQuickSlotIcon.enabled = false;
                 quickSlotItemQuickSlotIcon.sprite = null;
+                quickSlotItemCount.enabled = false;
                 return;
             }
 
@@ -121,6 +127,16 @@ namespace Group1 {
 
             quickSlotItemQuickSlotIcon.sprite = quickSlotItem.itemIcon;
             quickSlotItemQuickSlotIcon.enabled = true;
+
+            if (quickSlotItem.isConsumable)
+            {
+                quickSlotItemCount.enabled = true;
+                quickSlotItemCount.text = quickSlotItem.GetCurrentAmount(player).ToString();
+            }
+            else
+            {
+                quickSlotItemCount.enabled = false;
+            }
         }
     }
 }

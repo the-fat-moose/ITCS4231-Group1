@@ -409,9 +409,13 @@ namespace Group1{
             if (newQuickSlotItem != null)
             {
                 playerInventoryManager.currentQuickSlotItem = newQuickSlotItem;
-
-                PlayerUIManager.instance.playerUIHudManager.SetQuickSlotItemQuickSlotIcon(newID);
             }
+            else
+            {
+                playerInventoryManager.currentQuickSlotItem = null;
+            }                
+
+            PlayerUIManager.instance.playerUIHudManager.SetQuickSlotItemQuickSlotIcon(newID);
         }
 
         public void OnIsChuggingValueChanged(bool oldStatus, bool newStatus)

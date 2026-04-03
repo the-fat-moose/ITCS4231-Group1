@@ -79,15 +79,20 @@ namespace Group1 {
                 return;
             }
 
-            foreach (QuickSlotItem item in player.playerInventoryManager.quickSlotItemsInQuickSlots)
+            if (player.playerInventoryManager.quickSlotItemsInQuickSlots[player.playerInventoryManager.quickSlotItemIndex] != null)
             {
-                // IF THE NEXT WEAPON DOES NOT EQUAL THE UNARMED WEAPON, PROCEED
-                if (player.playerInventoryManager.quickSlotItemsInQuickSlots[player.playerInventoryManager.quickSlotItemIndex] != null)
-                {
-                    selectedItem = player.playerInventoryManager.quickSlotItemsInQuickSlots[player.playerInventoryManager.quickSlotItemIndex];
-                    player.CurrentQuickSlotItemID = player.playerInventoryManager.quickSlotItemsInQuickSlots[player.playerInventoryManager.quickSlotItemIndex].itemID;
-                    return;
-                }
+                selectedItem = player.playerInventoryManager.quickSlotItemsInQuickSlots[player.playerInventoryManager.quickSlotItemIndex];
+
+                player.CurrentQuickSlotItemID = player.playerInventoryManager.quickSlotItemsInQuickSlots[player.playerInventoryManager.quickSlotItemIndex].itemID;
+            }
+            else
+            {
+                player.CurrentQuickSlotItemID = -1;
+            }
+
+            if (selectedItem == null && player.playerInventoryManager.quickSlotItemIndex <= player.playerInventoryManager.quickSlotItemsInQuickSlots.Length - 1)
+            {
+                SwitchQuickSlotItem();
             }
         }
 
