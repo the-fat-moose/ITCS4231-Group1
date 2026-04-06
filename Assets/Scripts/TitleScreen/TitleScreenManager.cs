@@ -9,6 +9,7 @@ namespace Group1 {
 
         [Header("Player")]
         [SerializeField] private GameObject playerPrefab;
+        private GameObject player = null;
 
         [Header("Menu Objects")]
         [SerializeField] private GameObject titleScreenMainMenu;
@@ -45,7 +46,16 @@ namespace Group1 {
             Vector3 spawnPos = Vector3.zero;
             Quaternion spawnRot = Quaternion.identity;
 
-            Instantiate(playerPrefab, spawnPos, spawnRot);
+            player = Instantiate(playerPrefab, spawnPos, spawnRot);
+
+            PlayerManager playerManager = player.GetComponent<PlayerManager>();
+
+            if (playerManager != null)
+            {
+                playerManager.canRotate = true;
+                playerManager.canMove = true;
+                playerManager.canRun = true;
+            }
         }
 
         public void StartNewGame()

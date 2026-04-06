@@ -278,6 +278,11 @@ namespace Group1{
             CurrentRightHandWeaponID = playerInventoryManager.weaponsInRightHandSlots[currentCharacterData.rightWeaponIndex].itemID;
 
             // LUMEN EQUIPMENT
+
+            // PLAYER ACTIVATION
+            canMove = true;
+            canRun = true;
+            canRotate = true;
         }
 
         #endregion
