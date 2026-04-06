@@ -199,13 +199,6 @@ namespace Group1{
             currentCharacterData.rightWeapon01 = playerInventoryManager.weaponsInRightHandSlots[0].itemID; // THIS SHOULD NEVER BE NULL (should always default to unarmed)
             currentCharacterData.rightWeapon02 = playerInventoryManager.weaponsInRightHandSlots[1].itemID; // THIS SHOULD NEVER BE NULL (should always default to unarmed)
             currentCharacterData.rightWeapon03 = playerInventoryManager.weaponsInRightHandSlots[2].itemID; // THIS SHOULD NEVER BE NULL (should always default to unarmed)
-
-            /*
-            currentCharacterData.lumen01 = playerInventoryManager.lumenEquipmentItemSlots[0].itemID;
-            currentCharacterData.lumen02 = playerInventoryManager.lumenEquipmentItemSlots[1].itemID;
-            currentCharacterData.lumen03 = playerInventoryManager.lumenEquipmentItemSlots[2].itemID;
-            currentCharacterData.lumen04 = playerInventoryManager.lumenEquipmentItemSlots[3].itemID;
-            */
         }
 
         public void LoadGameDataFromCurrentCharacterData(ref CharacterSaveData currentCharacterData)
@@ -285,47 +278,6 @@ namespace Group1{
             CurrentRightHandWeaponID = playerInventoryManager.weaponsInRightHandSlots[currentCharacterData.rightWeaponIndex].itemID;
 
             // LUMEN EQUIPMENT
-            /*
-            if (WorldItemDatabase.instance.GetLumenEquipmentByID(currentCharacterData.lumen01))
-            {
-                LumenEquipmentItem lumen01 = Instantiate(WorldItemDatabase.instance.GetLumenEquipmentByID(currentCharacterData.lumen01));
-                playerInventoryManager.lumenEquipmentItemSlots[0] = lumen01;
-            }
-            else
-            {
-                playerInventoryManager.lumenEquipmentItemSlots[0] = null;
-            }
-
-            if (WorldItemDatabase.instance.GetLumenEquipmentByID(currentCharacterData.lumen02))
-            {
-                LumenEquipmentItem lumen02 = Instantiate(WorldItemDatabase.instance.GetLumenEquipmentByID(currentCharacterData.lumen02));
-                playerInventoryManager.lumenEquipmentItemSlots[1] = lumen02;
-            }
-            else
-            {
-                playerInventoryManager.lumenEquipmentItemSlots[1] = null;
-            }
-
-            if (WorldItemDatabase.instance.GetLumenEquipmentByID(currentCharacterData.lumen03))
-            {
-                LumenEquipmentItem lumen03 = Instantiate(WorldItemDatabase.instance.GetLumenEquipmentByID(currentCharacterData.lumen03));
-                playerInventoryManager.lumenEquipmentItemSlots[2] = lumen03;
-            }
-            else
-            {
-                playerInventoryManager.lumenEquipmentItemSlots[2] = null;
-            }
-            
-            if (WorldItemDatabase.instance.GetLumenEquipmentByID(currentCharacterData.lumen04))
-            {
-                LumenEquipmentItem lumen04 = Instantiate(WorldItemDatabase.instance.GetLumenEquipmentByID(currentCharacterData.lumen04));
-                playerInventoryManager.lumenEquipmentItemSlots[3] = lumen04;
-            }
-            else
-            {
-                playerInventoryManager.lumenEquipmentItemSlots[3] = null;
-            }
-            */
         }
 
         #endregion

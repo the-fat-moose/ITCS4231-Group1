@@ -254,6 +254,10 @@ namespace Group1
             {
                 Destroy(item.gameObject);
             }
+
+            ToggleEquipmentButtons(true);
+            equipmentInventoryWindow.SetActive(false);
+
         }
 
         public void LoadEquipmentInventory()
@@ -264,23 +268,29 @@ namespace Group1
             {
                 case EquipmentSlotType.RightWeapon01:
                     LoadWeaponInventory();
+                    ToggleEquipmentButtons(false);
                     break;
                 case EquipmentSlotType.RightWeapon02:
                     LoadWeaponInventory();
+                    ToggleEquipmentButtons(false);
                     break;
                 case EquipmentSlotType.RightWeapon03:
                     LoadWeaponInventory();
+                    ToggleEquipmentButtons(false);
                     break;
                 // LOGIC FOR TALISMANS (Lumens)
                 // LOGIC FOR QUICK SLOTS
                 case EquipmentSlotType.QuickSlot01:
                     LoadQuickSlotInventory();
+                    ToggleEquipmentButtons(false);
                     break;
                 case EquipmentSlotType.QuickSlot02:
                     LoadQuickSlotInventory();
+                    ToggleEquipmentButtons(false);
                     break;
                 case EquipmentSlotType.QuickSlot03:
                     LoadQuickSlotInventory();
+                    ToggleEquipmentButtons(false);
                     break;
                 default:
                     break;
