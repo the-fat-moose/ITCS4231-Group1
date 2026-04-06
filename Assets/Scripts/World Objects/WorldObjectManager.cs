@@ -13,6 +13,9 @@ namespace Group1 {
         [Header("Fog Walls")]
         public List<FogWallInteractable> fogWalls;
 
+        [Header("Geode Locations")]
+        public List<GeodeInteractable> geodes;
+
         // Spawn in those fog walls during start of game (must have a spawner object)
         // Create a general object spawner script and prefab
         // When the fog walls are spawned, add them to the world fog wall list
@@ -49,6 +52,22 @@ namespace Group1 {
             if (fogWalls.Contains(fogWall))
             {
                 fogWalls.Remove(fogWall);
+            }
+        }
+
+        public void AddGeodeToList(GeodeInteractable geode)
+        {
+            if (!geodes.Contains(geode))
+            {
+                geodes.Add(geode);
+            }
+        }
+
+        public void RemoveGeodeFromList(GeodeInteractable geode)
+        {
+            if (geodes.Contains(geode))
+            {
+                geodes.Remove(geode);
             }
         }
     }

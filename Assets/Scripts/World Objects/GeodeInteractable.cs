@@ -6,7 +6,7 @@ namespace Group1
     public class GeodeInteractable : Interactable
     {
         [Header("Geode Info")]
-        [SerializeField] int geodeID;
+        public int geodeID;
 
         [Header("Activated")]
         private bool isActivated = false;
@@ -33,6 +33,9 @@ namespace Group1
         [SerializeField] private string unactivatedInteractionText = "Discover Geode";
         [SerializeField] private string activatedInteractionText = "Rest";
 
+        [Header("Teleport Transform")]
+        [SerializeField] Transform teleportTransform;
+
         protected override void Start()
         {
             base.Start();
@@ -57,6 +60,8 @@ namespace Group1
             {
                 interactableText = unactivatedInteractionText;
             }
+
+            WorldObjectManager.instance.AddGeodeToList(this);
         }
 
         private void ShatterGeode(PlayerManager player)
@@ -88,6 +93,8 @@ namespace Group1
 
         private void RestAtGeode(PlayerManager player)
         {
+            PlayerUIManager.instance.playerUIGeodeManager.OpenGeodeMenu();
+
             interactableCollider.enabled = true;
             // RESTORE HEALTH, STAMINA, AND MANA
             player.CurrentHealth = player.MaxHealth;
@@ -136,6 +143,16 @@ namespace Group1
             {
                 RestAtGeode(player);
             }
+        }
+
+        public void TeleportToGeode()
+        {
+            PlayerManager player = FindFirstObjectByType<PlayerManager>();
+
+            // ENABLE LOADING SCREEN
+
+            // TELEPORT PLAYER
+            player.transform.position = teleportTransform.position;
         }
     }
 }
