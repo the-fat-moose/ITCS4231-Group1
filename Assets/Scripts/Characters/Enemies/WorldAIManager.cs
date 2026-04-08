@@ -68,7 +68,8 @@ namespace Group1 {
         {
             foreach (var character in spawnedInCharacters)
             {
-                Destroy(character);
+
+                Destroy(character.gameObject);
             }
 
             spawnedInCharacters.Clear();

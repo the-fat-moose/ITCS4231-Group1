@@ -90,7 +90,20 @@ namespace Group1 {
             ProcessStateMachine();
         }
 
-    #region Abilites
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+
+            // UNSUBSCRIBE TO ALL EVENTS
+            OnEnduranceChanged -= SetNewMaxStaminaValue;
+            OnVitalityChanged -= SetNewMaxHealthValue;
+            OnMindChanged -= SetNewMaxManaValue;
+
+            // Death and Healing Handling
+            OnHealthChanged -= CheckHP;
+        }
+
+        #region Abilites
         public void ApplyKnockback(Vector3 direction, float force, float duration = 0.2f)
         {
             StartCoroutine(KnockbackRoutine(direction, force, duration));

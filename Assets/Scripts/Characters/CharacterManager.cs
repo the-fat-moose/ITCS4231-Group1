@@ -299,6 +299,16 @@ namespace Group1{
             
         }
 
+        protected virtual void OnDestroy()
+        {
+            // UNSUBSCRIBE FROM ALL EVENTS
+            OnIsMovingValueChanged -= OnIsMovingChanged;
+            OnIsBlockingValueChanged -= OnIsBlockingChanged;
+            OnIsParriedValueChanged -= OnIsParriedChanged;
+
+            OnIsActiveValueChanged -= OnIsActiveChanged;
+        }
+
         public void OnIsLockedOnChanged(bool old, bool isLockedOn)
         {
             if (!isLockedOn)
