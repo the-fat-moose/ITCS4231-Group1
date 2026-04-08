@@ -147,7 +147,7 @@ namespace Group1
 
         public void TeleportToGeode()
         {
-            PlayerManager player = FindFirstObjectByType<PlayerManager>();
+            GameObject player = FindFirstObjectByType<PlayerManager>().gameObject;
 
             // ENABLE LOADING SCREEN
 
