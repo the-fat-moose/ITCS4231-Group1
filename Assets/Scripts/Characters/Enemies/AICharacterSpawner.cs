@@ -6,6 +6,7 @@ namespace Group1 {
         [Header("Character")]
         [SerializeField] GameObject characterGameObject;
         [SerializeField] GameObject instantiatedGameObject;
+        private AICharacterManager aiCharacter;
 
         private void Awake()
         {
@@ -25,9 +26,35 @@ namespace Group1 {
                 instantiatedGameObject = Instantiate(characterGameObject);
                 instantiatedGameObject.transform.position = transform.position;
                 instantiatedGameObject.transform.rotation = transform.rotation;
+                aiCharacter = instantiatedGameObject.GetComponent<AICharacterManager>();
 
-                WorldAIManager.instance.AddCharacterToSpawnedCharactersList(instantiatedGameObject.GetComponent<AICharacterManager>());
+                if (aiCharacter != null)
+                    WorldAIManager.instance.AddCharacterToSpawnedCharactersList(aiCharacter);
             }
+        }
+
+        public void ResetCharacter()
+        {
+            if (instantiatedGameObject == null) return;
+
+            if (aiCharacter == null) return;
+
+            // RESET POSITION AND HEALTH
+            instantiatedGameObject.transform.position = transform.position;
+            instantiatedGameObject.transform.rotation = transform.rotation;
+            aiCharacter.CurrentHealth = aiCharacter.MaxHealth;
+                
+            if (aiCharacter.isDead)
+            {
+                aiCharacter.isDead = false;
+                aiCharacter.characterAnimatorManager.PlayTargetActionAnimation("Empty", false, false, true, true, true, true);
+            }
+
+            // RESET ENEMY STATE
+            aiCharacter.characterCombatManager.currentTarget = null;
+            aiCharacter.currentState = aiCharacter.idle;
+
+            aiCharacter.characterUIManager.ResetCharacterHPBar();
         }
     }
 }

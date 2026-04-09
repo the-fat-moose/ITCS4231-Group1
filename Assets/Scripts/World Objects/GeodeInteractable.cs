@@ -103,7 +103,7 @@ namespace Group1
 
             // REFILL FLASKS
             // RESET MONSTERS/CHARACTER LOCATIONS
-            WorldAIManager.instance.ResetAllCharacters();
+            WorldAIManager.instance.RespawnAllCharacters();
         }
 
         private IEnumerator WaitForAnimationAndPopUpThenRestoreCollider()
@@ -150,9 +150,13 @@ namespace Group1
             GameObject player = FindFirstObjectByType<PlayerManager>().gameObject;
 
             // ENABLE LOADING SCREEN
+            PlayerUIManager.instance.playerUILoadingScreenManager.ActivateLoadingScreen();
 
             // TELEPORT PLAYER
             player.transform.position = teleportTransform.position;
+
+            // DISABLE LOADING SCREEN
+            PlayerUIManager.instance.playerUILoadingScreenManager.DeactivateLoadingScreen(1f);
         }
     }
 }

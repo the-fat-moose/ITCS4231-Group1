@@ -12,7 +12,7 @@ namespace Group1 {
         [SerializeField] private bool displayCharacterNameOnDamage = false;
         [SerializeField] float defaultTimeBeforeBarHides = 3f;
         [SerializeField] float hideTimer = 0f;
-        [SerializeField] int currentDamageTaken = 0;
+        public int currentDamageTaken = 0;
         [SerializeField] TextMeshProUGUI characterName;
         [SerializeField] TextMeshProUGUI characterDamage;
         [HideInInspector] public int oldHealthValue = 0;

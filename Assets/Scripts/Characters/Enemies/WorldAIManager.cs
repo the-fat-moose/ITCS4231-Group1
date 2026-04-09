@@ -8,9 +8,16 @@ namespace Group1 {
     {
         public static WorldAIManager instance;
 
+        [Header("Loading")]
+        public bool isPerformingLoadingOperation = false;
+
         [Header("Characters")]
         [SerializeField] private List<AICharacterSpawner> aiCharacterSpawners;
         public List<AICharacterManager> spawnedInCharacters;
+        private Coroutine spawnAllCharactersCoroutine;
+        private Coroutine respawnAllCharactersCoroutine;
+        private Coroutine despawnAllCharactersCoroutine;
+        private Coroutine resetAllCharactersCoroutine;
 
         [Header("Bosses")]
         public List<AIBossCharacterManager> spawnedInBossCharacters;
@@ -54,30 +61,122 @@ namespace Group1 {
             return spawnedInBossCharacters.FirstOrDefault(boss => boss.bossID == ID);
         }
 
-        public void ResetAllCharacters()
+        // Initial Spawning of Characters
+        public void SpawnAllCharacters()
         {
-            DespawnAllCharacters();
+            isPerformingLoadingOperation = true;
 
-            foreach (var spawner in aiCharacterSpawners)
-            {
-                spawner.AttemptToSpawnCharacter();
-            }
+            if (spawnAllCharactersCoroutine != null) StopCoroutine(spawnAllCharactersCoroutine);
+
+            spawnAllCharactersCoroutine = StartCoroutine(SpawnAllCharactersCoroutine());
         }
 
-        private void DespawnAllCharacters()
+        private IEnumerator SpawnAllCharactersCoroutine()
         {
-            foreach (var character in spawnedInCharacters)
+            for (int i = 0; i < aiCharacterSpawners.Count; i++)
             {
+                yield return new WaitForFixedUpdate();
 
-                Destroy(character.gameObject);
+                aiCharacterSpawners[i].AttemptToSpawnCharacter();
+
+                yield return null;
+            }
+
+            isPerformingLoadingOperation = false;
+
+            yield return null;
+        }
+
+        // Respawn all Characters (could be taxing with a lot of enemies)
+        public void RespawnAllCharacters()
+        {
+            isPerformingLoadingOperation = true;
+
+            if (respawnAllCharactersCoroutine != null) StopCoroutine(respawnAllCharactersCoroutine);
+
+            respawnAllCharactersCoroutine = StartCoroutine(RespawnAllCharactersCoroutine());
+        }
+
+        private IEnumerator RespawnAllCharactersCoroutine()
+        {
+            // DESPAWN ALL CHARACTERS
+            for (int i = 0; i < spawnedInCharacters.Count; i++)
+            {
+                yield return new WaitForFixedUpdate();
+
+                Destroy(spawnedInCharacters[i].gameObject);
+
+                yield return null;
             }
 
             spawnedInCharacters.Clear();
+
+            // SPAWN THE CHARACTERS BACK IN
+            for (int i = 0; i < aiCharacterSpawners.Count; i++)
+            {
+                yield return new WaitForFixedUpdate();
+
+                aiCharacterSpawners[i].AttemptToSpawnCharacter();
+
+                yield return null;
+            }
+
+            isPerformingLoadingOperation = false;
+
+            yield return null;
         }
 
-        private void DisableAllCharacters()
+        // Reset Spawned in Characters (can be used instead of RespawnAllCharacters to reduce instantiation load)
+        public void ResetAllCharacters()
         {
-            
+            isPerformingLoadingOperation = true;
+
+            if (resetAllCharactersCoroutine != null) StopCoroutine(resetAllCharactersCoroutine);
+
+            resetAllCharactersCoroutine = StartCoroutine(ResetAllCharactersCoroutine());
+        }
+
+        private IEnumerator ResetAllCharactersCoroutine()
+        {
+            for (int i = 0; i < aiCharacterSpawners.Count; i++)
+            {
+                yield return new WaitForFixedUpdate();
+
+                aiCharacterSpawners[i].ResetCharacter();
+
+                yield return null;
+            }
+
+            isPerformingLoadingOperation = false;
+
+            yield return null;
+        }
+
+        // Despawning of Characters
+        private void DespawnAllCharacters()
+        {
+            isPerformingLoadingOperation = true;
+
+            if (despawnAllCharactersCoroutine != null) StopCoroutine(despawnAllCharactersCoroutine);
+
+            despawnAllCharactersCoroutine = StartCoroutine(DespawnAllCharactersCoroutine());
+        }
+
+        private IEnumerator DespawnAllCharactersCoroutine()
+        {
+            for (int i = 0; i < spawnedInCharacters.Count; i++)
+            {
+                yield return new WaitForFixedUpdate();
+
+                Destroy(spawnedInCharacters[i].gameObject);
+
+                yield return null;
+            }
+
+            spawnedInCharacters.Clear();
+            isPerformingLoadingOperation = false;
+
+            yield return null;
         }
     }
 }

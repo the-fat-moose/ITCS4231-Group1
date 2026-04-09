@@ -16,7 +16,7 @@ namespace Group1 {
         public NavMeshAgent navMeshAgent;
 
         [Header("Current State")]
-        [SerializeField] protected AIState currentState;
+        public AIState currentState;
 
         [Header("States")]
         public IdleState idle;

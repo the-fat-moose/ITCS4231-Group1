@@ -340,9 +340,7 @@ namespace Group1 {
 
         public IEnumerator LoadWorldScene()
         {
-            //AsyncOperation loadOperation = SceneManager.LoadSceneAsync(worldSceneIndex);
-
-            Debug.Log("WorldSaveGameManager.currentCharacterData: " + currentCharacterData);
+            PlayerUIManager.instance.playerUILoadingScreenManager.ActivateLoadingScreen();
 
             // USED FOR DIFFERENT SCENES FOR LEVELS
             AsyncOperation loadOperation = SceneManager.LoadSceneAsync(currentCharacterData.sceneIndex);
