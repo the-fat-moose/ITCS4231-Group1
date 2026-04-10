@@ -9,7 +9,7 @@ namespace Group1 {
         public WeaponModelInstantiationSlot rightHandSlot;
 
         [Header("Weapon Managers")]
-        [SerializeField] WeaponManager rightWeaponManager;
+        public WeaponManager rightWeaponManager;
 
         [Header("Weapon Models")]
         public GameObject rightHandWeaponModel;
@@ -141,7 +141,7 @@ namespace Group1 {
             // LOAD NEW LUMEN MODEL TO SLOT 1
 
             // CALCULATE ALL STAT CHANGES
-            player.playerStatsManager.CalculateLumenEquippedStatModifiers();
+            LoadLumenSlot();
         }
 
         public void LoadLumenSlot2Equipment(LumenItem equipment)
@@ -157,7 +157,7 @@ namespace Group1 {
             // LOAD NEW LUMEN MODEL TO SLOT 2
 
             // CALCULATE ALL STAT CHANGES
-            player.playerStatsManager.CalculateLumenEquippedStatModifiers();
+            LoadLumenSlot();
         }
 
         public void LoadLumenSlot3Equipment(LumenItem equipment)
@@ -173,11 +173,11 @@ namespace Group1 {
             // LOAD NEW LUMEN MODEL TO SLOT 3
 
             // CALCULATE ALL STAT CHANGES
-            player.playerStatsManager.CalculateLumenEquippedStatModifiers();
+            LoadLumenSlot();
         }
 
         public void LoadLumenSlot4Equipment(LumenItem equipment)
-        {
+        {            
             // UNLOAD OLD SLOT 4 LUMEN MODEL (IF ANY)
 
             // IF EQUIPMENT IS NULL, SIMPLY SET EQUIPMENT IN INVENTORY TO NULL AND RETURN
@@ -189,6 +189,43 @@ namespace Group1 {
             // LOAD NEW LUMEN MODEL TO SLOT 4
 
             // CALCULATE ALL STAT CHANGES
+            LoadLumenSlot();
+        }
+
+        public void LoadLumenSlot()
+        {            
+            // ENABLE RTSR
+            player.rtsrEnabled = false;
+
+            // RTSR CHECK ON SLOT 1
+            if (player.playerInventoryManager.lumenSlot1Item != null &&
+                player.playerInventoryManager.lumenSlot1Item.increaseDamageAtLowHP)
+            {
+                player.rtsrEnabled = true;
+            }
+
+            // RTSR CHECK ON SLOT 2
+            if (player.playerInventoryManager.lumenSlot2Item != null &&
+                player.playerInventoryManager.lumenSlot2Item.increaseDamageAtLowHP)
+            {
+                player.rtsrEnabled = true;
+            }
+
+            // RTSR CHECK ON SLOT 3
+            if (player.playerInventoryManager.lumenSlot3Item != null &&
+                player.playerInventoryManager.lumenSlot3Item.increaseDamageAtLowHP)
+            {
+                player.rtsrEnabled = true;
+            }
+
+            // RTSR CHECK ON SLOT 4
+            if (player.playerInventoryManager.lumenSlot4Item != null &&
+                player.playerInventoryManager.lumenSlot4Item.increaseDamageAtLowHP)
+            {
+                player.rtsrEnabled = true;
+            }
+
+            // CALCULATE OTHER STATS
             player.playerStatsManager.CalculateLumenEquippedStatModifiers();
         }
 

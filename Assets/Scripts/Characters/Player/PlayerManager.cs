@@ -24,8 +24,10 @@ namespace Group1{
         [HideInInspector] public PlayerEffectsManager playerEffectsManager;
 
         [Header("Lumen Stats")]
+        public bool rtsrEnabled = false;
         [SerializeField] float lowHealthPercentage = 0.2f;
         public bool isAtLowHealth = false;
+        [SerializeField] GameObject lowHealthParticles;
 
         [Header("Equipment")]
         private int currentRightHandWeaponID = 0;
@@ -301,13 +303,25 @@ namespace Group1{
             }
 
             // ENABLE EXTRA DAMAGE BOOL
-            if (CurrentHealth < (MaxHealth * lowHealthPercentage))
+            if (CurrentHealth < (MaxHealth * lowHealthPercentage) && rtsrEnabled)
             {
                 isAtLowHealth = true;
+                lowHealthParticles.SetActive(true);
+
+                if (playerInventoryManager.currentRightHandWeapon != null)
+                {
+                    playerEquipmentManager.rightWeaponManager.SetWeaponDamage(this, playerInventoryManager.currentRightHandWeapon, true);
+                }
             }
             else
             {
                 isAtLowHealth = false;
+                lowHealthParticles.SetActive(false);
+
+                if (playerInventoryManager.currentRightHandWeapon != null)
+                {
+                    playerEquipmentManager.rightWeaponManager.SetWeaponDamage(this, playerInventoryManager.currentRightHandWeapon, false);
+                }
             }
 
             // PREVENTS US FROM OVER HEALING
@@ -392,6 +406,16 @@ namespace Group1{
             playerEquipmentManager.LoadRightWeapon();
 
             PlayerUIManager.instance.playerUIHudManager.SetWeaponQuickSlotIcon(newID);
+
+            // RTSR CHECK
+            if (playerInventoryManager.currentRightHandWeapon != null && rtsrEnabled && isAtLowHealth)
+            {
+                playerEquipmentManager.rightWeaponManager.SetWeaponDamage(this, playerInventoryManager.currentRightHandWeapon, true);
+            }
+            else
+            {
+                playerEquipmentManager.rightWeaponManager.SetWeaponDamage(this, playerInventoryManager.currentRightHandWeapon, false);
+            }
         }
 
         public void OnCurrentWeaponBeingUsedIDChange(int oldID, int newID)

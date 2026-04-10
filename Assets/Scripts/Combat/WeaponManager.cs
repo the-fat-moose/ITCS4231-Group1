@@ -10,10 +10,14 @@ namespace Group1 {
             meleeDamageCollider = GetComponentInChildren<MeleeWeaponDamageCollider>();
         }
 
-        public void SetWeaponDamage(CharacterManager characterWieldingWeapon, WeaponItem weapon)
+        public void SetWeaponDamage(CharacterManager characterWieldingWeapon, WeaponItem weapon, bool rtsrEnabled = false)
         {
             meleeDamageCollider.characterCausingDamage = characterWieldingWeapon;
-            meleeDamageCollider.physicalDamage = weapon.physicalDamage;
+            
+            if (rtsrEnabled)
+                meleeDamageCollider.physicalDamage = weapon.physicalDamage * 1.2f;
+            else
+                meleeDamageCollider.physicalDamage = weapon.physicalDamage;
             meleeDamageCollider.magicDamage = weapon.magicDamage;
 
             meleeDamageCollider.light_Attack_Modifier = weapon.light_Attack_Modifier;
