@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Group1 {
@@ -6,16 +5,27 @@ namespace Group1 {
     {
         private CharacterManager character;
 
+        [Header("Health Modifier")]
+        protected float baseHealthMultiplier = 1f;
+        public float maxHealthMultiplier = 1f;
+
+        [Header("Mana Modifier")]
+        protected float baseManaMultiplier = 1f;
+        public float maxManaMultiplier = 1f;
+
         [Header("Stamina Regeneration")]
         private float staminaRegenerationTimer = 0;
         private float staminaTickTimer = 0;
         [SerializeField] private float staminaRegenerationDelay = 2f;
         public int staminaRegenerationAmount = 2;
+        protected float baseStaminaRegenMultiplier = 1f;
+        public float staminaRegenMultiplier = 1f;
 
         public float blockingPhysicalAbsorption = 65f;
         public float blockingMagicAbsorption = 65f;
 
         [Header("Mana Regeneration")]
+        protected float baseManaRegenMultiplier = 1f;
         public float manaRegenMultiplier = 1f;
 
         protected virtual void Awake()
@@ -40,9 +50,9 @@ namespace Group1 {
             float health = 0;
 
             // FORMULA TO DETERMINE HOW HEALTH IS CALCULATED
-            health = vitality * 15;
+            health = vitality * maxHealthMultiplier * 15;
 
-            return Mathf.RoundToInt(health);
+            return Mathf.CeilToInt(health);
         }
 
         public int CalculateManaBasedOnMindLevel(int mind)
@@ -50,9 +60,9 @@ namespace Group1 {
             float mana = 0;
 
             // FORMULA TO DETERMINE HOW MANA IS CALCULATED
-            mana = mind * 10;
+            mana = mind * maxManaMultiplier * 10;
 
-            return Mathf.RoundToInt(mana);
+            return Mathf.CeilToInt(mana);
         }
 
         public virtual void RegenerateStamina()
@@ -79,7 +89,7 @@ namespace Group1 {
                     if (staminaTickTimer >= 0.1) // 1/10th of a second
                     {
                         staminaTickTimer = 0;
-                        character.CurrentStamina += staminaRegenerationAmount;
+                        character.CurrentStamina += staminaRegenerationAmount * staminaRegenMultiplier;
                     }
                 }
             }
@@ -88,7 +98,7 @@ namespace Group1 {
         public virtual void RegenerateMana()
         {
             float newMana = character.CurrentMana;
-            newMana += Mathf.RoundToInt(15 * manaRegenMultiplier);
+            newMana += Mathf.CeilToInt(15 * manaRegenMultiplier);
             character.CurrentMana = (int)Mathf.Clamp(newMana, 0, character.MaxMana);
         }
     

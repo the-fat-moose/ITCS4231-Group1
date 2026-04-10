@@ -23,6 +23,10 @@ namespace Group1{
         [HideInInspector] public PlayerInteractionManager playerInteractionManager;
         [HideInInspector] public PlayerEffectsManager playerEffectsManager;
 
+        [Header("Lumen Stats")]
+        [SerializeField] float lowHealthPercentage = 0.2f;
+        public bool isAtLowHealth = false;
+
         [Header("Equipment")]
         private int currentRightHandWeaponID = 0;
         private int currentWeaponBeingUsed = 0;
@@ -287,7 +291,31 @@ namespace Group1{
 
         #endregion
 
-        #region Death Handling
+        #region Health and Death Handling
+
+        public override void CheckHP(int oldValue, int newValue)
+        {
+            if (CurrentHealth <= 0)
+            {
+                StartCoroutine(ProcessDeathEvent());
+            }
+
+            // ENABLE EXTRA DAMAGE BOOL
+            if (CurrentHealth < (MaxHealth * lowHealthPercentage))
+            {
+                isAtLowHealth = true;
+            }
+            else
+            {
+                isAtLowHealth = false;
+            }
+
+            // PREVENTS US FROM OVER HEALING
+            if (CurrentHealth > MaxHealth)
+            {
+                CurrentHealth = MaxHealth;
+            }
+        }
 
         public override IEnumerator ProcessDeathEvent()
         {
@@ -335,6 +363,22 @@ namespace Group1{
             MaxMana = playerStatsManager.CalculateManaBasedOnMindLevel(newMind);
             PlayerUIManager.instance.playerUIHudManager.SetMaxManaValue(MaxMana);
             CurrentMana = MaxMana;
+        }
+
+        // Lumen Item Equipping
+        public void RecalibrateStatValues()
+        {
+            MaxHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel(Vitality);
+            PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(MaxHealth);
+            PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue(CurrentHealth, CurrentHealth);
+            
+            MaxStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(Endurance);
+            PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(MaxStamina);
+            PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue(CurrentStamina, CurrentStamina);
+
+            MaxMana = playerStatsManager.CalculateManaBasedOnMindLevel(Mind);
+            PlayerUIManager.instance.playerUIHudManager.SetMaxManaValue(MaxMana);
+            PlayerUIManager.instance.playerUIHudManager.SetNewManaValue(CurrentMana, CurrentMana);
         }
 
         #endregion

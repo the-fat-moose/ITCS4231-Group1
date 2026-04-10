@@ -14,6 +14,13 @@ namespace Group1 {
         public int quickSlotItemIndex = 0;
         public QuickSlotItem currentQuickSlotItem;
 
+        [Header("Lumens")]
+        public LumenItem lumenSlot1Item;
+        public LumenItem lumenSlot2Item;
+        public LumenItem lumenSlot3Item;
+        public LumenItem lumenSlot4Item;
+
+        [Header("Player Abilities")]
         public PlayerAbilityAction pushAbility;
         public PlayerAbilityAction knockUpAbility;
         public PlayerAbilityAction cageAbility;

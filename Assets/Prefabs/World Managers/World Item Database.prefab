@@ -50,3 +50,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c44b6d7661e595c449781e80e2fcfd16, type: 2}
   quickSlotItems:
   - {fileID: 11400000, guid: 415d68f9f235f8149a3127742b568877, type: 2}
+  lumenItems:
+  - {fileID: 11400000, guid: 27488ceda3a8569418538416be98d646, type: 2}
+  - {fileID: 11400000, guid: ea44719ad3f0b2b419337ed040a6bdc8, type: 2}
+  - {fileID: 11400000, guid: c630b309d70f5a94482ef1a893271d70, type: 2}
+  - {fileID: 11400000, guid: e5d0fd82a307e634ab588161b3057e5d, type: 2}
+  - {fileID: 11400000, guid: bb9964511a6008543a377bec7dd928e9, type: 2}
+  - {fileID: 11400000, guid: e5bca8238a01b5341bc20cd77b42ce31, type: 2}
+  - {fileID: 11400000, guid: 135de6ae0dbca8e4ba7d43922105e372, type: 2}
+  - {fileID: 11400000, guid: 39e2b3f864130504bb7c8cf18fbcb3b2, type: 2}

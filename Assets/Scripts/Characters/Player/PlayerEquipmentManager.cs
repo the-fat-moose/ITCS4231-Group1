@@ -14,6 +14,9 @@ namespace Group1 {
         [Header("Weapon Models")]
         public GameObject rightHandWeaponModel;
 
+        [Header("DEBUG DELETE LATER")]
+        [SerializeField] bool equipNewItems = false;
+
         protected override void Awake()
         {
             base.Awake();
@@ -29,6 +32,34 @@ namespace Group1 {
             base.Start();
 
             LoadWeaponInHand();
+        }
+
+        private void Update()
+        {
+            if (equipNewItems)
+            {
+                equipNewItems = false;
+
+                DebugEquipNewItems();
+            }
+        }
+
+        // DEBUG DELETE LATER
+        private void DebugEquipNewItems()
+        {
+            Debug.Log("EQUIPPING NEW ITEMS");
+
+            if (player.playerInventoryManager.lumenSlot1Item != null)
+                LoadLumenSlot1Equipment(player.playerInventoryManager.lumenSlot1Item);
+
+            if (player.playerInventoryManager.lumenSlot2Item != null)
+                LoadLumenSlot2Equipment(player.playerInventoryManager.lumenSlot2Item);
+
+            if (player.playerInventoryManager.lumenSlot3Item != null)
+                LoadLumenSlot3Equipment(player.playerInventoryManager.lumenSlot3Item);
+
+            if (player.playerInventoryManager.lumenSlot4Item != null)
+                LoadLumenSlot4Equipment(player.playerInventoryManager.lumenSlot4Item);
         }
 
         // QUICK SLOTS
@@ -97,9 +128,71 @@ namespace Group1 {
         }
 
         // EQUIPMENT
+        public void LoadLumenSlot1Equipment(LumenItem equipment)
+        {
+            // UNLOAD OLD SLOT 1 LUMEN MODEL (IF ANY)
+
+            // IF EQUIPMENT IS NULL, SIMPLY SET EQUIPMENT IN INVENTORY TO NULL AND RETURN
+
+            // IF YOU HAVE AN "OnItemEquipped" CALL ON YOUR EQUIPMENT, RUN IT HERE
+
+            // SET CURRENT LUMEN EQUIPMENT IN PLAYER INVENTORY TO THE EQUIPMENT THAT IS PASSED TO THIS FUNCTION
+
+            // LOAD NEW LUMEN MODEL TO SLOT 1
+
+            // CALCULATE ALL STAT CHANGES
+            player.playerStatsManager.CalculateLumenEquippedStatModifiers();
+        }
+
+        public void LoadLumenSlot2Equipment(LumenItem equipment)
+        {
+            // UNLOAD OLD SLOT 2 LUMEN MODEL (IF ANY)
+
+            // IF EQUIPMENT IS NULL, SIMPLY SET EQUIPMENT IN INVENTORY TO NULL AND RETURN
+
+            // IF YOU HAVE AN "OnItemEquipped" CALL ON YOUR EQUIPMENT, RUN IT HERE
+
+            // SET CURRENT LUMEN EQUIPMENT IN PLAYER INVENTORY TO THE EQUIPMENT THAT IS PASSED TO THIS FUNCTION
+
+            // LOAD NEW LUMEN MODEL TO SLOT 2
+
+            // CALCULATE ALL STAT CHANGES
+            player.playerStatsManager.CalculateLumenEquippedStatModifiers();
+        }
+
+        public void LoadLumenSlot3Equipment(LumenItem equipment)
+        {
+            // UNLOAD OLD SLOT 3 LUMEN MODEL (IF ANY)
+
+            // IF EQUIPMENT IS NULL, SIMPLY SET EQUIPMENT IN INVENTORY TO NULL AND RETURN
+
+            // IF YOU HAVE AN "OnItemEquipped" CALL ON YOUR EQUIPMENT, RUN IT HERE
+
+            // SET CURRENT LUMEN EQUIPMENT IN PLAYER INVENTORY TO THE EQUIPMENT THAT IS PASSED TO THIS FUNCTION
+
+            // LOAD NEW LUMEN MODEL TO SLOT 3
+
+            // CALCULATE ALL STAT CHANGES
+            player.playerStatsManager.CalculateLumenEquippedStatModifiers();
+        }
+
+        public void LoadLumenSlot4Equipment(LumenItem equipment)
+        {
+            // UNLOAD OLD SLOT 4 LUMEN MODEL (IF ANY)
+
+            // IF EQUIPMENT IS NULL, SIMPLY SET EQUIPMENT IN INVENTORY TO NULL AND RETURN
+
+            // IF YOU HAVE AN "OnItemEquipped" CALL ON YOUR EQUIPMENT, RUN IT HERE
+
+            // SET CURRENT LUMEN EQUIPMENT IN PLAYER INVENTORY TO THE EQUIPMENT THAT IS PASSED TO THIS FUNCTION
+
+            // LOAD NEW LUMEN MODEL TO SLOT 4
+
+            // CALCULATE ALL STAT CHANGES
+            player.playerStatsManager.CalculateLumenEquippedStatModifiers();
+        }
 
         // WEAPON
-
         private void InitializeWeaponSlot()
         {
             WeaponModelInstantiationSlot[] weaponSlots = GetComponentsInChildren<WeaponModelInstantiationSlot>();

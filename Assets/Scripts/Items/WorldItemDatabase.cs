@@ -15,6 +15,9 @@ namespace Group1 {
         [Header("Quick Slot Items")]
         [SerializeField] List<QuickSlotItem> quickSlotItems = new List<QuickSlotItem>();
 
+        [Header("Lumen Items")]
+        [SerializeField] List<LumenItem> lumenItems = new List<LumenItem>();
+
         // A LIST OF EVERY ITEM WE HAVE IN THE GAME
         [Header("Items")]
         private List<Item> items = new List<Item>();
@@ -40,6 +43,11 @@ namespace Group1 {
             {
                 items.Add(quickSlotItem);
             }
+            // ADD ALL OF OUR LUMEN ITEMS TO THE LIST OF ITEMS 
+            foreach (var lumen in lumenItems)
+            {
+                items.Add(lumen);
+            }            
 
             // ASSIGN ALL OF OUR ITEMS A UNIQUE ITEM ID 
             // (IF YOU CONSISTENTLY ADD NEW ITEMS, THE IDS WILL CHANGE AND THIS COULD BE BAD FOR SAVE FILES)
@@ -57,6 +65,11 @@ namespace Group1 {
         public QuickSlotItem GetQuickSlotItemByID(int ID)
         {
             return quickSlotItems.FirstOrDefault(item => item.itemID == ID);
+        }
+
+        public LumenItem GetLumenItemByID(int ID)
+        {
+            return lumenItems.FirstOrDefault(item => item.itemID == ID);
         }
     }
 }
