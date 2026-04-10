@@ -30,6 +30,8 @@ namespace Group1 {
             staminaRegenMultiplier = baseStaminaRegenMultiplier; // 1
             manaRegenMultiplier = baseManaRegenMultiplier; // 1
 
+            player.playerCombatManager.magicDamageMultiplier = player.playerCombatManager.baseMagicDamageMultiplier;
+
             // LUMEN SLOT 1
             if (player.playerInventoryManager.lumenSlot1Item != null)
             {
@@ -38,6 +40,8 @@ namespace Group1 {
 
                 staminaRegenMultiplier += player.playerInventoryManager.lumenSlot1Item.staminaRegenerationRateModifier;
                 manaRegenMultiplier += player.playerInventoryManager.lumenSlot1Item.manaRegenerationAmountModifier;
+
+                player.playerCombatManager.magicDamageMultiplier += player.playerInventoryManager.lumenSlot1Item.magicDamageModifier;
             }
             // LUMEN SLOT 2
             if (player.playerInventoryManager.lumenSlot2Item != null)
@@ -47,6 +51,8 @@ namespace Group1 {
 
                 staminaRegenMultiplier += player.playerInventoryManager.lumenSlot2Item.staminaRegenerationRateModifier;
                 manaRegenMultiplier += player.playerInventoryManager.lumenSlot2Item.manaRegenerationAmountModifier;
+
+                player.playerCombatManager.magicDamageMultiplier += player.playerInventoryManager.lumenSlot2Item.magicDamageModifier;
             }
             // LUMEN SLOT 3
             if (player.playerInventoryManager.lumenSlot3Item != null)
@@ -56,6 +62,8 @@ namespace Group1 {
 
                 staminaRegenMultiplier += player.playerInventoryManager.lumenSlot3Item.staminaRegenerationRateModifier;
                 manaRegenMultiplier += player.playerInventoryManager.lumenSlot3Item.manaRegenerationAmountModifier;
+
+                player.playerCombatManager.magicDamageMultiplier += player.playerInventoryManager.lumenSlot3Item.magicDamageModifier;
             }
             // LUMEN SLOT 4
             if (player.playerInventoryManager.lumenSlot4Item != null)
@@ -65,6 +73,8 @@ namespace Group1 {
 
                 staminaRegenMultiplier += player.playerInventoryManager.lumenSlot4Item.staminaRegenerationRateModifier;
                 manaRegenMultiplier += player.playerInventoryManager.lumenSlot4Item.manaRegenerationAmountModifier;
+
+                player.playerCombatManager.magicDamageMultiplier += player.playerInventoryManager.lumenSlot4Item.magicDamageModifier;
             }
         
             player.RecalibrateStatValues();

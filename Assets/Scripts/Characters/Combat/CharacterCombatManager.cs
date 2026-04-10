@@ -11,6 +11,7 @@ namespace Group1 {
 
         public float parryWindow = 0.3f;
 
+        public float baseMagicDamageMultiplier = 1f;
         public float magicDamageMultiplier = 1f;
         
 

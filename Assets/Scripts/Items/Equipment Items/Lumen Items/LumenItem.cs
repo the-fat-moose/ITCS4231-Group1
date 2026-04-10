@@ -14,7 +14,6 @@ namespace Group1
 
         // MODIFIES THE DAMAGE OR ABILITY FEATURES OF THE PLAYER
         [Header("Combat Modifiers")]
-        public float physicalDamageModifier = 0f;
         public float magicDamageModifier = 0f;
         public float manaRegenerationAmountModifier = 0f;
 
