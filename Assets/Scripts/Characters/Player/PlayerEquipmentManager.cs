@@ -194,6 +194,18 @@ namespace Group1 {
 
         public void LoadLumenSlot()
         {            
+            // RTSR CHECK
+            CheckLumenForRTSR();
+
+            // UPGRADED PARRY CHECK
+            CheckLumenForUpgradedParry();
+
+            // CALCULATE OTHER STATS
+            player.playerStatsManager.CalculateLumenEquippedStatModifiers();
+        }
+
+        private void CheckLumenForRTSR()
+        {
             // ENABLE RTSR
             player.rtsrEnabled = false;
 
@@ -224,9 +236,40 @@ namespace Group1 {
             {
                 player.rtsrEnabled = true;
             }
+        }
 
-            // CALCULATE OTHER STATS
-            player.playerStatsManager.CalculateLumenEquippedStatModifiers();
+        private void CheckLumenForUpgradedParry()
+        {
+            // ENABLE UPGRADED PARRY
+            player.upgradedParry = false;
+
+            // UPGRADED PARRY CHECK ON SLOT 1
+            if (player.playerInventoryManager.lumenSlot1Item != null &&
+                player.playerInventoryManager.lumenSlot1Item.increaseParryWindow)
+            {
+                player.upgradedParry = true;
+            }
+
+            // UPGRADED PARRY CHECK ON SLOT 2
+            if (player.playerInventoryManager.lumenSlot2Item != null &&
+                player.playerInventoryManager.lumenSlot2Item.increaseParryWindow)
+            {
+                player.upgradedParry = true;
+            }
+
+            // UPGRADED PARRY CHECK ON SLOT 3
+            if (player.playerInventoryManager.lumenSlot3Item != null &&
+                player.playerInventoryManager.lumenSlot3Item.increaseParryWindow)
+            {
+                player.upgradedParry = true;
+            }
+
+            // UPGRADED PARRY CHECK ON SLOT 4
+            if (player.playerInventoryManager.lumenSlot4Item != null &&
+                player.playerInventoryManager.lumenSlot4Item.increaseParryWindow)
+            {
+                player.upgradedParry = true;
+            }
         }
 
         // WEAPON
