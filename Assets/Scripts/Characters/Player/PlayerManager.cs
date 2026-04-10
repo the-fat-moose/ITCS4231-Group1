@@ -28,6 +28,8 @@ namespace Group1{
         [SerializeField] float lowHealthPercentage = 0.2f;
         public bool isAtLowHealth = false;
         [SerializeField] GameObject lowHealthParticles;
+        public float baseFlaskRestorationMultiplier = 1f;
+        public float flaskRestorationMultiplier = 1f;
 
         [Header("Equipment")]
         private int currentRightHandWeaponID = 0;

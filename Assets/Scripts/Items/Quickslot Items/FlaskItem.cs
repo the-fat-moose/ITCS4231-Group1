@@ -10,7 +10,6 @@ namespace Group1
 
         [Header("Restoration Value")]
         private int flaskRestoration = 50;
-        public float flaskRestorationMultiplier = 1f;
 
         [Header("Empty Item")]
         public GameObject emptyFlaskModel;
@@ -69,7 +68,7 @@ namespace Group1
 
             if (healthFlask)
             {
-                player.CurrentHealth += Mathf.FloorToInt(flaskRestoration * flaskRestorationMultiplier);
+                player.CurrentHealth += Mathf.FloorToInt(flaskRestoration * player.flaskRestorationMultiplier);
                 player.remainingHealthFlasks -= 1;
             }
 

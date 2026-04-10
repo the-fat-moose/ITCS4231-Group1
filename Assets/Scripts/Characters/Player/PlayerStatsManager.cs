@@ -32,6 +32,8 @@ namespace Group1 {
 
             player.playerCombatManager.magicDamageMultiplier = player.playerCombatManager.baseMagicDamageMultiplier;
 
+            player.flaskRestorationMultiplier = player.baseFlaskRestorationMultiplier;
+
             // LUMEN SLOT 1
             if (player.playerInventoryManager.lumenSlot1Item != null)
             {
@@ -42,6 +44,8 @@ namespace Group1 {
                 manaRegenMultiplier += player.playerInventoryManager.lumenSlot1Item.manaRegenerationAmountModifier;
 
                 player.playerCombatManager.magicDamageMultiplier += player.playerInventoryManager.lumenSlot1Item.magicDamageModifier;
+
+                player.flaskRestorationMultiplier += player.playerInventoryManager.lumenSlot1Item.flaskRestorationAmountModifier;
             }
             // LUMEN SLOT 2
             if (player.playerInventoryManager.lumenSlot2Item != null)
@@ -53,6 +57,8 @@ namespace Group1 {
                 manaRegenMultiplier += player.playerInventoryManager.lumenSlot2Item.manaRegenerationAmountModifier;
 
                 player.playerCombatManager.magicDamageMultiplier += player.playerInventoryManager.lumenSlot2Item.magicDamageModifier;
+
+                player.flaskRestorationMultiplier += player.playerInventoryManager.lumenSlot2Item.flaskRestorationAmountModifier;
             }
             // LUMEN SLOT 3
             if (player.playerInventoryManager.lumenSlot3Item != null)
@@ -64,6 +70,8 @@ namespace Group1 {
                 manaRegenMultiplier += player.playerInventoryManager.lumenSlot3Item.manaRegenerationAmountModifier;
 
                 player.playerCombatManager.magicDamageMultiplier += player.playerInventoryManager.lumenSlot3Item.magicDamageModifier;
+
+                player.flaskRestorationMultiplier += player.playerInventoryManager.lumenSlot3Item.flaskRestorationAmountModifier;
             }
             // LUMEN SLOT 4
             if (player.playerInventoryManager.lumenSlot4Item != null)
@@ -75,6 +83,8 @@ namespace Group1 {
                 manaRegenMultiplier += player.playerInventoryManager.lumenSlot4Item.manaRegenerationAmountModifier;
 
                 player.playerCombatManager.magicDamageMultiplier += player.playerInventoryManager.lumenSlot4Item.magicDamageModifier;
+
+                player.flaskRestorationMultiplier += player.playerInventoryManager.lumenSlot4Item.flaskRestorationAmountModifier;
             }
         
             player.RecalibrateStatValues();
