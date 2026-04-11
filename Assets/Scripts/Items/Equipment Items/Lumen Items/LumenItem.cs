@@ -23,9 +23,6 @@ namespace Group1
         public bool increaseDamageAtLowHP = false;
         public bool increaseParryWindow = false;
 
-        // LUMEN MODEL
-        public EquipmentModel[] equipmentModels;
-
         // ADD LOGIC FOR ON EQUIP
     }
 }

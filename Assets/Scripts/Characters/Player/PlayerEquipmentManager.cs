@@ -15,10 +15,6 @@ namespace Group1 {
         [Header("Weapon Models")]
         public GameObject rightHandWeaponModel;
 
-        [Header("Equipment Models")]
-        public GameObject lumenSlot01Object;
-        [HideInInspector] public GameObject[] lumenSlot01Array;
-
         [Header("DEBUG DELETE LATER")]
         [SerializeField] bool equipNewItems = false;
 
@@ -30,16 +26,6 @@ namespace Group1 {
 
             // GET OUR WEAPON SLOT
             InitializeWeaponSlot();
-
-            // INITIALIZE EACH MODEL LIST FOR EACH LUMEN SLOT
-            List<GameObject> lumenSlot01List = new List<GameObject>();
-
-            foreach (Transform child in lumenSlot01Object.transform)
-            {
-                lumenSlot01List.Add(child.gameObject);
-            }
-
-            lumenSlot01Array = lumenSlot01List.ToArray();
         }
 
         protected override void Start()
@@ -66,15 +52,9 @@ namespace Group1 {
 
             
             LoadLumenSlot1Equipment(player.playerInventoryManager.lumenSlot1Item);
-
-            if (player.playerInventoryManager.lumenSlot2Item != null)
-                LoadLumenSlot2Equipment(player.playerInventoryManager.lumenSlot2Item);
-
-            if (player.playerInventoryManager.lumenSlot3Item != null)
-                LoadLumenSlot3Equipment(player.playerInventoryManager.lumenSlot3Item);
-
-            if (player.playerInventoryManager.lumenSlot4Item != null)
-                LoadLumenSlot4Equipment(player.playerInventoryManager.lumenSlot4Item);
+            LoadLumenSlot2Equipment(player.playerInventoryManager.lumenSlot2Item);
+            LoadLumenSlot3Equipment(player.playerInventoryManager.lumenSlot3Item);
+            LoadLumenSlot4Equipment(player.playerInventoryManager.lumenSlot4Item);
         }
 
         // QUICK SLOTS
@@ -145,9 +125,6 @@ namespace Group1 {
         // EQUIPMENT
         public void LoadLumenSlot1Equipment(LumenItem equipment)
         {
-            // UNLOAD OLD SLOT 1 LUMEN MODEL (IF ANY)
-            UnloadLumenSlot1EquipmentModels();
-
             // IF EQUIPMENT IS NULL, SIMPLY SET EQUIPMENT IN INVENTORY TO NULL AND RETURN
             if (equipment == null)
             {
@@ -162,72 +139,73 @@ namespace Group1 {
             // SET CURRENT LUMEN EQUIPMENT IN PLAYER INVENTORY TO THE EQUIPMENT THAT IS PASSED TO THIS FUNCTION
             player.playerInventoryManager.lumenSlot1Item = equipment;
 
-            // LOAD NEW LUMEN MODEL TO SLOT 1
-            foreach (var model in equipment.equipmentModels)
-            {
-                model.LoadModel(player);
-            }
-
             // CALCULATE ALL STAT CHANGES
             LoadLumenSlot();
 
             player.LumenSlot01EquipmentID = equipment.itemID;
         }
 
-        private void UnloadLumenSlot1EquipmentModels()
-        {
-            foreach (var model in lumenSlot01Array)
-            {
-                model.SetActive(false);
-            }
-        }
-
         public void LoadLumenSlot2Equipment(LumenItem equipment)
         {
-            // UNLOAD OLD SLOT 2 LUMEN MODEL (IF ANY)
-
             // IF EQUIPMENT IS NULL, SIMPLY SET EQUIPMENT IN INVENTORY TO NULL AND RETURN
+            if (equipment == null)
+            {
+                player.LumenSlot02EquipmentID = -1; // -1 WILL NEVER BE AN ITEM ID
+
+                player.playerInventoryManager.lumenSlot2Item = null;
+                return;
+            }
 
             // IF YOU HAVE AN "OnItemEquipped" CALL ON YOUR EQUIPMENT, RUN IT HERE
 
             // SET CURRENT LUMEN EQUIPMENT IN PLAYER INVENTORY TO THE EQUIPMENT THAT IS PASSED TO THIS FUNCTION
 
-            // LOAD NEW LUMEN MODEL TO SLOT 2
-
             // CALCULATE ALL STAT CHANGES
             LoadLumenSlot();
+
+            player.LumenSlot02EquipmentID = equipment.itemID;
         }
 
         public void LoadLumenSlot3Equipment(LumenItem equipment)
         {
-            // UNLOAD OLD SLOT 3 LUMEN MODEL (IF ANY)
-
             // IF EQUIPMENT IS NULL, SIMPLY SET EQUIPMENT IN INVENTORY TO NULL AND RETURN
+            if (equipment == null)
+            {
+                player.LumenSlot03EquipmentID = -1; // -1 WILL NEVER BE AN ITEM ID
+
+                player.playerInventoryManager.lumenSlot3Item = null;
+                return;
+            }
 
             // IF YOU HAVE AN "OnItemEquipped" CALL ON YOUR EQUIPMENT, RUN IT HERE
 
             // SET CURRENT LUMEN EQUIPMENT IN PLAYER INVENTORY TO THE EQUIPMENT THAT IS PASSED TO THIS FUNCTION
 
-            // LOAD NEW LUMEN MODEL TO SLOT 3
-
             // CALCULATE ALL STAT CHANGES
             LoadLumenSlot();
+
+            player.LumenSlot03EquipmentID = equipment.itemID;
         }
 
         public void LoadLumenSlot4Equipment(LumenItem equipment)
         {            
-            // UNLOAD OLD SLOT 4 LUMEN MODEL (IF ANY)
-
             // IF EQUIPMENT IS NULL, SIMPLY SET EQUIPMENT IN INVENTORY TO NULL AND RETURN
+            if (equipment == null)
+            {
+                player.LumenSlot04EquipmentID = -1; // -1 WILL NEVER BE AN ITEM ID
+
+                player.playerInventoryManager.lumenSlot4Item = null;
+                return;
+            }
 
             // IF YOU HAVE AN "OnItemEquipped" CALL ON YOUR EQUIPMENT, RUN IT HERE
 
             // SET CURRENT LUMEN EQUIPMENT IN PLAYER INVENTORY TO THE EQUIPMENT THAT IS PASSED TO THIS FUNCTION
 
-            // LOAD NEW LUMEN MODEL TO SLOT 4
-
             // CALCULATE ALL STAT CHANGES
             LoadLumenSlot();
+
+            player.LumenSlot04EquipmentID = equipment.itemID;
         }
 
         public void LoadLumenSlot()
