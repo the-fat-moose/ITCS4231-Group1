@@ -112,7 +112,6 @@ namespace Group1
                         PlayerUIManager.instance.playerUIEquipmentManager.RefreshMenu();
 
                         break;
-                    // LOGIC FOR TALISMANS (Lumens)
                     // LOGIC FOR QUICK SLOTS
                     case EquipmentSlotType.QuickSlot01:
                         equippedItem = player.playerInventoryManager.quickSlotItemsInQuickSlots[0];
@@ -178,6 +177,95 @@ namespace Group1
                         // RE-EQUIP THE NEW ITEM
                         if (player.playerInventoryManager.quickSlotItemIndex == 2)
                             player.CurrentQuickSlotItemID = currentItem.itemID;
+
+                        // REFRESHES EQUIPMENT WINDOW
+                        PlayerUIManager.instance.playerUIEquipmentManager.RefreshMenu();
+
+                        break;
+                    // LOGIC FOR TALISMANS (Lumens)
+                    case EquipmentSlotType.LumenEquipment01:
+                        equippedItem = player.playerInventoryManager.lumenSlot1Item;
+                        
+                        // IF OUR CURRENT LUMEN IN THIS SLOT IS NOT NULL, ADD IT TO OUR INVENTORY
+                        if (equippedItem != null)
+                        {
+                            player.playerInventoryManager.AddItemToInventory(equippedItem);
+                        }
+
+                        // THEN REPLACE THE LUMEN IN THAT SLOT WITH OUR NEW LUMEN
+                        player.playerInventoryManager.lumenSlot1Item = currentItem as LumenItem;
+
+                        // THEN REMOVE THE NEW LUMEN FROM OUR INVENTORY
+                        player.playerInventoryManager.RemoveItemFromInventory(currentItem);
+
+                        // RE-EQUIP NEW LUMEN IF WE ARE HOLDING THE CURRENT LUMEN IN THIS SLOT
+                        player.playerEquipmentManager.LoadLumenSlot1Equipment(player.playerInventoryManager.lumenSlot1Item);
+
+                        // REFRESHES EQUIPMENT WINDOW
+                        PlayerUIManager.instance.playerUIEquipmentManager.RefreshMenu();
+
+                        break;
+                    case EquipmentSlotType.LumenEquipment02:
+                        equippedItem = player.playerInventoryManager.lumenSlot2Item;
+                        
+                        // IF OUR CURRENT LUMEN IN THIS SLOT IS NOT NULL, ADD IT TO OUR INVENTORY
+                        if (equippedItem != null)
+                        {
+                            player.playerInventoryManager.AddItemToInventory(equippedItem);
+                        }
+
+                        // THEN REPLACE THE LUMEN IN THAT SLOT WITH OUR NEW LUMEN
+                        player.playerInventoryManager.lumenSlot2Item = currentItem as LumenItem;
+
+                        // THEN REMOVE THE NEW LUMEN FROM OUR INVENTORY
+                        player.playerInventoryManager.RemoveItemFromInventory(currentItem);
+
+                        // RE-EQUIP NEW LUMEN IF WE ARE HOLDING THE CURRENT LUMEN IN THIS SLOT
+                        player.playerEquipmentManager.LoadLumenSlot2Equipment(player.playerInventoryManager.lumenSlot2Item);
+
+                        // REFRESHES EQUIPMENT WINDOW
+                        PlayerUIManager.instance.playerUIEquipmentManager.RefreshMenu();
+
+                        break;
+                    case EquipmentSlotType.LumenEquipment03:
+                        equippedItem = player.playerInventoryManager.lumenSlot3Item;
+                        
+                        // IF OUR CURRENT LUMEN IN THIS SLOT IS NOT NULL, ADD IT TO OUR INVENTORY
+                        if (equippedItem != null)
+                        {
+                            player.playerInventoryManager.AddItemToInventory(equippedItem);
+                        }
+
+                        // THEN REPLACE THE LUMEN IN THAT SLOT WITH OUR NEW LUMEN
+                        player.playerInventoryManager.lumenSlot3Item = currentItem as LumenItem;
+
+                        // THEN REMOVE THE NEW LUMEN FROM OUR INVENTORY
+                        player.playerInventoryManager.RemoveItemFromInventory(currentItem);
+
+                        // RE-EQUIP NEW LUMEN IF WE ARE HOLDING THE CURRENT LUMEN IN THIS SLOT
+                        player.playerEquipmentManager.LoadLumenSlot3Equipment(player.playerInventoryManager.lumenSlot3Item);
+
+                        // REFRESHES EQUIPMENT WINDOW
+                        PlayerUIManager.instance.playerUIEquipmentManager.RefreshMenu();
+
+                        break;
+                    case EquipmentSlotType.LumenEquipment04:
+                        equippedItem = player.playerInventoryManager.lumenSlot4Item;
+                        
+                        // IF OUR CURRENT LUMEN IN THIS SLOT IS NOT NULL, ADD IT TO OUR INVENTORY
+                        if (equippedItem != null)
+                        {
+                            player.playerInventoryManager.AddItemToInventory(equippedItem);
+                        }
+
+                        // THEN REPLACE THE LUMEN IN THAT SLOT WITH OUR NEW LUMEN
+                        player.playerInventoryManager.lumenSlot4Item = currentItem as LumenItem;
+
+                        // THEN REMOVE THE NEW LUMEN FROM OUR INVENTORY
+                        player.playerInventoryManager.RemoveItemFromInventory(currentItem);
+
+                        // RE-EQUIP NEW LUMEN IF WE ARE HOLDING THE CURRENT LUMEN IN THIS SLOT
+                        player.playerEquipmentManager.LoadLumenSlot4Equipment(player.playerInventoryManager.lumenSlot4Item);
 
                         // REFRESHES EQUIPMENT WINDOW
                         PlayerUIManager.instance.playerUIEquipmentManager.RefreshMenu();

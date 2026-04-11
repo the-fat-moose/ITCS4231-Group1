@@ -31,6 +31,16 @@ namespace Group1
         [SerializeField] private TextMeshProUGUI quickSlot03Count;
         private Button quickSlot03Button;
 
+        [Header("Lumen Slots")]
+        [SerializeField] private Image lumenSlot01;
+        private Button lumenSlot01Button;
+        [SerializeField] private Image lumenSlot02;
+        private Button lumenSlot02Button;
+        [SerializeField] private Image lumenSlot03;
+        private Button lumenSlot03Button;
+        [SerializeField] private Image lumenSlot04;
+        private Button lumenSlot04Button;
+
         // THIS INVENTORY POPULATES WITH RELATED ITEMS WHEN CHANGING EQUIPMENT
         [Header("Equipment Inventory")]
         [SerializeField] GameObject equipmentInventoryWindow;
@@ -50,6 +60,12 @@ namespace Group1
             quickSlot01Button = quickSlot01.GetComponentInParent<Button>(true);
             quickSlot02Button = quickSlot02.GetComponentInParent<Button>(true);
             quickSlot03Button = quickSlot03.GetComponentInParent<Button>(true);
+
+            // LUMEN SLOT BUTTONS
+            lumenSlot01Button = lumenSlot01.GetComponentInParent<Button>(true);
+            lumenSlot02Button = lumenSlot02.GetComponentInParent<Button>(true);
+            lumenSlot03Button = lumenSlot03.GetComponentInParent<Button>(true);
+            lumenSlot04Button = lumenSlot04.GetComponentInParent<Button>(true);
         }
 
         public void OpenEquipmentMenu()
@@ -77,6 +93,11 @@ namespace Group1
             quickSlot01Button.enabled = isEnabled;
             quickSlot02Button.enabled = isEnabled;
             quickSlot03Button.enabled = isEnabled;
+
+            lumenSlot01Button.enabled = isEnabled;
+            lumenSlot02Button.enabled = isEnabled;
+            lumenSlot03Button.enabled = isEnabled;
+            lumenSlot04Button.enabled = isEnabled;
         }
 
         public void SelectLastSelectedEquipmentSlot()
@@ -95,7 +116,6 @@ namespace Group1
                 case EquipmentSlotType.RightWeapon03:
                     lastSelectedButton = rightHandSlot03Button;
                     break;
-                // LOGIC FOR TALISMANS (Lumens)
                 // LOGIC FOR QUICK SLOTS
                 case EquipmentSlotType.QuickSlot01:
                     lastSelectedButton = quickSlot01Button;
@@ -105,6 +125,19 @@ namespace Group1
                     break;
                 case EquipmentSlotType.QuickSlot03:
                     lastSelectedButton = quickSlot03Button;
+                    break;
+                // LOGIC FOR TALISMANS (Lumens)
+                case EquipmentSlotType.LumenEquipment01:
+                    lastSelectedButton = lumenSlot01Button;
+                    break;
+                case EquipmentSlotType.LumenEquipment02:
+                    lastSelectedButton = lumenSlot02Button;
+                    break;
+                case EquipmentSlotType.LumenEquipment03:
+                    lastSelectedButton = lumenSlot03Button;
+                    break;
+                case EquipmentSlotType.LumenEquipment04:
+                    lastSelectedButton = lumenSlot04Button;
                     break;
                 default:
                     break;
@@ -169,8 +202,6 @@ namespace Group1
                 {
                     rightHandSlot03.enabled = false;
                 }
-            
-                // -------------------- TALISMANS (Lumens) --------------------
 
                 // -------------------- QUICK SLOTS --------------------
 
@@ -245,6 +276,60 @@ namespace Group1
                     quickSlot03.enabled = false;
                     quickSlot03Count.enabled = false;
                 }
+
+                // -------------------- TALISMANS (Lumens) --------------------
+
+                // LUMEN SLOT 01
+                LumenItem lumenSlot01Equipment = player.playerInventoryManager.lumenSlot1Item;
+
+                if (lumenSlot01Equipment != null)
+                {
+                    lumenSlot01.enabled = true;
+                    lumenSlot01.sprite = lumenSlot01Equipment.itemIcon;
+                }
+                else
+                {
+                    lumenSlot01.enabled = false;
+                }
+
+                // LUMEN SLOT 02
+                LumenItem lumenSlot02Equipment = player.playerInventoryManager.lumenSlot2Item;
+
+                if (lumenSlot02Equipment != null)
+                {
+                    lumenSlot02.enabled = true;
+                    lumenSlot02.sprite = lumenSlot02Equipment.itemIcon;
+                }
+                else
+                {
+                    lumenSlot02.enabled = false;
+                }
+
+                // LUMEN SLOT 03
+                LumenItem lumenSlot03Equipment = player.playerInventoryManager.lumenSlot3Item;
+
+                if (lumenSlot03Equipment != null)
+                {
+                    lumenSlot03.enabled = true;
+                    lumenSlot03.sprite = lumenSlot03Equipment.itemIcon;
+                }
+                else
+                {
+                    lumenSlot03.enabled = false;
+                }
+
+                // LUMEN SLOT 04
+                LumenItem lumenSlot04Equipment = player.playerInventoryManager.lumenSlot4Item;
+
+                if (lumenSlot04Equipment != null)
+                {
+                    lumenSlot04.enabled = true;
+                    lumenSlot04.sprite = lumenSlot04Equipment.itemIcon;
+                }
+                else
+                {
+                    lumenSlot04.enabled = false;
+                }
             }
         }
     
@@ -278,7 +363,6 @@ namespace Group1
                     LoadWeaponInventory();
                     ToggleEquipmentButtons(false);
                     break;
-                // LOGIC FOR TALISMANS (Lumens)
                 // LOGIC FOR QUICK SLOTS
                 case EquipmentSlotType.QuickSlot01:
                     LoadQuickSlotInventory();
@@ -290,6 +374,23 @@ namespace Group1
                     break;
                 case EquipmentSlotType.QuickSlot03:
                     LoadQuickSlotInventory();
+                    ToggleEquipmentButtons(false);
+                    break;
+                // LOGIC FOR TALISMANS (Lumens)
+                case EquipmentSlotType.LumenEquipment01:
+                    LoadLumenInventory();
+                    ToggleEquipmentButtons(false);
+                    break;
+                case EquipmentSlotType.LumenEquipment02:
+                    LoadLumenInventory();
+                    ToggleEquipmentButtons(false);
+                    break;
+                case EquipmentSlotType.LumenEquipment03:
+                    LoadLumenInventory();
+                    ToggleEquipmentButtons(false);
+                    break;
+                case EquipmentSlotType.LumenEquipment04:
+                    LoadLumenInventory();
                     ToggleEquipmentButtons(false);
                     break;
                 default:
@@ -381,6 +482,47 @@ namespace Group1
             }
         }
     
+        private void LoadLumenInventory()
+        {
+            PlayerManager player = FindFirstObjectByType<PlayerManager>();
+
+            List<LumenItem> lumensInInventory = new List<LumenItem>();
+
+            if (player != null)
+            {
+                for(int i = 0; i < player.playerInventoryManager.itemsInInventory.Count; i++)
+                {
+                    LumenItem lumen = player.playerInventoryManager.itemsInInventory[i] as LumenItem;
+
+                    if (lumen != null)
+                        lumensInInventory.Add(lumen);
+                }
+
+                if (lumensInInventory.Count <= 0)
+                {
+                    RefreshMenu();
+                    return;
+                }
+
+                bool hasSelectedFirstInventorySlot = false;
+
+                for (int i = 0; i < lumensInInventory.Count; i++)
+                {
+                    GameObject inventorySlotGameObject = Instantiate(equipmentInventorySlotPrefab, equipmentInventoryContentWindow);
+                    UI_EquipmentInventorySlot equipmentInventorySlot = inventorySlotGameObject.GetComponent<UI_EquipmentInventorySlot>();
+                    equipmentInventorySlot.AddItem(lumensInInventory[i]);
+
+                    // THIS WILL SELECT THE FIRST BUTTON IN THE LIST
+                    if (!hasSelectedFirstInventorySlot)
+                    {
+                        Button inventorySlotButton = inventorySlotGameObject.GetComponent<Button>();
+                        inventorySlotButton.Select();
+                        inventorySlotButton.OnSelect(null);
+                    }
+                }
+            }
+        }
+
         public void SelectEquipmentSlot(int equipmentSlot)
         {
             currentSelectedEquipmentSlot = (EquipmentSlotType)equipmentSlot;
@@ -436,7 +578,6 @@ namespace Group1
                         player.CurrentRightHandWeaponID = WorldItemDatabase.instance.unarmedWeapon.itemID;
                     
                     break;
-                // LOGIC FOR TALISMANS (Lumens)
                 // LOGIC FOR QUICK SLOTS
                 case EquipmentSlotType.QuickSlot01:
                     unequippedItem = player.playerInventoryManager.quickSlotItemsInQuickSlots[0];
@@ -469,6 +610,55 @@ namespace Group1
                     
                     if (player.playerInventoryManager.quickSlotItemIndex == 2)
                         player.CurrentQuickSlotItemID = -1;
+
+                    break;
+                // LOGIC FOR TALISMANS (Lumens)
+                case EquipmentSlotType.LumenEquipment01:
+                    unequippedItem = player.playerInventoryManager.lumenSlot1Item;
+
+                    if (unequippedItem != null)
+                    {
+                        player.playerInventoryManager.AddItemToInventory(unequippedItem);
+                    }
+
+                    player.playerInventoryManager.lumenSlot1Item = null;
+                    player.playerEquipmentManager.LoadLumenSlot1Equipment(player.playerInventoryManager.lumenSlot1Item);
+
+                    break;
+                case EquipmentSlotType.LumenEquipment02:
+                    unequippedItem = player.playerInventoryManager.lumenSlot2Item;
+
+                    if (unequippedItem != null)
+                    {
+                        player.playerInventoryManager.AddItemToInventory(unequippedItem);
+                    }
+
+                    player.playerInventoryManager.lumenSlot2Item = null;
+                    player.playerEquipmentManager.LoadLumenSlot2Equipment(player.playerInventoryManager.lumenSlot2Item);
+
+                    break;
+                case EquipmentSlotType.LumenEquipment03:
+                    unequippedItem = player.playerInventoryManager.lumenSlot3Item;
+
+                    if (unequippedItem != null)
+                    {
+                        player.playerInventoryManager.AddItemToInventory(unequippedItem);
+                    }
+
+                    player.playerInventoryManager.lumenSlot3Item = null;
+                    player.playerEquipmentManager.LoadLumenSlot3Equipment(player.playerInventoryManager.lumenSlot3Item);
+
+                    break;
+                case EquipmentSlotType.LumenEquipment04:
+                    unequippedItem = player.playerInventoryManager.lumenSlot4Item;
+
+                    if (unequippedItem != null)
+                    {
+                        player.playerInventoryManager.AddItemToInventory(unequippedItem);
+                    }
+
+                    player.playerInventoryManager.lumenSlot4Item = null;
+                    player.playerEquipmentManager.LoadLumenSlot4Equipment(player.playerInventoryManager.lumenSlot4Item);
 
                     break;
                 default:
