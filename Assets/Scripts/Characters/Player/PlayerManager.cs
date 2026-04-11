@@ -37,10 +37,10 @@ namespace Group1{
         private int currentRightHandWeaponID = 0;
         private int currentWeaponBeingUsed = 0;
         private int currentQuickSlotItemID = 0;
-        private int lumenSlot01EquipmentID = 0;
-        private int lumenSlot02EquipmentID = 0;
-        private int lumenSlot03EquipmentID = 0;
-        private int lumenSlot04EquipmentID = 0;
+        private int lumenSlot01EquipmentID = -1;
+        private int lumenSlot02EquipmentID = -1;
+        private int lumenSlot03EquipmentID = -1;
+        private int lumenSlot04EquipmentID = -1;
 
         public event System.Action<int, int> OnRightHandWeaponIDChanged;
         public event System.Action<int, int> OnCurrentWeaponBeingUsedChanged;
@@ -276,6 +276,12 @@ namespace Group1{
             currentCharacterData.rightWeapon01 = playerInventoryManager.weaponsInRightHandSlots[0].itemID; // THIS SHOULD NEVER BE NULL (should always default to unarmed)
             currentCharacterData.rightWeapon02 = playerInventoryManager.weaponsInRightHandSlots[1].itemID; // THIS SHOULD NEVER BE NULL (should always default to unarmed)
             currentCharacterData.rightWeapon03 = playerInventoryManager.weaponsInRightHandSlots[2].itemID; // THIS SHOULD NEVER BE NULL (should always default to unarmed)
+
+            // LUMENS
+            currentCharacterData.lumen01 = LumenSlot01EquipmentID;
+            currentCharacterData.lumen02 = LumenSlot02EquipmentID;
+            currentCharacterData.lumen03 = LumenSlot03EquipmentID;
+            currentCharacterData.lumen04 = LumenSlot04EquipmentID;
         }
 
         public void LoadGameDataFromCurrentCharacterData(ref CharacterSaveData currentCharacterData)
@@ -355,6 +361,45 @@ namespace Group1{
             CurrentRightHandWeaponID = playerInventoryManager.weaponsInRightHandSlots[currentCharacterData.rightWeaponIndex].itemID;
 
             // LUMEN EQUIPMENT
+            if (WorldItemDatabase.instance.GetLumenItemByID(currentCharacterData.lumen01))
+            {
+                LumenItem lumenSlot01Equipment = Instantiate(WorldItemDatabase.instance.GetLumenItemByID(currentCharacterData.lumen01));
+                playerInventoryManager.lumenSlot1Item = lumenSlot01Equipment;
+            }
+            else
+            {
+                playerInventoryManager.lumenSlot1Item = null;
+            }
+            
+            if (WorldItemDatabase.instance.GetLumenItemByID(currentCharacterData.lumen02))
+            {
+                LumenItem lumenSlot02Equipment = Instantiate(WorldItemDatabase.instance.GetLumenItemByID(currentCharacterData.lumen02));
+                playerInventoryManager.lumenSlot2Item = lumenSlot02Equipment;
+            }
+            else
+            {
+                playerInventoryManager.lumenSlot2Item = null;
+            }
+            
+            if (WorldItemDatabase.instance.GetLumenItemByID(currentCharacterData.lumen03))
+            {
+                LumenItem lumenSlot03Equipment = Instantiate(WorldItemDatabase.instance.GetLumenItemByID(currentCharacterData.lumen03));
+                playerInventoryManager.lumenSlot3Item = lumenSlot03Equipment;
+            }
+            else
+            {
+                playerInventoryManager.lumenSlot3Item = null;
+            }
+
+            if (WorldItemDatabase.instance.GetLumenItemByID(currentCharacterData.lumen04))
+            {
+                LumenItem lumenSlot04Equipment = Instantiate(WorldItemDatabase.instance.GetLumenItemByID(currentCharacterData.lumen04));
+                playerInventoryManager.lumenSlot4Item = lumenSlot04Equipment;
+            }
+            else
+            {
+                playerInventoryManager.lumenSlot4Item = null;
+            }
 
             // PLAYER ACTIVATION
             canMove = true;

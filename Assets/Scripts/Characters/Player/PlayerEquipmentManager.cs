@@ -41,16 +41,12 @@ namespace Group1 {
             {
                 equipNewItems = false;
 
-                DebugEquipNewItems();
+                EquipNewLumenItems();
             }
         }
 
-        // DEBUG DELETE LATER
-        private void DebugEquipNewItems()
+        public void EquipNewLumenItems()
         {
-            Debug.Log("EQUIPPING NEW ITEMS");
-
-            
             LoadLumenSlot1Equipment(player.playerInventoryManager.lumenSlot1Item);
             LoadLumenSlot2Equipment(player.playerInventoryManager.lumenSlot2Item);
             LoadLumenSlot3Equipment(player.playerInventoryManager.lumenSlot3Item);
