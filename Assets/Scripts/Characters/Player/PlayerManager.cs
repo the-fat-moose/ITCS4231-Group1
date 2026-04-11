@@ -23,6 +23,8 @@ namespace Group1{
         [HideInInspector] public PlayerInteractionManager playerInteractionManager;
         [HideInInspector] public PlayerEffectsManager playerEffectsManager;
 
+        #region Equipment Variables
+
         [Header("Lumen Stats")]
         public bool rtsrEnabled = false;
         [SerializeField] float lowHealthPercentage = 0.2f;
@@ -35,10 +37,18 @@ namespace Group1{
         private int currentRightHandWeaponID = 0;
         private int currentWeaponBeingUsed = 0;
         private int currentQuickSlotItemID = 0;
+        private int lumenSlot01EquipmentID = 0;
+        private int lumenSlot02EquipmentID = 0;
+        private int lumenSlot03EquipmentID = 0;
+        private int lumenSlot04EquipmentID = 0;
 
         public event System.Action<int, int> OnRightHandWeaponIDChanged;
         public event System.Action<int, int> OnCurrentWeaponBeingUsedChanged;
         public event System.Action<int, int> OnCurrentQuickSlotItemChanged;
+        public event System.Action<int, int> OnLumenSlot01EquipmentIDChanged;
+        public event System.Action<int, int> OnLumenSlot02EquipmentIDChanged;
+        public event System.Action<int, int> OnLumenSlot03EquipmentIDChanged;
+        public event System.Action<int, int> OnLumenSlot04EquipmentIDChanged;
 
         public int CurrentRightHandWeaponID
         {
@@ -78,6 +88,60 @@ namespace Group1{
                 OnCurrentQuickSlotItemChanged?.Invoke(oldValue, currentQuickSlotItemID);
             }
         }
+
+        public int LumenSlot01EquipmentID
+        {
+            get => lumenSlot01EquipmentID;
+            set
+            {
+                if (lumenSlot01EquipmentID == value) return;
+
+                int oldValue = lumenSlot01EquipmentID;
+                lumenSlot01EquipmentID = value;
+                OnLumenSlot01EquipmentIDChanged?.Invoke(oldValue, lumenSlot01EquipmentID);
+            }
+        }
+
+        public int LumenSlot02EquipmentID
+        {
+            get => lumenSlot02EquipmentID;
+            set
+            {
+                if (lumenSlot02EquipmentID == value) return;
+
+                int oldValue = lumenSlot02EquipmentID;
+                lumenSlot02EquipmentID = value;
+                OnLumenSlot02EquipmentIDChanged?.Invoke(oldValue, lumenSlot02EquipmentID);
+            }
+        }
+
+        public int LumenSlot03EquipmentID
+        {
+            get => lumenSlot03EquipmentID;
+            set
+            {
+                if (lumenSlot03EquipmentID == value) return;
+
+                int oldValue = lumenSlot03EquipmentID;
+                lumenSlot03EquipmentID = value;
+                OnLumenSlot03EquipmentIDChanged?.Invoke(oldValue, lumenSlot03EquipmentID);
+            }
+        }
+
+        public int LumenSlot04EquipmentID
+        {
+            get => lumenSlot04EquipmentID;
+            set
+            {
+                if (lumenSlot04EquipmentID == value) return;
+
+                int oldValue = lumenSlot04EquipmentID;
+                lumenSlot04EquipmentID = value;
+                OnLumenSlot04EquipmentIDChanged?.Invoke(oldValue, lumenSlot04EquipmentID);
+            }
+        }
+
+        #endregion
 
         [Header("Flasks")]
         public int remainingHealthFlasks = 0;
@@ -147,6 +211,11 @@ namespace Group1{
                 OnCurrentWeaponBeingUsedChanged += OnCurrentWeaponBeingUsedIDChange;
                 OnCurrentQuickSlotItemChanged += OnCurrentQuickSlotItemIDChange;
                 OnIsChuggingChanged += OnIsChuggingValueChanged;
+
+                OnLumenSlot01EquipmentIDChanged += OnLumenSlot01EquipmentChanged;
+                OnLumenSlot02EquipmentIDChanged += OnLumenSlot02EquipmentChanged;
+                OnLumenSlot03EquipmentIDChanged += OnLumenSlot03EquipmentChanged;
+                OnLumenSlot04EquipmentIDChanged += OnLumenSlot04EquipmentChanged;
             }
         }
 
@@ -482,6 +551,63 @@ namespace Group1{
         {
             if (playerEquipmentManager.rightHandWeaponModel != null)
                 playerEquipmentManager.rightHandWeaponModel.SetActive(false);
+        }
+
+        // LUMEN EQUIPMENT
+        public void OnLumenSlot01EquipmentChanged(int oldValue, int newValue)
+        {
+            LumenItem equipment = WorldItemDatabase.instance.GetLumenItemByID(LumenSlot01EquipmentID);
+
+            if (equipment != null)
+            {
+                playerEquipmentManager.LoadLumenSlot1Equipment(Instantiate(equipment));
+            }
+            else
+            {
+                playerEquipmentManager.LoadLumenSlot1Equipment(null);
+            }
+        }
+
+        public void OnLumenSlot02EquipmentChanged(int oldValue, int newValue)
+        {
+            LumenItem equipment = WorldItemDatabase.instance.GetLumenItemByID(LumenSlot02EquipmentID);
+
+            if (equipment != null)
+            {
+                playerEquipmentManager.LoadLumenSlot2Equipment(Instantiate(equipment));
+            }
+            else
+            {
+                playerEquipmentManager.LoadLumenSlot2Equipment(null);
+            }
+        }
+
+        public void OnLumenSlot03EquipmentChanged(int oldValue, int newValue)
+        {
+            LumenItem equipment = WorldItemDatabase.instance.GetLumenItemByID(LumenSlot03EquipmentID);
+
+            if (equipment != null)
+            {
+                playerEquipmentManager.LoadLumenSlot3Equipment(Instantiate(equipment));
+            }
+            else
+            {
+                playerEquipmentManager.LoadLumenSlot3Equipment(null);
+            }
+        }
+
+        public void OnLumenSlot04EquipmentChanged(int oldValue, int newValue)
+        {
+            LumenItem equipment = WorldItemDatabase.instance.GetLumenItemByID(LumenSlot04EquipmentID);
+
+            if (equipment != null)
+            {
+                playerEquipmentManager.LoadLumenSlot4Equipment(Instantiate(equipment));
+            }
+            else
+            {
+                playerEquipmentManager.LoadLumenSlot4Equipment(null);
+            }
         }
 
         #endregion

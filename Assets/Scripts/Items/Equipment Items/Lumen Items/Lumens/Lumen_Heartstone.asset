@@ -20,8 +20,9 @@ MonoBehaviour:
   manaModifier: 0
   staminaRegenerationRateModifier: 0
   flaskRestorationAmountModifier: 0
-  physicalDamageModifier: 0
   magicDamageModifier: 0
   manaRegenerationAmountModifier: 0
   increaseDamageAtLowHP: 0
   increaseParryWindow: 0
+  equipmentModels:
+  - {fileID: 11400000, guid: a3bb1f279ef5f8f4796e4d11c26234a8, type: 2}
