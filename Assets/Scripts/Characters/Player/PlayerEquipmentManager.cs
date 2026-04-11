@@ -159,6 +159,7 @@ namespace Group1 {
             // IF YOU HAVE AN "OnItemEquipped" CALL ON YOUR EQUIPMENT, RUN IT HERE
 
             // SET CURRENT LUMEN EQUIPMENT IN PLAYER INVENTORY TO THE EQUIPMENT THAT IS PASSED TO THIS FUNCTION
+            player.playerInventoryManager.lumenSlot2Item = equipment;
 
             // CALCULATE ALL STAT CHANGES
             LoadLumenSlot();
@@ -180,6 +181,7 @@ namespace Group1 {
             // IF YOU HAVE AN "OnItemEquipped" CALL ON YOUR EQUIPMENT, RUN IT HERE
 
             // SET CURRENT LUMEN EQUIPMENT IN PLAYER INVENTORY TO THE EQUIPMENT THAT IS PASSED TO THIS FUNCTION
+            player.playerInventoryManager.lumenSlot3Item = equipment;
 
             // CALCULATE ALL STAT CHANGES
             LoadLumenSlot();
@@ -201,6 +203,7 @@ namespace Group1 {
             // IF YOU HAVE AN "OnItemEquipped" CALL ON YOUR EQUIPMENT, RUN IT HERE
 
             // SET CURRENT LUMEN EQUIPMENT IN PLAYER INVENTORY TO THE EQUIPMENT THAT IS PASSED TO THIS FUNCTION
+            player.playerInventoryManager.lumenSlot4Item = equipment;
 
             // CALCULATE ALL STAT CHANGES
             LoadLumenSlot();

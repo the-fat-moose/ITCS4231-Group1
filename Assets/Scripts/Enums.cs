@@ -32,11 +32,6 @@ namespace Group1 {
         RightHand
     }
 
-    public enum EquipmentModelType
-    {
-        Lumen
-    }
-
     public enum EquipmentSlotType
     {
         RightWeapon01,    // 0
