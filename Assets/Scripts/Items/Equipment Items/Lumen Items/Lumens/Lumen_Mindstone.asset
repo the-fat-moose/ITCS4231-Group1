@@ -15,12 +15,11 @@ MonoBehaviour:
   itemName: Mindstone
   itemIcon: {fileID: 21300000, guid: f80a2ca8107afe643b98ff3ee5dad24c, type: 3}
   itemDescription: Increases the player's max mana by 20%
-  itemID: 0
+  itemID: 5
   hpModifier: 0
   manaModifier: 0.2
   staminaRegenerationRateModifier: 0
   flaskRestorationAmountModifier: 0
-  physicalDamageModifier: 0
   magicDamageModifier: 0
   manaRegenerationAmountModifier: 0
   increaseDamageAtLowHP: 0
