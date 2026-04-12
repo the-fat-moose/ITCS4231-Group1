@@ -263,7 +263,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -280,8 +280,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 5089467806695380179}
     m_Modifications:
     - target: {fileID: 1119386642831590052, guid: 426ce77903134ed418b209af72635b8a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1119386642831590052, guid: 426ce77903134ed418b209af72635b8a, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1119386642831590052, guid: 426ce77903134ed418b209af72635b8a, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1321285649440342900, guid: 426ce77903134ed418b209af72635b8a, type: 3}
       propertyPath: m_Name
