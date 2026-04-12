@@ -127,6 +127,10 @@ namespace Group1 {
                 player.LumenSlot01EquipmentID = -1; // -1 WILL NEVER BE AN ITEM ID
 
                 player.playerInventoryManager.lumenSlot1Item = null;
+
+                // CALCULATE ALL STAT CHANGES
+                LoadLumenSlot();
+
                 return;
             }
 
@@ -149,6 +153,10 @@ namespace Group1 {
                 player.LumenSlot02EquipmentID = -1; // -1 WILL NEVER BE AN ITEM ID
 
                 player.playerInventoryManager.lumenSlot2Item = null;
+                
+                // CALCULATE ALL STAT CHANGES
+                LoadLumenSlot();
+
                 return;
             }
 
@@ -171,6 +179,10 @@ namespace Group1 {
                 player.LumenSlot03EquipmentID = -1; // -1 WILL NEVER BE AN ITEM ID
 
                 player.playerInventoryManager.lumenSlot3Item = null;
+                
+                // CALCULATE ALL STAT CHANGES
+                LoadLumenSlot();
+
                 return;
             }
 
@@ -193,6 +205,10 @@ namespace Group1 {
                 player.LumenSlot04EquipmentID = -1; // -1 WILL NEVER BE AN ITEM ID
 
                 player.playerInventoryManager.lumenSlot4Item = null;
+                
+                // CALCULATE ALL STAT CHANGES
+                LoadLumenSlot();
+
                 return;
             }
 

@@ -500,15 +500,34 @@ namespace Group1{
         {
             MaxHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel(Vitality);
             PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(MaxHealth);
-            PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue(CurrentHealth, CurrentHealth);
+
+            if (CurrentHealth <= MaxHealth)
+                PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue(CurrentHealth, CurrentHealth);
+            else
+            {
+                CurrentHealth = MaxHealth;
+                PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue(CurrentHealth, MaxHealth);
+            }
             
             MaxStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(Endurance);
             PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(MaxStamina);
-            PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue(CurrentStamina, CurrentStamina);
+            if (CurrentStamina <= MaxStamina)
+                PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue(CurrentStamina, CurrentStamina);
+            else
+            {
+                CurrentStamina = MaxStamina;
+                PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue(CurrentStamina, MaxStamina);
+            }
 
             MaxMana = playerStatsManager.CalculateManaBasedOnMindLevel(Mind);
             PlayerUIManager.instance.playerUIHudManager.SetMaxManaValue(MaxMana);
-            PlayerUIManager.instance.playerUIHudManager.SetNewManaValue(CurrentMana, CurrentMana);
+            if (CurrentMana <= MaxMana)
+                PlayerUIManager.instance.playerUIHudManager.SetNewManaValue(CurrentMana, CurrentMana);
+            else
+            {
+                CurrentMana = MaxMana;
+                PlayerUIManager.instance.playerUIHudManager.SetNewManaValue(CurrentMana, CurrentMana);
+            }
         }
 
         #endregion
