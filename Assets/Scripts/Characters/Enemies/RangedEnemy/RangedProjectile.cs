@@ -17,7 +17,9 @@ public class EnemyProjectile : MonoBehaviour
         CharacterManager target = other.GetComponent<CharacterManager>();
         if (target != null && target != owner)
         {
-            target.characterEffectsManager.ProcessInstantEffect(WorldCharacterEffectsManager.instance.takeDamageEffect);
+            TakeDamageEffect dmg = Instantiate(WorldCharacterEffectsManager.instance.takeDamageEffect);
+            dmg.magicDamage = damage;
+            target.characterEffectsManager.ProcessInstantEffect(dmg);
         }
 
         Destroy(gameObject);

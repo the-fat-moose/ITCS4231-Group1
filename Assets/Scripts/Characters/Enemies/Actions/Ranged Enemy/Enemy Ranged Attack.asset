@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eb14cc6879037e4cb2248b0089ff856, type: 3}
   m_Name: Enemy Ranged Attack
   m_EditorClassIdentifier: Assembly-CSharp::Group1.AICharacterAttackAction
-  attackAnimation: 
+  attackAnimation: Ranged_Enemy_Attack
   comboAction: {fileID: 0}
   attackWeight: 50
   attackType: 0
-  actionRecoveryTime: 1.5
+  actionRecoveryTime: 3
   minimumAttackAngle: -35
   maximumAttackAngle: 35
-  minimumAttackDistance: 0
-  maximumAttackDistance: 20
+  minimumAttackDistance: 5
+  maximumAttackDistance: 30

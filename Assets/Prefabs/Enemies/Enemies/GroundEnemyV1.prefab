@@ -103,12 +103,14 @@ MonoBehaviour:
   applyRootMotion: 0
   canRotate: 1
   canMove: 1
+  canRun: 1
   isChargingAttack: 0
   isBlocking: 0
   isAttacking: 0
   parried: 0
   isActive: 1
   isInvulnerable: 0
+  upgradedParry: 0
   endurance: 10
   vitality: 10
   mind: 10
@@ -142,6 +144,8 @@ MonoBehaviour:
   canBlock: 1
   canParry: 0
   parryWindow: 0.3
+  baseMagicDamageMultiplier: 1
+  magicDamageMultiplier: 1
   lastAttackAnimationPerformed: 
   currentTarget: {fileID: 0}
   currentAttackType: 0
@@ -246,6 +250,7 @@ MonoBehaviour:
   fallStartYVelocity: -5
   inKnockUpAbility: 0
   isRolling: 0
+  canRoll: 1
 --- !u!114 &7417673789264356850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,10 +275,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e9a4437e309c848b48c7def84ce52d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Group1.CharacterStatsManager
+  maxHealthMultiplier: 1
+  maxManaMultiplier: 1
   staminaRegenerationDelay: 2
   staminaRegenerationAmount: 2
+  staminaRegenMultiplier: 1
   blockingPhysicalAbsorption: 65
   blockingMagicAbsorption: 65
+  manaRegenMultiplier: 1
 --- !u!114 &2976235878826204985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,6 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55059e3ecf8145740a711bb087fc77dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Group1.CharacterEffectsManager
+  activeQuickSlotItemFX: {fileID: 0}
   bloodSplatterVFX: {fileID: 0}
 --- !u!114 &-1579958740763869209
 MonoBehaviour:
