@@ -79,6 +79,7 @@ namespace Group1
                 player.playerEffectsManager.activeQuickSlotItemFX = emptyFlask;
             }
 
+            PlayerUIManager.instance.playerUIHudManager.quickSlotItemCount.text = GetCurrentAmount(player).ToString();
             PlayHealingFX(player);
         }
 

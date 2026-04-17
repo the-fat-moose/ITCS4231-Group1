@@ -15,7 +15,7 @@ namespace Group1 {
         [Header("Quick Slots")]
         [SerializeField] Image weaponQuickSlotIcon;
         [SerializeField] Image quickSlotItemQuickSlotIcon;
-        [SerializeField] TextMeshProUGUI quickSlotItemCount;
+        public TextMeshProUGUI quickSlotItemCount;
 
         [Header("Boss Health Bar")]
         public Transform bossHealthBarParent;
