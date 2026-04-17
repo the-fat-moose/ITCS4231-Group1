@@ -9,10 +9,6 @@ namespace Group1 {
 
         public PlayerManager player;
 
-        [Header("SAVE/LOAD")]
-        [SerializeField] bool saveGame;
-        [SerializeField] bool loadGame;
-
         [Header("World Scene Index")]
         [SerializeField] private int worldSceneIndex = 1;
 
@@ -36,9 +32,6 @@ namespace Group1 {
         public CharacterSaveData characterSlot09;
         public CharacterSaveData characterSlot10;
 
-        [Header("DEBUG DELETE LATER")]
-        [SerializeField] private bool saveAndQuit = false;
-
         private void Awake()
         {
             if (instance == null)
@@ -56,27 +49,6 @@ namespace Group1 {
             DontDestroyOnLoad(gameObject);
 
             LoadAllCharacterSlots();
-        }
-
-        private void Update()
-        {
-            if (saveGame)
-            {
-                saveGame = false;
-                SaveGame();
-            }
-
-            if (loadGame)
-            {
-                loadGame = false;
-                LoadGame();
-            }
-
-            if (saveAndQuit)
-            {
-                saveAndQuit = false;
-                SaveAndQuit();
-            }
         }
 
         public string DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot characterSlot)
