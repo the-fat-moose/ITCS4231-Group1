@@ -3510,7 +3510,7 @@ GameObject:
   - component: {fileID: 6421076338752496251}
   - component: {fileID: 6338518733613213441}
   m_Layer: 0
-  m_Name: Character Menu Manager
+  m_Name: Options Menu Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
