@@ -168,6 +168,8 @@ namespace Group1{
         {
             base.Awake();   //runs CharacterManager Awake
 
+            DontDestroyOnLoad(this);
+
             locomotion = GetComponent<PlayerLocomotionManager>();
             playerStatsManager = GetComponent<PlayerStatsManager>();
             playerAnimatorManager = GetComponent<PlayerAnimatorManager>();

@@ -247,8 +247,6 @@ namespace Group1{
 
         protected virtual void Awake()
         {
-            DontDestroyOnLoad(this);
-
             characterController = GetComponent<CharacterController>();
             animator = GetComponent<Animator>();
             characterEffectsManager = GetComponent<CharacterEffectsManager>();

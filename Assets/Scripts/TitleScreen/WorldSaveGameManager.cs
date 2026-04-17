@@ -36,6 +36,9 @@ namespace Group1 {
         public CharacterSaveData characterSlot09;
         public CharacterSaveData characterSlot10;
 
+        [Header("DEBUG DELETE LATER")]
+        [SerializeField] private bool saveAndQuit = false;
+
         private void Awake()
         {
             if (instance == null)
@@ -67,6 +70,12 @@ namespace Group1 {
             {
                 loadGame = false;
                 LoadGame();
+            }
+
+            if (saveAndQuit)
+            {
+                saveAndQuit = false;
+                SaveAndQuit();
             }
         }
 
@@ -301,6 +310,15 @@ namespace Group1 {
             saveFileDataWriter.DeleteSaveFile();
         }
 
+        public void SaveAndQuit()
+        {
+            SaveGame();
+
+            Destroy(player.gameObject);
+
+            StartCoroutine(LoadTitleScene());
+        }
+
         // LOAD ALL CHARACTER PROFILES ON DEVICE WHEN STARTING GAME
         private void LoadAllCharacterSlots()
         {
@@ -346,6 +364,16 @@ namespace Group1 {
             AsyncOperation loadOperation = SceneManager.LoadSceneAsync(currentCharacterData.sceneIndex);
 
             player.LoadGameDataFromCurrentCharacterData(ref currentCharacterData);
+
+            yield return null;
+        }
+
+        public IEnumerator LoadTitleScene()
+        {
+            PlayerUIManager.instance.playerUILoadingScreenManager.ActivateLoadingScreen();
+
+            // USED FOR DIFFERENT SCENES FOR LEVELS
+            AsyncOperation loadOperation = SceneManager.LoadSceneAsync(0);
 
             yield return null;
         }
