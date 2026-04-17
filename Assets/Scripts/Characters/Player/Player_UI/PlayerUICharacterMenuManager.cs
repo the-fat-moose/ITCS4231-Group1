@@ -31,5 +31,12 @@ namespace Group1
 
             CloseCharacterMenu();
         }
+
+        public void SaveAndQuit()
+        {
+            CloseCharacterMenu();
+
+            WorldSaveGameManager.instance.SaveAndQuit();
+        }
     }
 }
