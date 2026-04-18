@@ -31,6 +31,7 @@ namespace Group1 {
         public int mind;
 
         [Header("Geodes")]
+        public int lastGeodeRestedAt = 0;
         public SerializableDictionary<int, bool> geodes; // THE INT IS THE GEODE I.D, THE BOOL IS THE ACTIVATED STATUS
 
         [Header("Bosses")]

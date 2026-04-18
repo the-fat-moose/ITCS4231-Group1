@@ -137,6 +137,12 @@ namespace Group1
         {
             base.Interact(player);
 
+            if (player.isPerformingAction) return;
+
+            if (player.playerCombatManager.isUsingItem) return;
+
+            WorldSaveGameManager.instance.currentCharacterData.lastGeodeRestedAt = geodeID;
+
             if (!IsActivated)
             {
                 ShatterGeode(player);

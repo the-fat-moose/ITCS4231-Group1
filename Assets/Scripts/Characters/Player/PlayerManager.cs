@@ -476,9 +476,10 @@ namespace Group1{
         {
             PlayerUIManager.instance.playerUIPopUpManager.SendYouDiedPopUp();
 
-            return base.ProcessDeathEvent();
-
             // CHECK FOR PLAYERS THAT ARE ALIVE, IF 0 RESPAWN CHARACTERS
+            WorldGameSessionManager.instance.WaitThenRevivePlayer();
+
+            return base.ProcessDeathEvent();
         }    
 
         public override void ReviveCharacter()
@@ -488,6 +489,7 @@ namespace Group1{
             CurrentHealth = MaxHealth;
             CurrentStamina = MaxStamina;
             CurrentMana = MaxMana;
+            RemainingHealthFlasks = maxHealthFlasks;
 
             isDead = false;
 
