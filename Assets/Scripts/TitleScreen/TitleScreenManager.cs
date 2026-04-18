@@ -19,6 +19,7 @@ namespace Group1 {
         [SerializeField] private Button mainMenuNewGameButton;
         [SerializeField] private Button loadMenuReturnButton;
         [SerializeField] private Button mainMenuLoadGameButton;
+        [SerializeField] private Button mainMenuQuitGameButton;
         [SerializeField] private Button deleteCharacterPopUpConfirmButton;
 
         [Header("Pop Ups")]
@@ -136,6 +137,11 @@ namespace Group1 {
         {
             deleteCharacterSlotPopUp.SetActive(false);
             loadMenuReturnButton.Select();
+        }
+
+        public void QuitGame()
+        {
+            Application.Quit();
         }
     }
 }
