@@ -29,7 +29,7 @@ namespace Group1
             if (!CanIUseThisItem(player)) return;
 
             // HEALTH FLASK COUNT CHECK
-            if (healthFlask && player.remainingHealthFlasks <= 0)
+            if (healthFlask && player.RemainingHealthFlasks <= 0)
             {
                 if (player.playerCombatManager.isUsingItem) return;
 
@@ -69,17 +69,16 @@ namespace Group1
             if (healthFlask)
             {
                 player.CurrentHealth += Mathf.FloorToInt(flaskRestoration * player.flaskRestorationMultiplier);
-                player.remainingHealthFlasks -= 1;
+                player.RemainingHealthFlasks -= 1;
             }
 
-            if (healthFlask && player.remainingHealthFlasks <= 0)
+            if (healthFlask && player.RemainingHealthFlasks <= 0)
             {
                 Destroy(player.playerEffectsManager.activeQuickSlotItemFX);
                 GameObject emptyFlask = Instantiate(emptyFlaskModel, player.playerEquipmentManager.rightHandSlot.transform);
                 player.playerEffectsManager.activeQuickSlotItemFX = emptyFlask;
             }
 
-            PlayerUIManager.instance.playerUIHudManager.quickSlotItemCount.text = GetCurrentAmount(player).ToString();
             PlayHealingFX(player);
         }
 
@@ -94,7 +93,7 @@ namespace Group1
             int currentAmount = 0;
 
             if (healthFlask)
-                currentAmount = player.remainingHealthFlasks;
+                currentAmount = player.RemainingHealthFlasks;
 
             return currentAmount;
         }

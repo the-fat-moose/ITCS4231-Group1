@@ -102,6 +102,8 @@ namespace Group1
             player.CurrentMana = player.MaxMana;
 
             // REFILL FLASKS
+            player.RemainingHealthFlasks = player.maxHealthFlasks;
+
             // RESET MONSTERS/CHARACTER LOCATIONS
             WorldAIManager.instance.RespawnAllCharacters();
         }

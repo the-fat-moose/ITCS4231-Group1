@@ -51,6 +51,8 @@ namespace Group1 {
         public int lumen03;
         public int lumen04;
 
+        public int currentHealthFlasksRemaining = 5;
+
         public CharacterSaveData()
         {
             geodes = new SerializableDictionary<int, bool>();

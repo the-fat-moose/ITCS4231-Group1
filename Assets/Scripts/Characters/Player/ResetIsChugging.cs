@@ -21,7 +21,7 @@ namespace Group1
 
                 if (currentFlask.healthFlask)
                 {
-                    if (player.remainingHealthFlasks <= 0)
+                    if (player.RemainingHealthFlasks <= 0)
                     {
                         player.playerAnimatorManager.PlayTargetActionAnimation(currentFlask.emptyFlaskAnimation, false, false, true, true, false);
                         player.HideWeapons();
@@ -35,7 +35,7 @@ namespace Group1
 
                 if (currentFlask.healthFlask)
                 {
-                    if (player.remainingHealthFlasks <= 0)
+                    if (player.RemainingHealthFlasks <= 0)
                     {
                         Destroy(player.playerEffectsManager.activeQuickSlotItemFX);
                         GameObject emptyFlask = Instantiate(currentFlask.emptyFlaskModel, player.playerEquipmentManager.rightHandSlot.transform);

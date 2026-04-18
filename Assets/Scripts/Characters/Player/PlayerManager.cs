@@ -144,10 +144,25 @@ namespace Group1{
         #endregion
 
         [Header("Flasks")]
-        public int remainingHealthFlasks = 0;
+        public int maxHealthFlasks {get; private set;} = 5;
+        private int remainingHealthFlasks = 0;
         private bool isChugging = false;
 
         public event System.Action<bool, bool> OnIsChuggingChanged;
+        public event System.Action<int, int> OnRemainingHealthFlasksValueChanged;
+
+        public int RemainingHealthFlasks
+        {
+            get => remainingHealthFlasks;
+            set
+            {
+                if (remainingHealthFlasks == value) return;
+
+                int oldValue = remainingHealthFlasks;
+                remainingHealthFlasks = value;
+                OnRemainingHealthFlasksValueChanged?.Invoke(oldValue, remainingHealthFlasks);
+            }
+        }
 
         public bool IsChugging
         {
@@ -214,6 +229,8 @@ namespace Group1{
                 OnCurrentQuickSlotItemChanged += OnCurrentQuickSlotItemIDChange;
                 OnIsChuggingChanged += OnIsChuggingValueChanged;
 
+                OnRemainingHealthFlasksValueChanged += OnRemainingHealthFlasksChanged;
+
                 OnLumenSlot01EquipmentIDChanged += OnLumenSlot01EquipmentChanged;
                 OnLumenSlot02EquipmentIDChanged += OnLumenSlot02EquipmentChanged;
                 OnLumenSlot03EquipmentIDChanged += OnLumenSlot03EquipmentChanged;
@@ -278,6 +295,9 @@ namespace Group1{
             currentCharacterData.rightWeapon01 = playerInventoryManager.weaponsInRightHandSlots[0].itemID; // THIS SHOULD NEVER BE NULL (should always default to unarmed)
             currentCharacterData.rightWeapon02 = playerInventoryManager.weaponsInRightHandSlots[1].itemID; // THIS SHOULD NEVER BE NULL (should always default to unarmed)
             currentCharacterData.rightWeapon03 = playerInventoryManager.weaponsInRightHandSlots[2].itemID; // THIS SHOULD NEVER BE NULL (should always default to unarmed)
+
+            // QUICK SLOT ITEMS
+            currentCharacterData.currentHealthFlasksRemaining = RemainingHealthFlasks;
 
             // LUMENS
             currentCharacterData.lumen01 = LumenSlot01EquipmentID;
@@ -361,6 +381,9 @@ namespace Group1{
 
             playerInventoryManager.rightHandWeaponIndex = currentCharacterData.rightWeaponIndex;
             CurrentRightHandWeaponID = playerInventoryManager.weaponsInRightHandSlots[currentCharacterData.rightWeaponIndex].itemID;
+
+            // QUICK SLOT ITEMS
+            RemainingHealthFlasks = currentCharacterData.currentHealthFlasksRemaining;
 
             // LUMEN EQUIPMENT
             if (WorldItemDatabase.instance.GetLumenItemByID(currentCharacterData.lumen01))
@@ -619,6 +642,15 @@ namespace Group1{
                 playerEquipmentManager.rightHandWeaponModel.SetActive(false);
         }
 
+        // QUICK SLOT ITEMS
+        public void OnRemainingHealthFlasksChanged(int oldValue, int newValue)
+        {
+            if (WorldItemDatabase.instance.GetQuickSlotItemByID(CurrentQuickSlotItemID) != null)
+            {
+                PlayerUIManager.instance.playerUIHudManager.quickSlotItemCount.text = WorldItemDatabase.instance.GetQuickSlotItemByID(CurrentQuickSlotItemID).GetCurrentAmount(this).ToString();
+            }     
+        }
+
         // LUMEN EQUIPMENT
         public void OnLumenSlot01EquipmentChanged(int oldValue, int newValue)
         {
@@ -693,5 +725,5 @@ namespace Group1{
                 CurrentHealth = MaxHealth * newHealthPercentage / 100;
             }
         }
-    }       
+    }
 }
