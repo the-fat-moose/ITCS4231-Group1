@@ -319,9 +319,10 @@ namespace Group1{
             currentCharacterData.lumen04 = LumenSlot04EquipmentID;
 
             // --------------- INVENTORY ---------------
-            currentCharacterData.weaponsInInventory = new List<SerializableWeapon>();
-            currentCharacterData.lumenEquipmentInInventory = new List<int>();
-            currentCharacterData.quickSlotItemsInInventory = new List<SerializableQuickSlotItem>();
+            
+            currentCharacterData.weaponsInInventory.Clear();
+            currentCharacterData.lumenEquipmentInInventory.Clear();
+            currentCharacterData.quickSlotItemsInInventory.Clear();
 
             for (int i = 0; i < playerInventoryManager.itemsInInventory.Count; i++)
             {
