@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Group1 {
@@ -59,12 +60,21 @@ namespace Group1 {
 
         public int currentHealthFlasksRemaining = 5;
 
+        [Header("Inventory")]
+        public List<SerializableWeapon> weaponsInInventory;
+        public List<SerializableQuickSlotItem> quickSlotItemsInInventory;
+        public List<int> lumenEquipmentInInventory;
+
         public CharacterSaveData()
         {
             geodes = new SerializableDictionary<int, bool>();
             bossesAwakened = new SerializableDictionary<int, bool>();
             bossesDefeated = new SerializableDictionary<int, bool>();
             worldItemsLooted = new SerializableDictionary<int, bool>();
+
+            weaponsInInventory = new List<SerializableWeapon>();
+            quickSlotItemsInInventory = new List<SerializableQuickSlotItem>();
+            lumenEquipmentInInventory = new List<int>();
         }
     }
 }

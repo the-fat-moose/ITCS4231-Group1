@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -270,26 +271,33 @@ namespace Group1{
 
         public void SaveGameDataToCurrentCharacterData(ref CharacterSaveData currentCharacterData)
         {
+            // --------------- WORLD SCENE ---------------
             currentCharacterData.sceneIndex = SceneManager.GetActiveScene().buildIndex;
             if (currentCharacterData.sceneIndex <= 0)
             {
                 currentCharacterData.sceneIndex = 1; // DEFAULT FIRST PLAYABLE SCENE
             }
             
+            // --------------- NAME ---------------
             currentCharacterData.characterName = characterName.ToString();
+
+            // --------------- POSITION ---------------
             currentCharacterData.xPosition = transform.position.x;
             currentCharacterData.yPosition = transform.position.y;
             currentCharacterData.zPosition = transform.position.z;
 
+            // --------------- RESOURCES ---------------
             currentCharacterData.currentStamina = CurrentStamina;
             currentCharacterData.currentHealth = CurrentHealth;
             currentCharacterData.currentMana = CurrentMana;
 
+            // --------------- STATS ---------------
             currentCharacterData.endurance = Endurance;
             currentCharacterData.vitality = Vitality;
             currentCharacterData.mind = Mind;
 
-            // EQUIPMENT
+            // --------------- EQUIPMENT ---------------
+            // WEAPONS
             currentCharacterData.rightWeaponIndex = playerInventoryManager.rightHandWeaponIndex;
 
             currentCharacterData.rightWeapon01 = WorldSaveGameManager.instance.GetSerializableWeaponFromWeaponItem(playerInventoryManager.weaponsInRightHandSlots[0]); // THIS SHOULD NEVER BE NULL (should always default to unarmed)
@@ -309,6 +317,27 @@ namespace Group1{
             currentCharacterData.lumen02 = LumenSlot02EquipmentID;
             currentCharacterData.lumen03 = LumenSlot03EquipmentID;
             currentCharacterData.lumen04 = LumenSlot04EquipmentID;
+
+            // --------------- INVENTORY ---------------
+            currentCharacterData.weaponsInInventory = new List<SerializableWeapon>();
+            currentCharacterData.lumenEquipmentInInventory = new List<int>();
+            currentCharacterData.quickSlotItemsInInventory = new List<SerializableQuickSlotItem>();
+
+            for (int i = 0; i < playerInventoryManager.itemsInInventory.Count; i++)
+            {
+                if (playerInventoryManager.itemsInInventory[i] == null)
+                    continue;
+                
+                WeaponItem weaponInInventory = playerInventoryManager.itemsInInventory[i] as WeaponItem;
+                LumenItem lumenEquipmentInInventory = playerInventoryManager.itemsInInventory[i] as LumenItem;
+                QuickSlotItem quickSlotItemInInventory = playerInventoryManager.itemsInInventory[i] as QuickSlotItem;
+
+                if (weaponInInventory != null) currentCharacterData.weaponsInInventory.Add(WorldSaveGameManager.instance.GetSerializableWeaponFromWeaponItem(weaponInInventory));
+
+                if (lumenEquipmentInInventory != null) currentCharacterData.lumenEquipmentInInventory.Add(lumenEquipmentInInventory.itemID);
+
+                if (quickSlotItemInInventory != null) currentCharacterData.quickSlotItemsInInventory.Add(WorldSaveGameManager.instance.GetSerializableQuickSlotItemFromQuickSlotItem(quickSlotItemInInventory));
+            }
         }
 
         public void LoadGameDataFromCurrentCharacterData(ref CharacterSaveData currentCharacterData)
@@ -419,7 +448,29 @@ namespace Group1{
                 playerInventoryManager.lumenSlot4Item = null;
             }
 
-            // PLAYER ACTIVATION
+            // ------------ INVENTORY ------------
+            // WEAPONS
+            for (int i = 0; i < currentCharacterData.weaponsInInventory.Count; i++)
+            {
+                WeaponItem weapon = currentCharacterData.weaponsInInventory[i].GetWeapon();
+                playerInventoryManager.AddItemToInventory(weapon);
+            }
+
+            // LUMENS
+            for (int i = 0; i < currentCharacterData.lumenEquipmentInInventory.Count; i++)
+            {
+                LumenItem equipment = WorldItemDatabase.instance.GetLumenItemByID(currentCharacterData.lumenEquipmentInInventory[i]);
+                playerInventoryManager.AddItemToInventory(equipment);
+            }
+
+            // QUICK SLOT ITEMS
+            for (int i = 0; i < currentCharacterData.quickSlotItemsInInventory.Count; i++)
+            {
+                QuickSlotItem item = currentCharacterData.quickSlotItemsInInventory[i].GetQuickSlotItem();
+                playerInventoryManager.AddItemToInventory(item);
+            }
+
+            // ------------ PLAYER ACTIVATION ------------
             canMove = true;
             canRun = true;
             canRotate = true;
@@ -595,7 +646,7 @@ namespace Group1{
                 playerInventoryManager.currentQuickSlotItem = null;
             }                
 
-            PlayerUIManager.instance.playerUIHudManager.SetQuickSlotItemQuickSlotIcon(newID);
+            PlayerUIManager.instance.playerUIHudManager.SetQuickSlotItemQuickSlotIcon(playerInventoryManager.currentQuickSlotItem);
         }
 
         public void OnIsChuggingValueChanged(bool oldStatus, bool newStatus)

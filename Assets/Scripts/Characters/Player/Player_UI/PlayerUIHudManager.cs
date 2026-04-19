@@ -98,13 +98,11 @@ namespace Group1 {
             weaponQuickSlotIcon.enabled = true;
         }
 
-        public void SetQuickSlotItemQuickSlotIcon(int quickSlotItemID)
+        public void SetQuickSlotItemQuickSlotIcon(QuickSlotItem quickSlotItem)
         {
             PlayerManager player = FindFirstObjectByType<PlayerManager>();
 
-            QuickSlotItem quickSlotItem = WorldItemDatabase.instance.GetQuickSlotItemByID(quickSlotItemID);
-
-            if (WorldItemDatabase.instance.GetQuickSlotItemByID(quickSlotItemID) == null)
+            if (quickSlotItem == null)
             {
                 Debug.Log("ITEM IS NULL");
                 quickSlotItemQuickSlotIcon.enabled = false;
@@ -122,7 +120,6 @@ namespace Group1 {
                 return;
             }
 
-            // TO DO, UPDATE QUANTITY LEFT, SHOW IN UI
             // FADE OUT ICON IF NONE REMAIN
 
             quickSlotItemQuickSlotIcon.sprite = quickSlotItem.itemIcon;

@@ -72,6 +72,8 @@ namespace Group1
                 player.RemainingHealthFlasks -= 1;
             }
 
+            PlayerUIManager.instance.playerUIHudManager.SetQuickSlotItemQuickSlotIcon(player.playerInventoryManager.currentQuickSlotItem);
+
             if (healthFlask && player.RemainingHealthFlasks <= 0)
             {
                 Destroy(player.playerEffectsManager.activeQuickSlotItemFX);
