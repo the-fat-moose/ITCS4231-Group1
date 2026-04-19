@@ -10,11 +10,6 @@ namespace Group1{
         [Header("Generic Save Data Variables")]
         public FixedString64Bytes characterName = "Character";
 
-        [Header("DEBUG MENU")]
-        [SerializeField] bool respawnCharacter = false;
-        [SerializeField] bool setNewHealth = false;
-        [SerializeField] [Range(0, 100)] int newHealthPercentage = 0;
-
         [HideInInspector] public PlayerAnimatorManager playerAnimatorManager;
         [HideInInspector] public PlayerLocomotionManager locomotion;
         [HideInInspector] public PlayerStatsManager playerStatsManager;
@@ -248,14 +243,6 @@ namespace Group1{
 
             // REGEN STAMINA
             playerStatsManager.RegenerateStamina();
-
-            if (setNewHealth)
-            {
-                setNewHealth = false;
-                CurrentHealth = newHealthPercentage * MaxHealth;
-            }
-
-            DebugMenu();
         }
 
         protected override void LateUpdate()
@@ -756,21 +743,5 @@ namespace Group1{
         }
 
         #endregion
-
-        // DEBUG DELETE LATER
-        private void DebugMenu()
-        {
-            if (respawnCharacter)
-            {
-                respawnCharacter = false;
-                ReviveCharacter();
-            }
-
-            if (setNewHealth)
-            {
-                setNewHealth = false;
-                CurrentHealth = MaxHealth * newHealthPercentage / 100;
-            }
-        }
     }
 }
