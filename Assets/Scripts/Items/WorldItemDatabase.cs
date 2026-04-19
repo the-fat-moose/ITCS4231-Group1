@@ -86,5 +86,18 @@ namespace Group1 {
 
             return weapon;
         }
+    
+        public QuickSlotItem GetQuickSlotItemFromSerializedData(SerializableQuickSlotItem serializableQuickSlotItem)
+        {
+            QuickSlotItem item = null;
+            
+            if (GetQuickSlotItemByID(serializableQuickSlotItem.itemID))
+            {
+                item = Instantiate(GetQuickSlotItemByID(serializableQuickSlotItem.itemID));
+                item.itemAmount = serializableQuickSlotItem.itemAmount;
+            }
+
+            return item;
+        }
     }
 }

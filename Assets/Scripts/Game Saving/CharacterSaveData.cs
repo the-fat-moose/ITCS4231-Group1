@@ -47,6 +47,11 @@ namespace Group1 {
         public SerializableWeapon rightWeapon02;
         public SerializableWeapon rightWeapon03;
 
+        public int quickSlotItemIndex;
+        public SerializableQuickSlotItem quickSlotItem01;
+        public SerializableQuickSlotItem quickSlotItem02;
+        public SerializableQuickSlotItem quickSlotItem03;
+
         public int lumen01;
         public int lumen02;
         public int lumen03;

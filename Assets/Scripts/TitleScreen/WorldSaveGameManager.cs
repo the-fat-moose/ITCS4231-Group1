@@ -365,5 +365,22 @@ namespace Group1 {
 
             return serializableWeapon;
         }
+
+        public SerializableQuickSlotItem GetSerializableQuickSlotItemFromQuickSlotItem(QuickSlotItem quickSlotItem)
+        {
+            SerializableQuickSlotItem serializableQuickSlotItem = new SerializableQuickSlotItem();
+
+            if (quickSlotItem != null)
+            {
+                serializableQuickSlotItem.itemID = quickSlotItem.itemID;
+                serializableQuickSlotItem.itemAmount = quickSlotItem.itemAmount;
+            }
+            else
+            {
+                serializableQuickSlotItem.itemID = -1;
+            }
+
+            return serializableQuickSlotItem;
+        }
     }
 }

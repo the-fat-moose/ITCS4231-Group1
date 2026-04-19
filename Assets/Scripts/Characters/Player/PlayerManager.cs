@@ -299,6 +299,11 @@ namespace Group1{
             // QUICK SLOT ITEMS
             currentCharacterData.currentHealthFlasksRemaining = RemainingHealthFlasks;
 
+            currentCharacterData.quickSlotItemIndex = playerInventoryManager.quickSlotItemIndex;
+            currentCharacterData.quickSlotItem01 = WorldSaveGameManager.instance.GetSerializableQuickSlotItemFromQuickSlotItem(playerInventoryManager.quickSlotItemsInQuickSlots[0]);
+            currentCharacterData.quickSlotItem02 = WorldSaveGameManager.instance.GetSerializableQuickSlotItemFromQuickSlotItem(playerInventoryManager.quickSlotItemsInQuickSlots[1]);
+            currentCharacterData.quickSlotItem03 = WorldSaveGameManager.instance.GetSerializableQuickSlotItemFromQuickSlotItem(playerInventoryManager.quickSlotItemsInQuickSlots[2]);
+
             // LUMENS
             currentCharacterData.lumen01 = LumenSlot01EquipmentID;
             currentCharacterData.lumen02 = LumenSlot02EquipmentID;
@@ -366,6 +371,12 @@ namespace Group1{
             
             // QUICK SLOT ITEMS
             RemainingHealthFlasks = currentCharacterData.currentHealthFlasksRemaining;
+
+            playerInventoryManager.quickSlotItemIndex = currentCharacterData.quickSlotItemIndex;
+            playerInventoryManager.quickSlotItemsInQuickSlots[0] = currentCharacterData.quickSlotItem01.GetQuickSlotItem();
+            playerInventoryManager.quickSlotItemsInQuickSlots[1] = currentCharacterData.quickSlotItem02.GetQuickSlotItem();
+            playerInventoryManager.quickSlotItemsInQuickSlots[2] = currentCharacterData.quickSlotItem03.GetQuickSlotItem();
+            playerEquipmentManager.LoadQuickSlotEquipment(playerInventoryManager.quickSlotItemsInQuickSlots[playerInventoryManager.quickSlotItemIndex]); // REFRESHES THE HUD
 
             // LUMEN EQUIPMENT
             if (WorldItemDatabase.instance.GetLumenItemByID(currentCharacterData.lumen01))

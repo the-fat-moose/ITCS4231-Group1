@@ -13,6 +13,7 @@ namespace Group1
         // NOT ALL QUICK SLOT ITEMS ARE CONSUMABLE
         [Header("Consumable")]
         public bool isConsumable = true;
+        public int itemAmount = 1;
 
         public virtual void AttemptToUseItem(PlayerManager player)
         {

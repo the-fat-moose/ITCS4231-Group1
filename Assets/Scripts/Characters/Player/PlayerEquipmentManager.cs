@@ -118,6 +118,20 @@ namespace Group1 {
             }
         }
 
+        public void LoadQuickSlotEquipment(QuickSlotItem equipment)
+        {
+            if (equipment == null)
+            {
+                player.CurrentQuickSlotItemID = -1;
+                player.playerInventoryManager.currentQuickSlotItem = null;
+
+                return;
+            }
+
+            player.playerInventoryManager.currentQuickSlotItem = equipment;
+            player.CurrentQuickSlotItemID = equipment.itemID;
+        }
+
         // EQUIPMENT
         public void LoadLumenSlot1Equipment(LumenItem equipment)
         {
