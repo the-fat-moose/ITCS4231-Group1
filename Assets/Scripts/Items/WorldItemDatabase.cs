@@ -57,6 +57,8 @@ namespace Group1 {
             }
         }
     
+        // ITEM DATA BASE
+
         public WeaponItem GetWeaponByID(int ID)
         {
             return weapons.FirstOrDefault(weapon => weapon.itemID == ID);
@@ -70,6 +72,19 @@ namespace Group1 {
         public LumenItem GetLumenItemByID(int ID)
         {
             return lumenItems.FirstOrDefault(item => item.itemID == ID);
+        }
+    
+        // ITEM SERIALIZATION
+
+        public WeaponItem GetWeaponFromSerializedData(SerializableWeapon serializableWeapon)
+        {
+            WeaponItem weapon = null;
+            
+            if (GetWeaponByID(serializableWeapon.itemID)) weapon = Instantiate(GetWeaponByID(serializableWeapon.itemID));
+
+            if (weapon == null) return Instantiate(unarmedWeapon);
+
+            return weapon;
         }
     }
 }

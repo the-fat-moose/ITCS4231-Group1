@@ -43,9 +43,9 @@ namespace Group1 {
 
         [Header("Equipment")]
         public int rightWeaponIndex;
-        public int rightWeapon01;
-        public int rightWeapon02;
-        public int rightWeapon03;
+        public SerializableWeapon rightWeapon01;
+        public SerializableWeapon rightWeapon02;
+        public SerializableWeapon rightWeapon03;
 
         public int lumen01;
         public int lumen02;

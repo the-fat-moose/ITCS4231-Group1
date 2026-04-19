@@ -354,5 +354,16 @@ namespace Group1 {
         {
             return worldSceneIndex;
         }
+    
+        // SERIALIZABLE DATA
+
+        public SerializableWeapon GetSerializableWeaponFromWeaponItem(WeaponItem weapon)
+        {
+            SerializableWeapon serializableWeapon = new SerializableWeapon();
+
+            serializableWeapon.itemID = weapon.itemID;
+
+            return serializableWeapon;
+        }
     }
 }

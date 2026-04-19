@@ -358,13 +358,13 @@ namespace Group1 {
                 {
                     player.playerInventoryManager.rightHandWeaponIndex = -1;
                     selectedWeapon = WorldItemDatabase.instance.unarmedWeapon;
-
+                    player.playerInventoryManager.currentRightHandWeapon = selectedWeapon;
                     player.CurrentRightHandWeaponID = selectedWeapon.itemID;
                 }
                 else
                 {
                     player.playerInventoryManager.rightHandWeaponIndex = firstWeaponPosition;
-
+                    player.playerInventoryManager.currentRightHandWeapon = selectedWeapon;
                     player.CurrentRightHandWeaponID = firstWeapon.itemID;
                 }
 
@@ -377,7 +377,8 @@ namespace Group1 {
                 if (player.playerInventoryManager.weaponsInRightHandSlots[player.playerInventoryManager.rightHandWeaponIndex].itemID != WorldItemDatabase.instance.unarmedWeapon.itemID)
                 {
                     selectedWeapon = player.playerInventoryManager.weaponsInRightHandSlots[player.playerInventoryManager.rightHandWeaponIndex];
-                    player.CurrentRightHandWeaponID = player.playerInventoryManager.weaponsInRightHandSlots[player.playerInventoryManager.rightHandWeaponIndex].itemID;
+                    player.playerInventoryManager.currentRightHandWeapon = selectedWeapon;
+                    player.CurrentRightHandWeaponID = selectedWeapon.itemID;
                     return;
                 }
             }

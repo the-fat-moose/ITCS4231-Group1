@@ -292,9 +292,9 @@ namespace Group1{
             // EQUIPMENT
             currentCharacterData.rightWeaponIndex = playerInventoryManager.rightHandWeaponIndex;
 
-            currentCharacterData.rightWeapon01 = playerInventoryManager.weaponsInRightHandSlots[0].itemID; // THIS SHOULD NEVER BE NULL (should always default to unarmed)
-            currentCharacterData.rightWeapon02 = playerInventoryManager.weaponsInRightHandSlots[1].itemID; // THIS SHOULD NEVER BE NULL (should always default to unarmed)
-            currentCharacterData.rightWeapon03 = playerInventoryManager.weaponsInRightHandSlots[2].itemID; // THIS SHOULD NEVER BE NULL (should always default to unarmed)
+            currentCharacterData.rightWeapon01 = WorldSaveGameManager.instance.GetSerializableWeaponFromWeaponItem(playerInventoryManager.weaponsInRightHandSlots[0]); // THIS SHOULD NEVER BE NULL (should always default to unarmed)
+            currentCharacterData.rightWeapon02 = WorldSaveGameManager.instance.GetSerializableWeaponFromWeaponItem(playerInventoryManager.weaponsInRightHandSlots[1]); // THIS SHOULD NEVER BE NULL (should always default to unarmed)
+            currentCharacterData.rightWeapon03 = WorldSaveGameManager.instance.GetSerializableWeaponFromWeaponItem(playerInventoryManager.weaponsInRightHandSlots[2]); // THIS SHOULD NEVER BE NULL (should always default to unarmed)
 
             // QUICK SLOT ITEMS
             currentCharacterData.currentHealthFlasksRemaining = RemainingHealthFlasks;
@@ -349,39 +349,21 @@ namespace Group1{
 
             // ------------ EQUIPMENT ------------
             // WEAPON EQUIPMENT 
-            if (WorldItemDatabase.instance.GetWeaponByID(currentCharacterData.rightWeapon01))
-            {
-                WeaponItem rightWeapon01 = Instantiate(WorldItemDatabase.instance.GetWeaponByID(currentCharacterData.rightWeapon01));
-                playerInventoryManager.weaponsInRightHandSlots[0] = rightWeapon01;
-            }
-            else
-            {
-                playerInventoryManager.weaponsInRightHandSlots[0] = null;
-            }
-
-            if (WorldItemDatabase.instance.GetWeaponByID(currentCharacterData.rightWeapon02))
-            {
-                WeaponItem rightWeapon02 = Instantiate(WorldItemDatabase.instance.GetWeaponByID(currentCharacterData.rightWeapon02));
-                playerInventoryManager.weaponsInRightHandSlots[1] = rightWeapon02;
-            }
-            else
-            {
-                playerInventoryManager.weaponsInRightHandSlots[1] = null;
-            }
-
-            if (WorldItemDatabase.instance.GetWeaponByID(currentCharacterData.rightWeapon03))
-            {
-                WeaponItem rightWeapon03 = Instantiate(WorldItemDatabase.instance.GetWeaponByID(currentCharacterData.rightWeapon03));
-                playerInventoryManager.weaponsInRightHandSlots[2] = rightWeapon03;
-            }
-            else
-            {
-                playerInventoryManager.weaponsInRightHandSlots[2] = null;
-            }
-
             playerInventoryManager.rightHandWeaponIndex = currentCharacterData.rightWeaponIndex;
-            CurrentRightHandWeaponID = playerInventoryManager.weaponsInRightHandSlots[currentCharacterData.rightWeaponIndex].itemID;
+            playerInventoryManager.weaponsInRightHandSlots[0] = currentCharacterData.rightWeapon01.GetWeapon();
+            playerInventoryManager.weaponsInRightHandSlots[1] = currentCharacterData.rightWeapon02.GetWeapon();
+            playerInventoryManager.weaponsInRightHandSlots[2] = currentCharacterData.rightWeapon03.GetWeapon();
 
+            if (currentCharacterData.rightWeaponIndex >= 0) 
+            {
+                playerInventoryManager.currentRightHandWeapon = playerInventoryManager.weaponsInRightHandSlots[currentCharacterData.rightWeaponIndex];
+                CurrentRightHandWeaponID = playerInventoryManager.weaponsInRightHandSlots[currentCharacterData.rightWeaponIndex].itemID;
+            }
+            else
+            {
+                CurrentRightHandWeaponID = WorldItemDatabase.instance.unarmedWeapon.itemID;
+            }
+            
             // QUICK SLOT ITEMS
             RemainingHealthFlasks = currentCharacterData.currentHealthFlasksRemaining;
 
