@@ -29,6 +29,11 @@ namespace Group1
         [Header("VFX")]
         [SerializeField] GameObject activatedParticles;
 
+        [Header("Model Effects")]
+        [SerializeField] GameObject model;
+        [SerializeField] Material unactivatedGeodeMaterial;
+        [SerializeField] Material activatedGeodeMaterial;
+
         [Header("Interaction Text")]
         [SerializeField] private string unactivatedInteractionText = "Discover Geode";
         [SerializeField] private string activatedInteractionText = "Rest";
@@ -55,10 +60,12 @@ namespace Group1
             if (IsActivated)
             {
                 interactableText = activatedInteractionText;
+                model.GetComponent<Renderer>().material = activatedGeodeMaterial;
             }
             else
             {
                 interactableText = unactivatedInteractionText;
+                model.GetComponent<Renderer>().material = unactivatedGeodeMaterial;
             }
 
             WorldObjectManager.instance.AddGeodeToList(this);
@@ -121,6 +128,7 @@ namespace Group1
             {
                 // PLAY SOME FX HERE TO ENABLE A LIGHT OR SOMETHING TO INDICATE THE CHECKPOINT IS ON
                 activatedParticles.SetActive(true);
+                model.GetComponent<Renderer>().material = activatedGeodeMaterial;
 
                 if (IsActivated)
                 {
