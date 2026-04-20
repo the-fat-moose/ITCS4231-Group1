@@ -19,6 +19,8 @@ namespace Group1{
         [Header("Flags")]
         public bool isRolling = false;
         public bool canRoll = true;
+        public bool isRidingLift = false;
+
         protected virtual void Awake()
         {
             character = GetComponent<CharacterManager>();
