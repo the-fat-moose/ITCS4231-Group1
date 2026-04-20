@@ -15,7 +15,20 @@ namespace Group1
         [Header("Top/Bottom Call")]
         [SerializeField] private bool isTopDestination = true;
 
+        [Header("Model Effects")]
+        public GameObject model;
+        [SerializeField] private Material unactivatedMaterial;
+        public Material accessibleMaterial;
+        public Material inaccessibleMaterial;
+
         private Coroutine waitForElevatorTravelCoroutine;
+
+        protected override void Start()
+        {
+            base.Start();
+
+            model.GetComponent<Renderer>().material = unactivatedMaterial;
+        }
 
         public override void OnTriggerEnter(Collider other)
         {

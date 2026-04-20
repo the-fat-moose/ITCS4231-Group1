@@ -244,6 +244,10 @@ MonoBehaviour:
   elevator: {fileID: 4471863791481215284}
   playersWithinInteractionTrigger: []
   isTopDestination: 0
+  model: {fileID: 3267646084201740108}
+  unactivatedMaterial: {fileID: 2100000, guid: 83cd46798e934ac4eb6abd6684cd3e38, type: 2}
+  accessibleMaterial: {fileID: 2100000, guid: 62fbda8410a2c52499969fa59d671a79, type: 2}
+  inaccessibleMaterial: {fileID: 2100000, guid: f59462be5cb93c5489dc9951b8f52260, type: 2}
 --- !u!135 &3609253592900123626
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -490,6 +494,10 @@ MonoBehaviour:
   elevator: {fileID: 4471863791481215284}
   playersWithinInteractionTrigger: []
   isTopDestination: 1
+  model: {fileID: 5941668992672891436}
+  unactivatedMaterial: {fileID: 2100000, guid: 83cd46798e934ac4eb6abd6684cd3e38, type: 2}
+  accessibleMaterial: {fileID: 2100000, guid: 62fbda8410a2c52499969fa59d671a79, type: 2}
+  inaccessibleMaterial: {fileID: 2100000, guid: f59462be5cb93c5489dc9951b8f52260, type: 2}
 --- !u!135 &1461375654883344636
 SphereCollider:
   m_ObjectHideFlags: 0

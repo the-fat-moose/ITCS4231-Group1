@@ -96,6 +96,10 @@ namespace Group1
             destinationLowRecall.RemoveInteractionFromPlayers();
             destinationHighRecall.RemoveInteractionFromPlayers();
 
+            // CHANGE THE MATERIAL OF THE MODELS TO INACCESSIBLE
+            destinationLowRecall.model.GetComponent<Renderer>().material = destinationLowRecall.inaccessibleMaterial;
+            destinationHighRecall.model.GetComponent<Renderer>().material = destinationHighRecall.inaccessibleMaterial;
+
             // MOVE THE ELEVATOR
             while (transform.localPosition != destination)
             {
@@ -128,6 +132,18 @@ namespace Group1
             // ADD THE RECALL INTERACTION TO PLAYERS
             destinationLowRecall.AddInteractionToPlayers();
             destinationHighRecall.AddInteractionToPlayers();
+
+            // CHANGE THE MATERIAL OF THE MODELS TO ACCESSIBLE
+            if (destination == destinationHigh)
+            {
+                destinationLowRecall.model.GetComponent<Renderer>().material = destinationLowRecall.accessibleMaterial;
+                destinationHighRecall.model.GetComponent<Renderer>().material = destinationHighRecall.inaccessibleMaterial;
+            }
+            else
+            {
+                destinationLowRecall.model.GetComponent<Renderer>().material = destinationLowRecall.inaccessibleMaterial;
+                destinationHighRecall.model.GetComponent<Renderer>().material = destinationHighRecall.accessibleMaterial;
+            }
 
             // STOP THE MOVEMENT SFX
             elevatorAudioSource.Stop();
