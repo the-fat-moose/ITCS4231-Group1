@@ -17,7 +17,6 @@ namespace Group1
 
         [Header("Model Effects")]
         public GameObject model;
-        [SerializeField] private Material unactivatedMaterial;
         public Material accessibleMaterial;
         public Material inaccessibleMaterial;
 
@@ -27,7 +26,18 @@ namespace Group1
         {
             base.Start();
 
-            model.GetComponent<Renderer>().material = unactivatedMaterial;
+            if (isTopDestination && elevator.transform.localPosition == elevator.destinationLow) // TOP LEVER SHOULD BE ACTIVATED, BOTTOM LEVER SHOULD BE DEACTIVATED
+            {
+                model.GetComponent<Renderer>().material = accessibleMaterial;
+            }
+            else if (!isTopDestination && elevator.transform.localPosition == elevator.destinationHigh)
+            {
+                model.GetComponent<Renderer>().material = accessibleMaterial; // TOP LEVER SHOULD BE DEACTIVATED, BOTTOM LEVER SHOULD BE ACTIVATED
+            }
+            else
+            {
+                model.GetComponent<Renderer>().material = inaccessibleMaterial;
+            }
         }
 
         public override void OnTriggerEnter(Collider other)

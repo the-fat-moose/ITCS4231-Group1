@@ -37,6 +37,16 @@ namespace Group1
             elevatorAudioSource = GetComponent<AudioSource>();
         }
 
+        protected override void Start()
+        {
+            base.Start();
+
+            position = transform.localPosition;
+
+            if (elevatorIsRising) ActivateElevator(true);
+            if (elevatorIsDescending) ActivateElevator(false);
+        }
+
         public override void Interact(PlayerManager player)
         {
             base.Interact(player);
@@ -49,16 +59,6 @@ namespace Group1
             if (elevatorIsRising || elevatorIsDescending) return;
 
             base.OnTriggerEnter(other);
-        }
-
-        protected override void Start()
-        {
-            base.Start();
-
-            position = transform.localPosition;
-
-            if (elevatorIsRising) ActivateElevator(true);
-            if (elevatorIsDescending) ActivateElevator(false);
         }
 
         private void ActivateElevator(bool isRising)
