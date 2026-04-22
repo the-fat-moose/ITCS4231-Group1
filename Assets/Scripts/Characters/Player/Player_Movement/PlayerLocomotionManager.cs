@@ -10,7 +10,8 @@ namespace Group1{
         [HideInInspector] public float moveAmount;
 
         [Header("Movement Settings")]
-        private Vector3 moveDir;
+        [HideInInspector] public Vector3 moveDir;
+        [HideInInspector] public Vector3 worldMoveDir;
         private Vector3 targetRotation;
         [SerializeField] float walkSpeed = 2f;
         [SerializeField] float runSpeed = 5f;
@@ -70,6 +71,11 @@ namespace Group1{
             moveDir += PlayerCamera.cam.cameraObject.transform.right * horizontalMovement;
             moveDir.Normalize();
             moveDir.y = 0;
+
+            //FOR PROJECTILE PERDICTIONS DELETE IF THIS BREAKS ANYTHING
+            worldMoveDir = (transform.forward * verticalMovement) + (transform.right * horizontalMovement);
+            worldMoveDir.Normalize();
+
 
             if (player.isSprinting)
             {

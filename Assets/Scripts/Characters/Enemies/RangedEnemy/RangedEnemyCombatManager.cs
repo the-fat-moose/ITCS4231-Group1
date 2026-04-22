@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Group1
@@ -21,19 +22,42 @@ namespace Group1
             if (projectilePrefab == null || projectileSpawnPoint == null) return;
 
             //Force enemy to face the player before firing
-            // Rotate enemy toward the player before firing
+            //Rotate enemy toward the player before firing
             Vector3 lookDir = currentTarget.characterCombatManager.lockOnTransform.position - transform.position;
 
             lookDir.y = 0;
             transform.rotation = Quaternion.LookRotation(lookDir);
 
+            float playerSpeed = 0;
+            Vector3 playerMoveDir = currentTarget.transform.forward;
 
-
+            //Check if current target is player
+            if (currentTarget.gameObject.TryGetComponent(out PlayerLocomotionManager playerLocomotion))
+            {
+                Debug.LogError("current target is player");
+                playerSpeed = playerLocomotion.moveAmount * 4f;
+                playerMoveDir = playerLocomotion.worldMoveDir;
+            }
+            
             GameObject projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
 
+            //predict character movement
             Transform aimPoint = currentTarget.characterCombatManager.lockOnTransform;
+            Vector3 playerPos = aimPoint.position;
 
-            Vector3 direction = (aimPoint.position - projectileSpawnPoint.position).normalized;
+            //Estimate player speed
+            Vector3 playerVelocity = playerMoveDir * playerSpeed;
+
+            //Distance to target
+            float distance = Vector3.Distance(projectileSpawnPoint.position, playerPos);
+
+            //Time for projectile to reach the target
+            float travelTime = distance / projectileSpeed;
+
+            //Predict future position
+            Vector3 predictedPos = playerPos + playerVelocity * travelTime;
+
+            Vector3 direction = (predictedPos  - projectile.transform.position).normalized;
             projectile.transform.rotation = Quaternion.LookRotation(direction);
 
 

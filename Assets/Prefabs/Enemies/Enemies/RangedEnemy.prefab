@@ -1114,7 +1114,7 @@ Transform:
   m_GameObject: {fileID: 3034208930027870409}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.53, y: 1.38, z: 2.53}
+  m_LocalPosition: {x: 0.056, y: 0.37, z: 0.912}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2728,6 +2728,7 @@ MonoBehaviour:
   inKnockUpAbility: 0
   isRolling: 0
   canRoll: 1
+  isRidingLift: 0
 --- !u!114 &5758819413464783097
 MonoBehaviour:
   m_ObjectHideFlags: 0

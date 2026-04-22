@@ -1,27 +1,30 @@
 using Group1;
 using UnityEngine;
 
-public class EnemyProjectile : MonoBehaviour
+namespace Group1
 {
-    public int damage;
-    public float speed;
-    public AiCharacterCombatManager owner;
-
-    private void Update()
+    public class EnemyProjectile : MonoBehaviour
     {
-        transform.position += transform.forward * speed * Time.deltaTime;
-    }
+        public int damage;
+        public float speed;
+        public AiCharacterCombatManager owner;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        CharacterManager target = other.GetComponent<CharacterManager>();
-        if (target != null && target != owner)
+        private void Update()
         {
-            TakeDamageEffect dmg = Instantiate(WorldCharacterEffectsManager.instance.takeDamageEffect);
-            dmg.magicDamage = damage;
-            target.characterEffectsManager.ProcessInstantEffect(dmg);
+            transform.position += transform.forward * speed * Time.deltaTime;
         }
 
-        Destroy(gameObject);
+        private void OnTriggerEnter(Collider other)
+        {
+            CharacterManager target = other.GetComponent<CharacterManager>();
+            if (target != null && target != owner)
+            {
+                TakeDamageEffect dmg = Instantiate(WorldCharacterEffectsManager.instance.takeDamageEffect);
+                dmg.magicDamage = damage;
+                target.characterEffectsManager.ProcessInstantEffect(dmg);
+
+                Destroy(gameObject);
+            }
+        }
     }
 }

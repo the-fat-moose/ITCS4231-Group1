@@ -9791,7 +9791,7 @@ Transform:
   m_GameObject: {fileID: 5822053454485897159}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 4.62572, y: 0, z: 1.25282}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14835,7 +14835,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 0.7311321, g: 0.9361015, b: 1, a: 1}
-  m_Intensity: 7.418016
+  m_Intensity: 0
   m_Range: 8
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -14928,6 +14928,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2164703781727255078}
   - component: {fileID: 764517405749900911}
+  - component: {fileID: 6966866102775092694}
   m_Layer: 0
   m_Name: enemyProjectile
   m_TagString: Untagged
@@ -14966,3 +14967,26 @@ MonoBehaviour:
   damage: 20
   speed: 5
   owner: {fileID: 0}
+--- !u!136 &6966866102775092694
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9125213570345769189}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.92
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}

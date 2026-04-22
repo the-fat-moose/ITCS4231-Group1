@@ -1131,7 +1131,7 @@ PrefabInstance:
     - target: {fileID: 7241112891199862705, guid: 9be25103fc872354fad9d94ce8f55c11, type: 3}
       propertyPath: characterGameObject
       value: 
-      objectReference: {fileID: 1453775332707212851, guid: 22c18d0506fc23948a117056285b8db6, type: 3}
+      objectReference: {fileID: 7880423593256122770, guid: 9a54c56e116deb1498fa36beec1295aa, type: 3}
     - target: {fileID: 7524211465250460521, guid: 9be25103fc872354fad9d94ce8f55c11, type: 3}
       propertyPath: m_Name
       value: AISpawner
