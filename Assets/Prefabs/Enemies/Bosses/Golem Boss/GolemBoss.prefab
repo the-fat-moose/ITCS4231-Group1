@@ -1046,6 +1046,37 @@ Transform:
   - {fileID: 7659616328831452152}
   m_Father: {fileID: 7294296095599453237}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5201116456519748016
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9128451862629451158}
+  m_Layer: 0
+  m_Name: Lock on Transform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9128451862629451158
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5201116456519748016}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.213, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5643810957383035658}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5391848969291278113
 GameObject:
   m_ObjectHideFlags: 0
@@ -1120,7 +1151,7 @@ GameObject:
   - component: {fileID: 5643810957383035658}
   - component: {fileID: 3549983606047134766}
   - component: {fileID: 2085845343277391128}
-  - component: {fileID: 1231333947033157760}
+  - component: {fileID: 8754544833786822400}
   - component: {fileID: 2335758378731615156}
   - component: {fileID: 7793801027852880519}
   - component: {fileID: 7794327462836498939}
@@ -1156,6 +1187,7 @@ Transform:
   - {fileID: 2205335308160763382}
   - {fileID: 5821248505683471627}
   - {fileID: 7294296095599453237}
+  - {fileID: 9128451862629451158}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!95 &3549983606047134766
@@ -1204,7 +1236,7 @@ MonoBehaviour:
   isRolling: 0
   canRoll: 1
   isRidingLift: 0
---- !u!114 &1231333947033157760
+--- !u!114 &8754544833786822400
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1213,9 +1245,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5787781822967198947}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11deaf7e4725a7a4e9980be5d7c06ee3, type: 3}
+  m_Script: {fileID: 11500000, guid: c8a41e8d0f519804f9c1f8ebd6a33a34, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Group1.AIFinalBossCombatManager
+  m_EditorClassIdentifier: Assembly-CSharp::Group1.AIGolemBossCombatManager
   canBlock: 1
   canParry: 0
   parryWindow: 0.3
@@ -1224,30 +1256,31 @@ MonoBehaviour:
   lastAttackAnimationPerformed: 
   currentTarget: {fileID: 0}
   currentAttackType: 0
-  lockOnTransform: {fileID: 0}
+  lockOnTransform: {fileID: 9128451862629451158}
   actionRecoveryTimer: 0
   viewableAngle: 0
   targetsDirection: {x: 0, y: 0, z: 0}
   distanceFromTarget: 0
   detectionRadius: 15
-  minimumDetectionAngle: -180
-  maximumDetectionAngle: 180
-  attackRotationSpeed: 50
-  enablePivot: 1
-  finalBossMeleeWeaponDamageCollider: {fileID: 0}
-  baseDamage: 25
-  attack01DamageModifier: 1
-  attack02DamageModifier: 1.4
-  circleAOEVFX: {fileID: 8719263370430895187, guid: 7d34a61c458188a47ba85f8bcac01f94, type: 3}
-  circleAOEDistanceInFront: 2
-  circleAOERadius: 2
-  circleAOEMagicDamage: 50
-  projectilePrefab: {fileID: 6298733368599632320, guid: e29dfa5895120814dbe62a5358af349a, type: 3}
-  projectileFirePosition: {fileID: 0}
-  startAttackVFX: {fileID: 7907260701345176331, guid: d901313d00610f14981ccc932d3d95f7, type: 3}
-  rollingRubbleVFX: {fileID: 752244642403632843, guid: ab9759447f7196b4fb2d167391a876de, type: 3}
-  lineAOEStartDistanceInFront: 2
-  lineAOEStartPositionOffset: 2
+  minimumDetectionAngle: -35
+  maximumDetectionAngle: 35
+  attackRotationSpeed: 25
+  enablePivot: 0
+  stompPhysicalDamage: 30
+  slamPhysicalDamage: 35
+  stompOrigin: {fileID: 6029086494883357981}
+  stompRadius: 3
+  stompVFX: {fileID: 1921079115439858272, guid: cf22afb314419024a912600068b12f79, type: 3}
+  slamStartVFX: {fileID: 0}
+  slamRollingVFX: {fileID: 0}
+  slamStartDistanceInFront: 2
+  slamStepForwardDistance: 2.5
+  slamSteps: 3
+  slamStartWidth: 2
+  slamEndWidth: 6
+  slamHeight: 2
+  slamStepDelay: 0.35
+  slamInitialDelay: 0.25
 --- !u!114 &2335758378731615156
 MonoBehaviour:
   m_ObjectHideFlags: 0

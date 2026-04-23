@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.TextCore.Text;
+using NaughtyAttributes;
 
 namespace Group1 {
     public class CharacterCombatManager : MonoBehaviour
@@ -23,6 +24,7 @@ namespace Group1 {
         [Header("Attack Type")]
         public AttackType currentAttackType;
         [Header("Lock On Transform")]
+        [Required]
         public Transform lockOnTransform;
         protected virtual void Awake()
         {
