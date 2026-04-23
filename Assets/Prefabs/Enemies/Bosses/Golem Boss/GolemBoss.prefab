@@ -1271,8 +1271,8 @@ MonoBehaviour:
   stompOrigin: {fileID: 6029086494883357981}
   stompRadius: 3
   stompVFX: {fileID: 1921079115439858272, guid: cf22afb314419024a912600068b12f79, type: 3}
-  slamStartVFX: {fileID: 0}
-  slamRollingVFX: {fileID: 0}
+  slamStartVFX: {fileID: 8719263370430895187, guid: 7d34a61c458188a47ba85f8bcac01f94, type: 3}
+  slamRollingVFX: {fileID: 752244642403632843, guid: ab9759447f7196b4fb2d167391a876de, type: 3}
   slamStartDistanceInFront: 2
   slamStepForwardDistance: 2.5
   slamSteps: 3
