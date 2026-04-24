@@ -7,7 +7,7 @@ namespace Group1
 {
     public class AIGolemBossCombatManager : AiCharacterCombatManager
     {
-        AIFinalBossCharacterManager aiGolem;
+        [SerializeField] AIFinalBossCharacterManager aiGolem;
 
         [Header("Damage")]
         [SerializeField] int stompPhysicalDamage = 30;
@@ -60,11 +60,7 @@ namespace Group1
                 Destroy(vfx, 2f);
             }
 
-            Collider[] colliders = Physics.OverlapSphere(
-                center,
-                stompRadius,
-                WorldUtilityManager.Instance.GetCharacterLayers()
-            );
+            Collider[] colliders = Physics.OverlapSphere(center, stompRadius, WorldUtilityManager.Instance.GetCharacterLayers());
 
             List<CharacterManager> damagedCharacters = new List<CharacterManager>();
 
