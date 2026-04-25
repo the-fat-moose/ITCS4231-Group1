@@ -1344,7 +1344,7 @@ MonoBehaviour:
   maxHealth: 0
   currentMana: 0
   maxMana: 0
-  characterName: Lord Serethion, Veilbreaker
+  characterName: lytas, orphan of the mountains
   aiCharacterCombatManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
   navMeshAgent: {fileID: 3086726334785517109}
@@ -1353,7 +1353,7 @@ MonoBehaviour:
   pursueTarget: {fileID: 11400000, guid: 6ae1862d2594ba041b2e48b1e9f02273, type: 2}
   combatStance: {fileID: 11400000, guid: bbd51b5257036904aa61a352068208d9, type: 2}
   attack: {fileID: 11400000, guid: e4a795dcbd3f2b04195817d11f023c52, type: 2}
-  bossID: 67
+  bossID: 1
   bossIntroClip: {fileID: 8300000, guid: 76e8a5c566e37b04cbafcf7e4fbb93cf, type: 3}
   bossLoopClip: {fileID: 8300000, guid: 746301059c9d64b459fb7eb98d6aa953, type: 3}
   bossDefeatedMessage: LORD SLAIN
