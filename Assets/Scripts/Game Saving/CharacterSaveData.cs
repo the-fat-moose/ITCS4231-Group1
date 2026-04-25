@@ -31,6 +31,9 @@ namespace Group1 {
         public int endurance;
         public int mind;
 
+        [Header("Doors")]
+        public List<string> doorsOpened;
+
         [Header("Geodes")]
         public int lastGeodeRestedAt = 0;
         public SerializableDictionary<int, bool> geodes; // THE INT IS THE GEODE I.D, THE BOOL IS THE ACTIVATED STATUS
@@ -67,6 +70,8 @@ namespace Group1 {
 
         public CharacterSaveData()
         {
+            doorsOpened = new List<string>();
+            
             geodes = new SerializableDictionary<int, bool>();
             bossesAwakened = new SerializableDictionary<int, bool>();
             bossesDefeated = new SerializableDictionary<int, bool>();
