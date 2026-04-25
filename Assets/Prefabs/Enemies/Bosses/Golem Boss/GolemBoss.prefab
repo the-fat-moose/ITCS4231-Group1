@@ -1344,7 +1344,7 @@ MonoBehaviour:
   maxHealth: 0
   currentMana: 0
   maxMana: 0
-  characterName: lytas, orphan of the mountains
+  characterName: Orphan of the mountains
   aiCharacterCombatManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
   navMeshAgent: {fileID: 3086726334785517109}
