@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eb14cc6879037e4cb2248b0089ff856, type: 3}
   m_Name: Golem Boss Attack 02
   m_EditorClassIdentifier: Assembly-CSharp::Group1.AICharacterAttackAction
-  attackAnimation: 
+  attackAnimation: Attack_02
   comboAction: {fileID: 0}
   attackWeight: 50
   attackType: 0

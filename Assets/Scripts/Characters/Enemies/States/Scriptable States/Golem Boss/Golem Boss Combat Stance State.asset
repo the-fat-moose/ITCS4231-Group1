@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9d933b6cdcc784aaf6ad87d813b99d, type: 3}
   m_Name: Golem Boss Combat Stance State
   m_EditorClassIdentifier: Assembly-CSharp::Group1.CombatStanceState
-  aiCharacterAttacks: []
+  aiCharacterAttacks:
+  - {fileID: 11400000, guid: b8d6864ac87c08d478524eed043ecb88, type: 2}
+  - {fileID: 11400000, guid: e6e34d42bbb10cc4f90b59be4999b7d5, type: 2}
+  - {fileID: 11400000, guid: bdbeb25ee749ec045946f8f1bff93fbc, type: 2}
   canPerformCombo: 0
   chanceToPerformCombo: 25
   enablePivot: 0
-  maximumEngagementDistance: 5
+  maximumEngagementDistance: 10

@@ -376,6 +376,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2621880688955379826}
+  - {fileID: 6341088205369515807}
   m_Father: {fileID: 2189370520615573480}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1889359128426971607
@@ -793,6 +794,76 @@ Transform:
   - {fileID: 2586759075829588510}
   m_Father: {fileID: 8198980382708722884}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4008620514509227871
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6341088205369515807}
+  - component: {fileID: 7943760154073695522}
+  - component: {fileID: 7799830617195870945}
+  m_Layer: 10
+  m_Name: Damage Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6341088205369515807
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4008620514509227871}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: -0.028, z: 0.067}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3875827094473696992}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7943760154073695522
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4008620514509227871}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.5, y: 0.4, z: 0.4}
+  m_Center: {x: 0, y: 0.0075, z: 0}
+--- !u!114 &7799830617195870945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4008620514509227871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bcd8e3f708602e42a574083a523a2a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Group1.FinalBossMeleeWeaponDamageCollider
+  damageCollider: {fileID: 7943760154073695522}
+  physicalDamage: 0
+  magicDamage: 0
+  AICharacter: {fileID: 0}
 --- !u!1 &4032293002849630485
 GameObject:
   m_ObjectHideFlags: 0
@@ -833,7 +904,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3256470652529919416}
-  m_Layer: 0
+  - component: {fileID: 9060183080289993053}
+  m_Layer: 8
   m_Name: B-spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -857,6 +929,29 @@ Transform:
   - {fileID: 9128451862629451158}
   m_Father: {fileID: 8100236485774698558}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &9060183080289993053
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4387378815642039580}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4456717841084516300
 GameObject:
   m_ObjectHideFlags: 0
@@ -1280,6 +1375,7 @@ MonoBehaviour:
   attackRotationSpeed: 25
   enablePivot: 0
   aiGolem: {fileID: 2335758378731615156}
+  finalBossMeleeWeaponDamageCollider: {fileID: 7799830617195870945}
   stompPhysicalDamage: 30
   slamPhysicalDamage: 35
   stompOrigin: {fileID: 6029086494883357981}
@@ -1348,22 +1444,22 @@ MonoBehaviour:
   aiCharacterCombatManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
   navMeshAgent: {fileID: 3086726334785517109}
-  currentState: {fileID: 11400000, guid: 0a7c71b4d5a97fa449fa0d734e099c01, type: 2}
-  idle: {fileID: 11400000, guid: 0a7c71b4d5a97fa449fa0d734e099c01, type: 2}
-  pursueTarget: {fileID: 11400000, guid: 6ae1862d2594ba041b2e48b1e9f02273, type: 2}
-  combatStance: {fileID: 11400000, guid: bbd51b5257036904aa61a352068208d9, type: 2}
-  attack: {fileID: 11400000, guid: e4a795dcbd3f2b04195817d11f023c52, type: 2}
+  currentState: {fileID: 11400000, guid: eaff73fcd10dd264496d70c41994baa0, type: 2}
+  idle: {fileID: 11400000, guid: eaff73fcd10dd264496d70c41994baa0, type: 2}
+  pursueTarget: {fileID: 11400000, guid: 85b19e5ea38c5fd458db81713f59d207, type: 2}
+  combatStance: {fileID: 11400000, guid: b615362a19841214d911892014465078, type: 2}
+  attack: {fileID: 11400000, guid: 95a714f4e2b77e249844a38a2bdb84b5, type: 2}
   bossID: 1
   bossIntroClip: {fileID: 8300000, guid: 76e8a5c566e37b04cbafcf7e4fbb93cf, type: 3}
   bossLoopClip: {fileID: 8300000, guid: 746301059c9d64b459fb7eb98d6aa953, type: 3}
-  bossDefeatedMessage: LORD SLAIN
+  bossDefeatedMessage: MOUNTAIN SLAIN
   hasBeenDefeated: 0
   hasBeenAwakened: 0
   sleepAnimation: Sleep_01
   awakenAnimation: Awaken_01
-  minimumHealthPercentageToShift: 50
+  minimumHealthPercentageToShift: 0
   phaseShiftAnimation: Phase_Change_01
-  sleepState: {fileID: 11400000, guid: 8a8ce1015146afd4bae364e768f6a37f, type: 2}
+  sleepState: {fileID: 11400000, guid: 715c6f7ca01c93d45876ee319c1d7f6d, type: 2}
   phase02CombatStanceState: {fileID: 11400000, guid: 396878472953abc499d8e8a8dca98810, type: 2}
   fogWalls: []
   finalBossSoundFXManager: {fileID: 0}
@@ -1520,7 +1616,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.183
   m_Pitch: 1
   Loop: 0
   Mute: 0

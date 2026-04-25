@@ -9,6 +9,9 @@ namespace Group1
     {
         [SerializeField] AIFinalBossCharacterManager aiGolem;
 
+        [Required]
+        [SerializeField] FinalBossMeleeWeaponDamageCollider finalBossMeleeWeaponDamageCollider;
+
         [Header("Damage")]
         [SerializeField] int stompPhysicalDamage = 30;
         [SerializeField] int slamPhysicalDamage = 35;
@@ -148,6 +151,16 @@ namespace Group1
 
                 yield return new WaitForSeconds(slamStepDelay);
             }
+        }
+
+        public void OpenFinalBossMeleeWeaponDamageCollider()
+        {
+            finalBossMeleeWeaponDamageCollider.EnableCollider();
+        }
+
+        public void CloseFinalBossMeleeWeaponDamageCollider()
+        {
+            finalBossMeleeWeaponDamageCollider.DisableCollider();
         }
     }
 }

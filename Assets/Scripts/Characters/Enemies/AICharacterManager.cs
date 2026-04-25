@@ -241,8 +241,12 @@ namespace Group1 {
             }
 
             // THE POSITION/ROTATION SHOULD BE RESET ONLY AFTER THE STATE MACHINE HAS PROCESSED ITS TICK
-            navMeshAgent.transform.localPosition = Vector3.zero;
-            navMeshAgent.transform.localRotation = Quaternion.identity;
+            if (animator.applyRootMotion)
+            {
+                navMeshAgent.transform.localPosition = Vector3.zero;
+                navMeshAgent.transform.localRotation = Quaternion.identity;
+            }
+
 
             if (aiCharacterCombatManager.currentTarget != null)
             {
