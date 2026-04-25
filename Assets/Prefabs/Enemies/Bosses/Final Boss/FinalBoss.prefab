@@ -2508,6 +2508,8 @@ MonoBehaviour:
   fallStartYVelocity: -5
   inKnockUpAbility: 0
   isRolling: 0
+  canRoll: 1
+  isRidingLift: 0
 --- !u!114 &1231333947033157760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2523,6 +2525,8 @@ MonoBehaviour:
   canBlock: 1
   canParry: 0
   parryWindow: 0.3
+  baseMagicDamageMultiplier: 1
+  magicDamageMultiplier: 1
   lastAttackAnimationPerformed: 
   currentTarget: {fileID: 0}
   currentAttackType: 0
@@ -2548,7 +2552,7 @@ MonoBehaviour:
   projectileFirePosition: {fileID: 747630584412300604}
   startAttackVFX: {fileID: 7907260701345176331, guid: d901313d00610f14981ccc932d3d95f7, type: 3}
   rollingRubbleVFX: {fileID: 752244642403632843, guid: ab9759447f7196b4fb2d167391a876de, type: 3}
-  lineAOESwordImpactPoint: {fileID: 6926228413926967185}
+  lineAOEStartDistanceInFront: 2
   lineAOEStartPositionOffset: 2
 --- !u!114 &2335758378731615156
 MonoBehaviour:
@@ -2582,12 +2586,14 @@ MonoBehaviour:
   applyRootMotion: 1
   canRotate: 1
   canMove: 1
+  canRun: 1
   isChargingAttack: 0
   isBlocking: 0
   isAttacking: 0
   parried: 0
   isActive: 1
   isInvulnerable: 0
+  upgradedParry: 0
   endurance: 20
   vitality: 90
   mind: 20
@@ -2645,10 +2651,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e9a4437e309c848b48c7def84ce52d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Group1.CharacterStatsManager
+  maxHealthMultiplier: 1
+  maxManaMultiplier: 1
   staminaRegenerationDelay: 2
   staminaRegenerationAmount: 2
+  staminaRegenMultiplier: 1
   blockingPhysicalAbsorption: 65
   blockingMagicAbsorption: 65
+  manaRegenMultiplier: 1
 --- !u!114 &6966264921010832010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2673,6 +2683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55059e3ecf8145740a711bb087fc77dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Group1.CharacterEffectsManager
+  activeQuickSlotItemFX: {fileID: 0}
   bloodSplatterVFX: {fileID: 0}
 --- !u!114 &6926449479873276724
 MonoBehaviour:
@@ -4486,11 +4497,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47ff5aa93acfff048afb7a1f79d4821f, type: 3}
---- !u!4 &6926228413926967185 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6947036770383680828, guid: 47ff5aa93acfff048afb7a1f79d4821f, type: 3}
-  m_PrefabInstance: {fileID: 33281293707793069}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7122925761761355136 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7111054158473328429, guid: 47ff5aa93acfff048afb7a1f79d4821f, type: 3}

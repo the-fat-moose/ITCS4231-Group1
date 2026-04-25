@@ -9762,7 +9762,7 @@ MonoBehaviour:
   interactableText: Pick Up Item
   interactableCollider: {fileID: 8305806993639106311}
   pickUpType: 0
-  item: {fileID: 11400000, guid: c44b6d7661e595c449781e80e2fcfd16, type: 2}
+  item: {fileID: 11400000, guid: 9d591de22dca28a428e880fba18f3ef3, type: 2}
   itemID: 0
   hasBeenLooted: 0
 --- !u!135 &8305806993639106311
