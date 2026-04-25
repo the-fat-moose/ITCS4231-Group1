@@ -67,7 +67,10 @@ namespace Group1 {
 
         public override void Interact(PlayerManager player)
         {
-            base.Interact(player);
+            PlayerUIManager.instance.playerUIPopUpManager.CloseAllPopUpWindows();
+
+            // SAVE GAME AFTER INTERACTING
+            WorldSaveGameManager.instance.SaveGame();
 
             if (requiresItem && PlayerHasItem(player))
             {

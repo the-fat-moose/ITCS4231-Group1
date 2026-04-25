@@ -18,6 +18,9 @@ namespace Group1 {
         [Header("Lumen Items")]
         [SerializeField] List<LumenItem> lumenItems = new List<LumenItem>();
 
+        [Header("Keys")]
+        [SerializeField] List<KeyItem> keys = new List<KeyItem>();
+
         // A LIST OF EVERY ITEM WE HAVE IN THE GAME
         [Header("Items")]
         private List<Item> items = new List<Item>();
@@ -48,6 +51,10 @@ namespace Group1 {
             {
                 items.Add(lumen);
             }            
+            foreach (var key in keys)
+            {
+                items.Add(key);
+            }
 
             // ASSIGN ALL OF OUR ITEMS A UNIQUE ITEM ID 
             // (IF YOU CONSISTENTLY ADD NEW ITEMS, THE IDS WILL CHANGE AND THIS COULD BE BAD FOR SAVE FILES)
@@ -72,6 +79,11 @@ namespace Group1 {
         public LumenItem GetLumenItemByID(int ID)
         {
             return lumenItems.FirstOrDefault(item => item.itemID == ID);
+        }
+
+        public KeyItem GetKeyItemByID(int ID)
+        {
+            return keys.FirstOrDefault(item => item.itemID == ID);
         }
     
         // ITEM SERIALIZATION
