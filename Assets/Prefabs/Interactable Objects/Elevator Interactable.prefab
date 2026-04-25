@@ -245,7 +245,6 @@ MonoBehaviour:
   playersWithinInteractionTrigger: []
   isTopDestination: 0
   model: {fileID: 3267646084201740108}
-  unactivatedMaterial: {fileID: 2100000, guid: 83cd46798e934ac4eb6abd6684cd3e38, type: 2}
   accessibleMaterial: {fileID: 2100000, guid: 62fbda8410a2c52499969fa59d671a79, type: 2}
   inaccessibleMaterial: {fileID: 2100000, guid: f59462be5cb93c5489dc9951b8f52260, type: 2}
 --- !u!135 &3609253592900123626
@@ -495,7 +494,6 @@ MonoBehaviour:
   playersWithinInteractionTrigger: []
   isTopDestination: 1
   model: {fileID: 5941668992672891436}
-  unactivatedMaterial: {fileID: 2100000, guid: 83cd46798e934ac4eb6abd6684cd3e38, type: 2}
   accessibleMaterial: {fileID: 2100000, guid: 62fbda8410a2c52499969fa59d671a79, type: 2}
   inaccessibleMaterial: {fileID: 2100000, guid: f59462be5cb93c5489dc9951b8f52260, type: 2}
 --- !u!135 &1461375654883344636
@@ -590,7 +588,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 08457451cda7ba84988b4670acb2fd52, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
