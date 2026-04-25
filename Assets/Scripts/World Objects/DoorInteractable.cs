@@ -40,6 +40,12 @@ namespace Group1 {
         [SerializeField] AudioSource audioSource;
         [SerializeField] private AudioClip doorOpeningSFX;
 
+        [Header("Levers and Buttons")]
+        [SerializeField] ActivateOtherObjectInteractable[] leversAndButtons;
+        
+        [Header("Cannot Open From This Side")]
+        [SerializeField] MessageInteractable cannotOpenFromThisSideInteractable;
+
         protected override void Start()
         {
             base.Start();
@@ -90,13 +96,34 @@ namespace Group1 {
             player.playerInteractionManager.RemoveInteractionFromList(this);
         }
 
+        private void DisableDoorInteractions()
+        {
+            PlayerManager player = FindFirstObjectByType<PlayerManager>();
+
+            if (interactableCollider != null) interactableCollider.enabled = false;
+
+            for (int i = 0; i < leversAndButtons.Length; i++)
+            {
+                if (leversAndButtons[i] == null) continue;
+
+                leversAndButtons[i].interactableCollider.enabled = false;
+                
+                if (player != null) player.playerInteractionManager.RemoveInteractionFromList(leversAndButtons[i]);
+            }
+
+            // DISABLED CANNOT OPEN FROM THIS SIDE COLLIDER
+            if (cannotOpenFromThisSideInteractable != null)
+            {
+                cannotOpenFromThisSideInteractable.enabled = false;
+                if (player != null) player.playerInteractionManager.RemoveInteractionFromList(cannotOpenFromThisSideInteractable);
+            }
+        }
+
         private void OnIsOpenChanged(bool oldStatus, bool newStatus)
         {
             if (IsOpen)
             {
-                interactableCollider.enabled = false;
-
-                // DISABLED CANNOT OPEN FROM THIS SIDE COLLIDER
+                DisableDoorInteractions();
             }
         }
 
@@ -105,9 +132,7 @@ namespace Group1 {
             if (IsOpen)
             {
                 animator.Play(openedDoorAnimation);
-                interactableCollider.enabled = false;
-
-                // DISABLED CANNOT OPEN FROM THIS SIDE COLLIDER
+                DisableDoorInteractions();
             }
         }
 
@@ -142,7 +167,7 @@ namespace Group1 {
 
             animator.Play(openDoorAnimation);
             audioSource.PlayOneShot(doorOpeningSFX);
-            interactableCollider.enabled = false;
+            if (interactableCollider != null) interactableCollider.enabled = false;
         }
     }
 }

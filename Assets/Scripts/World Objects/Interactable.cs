@@ -10,7 +10,7 @@ namespace Group1 {
         // ELEVATORS
 
         public string interactableText; // TEXT PROMPT WHEN ENTERING THE INTERACTION COLLIDER OnTriggerEnter
-        [SerializeField] protected Collider interactableCollider;
+        public Collider interactableCollider;
         
         protected virtual void Awake()
         {
