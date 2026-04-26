@@ -260,9 +260,9 @@ namespace Group1{
         {
             // --------------- WORLD SCENE ---------------
             currentCharacterData.sceneIndex = SceneManager.GetActiveScene().buildIndex;
-            if (currentCharacterData.sceneIndex <= 0)
+            if (currentCharacterData.sceneIndex <= 1)
             {
-                currentCharacterData.sceneIndex = 1; // DEFAULT FIRST PLAYABLE SCENE
+                currentCharacterData.sceneIndex = 2; // DEFAULT FIRST PLAYABLE SCENE
             }
             
             // --------------- NAME ---------------

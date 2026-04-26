@@ -523,6 +523,7 @@ namespace Group1{
                 PlayerUIManager.instance.playerUIPopUpManager.CloseAllPopUpWindows();
                 PlayerUIManager.instance.CloseAllMenuWindows();
                 PlayerUIManager.instance.playerUICharacterMenuManager.OpenCharacterMenu();
+                WorldGameSessionManager.instance.UnlockCursor();
             }
         }
 
