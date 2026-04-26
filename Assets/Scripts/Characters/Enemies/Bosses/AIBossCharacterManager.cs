@@ -187,6 +187,7 @@ namespace Group1 {
             yield return new WaitForSeconds(5f);
             
             // DISABLE CHARACTER
+            StartCoroutine(WaitThenDisableBoss(10f));
         }
     
         public void WakeBoss()
@@ -242,6 +243,13 @@ namespace Group1 {
             characterAnimatorManager.PlayTargetActionAnimation(phaseShiftAnimation, true);
             combatStance = Instantiate(phase02CombatStanceState);
             currentState = combatStance;
+        }
+
+        private IEnumerator WaitThenDisableBoss(float delay = 1f)
+        {
+            yield return new WaitForSeconds(delay);
+
+            DisableSelf();
         }
     }
 }

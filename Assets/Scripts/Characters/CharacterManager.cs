@@ -425,6 +425,11 @@ namespace Group1{
             }
         }
 
+        protected virtual void DisableSelf()
+        {
+            Destroy(gameObject);
+        }
+
         public void EnableParryWindow()
         {
             characterCombatManager.canParry = true;
