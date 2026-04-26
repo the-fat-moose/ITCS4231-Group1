@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Group1 {
     public class WorldSoundFXManager : MonoBehaviour
