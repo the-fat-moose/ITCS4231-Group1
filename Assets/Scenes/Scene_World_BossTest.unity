@@ -867,6 +867,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3519551568012705152, guid: 9283e4ab01333ab4a874f3f86835f61c, type: 3}
+      propertyPath: fogWallID
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
