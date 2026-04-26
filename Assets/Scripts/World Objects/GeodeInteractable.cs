@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Group1
 {
@@ -39,11 +40,16 @@ namespace Group1
         [SerializeField] private string activatedInteractionText = "Rest";
 
         [Header("Teleport Transform")]
-        [SerializeField] Transform teleportTransform;
+        public Transform teleportTransform;
+
+        [Header("Scene Index")]
+        public int sceneIndex;
 
         protected override void Start()
         {
             base.Start();
+
+            sceneIndex = SceneManager.GetActiveScene().buildIndex;
 
             if (WorldSaveGameManager.instance.currentCharacterData.geodes.ContainsKey(geodeID))
             {

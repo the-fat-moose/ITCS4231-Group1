@@ -269,9 +269,33 @@ namespace Group1{
             currentCharacterData.characterName = characterName.ToString();
 
             // --------------- POSITION ---------------
-            currentCharacterData.xPosition = transform.position.x;
-            currentCharacterData.yPosition = transform.position.y;
-            currentCharacterData.zPosition = transform.position.z;
+            for (int i = 0; i < WorldObjectManager.instance.geodes.Count; i++)
+            {
+                if (WorldObjectManager.instance.geodes[i].geodeID == WorldSaveGameManager.instance.currentCharacterData.lastGeodeRestedAt)
+                {
+                    if (currentCharacterData.sceneIndex == WorldObjectManager.instance.geodes[i].sceneIndex)
+                    {
+                        currentCharacterData.xPosition = WorldObjectManager.instance.geodes[i].teleportTransform.position.x;
+                        currentCharacterData.yPosition = WorldObjectManager.instance.geodes[i].teleportTransform.position.y + 5;
+                        currentCharacterData.zPosition = WorldObjectManager.instance.geodes[i].teleportTransform.position.z;
+
+                        break;
+                    }
+                    else
+                    {
+                        SafeTeleportPosition tpPos = FindFirstObjectByType<SafeTeleportPosition>();
+
+                        if (tpPos != null)
+                        {
+                            currentCharacterData.xPosition = tpPos.transform.position.x;
+                            currentCharacterData.yPosition = tpPos.transform.position.y;
+                            currentCharacterData.zPosition = tpPos.transform.position.z;
+
+                            break;
+                        }
+                    }
+                }
+            }
 
             // --------------- RESOURCES ---------------
             currentCharacterData.currentStamina = CurrentStamina;
@@ -334,8 +358,7 @@ namespace Group1{
             characterName = currentCharacterData.characterName;
             
             // ------------ POSITION ------------
-            Vector3 myPosition = new Vector3(currentCharacterData.xPosition, currentCharacterData.yPosition, currentCharacterData.zPosition);
-            transform.position = myPosition;
+            transform.position = new Vector3(currentCharacterData.xPosition, currentCharacterData.yPosition, currentCharacterData.zPosition);
 
             // ------------ STATS ------------
             Endurance = currentCharacterData.endurance;

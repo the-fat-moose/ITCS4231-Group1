@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Group1
@@ -33,7 +34,7 @@ namespace Group1
                 {
                     if (WorldObjectManager.instance.geodes[j].geodeID == i)
                     {
-                        if (WorldObjectManager.instance.geodes[j].IsActivated)
+                        if (WorldObjectManager.instance.geodes[j].IsActivated && SceneManager.GetActiveScene().buildIndex == WorldObjectManager.instance.geodes[j].sceneIndex)
                         {
                             teleportLocations[i].SetActive(true);
 
@@ -57,7 +58,7 @@ namespace Group1
         {
             for (int i = 0; i < WorldObjectManager.instance.geodes.Count; i++)
             {
-                if (WorldObjectManager.instance.geodes[i].geodeID == geodeID)
+                if (WorldObjectManager.instance.geodes[i].geodeID == geodeID && SceneManager.GetActiveScene().buildIndex == WorldObjectManager.instance.geodes[i].sceneIndex)
                 {
                     // TELEPORT
                     WorldObjectManager.instance.geodes[i].TeleportToGeode();
