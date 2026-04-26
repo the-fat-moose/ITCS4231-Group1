@@ -49,6 +49,9 @@ namespace Group1
                     break;
                 }
             }
+
+            // RESPAWN ALL ENEMIES
+            WorldAIManager.instance.RespawnAllCharacters();
         }
     }
 }

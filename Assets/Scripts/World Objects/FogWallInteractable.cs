@@ -75,7 +75,7 @@ namespace Group1 {
             base.Interact(player);
 
             // Face the fog wall
-            Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward);
+            Quaternion targetRotation = Quaternion.LookRotation(gameObject.transform.forward);
             player.transform.rotation = targetRotation;
 
             // Disable Collisions with the fog wall
