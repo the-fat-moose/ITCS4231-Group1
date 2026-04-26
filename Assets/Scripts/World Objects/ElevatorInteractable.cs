@@ -10,7 +10,6 @@ namespace Group1
         public Vector3 position = Vector3.zero;
         public bool elevatorIsRising = false;
         public bool elevatorIsDescending = false;
-        [SerializeField] private float positionSmoothTime = 0.1f;
         [SerializeField] private float yMovementOffset = 0.125f;
 
         [Header("Destination")]

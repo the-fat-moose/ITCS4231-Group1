@@ -15,7 +15,6 @@ namespace Group1
 
         [Header("Attack Stats")]
         [SerializeField] float projectileSpeed = 20f;
-        [SerializeField] float attackCooldown = 2f;
 
         public void FireProjectile()
         {
