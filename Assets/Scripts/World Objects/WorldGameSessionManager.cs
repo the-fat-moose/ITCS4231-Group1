@@ -35,11 +35,13 @@ namespace Group1
         {
             yield return new WaitForSeconds(delay);
 
+            PlayerUIManager.instance.playerUIHudManager.RemoveBossHealthBars();
             PlayerUIManager.instance.playerUILoadingScreenManager.ActivateLoadingScreen();
 
             PlayerManager player = FindFirstObjectByType<PlayerManager>();
 
-            if (player != null) player.ReviveCharacter();
+            if (player != null)
+            player.ReviveCharacter();
 
             for (int i = 0; i < WorldObjectManager.instance.geodes.Count; i++)
             {

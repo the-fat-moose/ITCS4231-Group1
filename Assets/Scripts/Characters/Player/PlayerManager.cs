@@ -524,10 +524,14 @@ namespace Group1{
             CurrentMana = MaxMana;
             RemainingHealthFlasks = maxHealthFlasks;
 
+            PlayerCamera.cam.ClearLockOnTarget();
+
             isDead = false;
 
             // PLAY REBIRTH EFFECTS
             playerAnimatorManager.PlayTargetActionAnimation("Empty", false, true, false, false);
+
+            
         }
 
         #endregion

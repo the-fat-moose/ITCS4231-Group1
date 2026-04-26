@@ -135,5 +135,13 @@ namespace Group1 {
                 quickSlotItemCount.enabled = false;
             }
         }
+    
+        public void RemoveBossHealthBars()
+        {
+            foreach (Transform child in bossHealthBarParent)
+            {
+                Destroy(child.gameObject);
+            }
+        }
     }
 }
