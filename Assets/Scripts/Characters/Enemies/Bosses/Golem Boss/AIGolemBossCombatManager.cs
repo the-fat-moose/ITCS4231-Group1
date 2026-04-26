@@ -22,6 +22,8 @@ namespace Group1
         [SerializeField] float stompMaxRadius = 6f;
         [SerializeField] float stompExpandDuration = 0.45f;
         [SerializeField] GameObject stompExpandVFX;
+        private float _currentStompRadius = 0f;
+
 
         [Header("Slam Cone AOE")]
         [SerializeField] GameObject slamStartVFX;
@@ -29,6 +31,7 @@ namespace Group1
         [SerializeField] float slamWidth = 3f;
         [SerializeField] float slamHeight = 2f;
         [SerializeField] float slamLength = 4f;
+        private GameObject slamVfx;
 
         protected override void Awake()
         {
@@ -36,20 +39,29 @@ namespace Group1
             aiGolem = GetComponent<AIBossCharacterManager>();
         }
 
+        public void PlaySlamVFX()
+        {
+            Transform fist = finalBossMeleeWeaponDamageCollider.transform; // or your fist bone
+            slamVfx = Instantiate(slamStartVFX, fist.position, fist.rotation, fist);
+
+            Destroy(slamVfx, 2f);
+        }
+
         public void ActivateGolemSlamAOE()
         {
             Vector3 center = aiGolem.transform.position + aiGolem.transform.forward * slamStartDistanceInFront;
             Quaternion rotation = Quaternion.LookRotation(aiGolem.transform.forward);
 
-            // VFX
-            if (slamStartVFX != null)
-            {
-                GameObject vfx = Instantiate(slamStartVFX, center, rotation);
-                Destroy(vfx, 3f);
-            }
-
             // Cone approximated by a wide box
             Vector3 halfExtents = new Vector3(slamWidth, slamHeight, slamLength);
+
+            // Freeze VFX in place and orient it forward
+            if (slamVfx != null)
+            {
+                slamVfx.transform.parent = null; // detach from fist
+                slamVfx.transform.rotation = Quaternion.LookRotation(aiGolem.transform.forward);
+            }
+
 
             Collider[] colliders = Physics.OverlapBox(
                 center,
@@ -60,6 +72,7 @@ namespace Group1
 
             ApplyDamageToColliders(colliders, slamPhysicalDamage);
         }
+
 
         public void ActivateGolemStompAOE()
         {
@@ -81,7 +94,7 @@ namespace Group1
             if (stompExpandVFX != null)
             {
                 GameObject vfx = Instantiate(stompExpandVFX, stompOrigin.position, Quaternion.identity);
-                Destroy(vfx, 3f);
+                Destroy(vfx, 2f);
             }
 
             HashSet<CharacterManager> damaged = new HashSet<CharacterManager>();
@@ -111,6 +124,8 @@ namespace Group1
                 }
 
                 yield return null;
+
+                _currentStompRadius = 0f;
             }
         }
 
@@ -132,6 +147,24 @@ namespace Group1
                 character.characterEffectsManager.ProcessInstantEffect(dmg);
             }
         }
+
+        private void OnDrawGizmosSelected()
+        {
+            if (stompOrigin == null)
+                return;
+
+            // Draw max stomp radius
+            Gizmos.color = new Color(1f, 0.3f, 0.3f, 0.35f); // soft red
+            Gizmos.DrawWireSphere(stompOrigin.position, stompMaxRadius);
+
+            // If stomp is currently expanding, draw current radius
+            if (Application.isPlaying && _currentStompRadius > 0f)
+            {
+                Gizmos.color = new Color(0.3f, 0.8f, 1f, 0.35f); // cyan
+                Gizmos.DrawWireSphere(stompOrigin.position, _currentStompRadius);
+            }
+        }
+
 
         public void OpenFinalBossMeleeWeaponDamageCollider()
         {
