@@ -10,7 +10,7 @@ namespace Group1 {
         public PlayerManager player;
 
         [Header("World Scene Index")]
-        [SerializeField] private int worldSceneIndex = 1;
+        [SerializeField] private int worldSceneIndex = 2;
 
         [Header("Save Data Writer")]
         private SaveFileDataWriter saveFileDataWriter;
@@ -345,7 +345,7 @@ namespace Group1 {
             PlayerUIManager.instance.playerUILoadingScreenManager.ActivateLoadingScreen();
 
             // USED FOR DIFFERENT SCENES FOR LEVELS
-            AsyncOperation loadOperation = SceneManager.LoadSceneAsync(0);
+            AsyncOperation loadOperation = SceneManager.LoadSceneAsync(1);
 
             yield return null;
         }

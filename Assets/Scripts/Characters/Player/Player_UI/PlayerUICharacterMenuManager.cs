@@ -23,6 +23,8 @@ namespace Group1
         public void CloseCharacterMenuAfterFixedUpdate()
         {
             StartCoroutine(WaitThenCloseMenu());
+
+            WorldGameSessionManager.instance.LockCursor();
         }
 
         private IEnumerator WaitThenCloseMenu()

@@ -19,7 +19,7 @@ namespace Group1
             }
             else
             {
-                Destroy(this);
+                Destroy(this.gameObject);
             }
             DontDestroyOnLoad(this);
         }
@@ -39,6 +39,10 @@ namespace Group1
                 player.FindSafePlaceForPlayer();
 
                 WorldSaveGameManager.instance.SaveGame();
+                LockCursor();
+
+                // if the scene is the main menu unlock cursor
+                if (SceneManager.GetActiveScene().buildIndex == 0) UnlockCursor();
             }
         }
 
@@ -73,6 +77,18 @@ namespace Group1
 
             // RESPAWN ALL ENEMIES
             WorldAIManager.instance.RespawnAllCharacters();
+        }
+    
+        public void UnlockCursor()
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+
+        public void LockCursor()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
 }
