@@ -89,19 +89,14 @@ namespace Group1{
 
         private void HandleRotation()
         {
-            // If we are locked on and have a target, handle lock-on logic
             if (player.isLockedOn && player.playerCombatManager.currentTarget != null)
             {
-                // If the target died while locked on, break lock-on and sync to current view
                 if (player.playerCombatManager.currentTarget.isDead)
                 {
                     player.isLockedOn = false;
-
-                    // Clear target on combat side (adjust to your API)
                     player.playerCombatManager.SetTarget(null);
                     ClearLockOnTarget();
 
-                    // Sync free look angles to the current camera orientation (from pivot)
                     Vector3 flatForward = cameraPivotTransform.forward;
                     flatForward.y = 0;
                     flatForward.Normalize();
@@ -109,15 +104,13 @@ namespace Group1{
                     float yaw = Mathf.Atan2(flatForward.x, flatForward.z) * Mathf.Rad2Deg;
                     leftAndRightLookAngle = yaw;
                     upAndDownLookAngle = cameraPivotTransform.localEulerAngles.x;
-
-                    // Fall through to free-look below
                 }
                 else
                 {
-                    // Normal lock on rotation
-                    Vector3 direction = player.playerCombatManager.currentTarget.characterCombatManager.lockOnTransform.position - cameraPivotTransform.position;
+                    // FIX #1 — Use full 3D direction (no y = 0)
+                    Vector3 direction = player.playerCombatManager.currentTarget.characterCombatManager.lockOnTransform.position
+                                        - cameraPivotTransform.position;
 
-                    direction.y = 0;
                     direction.Normalize();
 
                     Quaternion targetRotation = Quaternion.LookRotation(direction);
@@ -128,7 +121,7 @@ namespace Group1{
                         lockOnTargetFollowSpeed * Time.deltaTime
                     );
 
-                    // Keep free-look angles in sync with what the camera is actually doing
+                    // Sync free-look angles
                     Vector3 flatForward = cameraPivotTransform.forward;
                     flatForward.y = 0;
                     flatForward.Normalize();
@@ -137,9 +130,10 @@ namespace Group1{
                     leftAndRightLookAngle = yaw;
                     upAndDownLookAngle = cameraPivotTransform.localEulerAngles.x;
 
-                    return; // done for this frame
+                    return;
                 }
             }
+        
 
             // FREE-LOOK (runs when not locked on, or after death handling above)
             leftAndRightLookAngle += PlayerInputManager.inputs.horizontalCameraInput * leftAndRightRotationSpeed * Time.deltaTime;
@@ -157,23 +151,21 @@ namespace Group1{
             RaycastHit hit;
             Vector3 direction = cameraObject.transform.position - cameraPivotTransform.position;
 
-            if(Physics.SphereCast(cameraPivotTransform.position, cameraCollisionOffset, direction, out hit, Mathf.Abs(targetCameraZPosition), collideWithLayers))
+            if (Physics.SphereCast(cameraPivotTransform.position, cameraCollisionOffset, direction, out hit, Mathf.Abs(targetCameraZPosition), collideWithLayers))
             {
                 float distanceFromHitObject = Vector3.Distance(cameraPivotTransform.position, hit.point);
                 targetCameraZPosition = -(distanceFromHitObject - cameraCollisionOffset);
             }
 
-            if(Mathf.Abs(targetCameraZPosition) < cameraCollisionOffset)
-            {
+            if (Mathf.Abs(targetCameraZPosition) < cameraCollisionOffset)
                 targetCameraZPosition = -cameraCollisionOffset;
-            }
+
             cameraObjPos.z = Mathf.Lerp(cameraObject.transform.localPosition.z, targetCameraZPosition, 0.2f);
             cameraObject.transform.localPosition = cameraObjPos;
         }
 
         public void HandleLocatingLockOnTargets()
         {
-            Debug.Log("HandleLocatingLockOnTargets");
             avaliableTargets.Clear();
             nearestLockOnTarget = null;
             leftLockOnTarget = null;
@@ -200,9 +192,9 @@ namespace Group1{
                 if (distance > maximumLockOnDistance) continue;
 
                 Vector3 direction = target.transform.position - cameraObject.transform.position;
-                float signedAngle = Vector3.SignedAngle(cameraObject.transform.forward, direction, Vector3.up);
+                float angle = Vector3.Angle(cameraObject.transform.forward, direction);
 
-                if (signedAngle < minimumViewableAngle || signedAngle > maximumViewableAngle)
+                if (angle < minimumViewableAngle || angle > maximumViewableAngle)
                     continue;
 
 
@@ -279,7 +271,6 @@ namespace Group1{
             Vector3 velocity = Vector3.zero;
 
             Vector3 lockedHeight = new Vector3(cameraPivotTransform.localPosition.x, lockedCameraHeight, cameraPivotTransform.localPosition.z);
-
             Vector3 unlockedHeight = new Vector3(cameraPivotTransform.localPosition.x, unlockedCameraHeight, cameraPivotTransform.localPosition.z);
 
             while (timer < duration)
@@ -295,11 +286,9 @@ namespace Group1{
                         setCameraHeightSpeed
                     );
 
-                    cameraPivotTransform.localRotation = Quaternion.Slerp(
-                        cameraPivotTransform.localRotation,
-                        Quaternion.Euler(0, 0, 0),
-                        lockOnTargetFollowSpeed * Time.deltaTime
-                    );
+                    // FIX #2 — Remove rotation override so it stops fighting HandleRotation()
+                    // (This line is removed)
+                    // cameraPivotTransform.localRotation = Quaternion.Slerp(...);
                 }
                 else
                 {

@@ -56,8 +56,6 @@ namespace Group1{
         [SerializeField] bool RT_Input = false;
         [SerializeField] bool Hold_RT_Input = false;
 
-        [Header("Blocking flags")]
-        [SerializeField] bool stillBlocking = false;
 
         [Header("Ability Inputs")]
         [SerializeField] bool pushAbility_Input = false;
