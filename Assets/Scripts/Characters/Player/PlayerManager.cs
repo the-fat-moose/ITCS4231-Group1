@@ -393,7 +393,8 @@ namespace Group1{
             playerInventoryManager.quickSlotItemsInQuickSlots[0] = currentCharacterData.quickSlotItem01.GetQuickSlotItem();
             playerInventoryManager.quickSlotItemsInQuickSlots[1] = currentCharacterData.quickSlotItem02.GetQuickSlotItem();
             playerInventoryManager.quickSlotItemsInQuickSlots[2] = currentCharacterData.quickSlotItem03.GetQuickSlotItem();
-            playerEquipmentManager.LoadQuickSlotEquipment(playerInventoryManager.quickSlotItemsInQuickSlots[playerInventoryManager.quickSlotItemIndex]); // REFRESHES THE HUD
+            if (playerInventoryManager.quickSlotItemIndex != -1)
+                playerEquipmentManager.LoadQuickSlotEquipment(playerInventoryManager.quickSlotItemsInQuickSlots[playerInventoryManager.quickSlotItemIndex]); // REFRESHES THE HUD
 
             // LUMEN EQUIPMENT
             if (WorldItemDatabase.instance.GetLumenItemByID(currentCharacterData.lumen01))
