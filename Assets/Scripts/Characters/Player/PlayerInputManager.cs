@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Group1{
@@ -63,6 +64,13 @@ namespace Group1{
         [SerializeField] bool cageAbility_Input = false;
         [SerializeField] bool knockUpAbility_Input = false;
 
+        [Header("Mouse Lock On")]
+        public Vector2 mouseDelta;
+        private float mouseSwitchCooldown = 0.25f;
+        private float mouseSwitchTimer = 0f;
+        private float mouseThreshold = 0.35f;
+
+
         private void Awake()
         {
             if(inputs == null)
@@ -109,6 +117,10 @@ namespace Group1{
                 playerControls.PlayerActions.LockOn.performed += i => lockInput = true;
                 playerControls.PlayerActions.SeekLeftLockOnTarget.performed += i => lockOn_Left = true;
                 playerControls.PlayerActions.SeekRightLockOnTarget.performed += i => lockOn_Right = true;
+
+                playerControls.PlayerActions.LockOnSwitchMouse.performed += i => mouseDelta = i.ReadValue<Vector2>();
+                playerControls.PlayerActions.LockOnSwitchMouse.canceled += i => mouseDelta = Vector2.zero;
+
                 
                 //holding activates
                 playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
@@ -197,9 +209,6 @@ namespace Group1{
                 PlayerCamera.cam.ClearLockOnTarget();
                 player.isLockedOn = false;
 
-                if(lockOnCoroutine != null) StopCoroutine(lockOnCoroutine);
-                lockOnCoroutine = StartCoroutine(PlayerCamera.cam.WaitThenFindNewTarget());
-
                 return;
             }
 
@@ -215,6 +224,8 @@ namespace Group1{
 
         private void HandleLockOnSwitchTargetInput()
         {
+            mouseSwitchTimer -= Time.deltaTime;
+
             if (lockOn_Left)
             {
                 lockOn_Left = false;
@@ -242,6 +253,27 @@ namespace Group1{
                     {
                         player.playerCombatManager.SetTarget(PlayerCamera.cam.rightLockOnTarget);
                     }
+                }
+            }
+
+            //Lock on switch for mouse
+            if (player.isLockedOn && mouseSwitchTimer <= 0f)
+            {
+                if (mouseDelta.x > mouseThreshold)
+                {
+                    PlayerCamera.cam.HandleLocatingLockOnTargets();
+                    if (PlayerCamera.cam.rightLockOnTarget != null)
+                        player.playerCombatManager.SetTarget(PlayerCamera.cam.rightLockOnTarget);
+
+                    mouseSwitchTimer = mouseSwitchCooldown;
+                }
+                else if (mouseDelta.x < -mouseThreshold)
+                {
+                    PlayerCamera.cam.HandleLocatingLockOnTargets();
+                    if (PlayerCamera.cam.leftLockOnTarget != null)
+                        player.playerCombatManager.SetTarget(PlayerCamera.cam.leftLockOnTarget);
+
+                    mouseSwitchTimer = mouseSwitchCooldown;
                 }
             }
         }

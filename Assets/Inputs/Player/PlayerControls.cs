@@ -545,6 +545,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Lock On Switch Mouse"",
+                    ""type"": ""Value"",
+                    ""id"": ""a91b66e8-0914-4412-b3b3-570147f5ef4a"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -1031,6 +1040,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Knock Up Ability"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""16b22030-91e9-472a-8b77-5fa79f2e0ecd"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Lock On Switch Mouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1105,6 +1125,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerActions_PushAbility = m_PlayerActions.FindAction("Push Ability", throwIfNotFound: true);
         m_PlayerActions_CageAbility = m_PlayerActions.FindAction("Cage Ability", throwIfNotFound: true);
         m_PlayerActions_KnockUpAbility = m_PlayerActions.FindAction("Knock Up Ability", throwIfNotFound: true);
+        m_PlayerActions_LockOnSwitchMouse = m_PlayerActions.FindAction("Lock On Switch Mouse", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_X = m_UI.FindAction("X", throwIfNotFound: true);
@@ -1414,6 +1435,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_PushAbility;
     private readonly InputAction m_PlayerActions_CageAbility;
     private readonly InputAction m_PlayerActions_KnockUpAbility;
+    private readonly InputAction m_PlayerActions_LockOnSwitchMouse;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player Actions".
     /// </summary>
@@ -1506,6 +1528,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @KnockUpAbility => m_Wrapper.m_PlayerActions_KnockUpAbility;
         /// <summary>
+        /// Provides access to the underlying input action "PlayerActions/LockOnSwitchMouse".
+        /// </summary>
+        public InputAction @LockOnSwitchMouse => m_Wrapper.m_PlayerActions_LockOnSwitchMouse;
+        /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
@@ -1591,6 +1617,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @KnockUpAbility.started += instance.OnKnockUpAbility;
             @KnockUpAbility.performed += instance.OnKnockUpAbility;
             @KnockUpAbility.canceled += instance.OnKnockUpAbility;
+            @LockOnSwitchMouse.started += instance.OnLockOnSwitchMouse;
+            @LockOnSwitchMouse.performed += instance.OnLockOnSwitchMouse;
+            @LockOnSwitchMouse.canceled += instance.OnLockOnSwitchMouse;
         }
 
         /// <summary>
@@ -1662,6 +1691,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @KnockUpAbility.started -= instance.OnKnockUpAbility;
             @KnockUpAbility.performed -= instance.OnKnockUpAbility;
             @KnockUpAbility.canceled -= instance.OnKnockUpAbility;
+            @LockOnSwitchMouse.started -= instance.OnLockOnSwitchMouse;
+            @LockOnSwitchMouse.performed -= instance.OnLockOnSwitchMouse;
+            @LockOnSwitchMouse.canceled -= instance.OnLockOnSwitchMouse;
         }
 
         /// <summary>
@@ -1975,6 +2007,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnKnockUpAbility(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Lock On Switch Mouse" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLockOnSwitchMouse(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.
