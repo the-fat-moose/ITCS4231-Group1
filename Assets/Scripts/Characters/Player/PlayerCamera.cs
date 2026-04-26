@@ -200,10 +200,11 @@ namespace Group1{
                 if (distance > maximumLockOnDistance) continue;
 
                 Vector3 direction = target.transform.position - cameraObject.transform.position;
-                float angle = Vector3.Angle(cameraObject.transform.forward, direction);
+                float signedAngle = Vector3.SignedAngle(cameraObject.transform.forward, direction, Vector3.up);
 
-                if (angle < minimumViewableAngle || angle > maximumViewableAngle)
+                if (signedAngle < minimumViewableAngle || signedAngle > maximumViewableAngle)
                     continue;
+
 
                 if (Physics.Linecast(player.playerCombatManager.lockOnTransform.position, target.characterCombatManager.lockOnTransform.position, WorldUtilityManager.Instance.GetEnviroLayers()))
                     continue;
