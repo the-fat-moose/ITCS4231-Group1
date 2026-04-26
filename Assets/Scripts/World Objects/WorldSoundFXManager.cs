@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Group1 {
     public class WorldSoundFXManager : MonoBehaviour
@@ -74,6 +75,12 @@ namespace Group1 {
 
             bossIntroPlayer.Stop();
             bossLoopPlayer.Stop();
+        }
+
+        public void StopAllAudio()
+        {
+            StopBossMusic();
+            // ANY OTHER AUDIOS THAT NEED TO BE STOPPED
         }
     }
 }
