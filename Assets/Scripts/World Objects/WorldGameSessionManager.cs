@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Group1
 {
@@ -21,6 +22,24 @@ namespace Group1
                 Destroy(this);
             }
             DontDestroyOnLoad(this);
+        }
+
+        private void Start()
+        {
+            SceneManager.activeSceneChanged += OnSceneChanged;
+        }
+
+        private void OnSceneChanged(Scene arg0, Scene arg1)
+        {
+            // Find safe place to put player
+            PlayerManager player = FindFirstObjectByType<PlayerManager>();
+
+            if (player != null) 
+            {
+                player.FindSafePlaceForPlayer();
+
+                WorldSaveGameManager.instance.SaveGame();
+            }
         }
 
         public void WaitThenRevivePlayer()

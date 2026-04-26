@@ -268,6 +268,15 @@ namespace Group1{
             // --------------- NAME ---------------
             currentCharacterData.characterName = characterName.ToString();
 
+            SafeTeleportPosition tpPos = FindFirstObjectByType<SafeTeleportPosition>();
+
+            if (tpPos != null)
+            {
+                currentCharacterData.xPosition = tpPos.transform.position.x;
+                currentCharacterData.yPosition = tpPos.transform.position.y;
+                currentCharacterData.zPosition = tpPos.transform.position.z;
+            }
+
             // --------------- POSITION ---------------
             for (int i = 0; i < WorldObjectManager.instance.geodes.Count; i++)
             {
@@ -283,7 +292,7 @@ namespace Group1{
                     }
                     else
                     {
-                        SafeTeleportPosition tpPos = FindFirstObjectByType<SafeTeleportPosition>();
+                        tpPos = FindFirstObjectByType<SafeTeleportPosition>();
 
                         if (tpPos != null)
                         {
@@ -358,6 +367,18 @@ namespace Group1{
             characterName = currentCharacterData.characterName;
             
             // ------------ POSITION ------------
+            if (currentCharacterData.xPosition == 0 && currentCharacterData.yPosition == 0 && currentCharacterData.zPosition == 0)
+            {
+                SafeTeleportPosition tpPos = FindFirstObjectByType<SafeTeleportPosition>();
+
+                if (tpPos != null)
+                {
+                    currentCharacterData.xPosition = tpPos.transform.position.x;
+                    currentCharacterData.yPosition = tpPos.transform.position.y;
+                    currentCharacterData.zPosition = tpPos.transform.position.z;
+                }
+            }
+
             transform.position = new Vector3(currentCharacterData.xPosition, currentCharacterData.yPosition, currentCharacterData.zPosition);
 
             // ------------ STATS ------------
@@ -767,6 +788,20 @@ namespace Group1{
             else
             {
                 playerEquipmentManager.LoadLumenSlot4Equipment(null);
+            }
+        }
+
+        #endregion
+    
+        #region System Calls
+        
+        public void FindSafePlaceForPlayer()
+        {
+            SafeTeleportPosition tpPos = FindFirstObjectByType<SafeTeleportPosition>();
+
+            if (tpPos != null)
+            {
+                transform.position = tpPos.transform.position;
             }
         }
 
