@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Group1 {
     public class AICharacterSpawner : MonoBehaviour
@@ -29,7 +30,16 @@ namespace Group1 {
                 aiCharacter = instantiatedGameObject.GetComponent<AICharacterManager>();
 
                 if (aiCharacter != null)
+                {
                     WorldAIManager.instance.AddCharacterToSpawnedCharactersList(aiCharacter);
+
+                    NavMeshHit hit;
+                    if (NavMesh.SamplePosition(instantiatedGameObject.transform.position, out hit, 5f, NavMesh.AllAreas))
+                    {
+                        instantiatedGameObject.transform.position = hit.position;
+                        instantiatedGameObject.GetComponentInChildren<NavMeshAgent>().Warp(hit.position);
+                    }
+                }
             }
         }
 
