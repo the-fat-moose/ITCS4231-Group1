@@ -20,8 +20,10 @@ namespace Group1
         [Required]
         [SerializeField] Transform stompOrigin;      
 
-        [SerializeField] float stompRadius = 3f;
-        [SerializeField] GameObject stompVFX;
+        [SerializeField] float stompMaxRadius = 6f;
+        [SerializeField] float stompExpandDuration = 0.45f;
+        [SerializeField] GameObject stompExpandVFX;
+
 
         [Header("Slam Cone AOE")]
         [SerializeField] GameObject slamStartVFX;
@@ -35,9 +37,10 @@ namespace Group1
         [SerializeField] float slamStartWidth = 2f;
         [SerializeField] float slamEndWidth = 6f;
 
+        [SerializeField] float slamWidth = 3f;
         [SerializeField] float slamHeight = 2f;
-        [SerializeField] float slamStepDelay = 0.35f;
-        [SerializeField] float slamInitialDelay = 0.25f;
+        [SerializeField] float slamLength = 4f;
+
 
         protected override void Awake()
         {
@@ -86,72 +89,77 @@ namespace Group1
         //SLAM CONE ATTACK
         public void ActivateGolemSlamAOE()
         {
-            Vector3 startPoint = aiGolem.transform.position + aiGolem.transform.forward * slamStartDistanceInFront;
+            Vector3 center = aiGolem.transform.position + aiGolem.transform.forward * slamStartDistanceInFront;
             Quaternion rotation = Quaternion.LookRotation(aiGolem.transform.forward);
 
-            // Start VFX
+            // VFX
             if (slamStartVFX != null)
             {
-                GameObject startVFX = Instantiate(slamStartVFX, startPoint, rotation);
-                Destroy(startVFX, 2f);
+                GameObject vfx = Instantiate(slamStartVFX, center, rotation);
+                Destroy(vfx, 3f);
             }
 
-            StartCoroutine(SlamConeRoutine(startPoint, rotation));
+            // Cone approximated by a wide box
+            Vector3 halfExtents = new Vector3(slamWidth, slamHeight, slamLength);
+
+            Collider[] colliders = Physics.OverlapBox(
+                center,
+                halfExtents,
+                rotation,
+                WorldUtilityManager.Instance.GetCharacterLayers()
+            );
+
+            ApplyDamageToColliders(colliders, slamPhysicalDamage);
         }
 
-        private IEnumerator SlamConeRoutine(Vector3 startPos, Quaternion rotation)
+
+        public void ActivateGolemStompAOE()
         {
-            yield return new WaitForSeconds(slamInitialDelay);
+            StartCoroutine(StompExpandRoutine());
+        }
 
-            float widthStep = (slamEndWidth - slamStartWidth) / slamSteps;
-            float currentWidth = slamStartWidth;
+        private IEnumerator StompExpandRoutine()
+        {
+            float timer = 0f;
+            float currentRadius = 0f;
 
-            for (int i = 0; i < slamSteps; i++)
+            // Spawn VFX
+            if (stompExpandVFX != null)
             {
-                Vector3 halfExtents = new Vector3(currentWidth, slamHeight, 1f);
+                GameObject vfx = Instantiate(stompExpandVFX, stompOrigin.position, Quaternion.identity);
+                Destroy(vfx, 3f);
+            }
 
-                Collider[] colliders = Physics.OverlapBox(
-                    startPos,
-                    halfExtents,
-                    rotation,
+            HashSet<CharacterManager> damaged = new HashSet<CharacterManager>();
+
+            while (timer < stompExpandDuration)
+            {
+                timer += Time.deltaTime;
+                currentRadius = Mathf.Lerp(0f, stompMaxRadius, timer / stompExpandDuration);
+
+                Collider[] colliders = Physics.OverlapSphere(
+                    stompOrigin.position,
+                    currentRadius,
                     WorldUtilityManager.Instance.GetCharacterLayers()
                 );
-
-                // Rolling VFX
-                if (slamRollingVFX != null)
-                {
-                    GameObject rollVFX = Instantiate(
-                        slamRollingVFX,
-                        startPos + new Vector3(0, 0.1f, 0),
-                        rotation
-                    );
-                    Destroy(rollVFX, 5f);
-                }
-
-                List<CharacterManager> damagedCharacters = new List<CharacterManager>();
 
                 foreach (var col in colliders)
                 {
                     CharacterManager character = col.GetComponentInParent<CharacterManager>();
-                    if (character == null) continue;
-                    if (character == aiGolem) continue;
-                    if (damagedCharacters.Contains(character)) continue;
+                    if (character == null || character == aiGolem) continue;
+                    if (damaged.Contains(character)) continue;
 
-                    damagedCharacters.Add(character);
+                    damaged.Add(character);
 
                     TakeDamageEffect dmg = Instantiate(WorldCharacterEffectsManager.instance.takeDamageEffect);
-                    dmg.physicalDamage = slamPhysicalDamage;
-
+                    dmg.physicalDamage = stompPhysicalDamage;
                     character.characterEffectsManager.ProcessInstantEffect(dmg);
                 }
 
-                // Move forward for next step
-                startPos += aiGolem.transform.forward * slamStepForwardDistance;
-                currentWidth += widthStep;
-
-                yield return new WaitForSeconds(slamStepDelay);
+                yield return null;
             }
         }
+
 
         public void OpenFinalBossMeleeWeaponDamageCollider()
         {
