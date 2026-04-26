@@ -44,6 +44,8 @@ namespace Group1
                 // if the scene is the main menu unlock cursor
                 if (SceneManager.GetActiveScene().buildIndex == 0) UnlockCursor();
             }
+
+            WorldSoundFXManager.instance.StopBossMusic();
         }
 
         public void WaitThenRevivePlayer()

@@ -9,6 +9,9 @@ namespace Group1
         void OnTriggerEnter(Collider other)
         {
             AIBossCharacterManager boss = WorldAIManager.instance.GetBossCharacterByID(bossID);
+            
+            Debug.Log("BOSS: " + boss.bossID);
+            Debug.Log("BOSS: " + boss.hasBeenDefeated);
 
             if (boss != null && !boss.hasBeenDefeated)
             {

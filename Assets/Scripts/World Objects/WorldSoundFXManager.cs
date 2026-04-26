@@ -41,12 +41,21 @@ namespace Group1 {
         {
             bossIntroPlayer.volume = 1;
             bossLoopPlayer.volume = 1;
-            bossIntroPlayer.clip = introTrack;
-            bossIntroPlayer.loop = false;
-            bossIntroPlayer.Play();
-            bossLoopPlayer.clip = loopTrack;
-            bossLoopPlayer.loop = true;
-            bossLoopPlayer.PlayDelayed(bossIntroPlayer.clip.length);
+            if (introTrack != null)
+            {
+                bossIntroPlayer.clip = introTrack;
+                bossIntroPlayer.loop = false;
+                bossIntroPlayer.Play();
+                bossLoopPlayer.clip = loopTrack;
+                bossLoopPlayer.loop = true;
+                bossLoopPlayer.PlayDelayed(bossIntroPlayer.clip.length);
+            }
+            else
+            {
+                bossLoopPlayer.clip = loopTrack;
+                bossLoopPlayer.loop = true;
+                bossLoopPlayer.Play();
+            }
         }
     
         public AudioClip ChooseRandomSFXFromArray(AudioClip[] array)
@@ -74,6 +83,12 @@ namespace Group1 {
 
             bossIntroPlayer.Stop();
             bossLoopPlayer.Stop();
+        }
+
+        public void StopAllAudio()
+        {
+            StopBossMusic();
+            // ANY OTHER AUDIOS THAT NEED TO BE STOPPED
         }
     }
 }
