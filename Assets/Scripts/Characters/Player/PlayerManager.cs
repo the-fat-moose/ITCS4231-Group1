@@ -268,43 +268,9 @@ namespace Group1{
             // --------------- NAME ---------------
             currentCharacterData.characterName = characterName.ToString();
 
-            SafeTeleportPosition tpPos = FindFirstObjectByType<SafeTeleportPosition>();
-
-            if (tpPos != null)
-            {
-                currentCharacterData.xPosition = tpPos.transform.position.x;
-                currentCharacterData.yPosition = tpPos.transform.position.y;
-                currentCharacterData.zPosition = tpPos.transform.position.z;
-            }
-
             // --------------- POSITION ---------------
-            for (int i = 0; i < WorldObjectManager.instance.geodes.Count; i++)
-            {
-                if (WorldObjectManager.instance.geodes[i].geodeID == WorldSaveGameManager.instance.currentCharacterData.lastGeodeRestedAt)
-                {
-                    if (currentCharacterData.sceneIndex == WorldObjectManager.instance.geodes[i].sceneIndex)
-                    {
-                        currentCharacterData.xPosition = WorldObjectManager.instance.geodes[i].teleportTransform.position.x;
-                        currentCharacterData.yPosition = WorldObjectManager.instance.geodes[i].teleportTransform.position.y + 5;
-                        currentCharacterData.zPosition = WorldObjectManager.instance.geodes[i].teleportTransform.position.z;
-
-                        break;
-                    }
-                    else
-                    {
-                        tpPos = FindFirstObjectByType<SafeTeleportPosition>();
-
-                        if (tpPos != null)
-                        {
-                            currentCharacterData.xPosition = tpPos.transform.position.x;
-                            currentCharacterData.yPosition = tpPos.transform.position.y;
-                            currentCharacterData.zPosition = tpPos.transform.position.z;
-
-                            break;
-                        }
-                    }
-                }
-            }
+            // NO LONGER HANDLED BY SAVE DATA
+            // Position is now handled by WorldGameSessionManager after scene load.
 
             // --------------- RESOURCES ---------------
             currentCharacterData.currentStamina = CurrentStamina;
@@ -367,19 +333,8 @@ namespace Group1{
             characterName = currentCharacterData.characterName;
             
             // ------------ POSITION ------------
-            if (currentCharacterData.xPosition == 0 && currentCharacterData.yPosition == 0 && currentCharacterData.zPosition == 0)
-            {
-                SafeTeleportPosition tpPos = FindFirstObjectByType<SafeTeleportPosition>();
-
-                if (tpPos != null)
-                {
-                    currentCharacterData.xPosition = tpPos.transform.position.x;
-                    currentCharacterData.yPosition = tpPos.transform.position.y;
-                    currentCharacterData.zPosition = tpPos.transform.position.z;
-                }
-            }
-
-            transform.position = new Vector3(currentCharacterData.xPosition, currentCharacterData.yPosition, currentCharacterData.zPosition);
+            // NO LONGER HANDLED BY SAVE DATA
+            // Position is now handled by WorldGameSessionManager after scene load.
 
             // ------------ STATS ------------
             Endurance = currentCharacterData.endurance;

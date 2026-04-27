@@ -335,6 +335,9 @@ namespace Group1 {
             // USED FOR DIFFERENT SCENES FOR LEVELS
             AsyncOperation loadOperation = SceneManager.LoadSceneAsync(currentCharacterData.sceneIndex);
 
+            while (!loadOperation.isDone)
+                yield return null;
+
             player.LoadGameDataFromCurrentCharacterData(ref currentCharacterData);
 
             yield return null;

@@ -31,21 +31,48 @@ namespace Group1
 
         private void OnSceneChanged(Scene arg0, Scene arg1)
         {
-            // Find safe place to put player
+            StartCoroutine(HandleSceneLoaded());
+        }
+
+        private IEnumerator HandleSceneLoaded()
+        {
+            // Wait one frame so geodes can register
+            yield return null;
+
             PlayerManager player = FindFirstObjectByType<PlayerManager>();
+            if (player == null)
+                yield break;
 
-            if (player != null) 
+            CharacterSaveData data = WorldSaveGameManager.instance.currentCharacterData;
+
+            // Try to find the geode the player last rested at
+            GeodeInteractable target = WorldObjectManager.instance.geodes
+                .Find(g => g.geodeID == data.lastGeodeRestedAt &&
+                        g.sceneIndex == SceneManager.GetActiveScene().buildIndex);
+
+            if (target != null)
             {
-                player.FindSafePlaceForPlayer();
-
-                WorldSaveGameManager.instance.SaveGame();
-                LockCursor();
-
-                // if the scene is the main menu unlock cursor
-                if (SceneManager.GetActiveScene().buildIndex == 0) UnlockCursor();
+                Vector3 pos = target.teleportTransform.position;
+                pos.y += 2f; // small lift to avoid clipping
+                player.transform.position = pos;
+            }
+            else
+            {
+                // Fallback to safe teleport
+                SafeTeleportPosition tp = FindFirstObjectByType<SafeTeleportPosition>();
+                if (tp != null)
+                {
+                    Vector3 pos = tp.transform.position;
+                    pos.y += 2f;
+                    player.transform.position = pos;
+                }
             }
 
-            WorldSoundFXManager.instance.StopBossMusic();
+            LockCursor();
+
+            // If title screen, unlock cursor
+            if (SceneManager.GetActiveScene().buildIndex == 1)
+                UnlockCursor();
         }
 
         public void WaitThenRevivePlayer()
