@@ -311,7 +311,7 @@ namespace Group1{
         {
             if (!isLockedOn)
             {
-                characterCombatManager.currentTarget = null;
+                characterCombatManager.SetTarget(null);
             }
         }
 

@@ -33,7 +33,6 @@ namespace Group1
             //Check if current target is player
             if (currentTarget.gameObject.TryGetComponent(out PlayerLocomotionManager playerLocomotion))
             {
-                Debug.LogError("current target is player");
                 playerSpeed = playerLocomotion.moveAmount * 4f;
                 playerMoveDir = playerLocomotion.worldMoveDir;
             }

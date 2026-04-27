@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -61,7 +62,7 @@ namespace Group1 {
             }
 
             // RESET ENEMY STATE
-            aiCharacter.characterCombatManager.currentTarget = null;
+            aiCharacter.characterCombatManager.SetTarget(null);
             aiCharacter.currentState = aiCharacter.idle;
 
             aiCharacter.characterUIManager.ResetCharacterHPBar();

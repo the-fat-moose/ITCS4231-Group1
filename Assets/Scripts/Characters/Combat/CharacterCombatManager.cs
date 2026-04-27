@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 using NaughtyAttributes;
+using Unity.VisualScripting;
 
 namespace Group1 {
     public class CharacterCombatManager : MonoBehaviour
@@ -35,13 +36,23 @@ namespace Group1 {
 
         public virtual void SetTarget(CharacterManager newTarget)
         {
-            if(newTarget != null)
+            // TURN OFF OLD TARGET ICON
+            if (currentTarget != null)
             {
-                currentTarget = newTarget;
+                var oldIcon = currentTarget.characterCombatManager.lockOnTransform.gameObject.GetComponent<LockOnTransform>().lockOnIcon;
+                if (oldIcon != null)
+                    oldIcon.SetActive(false);
             }
-            else
+
+            // UPDATE TARGET
+            currentTarget = newTarget;
+
+            // TURN ON NEW TARGET ICON
+            if (currentTarget != null)
             {
-                currentTarget = null;
+                var newIcon = currentTarget.characterCombatManager.lockOnTransform.gameObject.GetComponent<LockOnTransform>().lockOnIcon;
+                if (newIcon != null)
+                    newIcon.SetActive(true);
             }
         }
     

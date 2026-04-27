@@ -244,6 +244,7 @@ namespace Group1{
             nearestLockOnTarget = null;
             leftLockOnTarget = null;
             rightLockOnTarget = null;
+            player.characterCombatManager.SetTarget(null);
             avaliableTargets.Clear();
         }
 
