@@ -14,7 +14,7 @@ namespace Group1 {
         private void LateUpdate()
         {
             if (cam == null) return;
-            transform.rotation = Quaternion.LookRotation(transform.position - cam.transform.position);
+            transform.forward = Camera.main.transform.forward;
         }
     }
 }

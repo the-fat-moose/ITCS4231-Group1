@@ -18,7 +18,7 @@ TagManager:
   - DamageCollider
   - Interactable
   - Event Trigger
-  - 
+  - LockOnUI
   - 
   - 
   - 
@@ -40,6 +40,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: LockOnUI
+    uniqueID: 2768806383
     locked: 0
   m_RenderingLayers:
   - Default
