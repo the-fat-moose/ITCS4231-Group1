@@ -66,11 +66,19 @@ namespace Group1{
             GetMovementInputs();
             if(!player.canMove) return;
 
-            //move dir is based on camera and inputs
-            moveDir = PlayerCamera.cam.cameraObject.transform.forward * verticalMovement;
-            moveDir += PlayerCamera.cam.cameraObject.transform.right * horizontalMovement;
+            Vector3 camForward = PlayerCamera.cam.cameraObject.transform.forward;
+            Vector3 camRight = PlayerCamera.cam.cameraObject.transform.right;
+
+            //Flatten camera vectors BEFORE using them
+            camForward.y = 0;
+            camRight.y = 0;
+
+            camForward.Normalize();
+            camRight.Normalize();
+
+            moveDir = camForward * verticalMovement + camRight * horizontalMovement;
             moveDir.Normalize();
-            moveDir.y = 0;
+
 
             //FOR PROJECTILE PERDICTIONS DELETE IF THIS BREAKS ANYTHING
             worldMoveDir = (transform.forward * verticalMovement) + (transform.right * horizontalMovement);
