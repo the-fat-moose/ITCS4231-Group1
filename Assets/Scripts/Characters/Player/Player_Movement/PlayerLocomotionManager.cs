@@ -184,10 +184,8 @@ namespace Group1{
 
         public void HandleSprinting()
         {
-            Debug.Log("HandleSprinting called");
             if (player.isPerformingAction)
             {
-                Debug.Log("isPerformingAction");
                 player.isSprinting = false;
             }
 
@@ -199,7 +197,6 @@ namespace Group1{
 
             if(PlayerInputManager.inputs.moveAmount >= 0.5)
             {
-                Debug.Log("isSprinting set to true");
                 player.isSprinting = true;
             }
             else
