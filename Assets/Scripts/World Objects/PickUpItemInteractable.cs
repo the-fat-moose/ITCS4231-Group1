@@ -16,6 +16,11 @@ namespace Group1 {
         {
             base.Start();
 
+            if (WorldItemDatabase.instance != null)
+            {
+                itemID = item.itemID;
+            }
+
             if (pickUpType == ItemPickUpType.WorldSpawn)
                 CheckIfWorldItemWasAlreadyLooted();
         }
