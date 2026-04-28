@@ -525,6 +525,15 @@ namespace Group1{
             if(que_RT_input) RT_Input = true;
         }
 
+        public void ClearQueuedInputs()
+        {
+            que_RB_input = false;
+            que_RT_input = false;
+            input_Que_Is_Active = false;
+            que_Input_Timer = 0;
+        }
+
+
         private void HandleAllQuedInputs()
         {
             if (input_Que_Is_Active)

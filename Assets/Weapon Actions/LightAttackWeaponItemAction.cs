@@ -24,16 +24,23 @@ namespace Group1 {
 
         private void PerformLightAttack(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
         {
-            // If we are attacking but the combo window is not open, ignore the input
+            // If attacking but combo window is closed → wait for combo window
             if (playerPerformingAction.isPerformingAction &&
                 !playerPerformingAction.playerCombatManager.canComboWithMainHandWeapon)
             {
+                // Do NOT restart the animation
                 return;
             }
 
-            // If we are attacking AND combo window is open → do combo
+            // Combo window open → perform combo
             if (playerPerformingAction.playerCombatManager.canComboWithMainHandWeapon)
             {
+                // Prevent multiple combo triggers
+                if (playerPerformingAction.playerCombatManager.hasConsumedComboInput)
+                    return;
+
+                playerPerformingAction.playerCombatManager.hasConsumedComboInput = true;
+
                 if (playerPerformingAction.characterCombatManager.lastAttackAnimationPerformed == light_Attack_01)
                 {
                     playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.Light02, light_Attack_02, true);
@@ -43,16 +50,19 @@ namespace Group1 {
                     playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.Light01, light_Attack_01, true);
                 }
 
+                PlayerInputManager.inputs.ClearQueuedInputs();
                 return;
             }
 
-            // If not attacking → start first attack
+
+            // Not attacking → start first attack
             if (!playerPerformingAction.isPerformingAction)
             {
                 playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.Light01, light_Attack_01, true);
                 return;
             }
         }
+
 
     }
 }

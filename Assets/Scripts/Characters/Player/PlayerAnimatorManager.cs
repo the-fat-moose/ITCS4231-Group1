@@ -73,6 +73,7 @@ namespace Group1{
         {
             
             player.playerCombatManager.canComboWithMainHandWeapon = false;
+            player.playerCombatManager.hasConsumedComboInput = false;
 
         }
     }

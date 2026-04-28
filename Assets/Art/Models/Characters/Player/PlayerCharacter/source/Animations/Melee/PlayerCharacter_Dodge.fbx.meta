@@ -34,7 +34,7 @@ ModelImporter:
       name: PlayerCharacter_Dodge
       takeName: mixamo.com
       internalID: -203655887218126122
-      firstFrame: 9
+      firstFrame: 16
       lastFrame: 84
       wrapMode: 0
       orientationOffsetY: 0
@@ -55,21 +55,21 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.043717116
+      - time: 0.0038344227
         functionName: PlayRollSoundFX
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.059824042
+      - time: 0.019941349
         functionName: EnableIsInvulnerable
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.25552717
+      - time: 0.21564448
         functionName: DisableIsInvulnerable
         data: 
         objectReferenceParameter: {instanceID: 0}
