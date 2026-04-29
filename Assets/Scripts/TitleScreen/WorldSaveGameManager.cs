@@ -357,6 +357,21 @@ namespace Group1 {
         {
             return worldSceneIndex;
         }
+
+        public void LoadNewScene(int buildIndex)
+        {
+            StartCoroutine(LoadNewSceneCoroutine(buildIndex));
+        }
+
+        private IEnumerator LoadNewSceneCoroutine(int buildIndex)
+        {
+            SaveGame();
+            PlayerUIManager.instance.playerUILoadingScreenManager.ActivateLoadingScreen();
+
+            AsyncOperation loadOperation = SceneManager.LoadSceneAsync(buildIndex);
+
+            yield return null;
+        }
     
         // SERIALIZABLE DATA
 
