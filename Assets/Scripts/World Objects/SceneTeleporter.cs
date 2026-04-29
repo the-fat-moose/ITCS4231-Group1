@@ -5,29 +5,19 @@ namespace Group1
 {
     public class SceneTeleporter : MonoBehaviour
     {
-        [Header("Status")]
-        [SerializeField] private bool isReturnTeleporter = false;
+        [Header("Scene")]
+        [SerializeField] private int buildIndexToTravelTo = 1;
 
         void OnTriggerEnter(Collider other)
         {
-            int buildIndex = SceneManager.GetActiveScene().buildIndex;
-
-            if (isReturnTeleporter) 
+            if (buildIndexToTravelTo <= 1 || buildIndexToTravelTo >= SceneManager.sceneCountInBuildSettings)
             {
-                buildIndex -= 1;
-            }
-            else 
-            {
-                buildIndex += 1;
-            }
-
-            if (buildIndex <= 1 || buildIndex >= SceneManager.sceneCountInBuildSettings)
-            {
-                // Out of range, fall back to main menu
-                buildIndex = 1;
                 WorldSaveGameManager.instance.SaveAndQuit();
             }
-            WorldSaveGameManager.instance.LoadNewScene(buildIndex);
+            else
+            {
+                WorldSaveGameManager.instance.LoadNewScene(buildIndexToTravelTo);
+            }
         }
     }
 }

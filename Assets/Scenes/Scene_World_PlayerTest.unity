@@ -3472,6 +3472,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2155308340693614596, guid: 78ae7b83126868e44b4e990a574c1a0e, type: 3}
+      propertyPath: buildIndex
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2155308340693614596, guid: 78ae7b83126868e44b4e990a574c1a0e, type: 3}
+      propertyPath: buildIndexToTravelTo
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7147478713396632594, guid: 78ae7b83126868e44b4e990a574c1a0e, type: 3}
       propertyPath: m_Name
       value: LevelTeleporter

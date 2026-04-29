@@ -368,7 +368,7 @@ namespace Group1 {
             SaveGame();
             PlayerUIManager.instance.playerUILoadingScreenManager.ActivateLoadingScreen();
 
-            AsyncOperation loadOperation = SceneManager.LoadSceneAsync(buildIndex);
+            SceneManager.LoadScene(buildIndex);
 
             yield return null;
         }
