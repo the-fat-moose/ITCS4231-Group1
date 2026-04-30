@@ -2,7 +2,9 @@
   <Project Path="Assembly-CSharp.csproj" />
   <Project Path="NaughtyAttributes.Core.csproj" />
   <Project Path="NaughtyAttributes.Test.csproj" />
+  <Project Path="sc.terrain.painter.editor.csproj" />
   <Project Path="NaughtyAttributes.Editor.csproj" />
+  <Project Path="sc.terrain.painter.runtime.csproj" />
   <Project Path="CFXREditor.csproj" />
   <Project Path="CFXRRuntime.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />

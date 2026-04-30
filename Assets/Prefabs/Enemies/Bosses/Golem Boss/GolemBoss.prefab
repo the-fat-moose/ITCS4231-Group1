@@ -1433,7 +1433,7 @@ GameObject:
   - component: {fileID: 3549983606047134766}
   - component: {fileID: 2085845343277391128}
   - component: {fileID: 8754544833786822400}
-  - component: {fileID: 2335758378731615156}
+  - component: {fileID: 5704167681235244774}
   - component: {fileID: 7793801027852880519}
   - component: {fileID: 7794327462836498939}
   - component: {fileID: 6966264921010832010}
@@ -1546,7 +1546,7 @@ MonoBehaviour:
   maximumDetectionAngle: 35
   attackRotationSpeed: 25
   enablePivot: 0
-  aiGolem: {fileID: 2335758378731615156}
+  aiGolem: {fileID: 0}
   finalBossMeleeWeaponDamageCollider: {fileID: 7799830617195870945}
   stompPhysicalDamage: 30
   slamPhysicalDamage: 35
@@ -1559,7 +1559,7 @@ MonoBehaviour:
   slamWidth: 1
   slamHeight: 2
   slamLength: 4
---- !u!114 &2335758378731615156
+--- !u!114 &5704167681235244774
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1568,9 +1568,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5787781822967198947}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e8c2dfedc797494895d20237587de4f, type: 3}
+  m_Script: {fileID: 11500000, guid: dcc7c4f09ed9edb4a8a729172f3940fe, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Group1.AIFinalBossCharacterManager
+  m_EditorClassIdentifier: Assembly-CSharp::Group1.AIGolemBossCharacterManager
   characterController: {fileID: 7118222727435136489}
   animator: {fileID: 0}
   characterEffectsManager: {fileID: 0}
@@ -1588,7 +1588,7 @@ MonoBehaviour:
   isPerformingAction: 0
   isGrounded: 1
   isJumping: 0
-  applyRootMotion: 1
+  applyRootMotion: 0
   canRotate: 1
   canMove: 1
   canRun: 1
@@ -1599,8 +1599,8 @@ MonoBehaviour:
   isActive: 1
   isInvulnerable: 0
   upgradedParry: 0
-  endurance: 20
-  vitality: 90
+  endurance: 40
+  vitality: 80
   mind: 20
   currentStamina: 0
   maxStamina: 0
