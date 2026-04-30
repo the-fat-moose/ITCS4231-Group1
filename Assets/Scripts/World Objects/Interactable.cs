@@ -55,5 +55,13 @@ namespace Group1 {
                 PlayerUIManager.instance.playerUIPopUpManager.CloseAllPopUpWindows();
             }
         }
+
+        public void EnableTriggerCollider()
+        {
+            if (interactableCollider != null && !interactableCollider.isTrigger == true)
+            {
+                interactableCollider.isTrigger = true;
+            }
+        }
     }
 }

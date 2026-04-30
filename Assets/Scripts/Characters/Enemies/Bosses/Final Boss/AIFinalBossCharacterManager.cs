@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Group1
@@ -11,6 +12,14 @@ namespace Group1
             base.Awake();
 
             finalBossSoundFXManager = GetComponent<AIFinalBossSoundFXManager>();
+        }
+
+        public override IEnumerator ProcessDeathEvent()
+        {
+            ArtifactInteractable artifactInteractable = FindFirstObjectByType<ArtifactInteractable>();
+            if (artifactInteractable != null) artifactInteractable.EnableTriggerCollider();
+
+            return base.ProcessDeathEvent();
         }
     }
 }
