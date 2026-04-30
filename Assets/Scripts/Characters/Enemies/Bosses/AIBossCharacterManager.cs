@@ -198,6 +198,7 @@ namespace Group1 {
             }
 
             BossFightIsActive = true;
+            OnBossFightIsActiveChanged(false, true);
             hasBeenAwakened = true;
             currentState = idle;
 
