@@ -1,3 +1,4 @@
 # Auto detect text files and perform LF normalization
 * text=auto
 Assets/Art/Models/RunesAndPortals/PortalRound/TexturesMaterials/PortalRound_Normal.png filter=lfs diff=lfs merge=lfs -text
+Assets/Scenes/Scene_World_Castle.unity filter=lfs diff=lfs merge=lfs -text
