@@ -87,7 +87,14 @@ namespace Group1 {
             // Walk through the fog wall
             player.playerAnimatorManager.PlayTargetActionAnimation("Pass_Through_Fog_01", true);
 
-            // Reenable Collisions with fog wall
+            // Start Boss Fight
+            foreach (var boss in WorldAIManager.instance.spawnedInBossCharacters)
+            {
+                if (boss.bossID == fogWallID)
+                {
+                    boss.WakeBoss();
+                }
+            }
         }
 
         private void OnDestroy()
