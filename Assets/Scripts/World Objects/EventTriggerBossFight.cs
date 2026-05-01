@@ -15,9 +15,11 @@ namespace Group1
 
             if (boss != null && !boss.hasBeenDefeated)
             {
-                boss.WakeBoss();
-                this.gameObject.SetActive(false);
+                // Testing
             }
+
+            boss.WakeBoss();
+            this.gameObject.SetActive(false);
         }
     }
 }
