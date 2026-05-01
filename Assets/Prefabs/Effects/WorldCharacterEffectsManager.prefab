@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 955525668053229961}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.34521, y: -0, z: -94.9295}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldCharacterEffectsManager
   bloodSplatterVFX: {fileID: 194062, guid: 8c27aeead6d968e4ba986702d6b84335, type: 3}
-  healingFlaskVFX: {fileID: 2336781230396761739, guid: 4e986374ae13deb4c9b27bb64d119f8e, type: 3}
+  healingFlaskVFX: {fileID: 9017484664307500583, guid: 1245b8d2997d5b34fb1637be70a7eb05, type: 3}
   takeDamageEffect: {fileID: 11400000, guid: 4621f8798218c3d45a732ae9c7e6a2c4, type: 2}
   takeBlockedDamageEffect: {fileID: 11400000, guid: 3e97a0124105d8947aef7dde13f48522, type: 2}
   freezeEffect: {fileID: 11400000, guid: 8386ecdef388dd848a966c2139eadc79, type: 2}
