@@ -197,16 +197,12 @@ namespace Group1 {
             if (!hasBeenAwakened)
             {
                 characterAnimatorManager.PlayTargetActionAnimation(awakenAnimation, true);
-                Debug.Log("AIBossCharacterManager WakeBoss(), hasBeenAwakened CHECK GETTING CALLED");
             }
 
             BossFightIsActive = true;
-            Debug.Log("AIBossCharacterManager WakeBoss(), BossFightIsActive" + BossFightIsActive);
 
             hasBeenAwakened = true;
             currentState = idle;
-
-            Debug.Log("AIBossCharacterManager WakeBoss(), currentState: " + currentState);
 
             // IF OUR SAVE DATA DOES NOT CONTAIN INFO ON THIS BOSS, ADD IT
             if (!WorldSaveGameManager.instance.currentCharacterData.bossesAwakened.ContainsKey(bossID))

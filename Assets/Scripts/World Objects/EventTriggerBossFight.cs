@@ -10,14 +10,6 @@ namespace Group1
         {
             AIBossCharacterManager boss = WorldAIManager.instance.GetBossCharacterByID(bossID);
             
-            Debug.Log("BOSS: " + boss.bossID);
-            Debug.Log("BOSS: " + boss.hasBeenDefeated);
-
-            if (boss != null && !boss.hasBeenDefeated)
-            {
-                // Testing
-            }
-
             boss.WakeBoss();
             this.gameObject.SetActive(false);
         }
