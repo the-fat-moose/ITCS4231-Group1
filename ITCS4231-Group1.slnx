@@ -6,6 +6,6 @@
   <Project Path="NaughtyAttributes.Editor.csproj" />
   <Project Path="sc.terrain.painter.runtime.csproj" />
   <Project Path="CFXREditor.csproj" />
-  <Project Path="CFXRRuntime.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
+  <Project Path="CFXRRuntime.csproj" />
 </Solution>
