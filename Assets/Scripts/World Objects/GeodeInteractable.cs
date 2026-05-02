@@ -106,7 +106,7 @@ namespace Group1
 
         private void RestAtGeode(PlayerManager player)
         {
-            PlayerUIManager.instance.playerUIGeodeManager.OpenGeodeMenu();
+            //PlayerUIManager.instance.playerUIGeodeManager.OpenGeodeMenu();
 
             interactableCollider.enabled = true;
             // RESTORE HEALTH, STAMINA, AND MANA
