@@ -110,6 +110,7 @@ namespace Group1 {
             }
 
             spawnedInCharacters.Clear();
+            spawnedInBossCharacters.Clear();
 
             // SPAWN THE CHARACTERS BACK IN
             for (int i = 0; i < aiCharacterSpawners.Count; i++)
