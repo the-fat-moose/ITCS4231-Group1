@@ -42,6 +42,15 @@ namespace Group1
             // Stop Preexisting played music
             WorldSoundFXManager.instance.StopAllAudio();
 
+            LockCursor();
+
+            // If title screen, unlock cursor
+            if (SceneManager.GetActiveScene().buildIndex == 1)
+                UnlockCursor();
+
+            // Play Music
+            WorldSoundFXManager.instance.PlayLevelTrack(SceneManager.GetActiveScene().buildIndex);
+
             // Wait one frame so geodes can register
             yield return null;
 
@@ -73,15 +82,6 @@ namespace Group1
                     player.transform.position = pos;
                 }
             }
-
-            LockCursor();
-
-            // If title screen, unlock cursor
-            if (SceneManager.GetActiveScene().buildIndex == 1)
-                UnlockCursor();
-
-            // Play Music
-            WorldSoundFXManager.instance.PlayLevelTrack(SceneManager.GetActiveScene().buildIndex);
         }
 
         public void WaitThenRevivePlayer()
