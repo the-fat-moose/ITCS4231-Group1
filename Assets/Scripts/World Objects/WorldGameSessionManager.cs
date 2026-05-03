@@ -27,6 +27,9 @@ namespace Group1
         private void Start()
         {
             SceneManager.activeSceneChanged += OnSceneChanged;
+
+            WorldSoundFXManager.instance.StopAllAudio();
+            WorldSoundFXManager.instance.PlayLevelTrack(SceneManager.GetActiveScene().buildIndex);
         }
 
         private void OnSceneChanged(Scene arg0, Scene arg1)
@@ -36,6 +39,9 @@ namespace Group1
 
         private IEnumerator HandleSceneLoaded()
         {
+            // Stop Preexisting played music
+            WorldSoundFXManager.instance.StopAllAudio();
+
             // Wait one frame so geodes can register
             yield return null;
 
@@ -73,6 +79,9 @@ namespace Group1
             // If title screen, unlock cursor
             if (SceneManager.GetActiveScene().buildIndex == 1)
                 UnlockCursor();
+
+            // Play Music
+            WorldSoundFXManager.instance.PlayLevelTrack(SceneManager.GetActiveScene().buildIndex);
         }
 
         public void WaitThenRevivePlayer()
@@ -106,6 +115,9 @@ namespace Group1
 
             // RESPAWN ALL ENEMIES
             WorldAIManager.instance.RespawnAllCharacters();
+
+            // Play Music
+            WorldSoundFXManager.instance.PlayLevelTrack(SceneManager.GetActiveScene().buildIndex);
         }
     
         public void UnlockCursor()

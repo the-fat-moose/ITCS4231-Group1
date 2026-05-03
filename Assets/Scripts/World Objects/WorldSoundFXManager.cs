@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Group1 {
@@ -9,6 +10,10 @@ namespace Group1 {
         [Header("Boss Track")]
         [SerializeField] AudioSource bossIntroPlayer;
         [SerializeField] AudioSource bossLoopPlayer;
+
+        [Header("Level Tracks")]
+        [SerializeField] List<AudioClip> levelTracks = new List<AudioClip>();
+        [SerializeField] AudioSource levelMusicPlayer;
 
         [Header("Damage Sounds")]
         public AudioClip[] physicalDamageSFX;
@@ -39,6 +44,8 @@ namespace Group1 {
 
         public void PlayBossTrack(AudioClip introTrack, AudioClip loopTrack)
         {
+            StopLevelMusic();
+
             bossIntroPlayer.volume = 1;
             bossLoopPlayer.volume = 1;
             if (introTrack != null)
@@ -57,6 +64,44 @@ namespace Group1 {
                 bossLoopPlayer.Play();
             }
         }
+
+        public void PlayLevelTrack(int sceneIndex)
+        {
+            if (levelMusicPlayer != null && levelMusicPlayer.isPlaying)
+            {
+                StartCoroutine(FadeInNewLevelTrack(sceneIndex));
+            }
+            else if (levelMusicPlayer != null && levelTracks[sceneIndex] != null)
+            {
+                levelMusicPlayer.volume = 1;
+                levelMusicPlayer.clip = levelTracks[sceneIndex];
+                levelMusicPlayer.loop = true;
+                levelMusicPlayer.Play();
+            }
+        }
+
+        private IEnumerator FadeInNewLevelTrack(int sceneIndex)
+        {
+            StartCoroutine(FadeOutLevelMusicThenStop());
+
+            while (levelMusicPlayer.isPlaying) yield return null;
+
+            if (levelTracks[sceneIndex] != null)
+            {
+                levelMusicPlayer.clip = levelTracks[sceneIndex];
+                levelMusicPlayer.volume = 0;
+                levelMusicPlayer.loop = true;
+                levelMusicPlayer.Play();
+
+                while (levelMusicPlayer.volume < 1)
+                {
+                    levelMusicPlayer.volume += 5 * Time.deltaTime;
+                    yield return null;
+                }
+
+                levelMusicPlayer.volume = 1;
+            }
+        }
     
         public AudioClip ChooseRandomSFXFromArray(AudioClip[] array)
         {
@@ -68,6 +113,15 @@ namespace Group1 {
         public void StopBossMusic()
         {
             StartCoroutine(FadeOutBossMusicThenStop());
+        }
+
+        public void StopBossMusicInstant()
+        {
+            bossIntroPlayer.volume = 0;
+            bossLoopPlayer.volume = 0;
+
+            bossIntroPlayer.Stop();
+            bossLoopPlayer.Stop();
         }
 
         private IEnumerator FadeOutBossMusicThenStop()
@@ -85,9 +139,32 @@ namespace Group1 {
             bossLoopPlayer.Stop();
         }
 
+        public void StopLevelMusic()
+        {
+            StartCoroutine(FadeOutLevelMusicThenStop());
+        }
+
+        public void StopLevelMusicInstant()
+        {
+            levelMusicPlayer.volume = 0;
+            levelMusicPlayer.Stop();
+        }
+
+        private IEnumerator FadeOutLevelMusicThenStop()
+        {
+            while (levelMusicPlayer.volume > 0)
+            {
+                levelMusicPlayer.volume -= 5 * Time.deltaTime;
+                yield return null;
+            }
+
+            levelMusicPlayer.Stop();
+        }
+
         public void StopAllAudio()
         {
-            StopBossMusic();
+            StopBossMusicInstant();
+            StopLevelMusicInstant();
             // ANY OTHER AUDIOS THAT NEED TO BE STOPPED
         }
     }

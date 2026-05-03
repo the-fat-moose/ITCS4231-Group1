@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 682351350158240296}
   - component: {fileID: 870140198613505800}
   - component: {fileID: 5440940085768390812}
+  - component: {fileID: 4288211516983838573}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -79,3 +80,11 @@ MonoBehaviour:
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
   m_ScrollDeltaPerTick: 6
+--- !u!81 &4288211516983838573
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6803700273162970184}
+  m_Enabled: 1
