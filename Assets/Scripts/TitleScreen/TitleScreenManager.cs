@@ -14,11 +14,14 @@ namespace Group1 {
         [Header("Menu Objects")]
         [SerializeField] private GameObject titleScreenMainMenu;
         [SerializeField] private GameObject titleScreenLoadMenu;
+        [SerializeField] private GameObject titleScreenControlsMenu;
 
         [Header("Buttons")]
         [SerializeField] private Button mainMenuNewGameButton;
         [SerializeField] private Button loadMenuReturnButton;
         [SerializeField] private Button mainMenuLoadGameButton;
+        [SerializeField] private Button mainMenuControlsButton;
+        [SerializeField] private Button controlsMenuReturnButton;
         [SerializeField] private Button mainMenuQuitGameButton;
         [SerializeField] private Button deleteCharacterPopUpConfirmButton;
 
@@ -68,6 +71,8 @@ namespace Group1 {
         {
             // CLOSE MAIN MENU
             titleScreenMainMenu.SetActive(false);
+            // CLOSE CONTROLS MENU
+            titleScreenControlsMenu.SetActive(false);
 
             // OPEN LOAD MENU
             titleScreenLoadMenu.SetActive(true);
@@ -80,6 +85,36 @@ namespace Group1 {
         {
             // CLOSE LOAD MENU
             titleScreenLoadMenu.SetActive(false);
+            // CLOSE CONTROLS MENU
+            titleScreenControlsMenu.SetActive(false);
+
+            // OPEN MAIN MENU
+            titleScreenMainMenu.SetActive(true);
+
+            // SELECT THE MAIN MENU LOAD GAME BUTTON FIRST
+            mainMenuLoadGameButton.Select();
+        }
+
+        public void OpenControlsMenu()
+        {
+            // CLOSE MAIN MENU
+            titleScreenMainMenu.SetActive(false);
+            // CLOSE LOAD MENU
+            titleScreenLoadMenu.SetActive(false);
+
+            // OPEN CONTROLS MENU
+            titleScreenControlsMenu.SetActive(true);
+
+            // SELECT THE RETURN BUTTON FIRST
+            controlsMenuReturnButton.Select();
+        }
+
+        public void CloseControlsMenu()
+        {
+            // CLOSE LOAD MENU
+            titleScreenLoadMenu.SetActive(false);
+            // CLOSE CONTROLS MENU
+            titleScreenControlsMenu.SetActive(false);
 
             // OPEN MAIN MENU
             titleScreenMainMenu.SetActive(true);
