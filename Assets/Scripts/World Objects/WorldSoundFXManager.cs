@@ -67,6 +67,8 @@ namespace Group1 {
 
         public void PlayLevelTrack(int sceneIndex)
         {
+            StopAllAudio();
+
             if (levelMusicPlayer != null && levelMusicPlayer.isPlaying)
             {
                 StartCoroutine(FadeInNewLevelTrack(sceneIndex));
