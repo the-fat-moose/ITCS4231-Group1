@@ -7,6 +7,9 @@ namespace Group1 {
     {
         public static WorldSoundFXManager instance;
 
+        [Header("Universal Music Volume")]
+        [SerializeField] private float musicVolume = 0.125f;
+
         [Header("Boss Track")]
         [SerializeField] AudioSource bossIntroPlayer;
         [SerializeField] AudioSource bossLoopPlayer;
@@ -46,8 +49,8 @@ namespace Group1 {
         {
             StopLevelMusic();
 
-            bossIntroPlayer.volume = 1;
-            bossLoopPlayer.volume = 1;
+            bossIntroPlayer.volume = musicVolume;
+            bossLoopPlayer.volume = musicVolume;
             if (introTrack != null)
             {
                 bossIntroPlayer.clip = introTrack;
@@ -75,7 +78,7 @@ namespace Group1 {
             }
             else if (levelMusicPlayer != null && levelTracks[sceneIndex] != null)
             {
-                levelMusicPlayer.volume = 1;
+                levelMusicPlayer.volume = musicVolume;
                 levelMusicPlayer.clip = levelTracks[sceneIndex];
                 levelMusicPlayer.loop = true;
                 levelMusicPlayer.Play();
@@ -95,13 +98,13 @@ namespace Group1 {
                 levelMusicPlayer.loop = true;
                 levelMusicPlayer.Play();
 
-                while (levelMusicPlayer.volume < 1)
+                while (levelMusicPlayer.volume < musicVolume)
                 {
                     levelMusicPlayer.volume += 5 * Time.deltaTime;
                     yield return null;
                 }
 
-                levelMusicPlayer.volume = 1;
+                levelMusicPlayer.volume = musicVolume;
             }
         }
     
