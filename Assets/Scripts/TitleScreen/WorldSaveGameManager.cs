@@ -288,6 +288,7 @@ namespace Group1 {
             SaveGame();
 
             Destroy(player.gameObject);
+            PlayerUIManager.instance.playerUIHudManager.RemoveBossHealthBars();
 
             StartCoroutine(LoadTitleScene());
         }
