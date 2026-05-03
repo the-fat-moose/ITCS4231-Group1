@@ -290,6 +290,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Close UI",
+                    "type": "Button",
+                    "id": "06bf260a-ac9c-49c5-b22b-dee904a715c4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Tap",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Sprint",
                     "type": "Button",
                     "id": "c52ebdee-368e-48f8-ade0-644f776e73f5",
@@ -490,6 +499,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Dodge",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "268ddbb5-9d8c-4762-b6da-e27b8349c6f3",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Close UI",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "47e97846-a28b-47ab-9ebf-efe8402b954e",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Close UI",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

@@ -8,16 +8,22 @@ namespace Group1
         [Header("Menu")]
         [SerializeField] private GameObject menu;
 
+        public bool characterMenuIsOpen = false;
+
         public void OpenCharacterMenu()
         {
             PlayerUIManager.instance.menuWindowIsOpen = true;
             menu.SetActive(true);
+
+            characterMenuIsOpen = true;
         }
 
         public void CloseCharacterMenu()
         {
             PlayerUIManager.instance.menuWindowIsOpen = false;
             menu.SetActive(false);
+
+            characterMenuIsOpen = false;
         }
 
         public void CloseCharacterMenuAfterFixedUpdate()

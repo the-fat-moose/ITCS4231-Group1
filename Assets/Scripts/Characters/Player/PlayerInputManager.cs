@@ -135,7 +135,7 @@ namespace Group1{
                 playerControls.PlayerActions.KnockUpAbility.performed += i => knockUpAbility_Input = true;
 
                 // UI Inputs
-                playerControls.PlayerActions.Dodge.performed += i => closeMenuInput = true;
+                playerControls.PlayerActions.CloseUI.performed += i => closeMenuInput = true;
                 playerControls.PlayerActions.OpenCharacterMenu.performed += i => openCharacterMenuInput = true;
             }
 
@@ -337,6 +337,9 @@ namespace Group1{
             {
                 dodgeInput = false;
 
+                // no dodge when ui open
+                if (PlayerUIManager.instance.menuWindowIsOpen) return;
+
                 Vector3 inputDirection = player.transform.forward * verticalInput + player.transform.right * horizontalInput;
 
                 if(inputDirection == Vector3.zero)
@@ -347,9 +350,6 @@ namespace Group1{
                 dodgeDirection = inputDirection.normalized;
 
                 isDodging = true;
-
-                // no dodge when ui open
-                if (PlayerUIManager.instance.menuWindowIsOpen) return;
 
                 player.locomotion.AttemptToDodge();
             }
@@ -559,6 +559,8 @@ namespace Group1{
             {
                 openCharacterMenuInput = false;
 
+                if (PlayerUIManager.instance.menuWindowIsOpen) return;
+
                 PlayerUIManager.instance.playerUIPopUpManager.CloseAllPopUpWindows();
                 PlayerUIManager.instance.CloseAllMenuWindows();
                 PlayerUIManager.instance.playerUICharacterMenuManager.OpenCharacterMenu();
@@ -571,6 +573,8 @@ namespace Group1{
             if (closeMenuInput)
             {
                 closeMenuInput = false;
+
+                if (PlayerUIManager.instance.playerUICharacterMenuManager.characterMenuIsOpen) return;
 
                 if (PlayerUIManager.instance.menuWindowIsOpen)
                 {

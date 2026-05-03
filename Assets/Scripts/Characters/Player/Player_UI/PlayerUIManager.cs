@@ -51,6 +51,8 @@ namespace Group1 {
             playerUIGeodeManager.CloseGeodeMenu();
             playerUITeleportLocationManager.CloseTeleportLocationMenu();
             playerUIControlScreenManager.CloseControlScreenMenu();
+
+            WorldGameSessionManager.instance.LockCursor();
         }
     }
 }
