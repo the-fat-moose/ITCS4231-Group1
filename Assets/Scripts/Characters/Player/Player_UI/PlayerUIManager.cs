@@ -12,6 +12,7 @@ namespace Group1 {
         [HideInInspector] public PlayerUIGeodeManager playerUIGeodeManager;
         [HideInInspector] public PlayerUITeleportLocationManager playerUITeleportLocationManager;
         [HideInInspector] public PlayerUILoadingScreenManager playerUILoadingScreenManager;
+        [HideInInspector] public PlayerUIControlScreenManager playerUIControlScreenManager;
 
         [Header("UI Flags")]
         public bool menuWindowIsOpen = false; // INVENTORY SCREEN, EQUIPMENT MENU, ETC
@@ -35,6 +36,7 @@ namespace Group1 {
             playerUIGeodeManager = GetComponentInChildren<PlayerUIGeodeManager>();
             playerUITeleportLocationManager = GetComponentInChildren<PlayerUITeleportLocationManager>();
             playerUILoadingScreenManager = GetComponentInChildren<PlayerUILoadingScreenManager>();
+            playerUIControlScreenManager = GetComponentInChildren<PlayerUIControlScreenManager>();
         }
 
         private void Start()
@@ -48,6 +50,7 @@ namespace Group1 {
             playerUIEquipmentManager.CloseEquipmentMenu();
             playerUIGeodeManager.CloseGeodeMenu();
             playerUITeleportLocationManager.CloseTeleportLocationMenu();
+            playerUIControlScreenManager.CloseControlScreenMenu();
         }
     }
 }

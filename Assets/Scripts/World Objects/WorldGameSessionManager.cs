@@ -142,6 +142,11 @@ namespace Group1
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+
+            if (SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                UnlockCursor();
+            }
         }
     }
 }
