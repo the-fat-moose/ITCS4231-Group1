@@ -30,6 +30,14 @@ namespace Group1
 
             WorldSoundFXManager.instance.StopAllAudio();
             WorldSoundFXManager.instance.PlayLevelTrack(SceneManager.GetActiveScene().buildIndex);
+
+            PlayerUIManager.instance.playerUIHudManager.ToggleHUD(true);
+
+            // If title screen, unlock cursor, disable player hud
+            if (SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                PlayerUIManager.instance.playerUIHudManager.ToggleHUD(false);
+            }
         }
 
         private void OnSceneChanged(Scene arg0, Scene arg1)
@@ -43,10 +51,14 @@ namespace Group1
             WorldSoundFXManager.instance.StopAllAudio();
 
             LockCursor();
+            PlayerUIManager.instance.playerUIHudManager.ToggleHUD(true);
 
-            // If title screen, unlock cursor
+            // If title screen, unlock cursor, disable player hud
             if (SceneManager.GetActiveScene().buildIndex == 1)
+            {
                 UnlockCursor();
+                PlayerUIManager.instance.playerUIHudManager.ToggleHUD(false);
+            }
 
             // Play Music
             WorldSoundFXManager.instance.PlayLevelTrack(SceneManager.GetActiveScene().buildIndex);

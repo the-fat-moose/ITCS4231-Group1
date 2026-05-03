@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -21,7 +22,7 @@ namespace Group1 {
             gameObject.SetActive(false);
         }
 
-        public void AttemptToSpawnCharacter()
+        public IEnumerator AttemptToSpawnCharacter()
         {
             if (characterGameObject != null)
             {
@@ -33,6 +34,9 @@ namespace Group1 {
                 if (aiCharacter != null)
                 {
                     WorldAIManager.instance.AddCharacterToSpawnedCharactersList(aiCharacter);
+
+                    while (!NavMesh.SamplePosition(instantiatedGameObject.transform.position, out _, 1f, NavMesh.AllAreas))
+                        yield return null;
 
                     NavMeshHit hit;
                     if (NavMesh.SamplePosition(instantiatedGameObject.transform.position, out hit, 5f, NavMesh.AllAreas))

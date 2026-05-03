@@ -37,7 +37,7 @@ namespace Group1 {
         public void SpawnCharacter(AICharacterSpawner spawner)
         {
             aiCharacterSpawners.Add(spawner);
-            spawner.AttemptToSpawnCharacter();
+            StartCoroutine(spawner.AttemptToSpawnCharacter());
         }
 
         public void AddCharacterToSpawnedCharactersList(AICharacterManager character)
@@ -117,7 +117,7 @@ namespace Group1 {
             {
                 yield return new WaitForFixedUpdate();
 
-                aiCharacterSpawners[i].AttemptToSpawnCharacter();
+                StartCoroutine(aiCharacterSpawners[i].AttemptToSpawnCharacter());
 
                 yield return null;
             }
