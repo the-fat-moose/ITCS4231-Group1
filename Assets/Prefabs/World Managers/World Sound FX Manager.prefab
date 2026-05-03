@@ -53,6 +53,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 8300000, guid: 28018968acae4d140ae88b7b0566d9a7, type: 3}
   - {fileID: 8300000, guid: 84cf111b12646ad44b468081242d1360, type: 3}
+  - {fileID: 8300000, guid: 84cf111b12646ad44b468081242d1360, type: 3}
   levelMusicPlayer: {fileID: 1543186570589234236}
   physicalDamageSFX:
   - {fileID: 8300000, guid: 7cbd6cd765888ff418d01d98bd1ce9c2, type: 3}
