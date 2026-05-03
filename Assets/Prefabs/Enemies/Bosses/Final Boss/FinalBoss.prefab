@@ -2551,7 +2551,7 @@ MonoBehaviour:
   isInvulnerable: 0
   upgradedParry: 0
   endurance: 20
-  vitality: 90
+  vitality: 180
   mind: 20
   currentStamina: 0
   maxStamina: 0
@@ -4479,15 +4479,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5384713200424505771, guid: bd9965ae646853942bc8269b13d078a5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.5397966
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5384713200424505771, guid: bd9965ae646853942bc8269b13d078a5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.3489382
+      value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: 5384713200424505771, guid: bd9965ae646853942bc8269b13d078a5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.2889695
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5384713200424505771, guid: bd9965ae646853942bc8269b13d078a5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4515,6 +4515,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5384713200424505771, guid: bd9965ae646853942bc8269b13d078a5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5395723052818770111, guid: bd9965ae646853942bc8269b13d078a5, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8951622681525788045, guid: bd9965ae646853942bc8269b13d078a5, type: 3}
