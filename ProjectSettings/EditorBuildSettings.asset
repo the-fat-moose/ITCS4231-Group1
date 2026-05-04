@@ -15,14 +15,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Scene_World_Forest.unity
     guid: b4ba66f0af78d684f95eafb437d87968
   - enabled: 1
+    path: Assets/Scenes/Scene_World_Cave.unity
+    guid: 0989fb15e84fb954fbf65d0da2d5c44e
+  - enabled: 1
     path: Assets/Scenes/Scene_World_Castle.unity
     guid: 121911ab42e025d45a0faf2897c7363d
   - enabled: 1
     path: Assets/Scenes/Scene_EndingText.unity
     guid: dc4d900567cac35428be7a968473cfc6
-  - enabled: 1
-    path: Assets/Scenes/Scene_World_Cave.unity
-    guid: 0989fb15e84fb954fbf65d0da2d5c44e
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -47,11 +47,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edf635d9f6509e74c9ec26dd440d4534, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldSoundFXManager
+  musicVolume: 0.125
   bossIntroPlayer: {fileID: 8850567900043922230}
   bossLoopPlayer: {fileID: 461590516502043049}
   levelTracks:
   - {fileID: 0}
   - {fileID: 8300000, guid: 28018968acae4d140ae88b7b0566d9a7, type: 3}
+  - {fileID: 8300000, guid: 84cf111b12646ad44b468081242d1360, type: 3}
   - {fileID: 8300000, guid: 84cf111b12646ad44b468081242d1360, type: 3}
   - {fileID: 8300000, guid: 84cf111b12646ad44b468081242d1360, type: 3}
   levelMusicPlayer: {fileID: 1543186570589234236}
