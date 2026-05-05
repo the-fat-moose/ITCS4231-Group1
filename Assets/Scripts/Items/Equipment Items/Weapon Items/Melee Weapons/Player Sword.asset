@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Group1.MeleeWeaponItem
   itemName: Player Sword
   itemIcon: {fileID: 21300000, guid: e5f0232a89dc7c94fa05b3385f8ba327, type: 3}
-  itemDescription: The player's sword.
+  itemDescription: The hero's sword.
   itemID: 1
   weaponModel: {fileID: 1379423515413992419, guid: 2b83874327b28cc4e809b097ab35476e, type: 3}
   strengthREQ: 10
