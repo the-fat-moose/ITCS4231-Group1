@@ -15,6 +15,7 @@ namespace Group1 {
         [SerializeField] private Image itemIcon;
         [SerializeField] private TextMeshProUGUI itemName;
         [SerializeField] private TextMeshProUGUI itemAmount;
+        [SerializeField] private TextMeshProUGUI itemDescription;
 
         [Header("GEODE SHATTERED Pop Up")]
         [SerializeField] private GameObject geodeShatteredPopUpGameObject;
@@ -54,6 +55,7 @@ namespace Group1 {
             itemAmount.enabled = false;
             itemIcon.sprite = item.itemIcon;
             itemName.text = item.itemName;
+            itemDescription.text = item.itemDescription;
 
             if (amount > 1)
             {
