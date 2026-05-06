@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - TunnelLight
+  - CaveExit
+  - Heartstone
+  - Voidrend
   layers:
   - Default
   - TransparentFX
@@ -19,8 +23,8 @@ TagManager:
   - Interactable
   - Event Trigger
   - LockOnUI
-  - 
-  - 
+  - CaveExit
+  - TunnelLight
   - 
   - 
   - 

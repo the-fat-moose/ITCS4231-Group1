@@ -6653,7 +6653,7 @@ MonoBehaviour:
   isActive: 1
   isInvulnerable: 0
   upgradedParry: 0
-  endurance: 10
+  endurance: 15
   vitality: 10
   mind: 10
   currentStamina: 0
@@ -6780,7 +6780,7 @@ MonoBehaviour:
   jumpHeight: 2
   jumpForwardSpeed: 5
   freeFallingSpeed: 2
-  sprintingStaminaCost: 2
+  sprintingStaminaCost: 3
   dodgeStaminaCost: 15
   jumpStaminaCost: 15
   rollSpeed: 4
@@ -6881,7 +6881,7 @@ MonoBehaviour:
   maxHealthMultiplier: 1
   maxManaMultiplier: 1
   staminaRegenerationDelay: 2
-  staminaRegenerationAmount: 2
+  staminaRegenerationAmount: 5
   staminaRegenMultiplier: 1
   blockingPhysicalAbsorption: 65
   blockingMagicAbsorption: 65
@@ -6961,9 +6961,7 @@ MonoBehaviour:
   pushAbility: {fileID: 11400000, guid: 00d00687d46b047489efc7350cfaaf12, type: 2}
   knockUpAbility: {fileID: 11400000, guid: 657b9859a577d074689eb9af92d5df6f, type: 2}
   cageAbility: {fileID: 11400000, guid: b6bb5b2f36a60bf4ca8c9a9b14db7264, type: 2}
-  itemsInInventory:
-  - {fileID: 11400000, guid: c44b6d7661e595c449781e80e2fcfd16, type: 2}
-  - {fileID: 11400000, guid: 415d68f9f235f8149a3127742b568877, type: 2}
+  itemsInInventory: []
 --- !u!114 &3690826846574739967
 MonoBehaviour:
   m_ObjectHideFlags: 0

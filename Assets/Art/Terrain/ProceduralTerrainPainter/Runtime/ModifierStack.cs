@@ -114,7 +114,15 @@ namespace sc.terrain.proceduralpainter
         public static void Dispose()
         {
             filterMat = null;
-            alphaMap?.Release();
+            if (alphaMap != null)
+            {
+                try
+                {
+                    if (alphaMap.IsCreated())
+                        alphaMap.Release();
+                }
+                catch { }
+            }
         }
     }
 }
