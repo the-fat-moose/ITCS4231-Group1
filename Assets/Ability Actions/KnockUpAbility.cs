@@ -41,7 +41,7 @@ namespace Group1
             Quaternion rotation = Quaternion.LookRotation(forward);
 
             Collider[] hits = Physics.OverlapBox(origin, new Vector3(width * 0.5f, height * 0.5f, range * 0.5f), rotation, LayerMask.GetMask("Character"));
-            Debug.LogError(hits.Length + " hit(s) detected in KnockUpAbility");
+            
             foreach (var hit in hits)
             {
                 Debug.Log("Applying KnockUpEffect");
@@ -64,7 +64,7 @@ namespace Group1
                 effect.liftHeight = liftHeight;
                 effect.floatDuration = floatDuration;
                 effect.slamDamage = slamDamage;
-                Debug.LogError($"Applying KnockUpEffect to {character.name}");
+                
 
                 //handle damage
                 /*TakeDamageEffect damageEffect = Instantiate(WorldCharacterEffectsManager.instance.takeDamageEffect);

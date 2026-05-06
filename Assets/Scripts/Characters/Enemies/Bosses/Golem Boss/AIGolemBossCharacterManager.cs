@@ -22,10 +22,16 @@ namespace Group1
             lightAtEndOfTunnel = GameObject.FindWithTag("TunnelLight");
             heartstone = GameObject.FindWithTag("Heartstone");
             voidRend = GameObject.FindWithTag("Voidrend");
-
-            lightAtEndOfTunnel.SetActive(false);
-            heartstone.SetActive(false);
-            voidRend.SetActive(false);
+            
+        }
+        virtual public void Start()
+        {
+            base.Start();
+            if(lightAtEndOfTunnel != null) heartstone.SetActive(false);
+            
+            if(heartstone != null) heartstone.SetActive(false);
+            
+            if(voidRend != null) voidRend.SetActive(false);
         }
 
         public override IEnumerator ProcessDeathEvent()

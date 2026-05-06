@@ -42,7 +42,7 @@ namespace Group1
 
             foreach (var hit in hits)
             {
-                Debug.LogError("Start of Foreach");
+                
                 CharacterManager character = hit.GetComponent<CharacterManager>();
                 if (character == null || character.isDead) continue;
 
@@ -63,7 +63,6 @@ namespace Group1
 
                 character.characterEffectsManager.ProcessInstantEffect(effect);
 
-                Debug.LogError("End of Foreach");
                 character.characterEffectsManager.ProcessInstantEffect(effect);
             }
         }

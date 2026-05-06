@@ -8,7 +8,7 @@ namespace Group1
 
         public virtual void AttemptToPerformAbility(PlayerManager player)
         {
-            Debug.LogError("Ability Fired: " + name);
+            
         }
     }
 }

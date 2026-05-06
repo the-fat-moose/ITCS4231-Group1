@@ -328,7 +328,6 @@ namespace Group1{
         public void OnIsParriedChanged(bool oldStatus, bool newStatus)
         {
             animator.SetBool("parried", newStatus);
-            Debug.LogError("Parried");
         }
 
         public void OnIsActiveChanged(bool oldStatus, bool newStatus)
@@ -393,11 +392,9 @@ namespace Group1{
 
         public void ApplyKnockback(Vector3 direction, float force)
         {
-            Debug.LogError("Apply knock back");
             if (aiCharacterManager != null)
             {
                 aiCharacterManager.ApplyKnockback(direction, force);
-                Debug.LogError("Should apply knock back");
             }
         }
 

@@ -111,7 +111,6 @@ namespace Group1 {
 
         private IEnumerator KnockbackRoutine(Vector3 direction, float force, float duration)
         {
-            Debug.LogError("KnockBackRoutine");
             // Stop AI movement
             if (navMeshAgent != null) navMeshAgent.enabled = false;
 
@@ -136,13 +135,11 @@ namespace Group1 {
 
         public void Freeze(float duration)
         {
-            Debug.LogError("Freeze called");
             StartCoroutine(FreezeRoutine(duration));
         }
 
         private IEnumerator FreezeRoutine(float duration)
         {
-            Debug.LogError("FreezeRoutine");
             if (navMeshAgent != null) navMeshAgent.enabled = false;
 
             animator.applyRootMotion = false;
@@ -157,7 +154,6 @@ namespace Group1 {
 
             animator.applyRootMotion = true;
             animator.speed = 1f;
-            Debug.LogError("FreezeRoutine End");
         }
 
         public void KnockUp(float liftHeight, float floatDuration, float slamDamage)
@@ -167,7 +163,6 @@ namespace Group1 {
 
         private IEnumerator KnockUpRoutine(float liftHeight, float floatDuration, float slamDamage)
         {
-            Debug.LogError("KnockUpRoutine Start");
             characterLocomotionManager.inKnockUpAbility = true;
             // Disable AI movement
             if (navMeshAgent != null) navMeshAgent.enabled = false;
@@ -219,8 +214,6 @@ namespace Group1 {
             if (navMeshAgent != null) navMeshAgent.enabled = true;
 
             animator.applyRootMotion = true;
-
-            Debug.LogError("KnockUpRoutine End");
         }
 
 

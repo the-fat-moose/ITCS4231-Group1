@@ -42,7 +42,6 @@ namespace Group1
                 character.animator.CrossFade("PlayerCharacter_Parry", 0.1f);
                 character.characterStatsManager.RegenerateMana();
                 PlayParrySFX(character);
-                Debug.LogError("Parry registered in TakeDamageEffect");
             }
             if (character.Parried)    //if player parries then no damage taken - jo (feel free to change this, didn't know a safer way to take no damage while not messing your stuff up)
             {
@@ -67,7 +66,6 @@ namespace Group1
                 // CHECK FOR DAMAGE MODIFIERS AND MODIFY BASE DAMAGE (Physical damage buff, magic damage buff, etc)
             }
 
-            Debug.LogError("Original Physical Damage " + physicalDamage);
 
             // CHECK CHARACTER FOR FLAT DAMAGE REDUCTION AND SUBTRACT THEM FROM THE DAMAGE
             physicalDamage -= physicalDamage * (character.characterStatsManager.blockingPhysicalAbsorption / 100);
