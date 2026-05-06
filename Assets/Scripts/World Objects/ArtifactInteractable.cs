@@ -23,7 +23,7 @@ namespace Group1
             // PLAY UNSTABLE ANIMATION
             beginRotation = true;
 
-            StartCoroutine(TeleportPlayer(7f));
+            StartCoroutine(TeleportPlayer(5f));
         }
 
         void Update()
