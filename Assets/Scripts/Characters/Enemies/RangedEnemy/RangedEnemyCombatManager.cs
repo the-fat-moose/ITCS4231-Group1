@@ -65,7 +65,7 @@ namespace Group1
             {
                 projectileComponent.damage = Mathf.RoundToInt(baseDamage * projectileDamageModifier);
                 projectileComponent.speed = projectileSpeed;
-                projectileComponent.owner = this;
+                projectileComponent.owner = GetComponent<CharacterManager>();
             }
         }
 

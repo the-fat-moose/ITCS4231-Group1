@@ -7,7 +7,7 @@ namespace Group1
     {
         public int damage;
         public float speed;
-        public AiCharacterCombatManager owner;
+        public CharacterManager owner;
 
         private void Update()
         {
