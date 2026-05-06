@@ -1,5 +1,6 @@
 using System.Collections;
 using Group1;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Group1
@@ -24,7 +25,8 @@ namespace Group1
             voidRend = GameObject.FindWithTag("Voidrend");
             
         }
-        virtual public void Start()
+
+        protected override void Start()
         {
             base.Start();
             if(lightAtEndOfTunnel != null) heartstone.SetActive(false);
