@@ -1293,6 +1293,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1611543080379358201, guid: 7d3b315f9b7f93d4093a551994143476, type: 3}
+      propertyPath: geodeID
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611543080379358201, guid: 7d3b315f9b7f93d4093a551994143476, type: 3}
+      propertyPath: sceneIndex
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5183076011466325299, guid: 7d3b315f9b7f93d4093a551994143476, type: 3}
       propertyPath: m_Name
       value: Geode Interactable
