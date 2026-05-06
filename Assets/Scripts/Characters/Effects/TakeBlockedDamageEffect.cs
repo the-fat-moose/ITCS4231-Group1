@@ -32,8 +32,6 @@ namespace Group1
         {
             base.ProcessEffect(character);
 
-            Debug.LogError("HIT WAS Blocked");
-
             // IF THE CHARACTER IS DEAD, NO ADDITIONAL DAMAGE EFFECTS SHOULD BE PROCESSED
             if (character.isDead) return;
 

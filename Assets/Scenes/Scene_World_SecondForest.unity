@@ -2313,7 +2313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b2dfc71c1968542b3c49bfc2c4f3e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Group1.SceneTeleporter
-  buildIndexToTravelTo: 5
+  buildIndexToTravelTo: 3
 --- !u!65 &1439471981
 BoxCollider:
   m_ObjectHideFlags: 0
