@@ -8752,6 +8752,10 @@ PrefabInstance:
       value: Item Pick Up - Heartstone
       objectReference: {fileID: 0}
     - target: {fileID: 4618493084310515219, guid: c7d34fbc43937d640935a8e76dd0831b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4618493084310515219, guid: c7d34fbc43937d640935a8e76dd0831b, type: 3}
       propertyPath: m_TagString
       value: Heartstone
       objectReference: {fileID: 0}
@@ -8771,6 +8775,11 @@ PrefabInstance:
 --- !u!4 &392261172 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3304873555027198824, guid: c7d34fbc43937d640935a8e76dd0831b, type: 3}
+  m_PrefabInstance: {fileID: 392261171}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &392261173 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4618493084310515219, guid: c7d34fbc43937d640935a8e76dd0831b, type: 3}
   m_PrefabInstance: {fileID: 392261171}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &394511340
@@ -19888,6 +19897,10 @@ PrefabInstance:
       value: Item Pick Up - Voidrend
       objectReference: {fileID: 0}
     - target: {fileID: 6488018352003957907, guid: 0caf988b177394748a0255a01c35c914, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488018352003957907, guid: 0caf988b177394748a0255a01c35c914, type: 3}
       propertyPath: m_TagString
       value: Voidrend
       objectReference: {fileID: 0}
@@ -19939,6 +19952,11 @@ PrefabInstance:
 --- !u!4 &846781091 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6663934589052502616, guid: 0caf988b177394748a0255a01c35c914, type: 3}
+  m_PrefabInstance: {fileID: 846781090}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &846781092 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6488018352003957907, guid: 0caf988b177394748a0255a01c35c914, type: 3}
   m_PrefabInstance: {fileID: 846781090}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &848624941
@@ -23152,6 +23170,54 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 273440906667287937, guid: 5a681486c498eaf48bd25594270c0bc6, type: 3}
   m_PrefabInstance: {fileID: 972469797}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &974004743
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 974004744}
+  - component: {fileID: 974004745}
+  m_Layer: 0
+  m_Name: EnvironmentLinkHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &974004744
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974004743}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 837.614, y: 0.8495336, z: 347.86182}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1958845248}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &974004745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974004743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf8527e760b9eb1479c1d814627cd976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossEnvironmentLinker
+  caveExit: {fileID: 3903424579363560990}
+  lightAtEndOfTunnel: {fileID: 7884988837284109925}
+  heartstone: {fileID: 392261173}
+  voidRend: {fileID: 846781092}
 --- !u!1001 &980581218
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47466,7 +47532,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7116970169365820711, guid: 9be25103fc872354fad9d94ce8f55c11, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 974004744}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9be25103fc872354fad9d94ce8f55c11, type: 3}
 --- !u!4 &1958845248 stripped
@@ -51883,6 +51952,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2ef2d33a57b8d74bb5e5300dcd19778, type: 3}
+--- !u!1 &3903424579363560990 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7540817763509471801, guid: e2ef2d33a57b8d74bb5e5300dcd19778, type: 3}
+  m_PrefabInstance: {fileID: 3903424579363560989}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7884988837284109924
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51935,11 +52009,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: _LIGHT AT THE END OF TUNNEL
       objectReference: {fileID: 0}
+    - target: {fileID: 2959371650216062838, guid: 9173faba29e20b04f806a2987d8cf151, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9173faba29e20b04f806a2987d8cf151, type: 3}
+--- !u!1 &7884988837284109925 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2959371650216062838, guid: 9173faba29e20b04f806a2987d8cf151, type: 3}
+  m_PrefabInstance: {fileID: 7884988837284109924}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

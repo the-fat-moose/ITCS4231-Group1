@@ -8,8 +8,12 @@ namespace Group1 {
     {
         [Header("Character")]
         [SerializeField] GameObject characterGameObject;
-        [SerializeField] GameObject instantiatedGameObject;
+        [SerializeField] public GameObject instantiatedGameObject;
         private AICharacterManager aiCharacter;
+
+        //Added by jo get rid of if breaks
+        public AICharacterSpawner self => this;
+
 
         private void Awake()
         {
@@ -19,14 +23,14 @@ namespace Group1 {
         private void Start()
         {
             WorldAIManager.instance.SpawnCharacter(this);
-            gameObject.SetActive(false);
+            GetComponent<MeshRenderer>().enabled = false;
         }
 
         public IEnumerator AttemptToSpawnCharacter()
         {
             if (characterGameObject != null)
             {
-                instantiatedGameObject = Instantiate(characterGameObject);
+                instantiatedGameObject = Instantiate(characterGameObject, transform);
                 instantiatedGameObject.transform.position = transform.position;
                 instantiatedGameObject.transform.rotation = transform.rotation;
                 aiCharacter = instantiatedGameObject.GetComponent<AICharacterManager>();
