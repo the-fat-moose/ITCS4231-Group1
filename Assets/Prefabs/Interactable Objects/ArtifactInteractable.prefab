@@ -5050,8 +5050,8 @@ MonoBehaviour:
   interactableCollider: {fileID: 4811379870208302339}
   buildIndexToTravelTo: 1
   objectToRotate: {fileID: 815223456882418768}
-  acceleration: 10
   spinAxis: {x: 1, y: 0.5, z: 0.2}
+  artifactInteractableActivationSound: {fileID: 8300000, guid: b2fccb909ddc99d47abba68373e96d00, type: 3}
 --- !u!1 &5222441813885657458
 GameObject:
   m_ObjectHideFlags: 0

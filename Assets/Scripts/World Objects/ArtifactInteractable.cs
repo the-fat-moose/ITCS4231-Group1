@@ -16,12 +16,18 @@ namespace Group1
         private float currentSpeed = 0f;
         private bool beginRotation = false;
 
+        [Header("SFX")]
+        [SerializeField] private AudioClip artifactInteractableActivationSound;
+
         public override void Interact(PlayerManager player)
         {
             base.Interact(player);
 
             // PLAY UNSTABLE ANIMATION
             beginRotation = true;
+
+            // Start Audio
+            player.characterSoundFXManager.PlaySoundFX(artifactInteractableActivationSound, 1, false);
 
             StartCoroutine(TeleportPlayer(5f));
         }
