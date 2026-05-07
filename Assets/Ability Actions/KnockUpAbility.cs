@@ -35,7 +35,7 @@ namespace Group1
         public void ExecuteKnockUp(PlayerManager player)
         {
             // Hitbox
-            Vector3 forward = player.transform.forward;
+            Vector3 forward = PlayerCamera.cam.transform.forward;
             Vector3 origin = player.transform.position + forward * (range * 0.6f) + Vector3.up * (height * 0.5f);
 
             Quaternion rotation = Quaternion.LookRotation(forward);
