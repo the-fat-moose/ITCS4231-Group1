@@ -53,9 +53,9 @@ MonoBehaviour:
   levelTracks:
   - {fileID: 0}
   - {fileID: 8300000, guid: 28018968acae4d140ae88b7b0566d9a7, type: 3}
-  - {fileID: 8300000, guid: 84cf111b12646ad44b468081242d1360, type: 3}
-  - {fileID: 8300000, guid: 84cf111b12646ad44b468081242d1360, type: 3}
-  - {fileID: 8300000, guid: 84cf111b12646ad44b468081242d1360, type: 3}
+  - {fileID: 8300000, guid: fb35527487b5a27498cc64f33cd67cc1, type: 3}
+  - {fileID: 8300000, guid: 6b08044a0ab6ffe49aa559ed4d61e1ec, type: 3}
+  - {fileID: 8300000, guid: d3dc6cb2de675754ca002174be72667f, type: 3}
   - {fileID: 8300000, guid: 84cf111b12646ad44b468081242d1360, type: 3}
   - {fileID: 8300000, guid: 56d8f5e491ce5aa42851a90fba8d3822, type: 3}
   levelMusicPlayer: {fileID: 1543186570589234236}
